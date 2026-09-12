@@ -170,6 +170,9 @@ _DEMAND_PHRASE = {
     "double_stops": "double stops",
     "bow_demand": "bow control",
     "rhythm_complexity": "rhythmic complexity",
+    "string_crossings": "string crossings",
+    "position_changes": "position changes",
+    "key_remoteness": "a remote key",
 }
 
 NO_DOMINANT_TEXT = "nothing here rises far above a modest demand"

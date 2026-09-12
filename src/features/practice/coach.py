@@ -27,7 +27,7 @@ from src.schemas.score import Phrase
 
 # A measure this much above the phrase mean is a local obstacle worth isolating
 # rather than a phrase that is simply hard throughout.
-LOCAL_PEAK_MARGIN = 0.8
+LOCAL_PEAK_MARGIN = 0.6
 
 # Rubric factor strength above which a demand is worth naming to the player.
 FACTOR_TRIGGER = 0.30

@@ -202,7 +202,7 @@ def boundary_from_candidate(cand: Candidate | None, fallback: str) -> PhraseBoun
 # How far above its phrase's mean a measure must sit to count as a local
 # obstacle rather than part of a uniformly demanding phrase. Shared with the
 # practice coach so one number governs both what is marked and what is taught.
-LOCAL_PEAK_MARGIN = 0.8
+LOCAL_PEAK_MARGIN = 0.6
 
 # A phrase needs an inside before something can be inside it. With two measures
 # there is no "local" -- the peak is simply half the phrase.

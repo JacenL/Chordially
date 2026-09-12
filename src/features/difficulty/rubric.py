@@ -60,6 +60,37 @@ found and each is fixed at its source rather than by subtracting a constant:
 7.  **The curve rose too fast from zero.** The old exponential had a slope of
     2.4 points per raw point at the origin, so any single modest demand already
     landed in the middle of the scale. The curve now starts flat and steepens.
+
+Version 3.0 addressed the opposite failure: version 2.0 had corrected the
+inflation so thoroughly that it could no longer see the demands that graded
+violin syllabi actually grade by. Measured on Mozart K.156 -- a Presto first
+violin part -- 138 of 145 measures came out "Beginner-friendly", and the
+remaining seven never passed 2.9. Three of the four things a teacher would
+name were invisible to the rubric, and the fourth was being read wrong:
+
+1.  **Double stops always read zero.** Chords were flattened to their top note
+    before the rubric saw them. They are now carried on the event and rated
+    by interval and by whether an open string is involved (`lefthand.py`).
+2.  **String crossings were not a feature.** Fluency in crossing is what
+    separates a level 3 study from a level 2 one in the ASTA descriptions.
+    They are now estimated from pitch under the lowest-workable-position
+    model and labelled as estimates.
+3.  **Shifts were not a feature.** Register measured only how high the top
+    note was, so a line that climbed to fourth position and came back rated
+    the same as one that stayed there. Position changes are now estimated
+    the same way, and register also counts how much of the measure sits above
+    first position rather than only its peak.
+4.  **Remote keys cost nothing.** Every syllabus caps the keys a level plays
+    in; a key of five flats is a different piece of work from D major on a
+    violin. A small feature now says so.
+
+The tempo the rubric assumed was also wrong for most exported files, which is
+fixed at the source in `musicxml_source.read_tempo` rather than here.
+
+Nothing here is a validated grade. Anchors for the categories are the level
+descriptions of graded string syllabi, cited in docs/music-pedagogy.md; the
+tests in tests/unit/test_rubric_30.py pin constructed measures to the bands
+those descriptions imply.
 """
 
 from __future__ import annotations
@@ -67,10 +98,11 @@ from __future__ import annotations
 import math
 from fractions import Fraction
 
+from src.features.difficulty import lefthand
 from src.schemas.music import NoteEvent
 from src.schemas.score import DifficultyFactor
 
-RUBRIC_VERSION = "2.0"
+RUBRIC_VERSION = "3.0"
 
 # Tempo assumed when the score states none, in **notated beats** per minute --
 # see `beat_unit` below. Conservative and disclosed in the UI; the rating
@@ -124,6 +156,12 @@ PRESSURE_PER_NOTE_PER_SECOND = 0.11
 # twice -- the exact error rubric 2.0 was written to remove.
 RATE_KEY = "note_rate"
 
+# Demands that time relieves less than it relieves a leap or an accidental.
+# A fingered third is hard to tune however long you hold it, so its pressure
+# never falls below this floor; a wide leap given a half note genuinely gets
+# most of its difficulty back.
+PRESSURE_FLOOR_BY_KEY = {"double_stops": 0.8, "key_remoteness": 1.0}
+
 # Weights, in points on the 0-10 scale, applied to normalized feature values.
 # They sum to more than 10 on purpose: the saturating curve at the end is what
 # bounds the result, so several moderate demands can accumulate the way they do
@@ -138,6 +176,9 @@ WEIGHTS = {
     "double_stops": 2.6,
     "bow_demand": 1.4,
     "rhythm_complexity": 1.0,
+    "string_crossings": 1.2,
+    "position_changes": 1.4,
+    "key_remoteness": 0.6,
 }
 
 LABELS = {
@@ -150,7 +191,36 @@ LABELS = {
     "double_stops": "Double stops",
     "bow_demand": "Bow demand",
     "rhythm_complexity": "Rhythmic complexity",
+    "string_crossings": "String crossings (estimated)",
+    "position_changes": "Position changes (estimated)",
+    "key_remoteness": "Remote key signature",
 }
+
+# Features whose value comes from the lowest-workable-position model rather
+# than from anything printed. Named here so the sidebar and the rubric
+# explanation can say so in one place.
+ESTIMATED_FEATURES = frozenset({"string_crossings", "position_changes"})
+
+# String crossings, as a share of note-to-note transitions. Ordinary melodic
+# writing crosses on roughly a fifth of its transitions -- a scale crosses
+# three times in fifteen notes -- and that is charged nothing. A line built
+# out of crossings (arpeggios, bariolage) approaches one crossing per note.
+CROSSING_FLOOR = 0.35
+CROSSING_CEILING = 1.0
+
+# Position changes: how often the estimated minimum position moves, and how
+# far in total. One shift up and back in a measure of eight is a genuine
+# demand; a line that moves position on every other note is a hard one.
+SHIFT_RATE_CEILING = 0.35
+SHIFT_DISTANCE_CEILING = 8.0
+
+# Key signatures: nothing is charged up to two sharps or flats, which every
+# beginner syllabus covers. Flats cost a little more than the same number of
+# sharps because the violin's open strings and natural finger frame favour
+# sharp keys -- F major is harder than D major for a first-year player.
+KEY_FREE_ACCIDENTALS = 2
+KEY_CEILING_ACCIDENTALS = 6
+FLAT_KEY_PENALTY = 0.5
 
 # The curve. `raw` is the weighted sum of normalized features; KNEE and SHAPE
 # turn it into a 0-10 rating.
@@ -163,7 +233,14 @@ LABELS = {
 # the scale stays reserved. These two values were set by measuring the Wohlfahrt
 # fixture, not chosen in the abstract: they put its first-position eighth-note
 # study at 1.1 and its sixteenth-note study at 2.9.
-KNEE = 3.2
+#
+# Rubric 3.0 added 3.2 points of weight for demands that beginner writing
+# mostly lacks, and moved the knee from 3.2 to 3.7 so the bottom of the scale
+# kept its meaning: a first-position eighth-note measure at a walking tempo
+# still lands under 2.0, and a fixture page from a beginner method book still
+# never reaches 4.0. The top moved less than the bottom, because the new
+# features are exactly the ones that concerto writing has and etudes do not.
+KNEE = 3.7
 SHAPE = 1.22
 
 
@@ -327,10 +404,15 @@ def measure_features(
     f_chrom = _clamp01(printed / max(1, len(sounded)) * 2.5)
 
     # ------------------------------------------------------------- register
+    # Two questions, not one: how high does the measure go, and how much of it
+    # lives up there. A single high note at the top of a run and a whole
+    # measure in fifth position used to rate identically on this feature.
     midis = [n.midi for n in sounded if n.midi is not None]
     if midis:
         top = max(midis)
-        f_reg = _clamp01((top - FIRST_POSITION_TOP) / (VIOLIN_TOP - FIRST_POSITION_TOP))
+        f_top = _clamp01((top - FIRST_POSITION_TOP) / (VIOLIN_TOP - FIRST_POSITION_TOP))
+        above = sum(1 for m in midis if m > FIRST_POSITION_TOP) / len(midis)
+        f_reg = _clamp01(0.65 * f_top + 0.35 * above * min(1.0, f_top * 4.0))
     else:
         f_reg = 0.0
 
@@ -352,10 +434,31 @@ def measure_features(
     f_leap = _clamp01(0.6 * f_widest + 0.4 * f_often)
 
     # --------------------------------------------------------- double stops
-    # Simultaneities are not represented in this transcription format yet, so
-    # this reads 0 rather than guessing. Kept in the rubric because the feature
-    # is real and the field is wired for when chords are recognized.
-    f_dstop = 0.0
+    # Rated by what kind of double stop, not merely that one exists: a melody
+    # over an open D is a second-year exercise, a run of fingered thirds is
+    # not. Half a measure of hard double stops saturates the feature.
+    hardness = sum(lefthand.double_stop_hardness(n) for n in sounded)
+    f_dstop = _clamp01(hardness / max(1, len(sounded)) * 2.0)
+
+    # ---------------------------------------------- string crossings (estimated)
+    # Under the lowest-workable-position model. Skips over a string count
+    # twice: the bow clears a string it does not play.
+    crossings, skips = lefthand.string_crossings(midis)
+    transitions = max(1, len(midis) - 1)
+    crossing_share = (crossings + skips) / transitions
+    f_cross = _clamp01((crossing_share - CROSSING_FLOOR) / (CROSSING_CEILING - CROSSING_FLOOR))
+
+    # ---------------------------------------------- position changes (estimated)
+    # How often the minimum position moves and how far. Nothing here asserts
+    # which shift the player takes -- only that the pitches cannot all be
+    # reached from one place.
+    shifts, shift_distance = lefthand.position_changes(midis)
+    f_shift_rate = _clamp01((shifts / transitions) / SHIFT_RATE_CEILING)
+    f_shift_dist = _clamp01(shift_distance / SHIFT_DISTANCE_CEILING)
+    f_shift = _clamp01(0.6 * f_shift_rate + 0.4 * f_shift_dist) if shifts else 0.0
+
+    # ----------------------------------------------------------- key signature
+    f_key = key_remoteness(key_fifths)
 
     # ----------------------------------------------------------- bow demand
     # Three separate demands, none of which is "a slur exists". A two-note slur
@@ -412,7 +515,20 @@ def measure_features(
         "double_stops": f_dstop,
         "bow_demand": f_bow,
         "rhythm_complexity": f_irr,
+        "string_crossings": f_cross,
+        "position_changes": f_shift,
+        "key_remoteness": f_key,
     }
+
+
+def key_remoteness(key_fifths: int | None) -> float:
+    """0-1 for how far the key signature sits from the violin's home keys."""
+    if not key_fifths:
+        return 0.0
+    count = abs(key_fifths) + (FLAT_KEY_PENALTY if key_fifths < 0 else 0.0)
+    return _clamp01(
+        (count - KEY_FREE_ACCIDENTALS) / (KEY_CEILING_ACCIDENTALS - KEY_FREE_ACCIDENTALS)
+    )
 
 
 # Feature detail lines, written from the measured value so the sidebar can say
@@ -432,7 +548,45 @@ def _detail(key: str, value: float, notes: list[NoteEvent], key_fifths: int) -> 
         return f"{printed} printed accidental{'' if printed == 1 else 's'}"
     if key == "syncopation" and value > 0:
         return "an attack lands off the beat and carries through it"
+    if key == "double_stops" and value > 0:
+        chords = [n for n in sounded if n.is_chord]
+        widest = max(
+            (n.all_midis for n in chords), key=lambda ms: ms[-1] - ms[0], default=None
+        )
+        count = len(chords)
+        text = f"{count} double stop{'' if count == 1 else 's'}"
+        if widest is not None:
+            if any(m in lefthand.OPEN_STRINGS for m in widest) and len(widest) == 2:
+                text += ", against an open string"
+            else:
+                text += f", widest a {lefthand.describe_interval(widest[0], widest[-1])}"
+        if any(n.chord_size >= 3 for n in chords):
+            text += ", including a chord of three or more notes"
+        return text
+    if key == "string_crossings" and value > 0:
+        midis = [n.midi for n in sounded if n.midi is not None]
+        crossings, skips = lefthand.string_crossings(midis)
+        text = f"about {crossings} string change{'' if crossings == 1 else 's'} in {len(midis)} notes"
+        if skips:
+            text += f", {skips} over an intervening string"
+        return text + " — estimated in the lowest position; no fingering is printed"
+    if key == "position_changes" and value > 0:
+        midis = [n.midi for n in sounded if n.midi is not None]
+        shifts, _ = lefthand.position_changes(midis)
+        highest = max((lefthand.minimum_position(m) for m in midis), default=1)
+        return (
+            f"the line leaves first position {shifts} time{'' if shifts == 1 else 's'}, "
+            f"reaching at least {_ordinal(highest)} position — estimated; no fingering is printed"
+        )
+    if key == "key_remoteness" and value > 0:
+        count = abs(key_fifths)
+        return f"key signature of {count} {'sharp' if key_fifths > 0 else 'flat'}{'' if count == 1 else 's'}"
     return ""
+
+
+def _ordinal(n: int) -> str:
+    suffix = "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
 
 
 _PITCH_LETTERS = ("C", "C#", "D", "E-flat", "E", "F", "F#", "G", "A-flat", "A", "B-flat", "B")
@@ -491,7 +645,9 @@ def rate_measure(
     # statement about a ceiling rather than a number a reader can catch
     # exceeding its own maximum.
     scaled = {
-        key: value if key == RATE_KEY else _clamp01(value * pressure)
+        key: value
+        if key == RATE_KEY
+        else _clamp01(value * max(pressure, PRESSURE_FLOOR_BY_KEY.get(key, 0.0)))
         for key, value in features.items()
     }
 
@@ -542,20 +698,58 @@ def aggregate_phrase(measure_scores: list[float | None]) -> tuple[float | None, 
 # Each entry names a thing a violinist would reasonably expect to affect
 # difficulty, and why this rubric has nothing to say about it.
 BLIND_SPOTS: list[str] = [
-    "Bowing beyond what is printed — slurs are read, but bow distribution, "
-    "retakes and the plan for the whole phrase are not.",
-    "Fingering. Printed digits are read where they appear; nothing is inferred, "
-    "because the notation does not establish a fingering.",
-    "String choice and string crossings, which follow from fingering rather "
-    "than from pitch alone.",
-    "Shifts. A wide interval is counted as a wide interval, never asserted to "
-    "be a position change.",
-    "Double stops and chords, which this transcription format does not yet "
-    "represent. The feature is wired and always reads zero.",
+    "Bowing beyond what is printed — slurs and articulation marks are read, but "
+    "bow distribution, retakes and the plan for the whole phrase are not.",
+    "Your actual fingering. String crossings and position changes are "
+    "estimated from pitch under the lowest workable position and labelled as "
+    "estimates; a passage kept on one string in a high position is counted as "
+    "crossings in a low one. Either way is work, so the estimate is a floor.",
+    "Which shift you take. The rubric counts where the pitches cannot all be "
+    "reached from one place, never which finger moves or when.",
+    "Dynamics, vibrato, tone colour and expression marks, none of which the "
+    "rubric reads.",
+    "Harmonics, pizzicato, left-hand pizzicato and other special effects, which "
+    "are read as ordinary notes.",
     "Your hand, your instrument and your setup.",
     "Your level. The rating describes what the passage demands, not whether it "
     "is hard for you.",
     "How the passage sounds. PracticeMap never hears you play.",
+]
+
+# What the category bands were calibrated against. Descriptions, not
+# measurements: the tests in tests/unit/test_rubric_30.py construct a measure
+# to each description and pin the band it lands in.
+LEVEL_ANCHORS: list[dict[str, str]] = [
+    {
+        "band": "Beginner-friendly (0.0–1.9)",
+        "describes": "Stays in first position with few changes of finger pattern; "
+        "detached strokes and short slurs; simple rhythms; keys within two "
+        "sharps or flats; moderate tempo.",
+    },
+    {
+        "band": "Advanced Beginner (2.0–3.9)",
+        "describes": "Full use of first position, some third position; more varied "
+        "rhythm; slurs of two to four notes; occasional string crossing under "
+        "tempo; a double stop against an open string.",
+    },
+    {
+        "band": "Competent level (4.0–5.9)",
+        "describes": "Fluency in the first three positions, occasionally fifth; "
+        "sustained sixteenth-note motion at a quick tempo; frequent string "
+        "crossing; keys to three or four accidentals; simple fingered double stops.",
+    },
+    {
+        "band": "Expert level (6.0–7.9)",
+        "describes": "Higher positions on all strings; extended passages in double "
+        "stops; large leaps at speed; long slurs and complex bowings; chromatic "
+        "writing outside the key at tempo.",
+    },
+    {
+        "band": "Extremely hard (8.0–10.0)",
+        "describes": "Several of those demands at once, under real time pressure: "
+        "fast, high, chromatic, in double stops or across strings, with the bow "
+        "doing something difficult as well.",
+    },
 ]
 
 
@@ -592,14 +786,31 @@ def rubric_explanation(tempo_bpm: float, tempo_is_assumed: bool) -> dict:
             "though it were a run."
         ),
         "weights": [
-            {"key": key, "label": LABELS[key], "weight": f"{weight:.1f}"}
+            {
+                "key": key,
+                "label": LABELS[key],
+                "weight": f"{weight:.1f}",
+                "estimated": key in ESTIMATED_FEATURES,
+            }
             for key, weight in sorted(WEIGHTS.items(), key=lambda kv: -kv[1])
         ],
+        "estimates": (
+            "String crossings and position changes are not printed on the page. "
+            "They are estimated by placing every pitch in the lowest position "
+            "that reaches it — the reading a syllabus grader uses — and are "
+            "labelled as estimates wherever they appear. A player who keeps a "
+            "passage on one string in a high position is doing different work, "
+            "not less."
+        ),
+        "anchors": [dict(anchor) for anchor in LEVEL_ANCHORS],
         "blindSpots": list(BLIND_SPOTS),
         "review": (
-            "No violinist has reviewed this scale. The category labels and cut "
-            "points are PracticeMap's own choices, not a validated grading "
-            "system. fixtures/expected/review-phrases.md is the packet a teacher "
-            "would mark up."
+            "No violinist has reviewed this scale. The category bands were "
+            "calibrated against the published level descriptions of graded "
+            "string syllabi (see docs/music-pedagogy.md), which are "
+            "descriptions rather than measurements; the cut points remain "
+            "PracticeMap's own choices, not a validated grading system. "
+            "fixtures/expected/review-phrases.md is the packet a teacher would "
+            "mark up."
         ),
     }

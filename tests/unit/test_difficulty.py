@@ -164,7 +164,7 @@ def test_factors_are_reported_in_descending_contribution():
 
 
 def test_rubric_version_is_recorded():
-    assert RUBRIC_VERSION == "2.0"
+    assert RUBRIC_VERSION == "3.0"
 
 
 # --------------------------------------------------------------------------
