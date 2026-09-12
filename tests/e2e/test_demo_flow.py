@@ -94,7 +94,7 @@ def test_upload_analyze_select_and_read_an_exercise(server, browser_page):
     # 1. The start screen.
     page.goto(f"{server}/", wait_until="networkidle")
     assert page.locator("#upload-submit").is_disabled()
-    assert "20" in page.locator(".start-card--upload .note").first.inner_text()
+    assert "20" in page.locator(".upload-formats").inner_text()
 
     # 2. Choose the real file and analyze it.
     page.set_input_files("#file-input", str(DEMO_PDF))

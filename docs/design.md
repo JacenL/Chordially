@@ -8,7 +8,15 @@ Build a focused music-study workspace: warm off-white background, dark readable 
 - Main workspace: score occupies approximately two-thirds of desktop width; sticky practice sidebar occupies the remainder.
 - Above the score: zoom, page navigation if needed, phrase toggle, and visible difficulty legend.
 - On narrow screens: score first; selecting a region opens an accessible expandable panel or sheet.
-- Initial state: upload target and 'Try example score,' plus a short explanation of the outcome.
+- Initial state (the landing page): one headline saying what the reader gets, a
+  short musician-facing lede, **one** primary action and **one** secondary one.
+  The primary action is the upload target, large and also a drop zone. The
+  secondary is 'Try the example score', a quiet link rather than a matching card
+  — two equal cards made the reader choose before understanding either.
+  Underneath: three short lines on what they get, then the technical detail
+  folded into expandable summaries. Supported formats and the credential status
+  stay visible without opening anything; upload progress, error messages with a
+  recovery action, and the data-handling disclosure are all preserved.
 
 ## Score annotation layers
 1. Original notation, always legible. Nothing above it may wash it out.

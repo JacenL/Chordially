@@ -7,82 +7,145 @@
   <link rel="stylesheet" href="/static/app.css">
 </head>
 <body class="page-empty">
-  <header class="app-header">
+  <header class="app-header app-header--bare">
     <span class="wordmark">PracticeMap</span>
-    <span class="tagline">See where a piece gets hard, and what to do about it.</span>
   </header>
 
-  <main class="empty-state">
-    <h1>Upload a page of violin sheet music</h1>
-    <p class="lede">
-      PracticeMap finds the phrases, estimates how demanding each measure is on a
-      0.0–10.0 scale, and shows you how to practise the passage you pick.
-    </p>
+  <main class="landing">
+    <section class="hero">
+      <h1 class="hero-title">Know what to practise<br>before you start playing.</h1>
+      <p class="hero-lede">
+        Upload a page of violin music. PracticeMap divides it into passages,
+        rates how demanding each one is, and tells you what to actually do about
+        the hard ones.
+      </p>
+    </section>
 
-    <div class="start-options">
-      <section class="start-card start-card--upload" aria-labelledby="upload-heading">
-        <h2 id="upload-heading">Your own scan</h2>
-        <p>A scan of printed violin notation (PDF, PNG, JPEG), or a MusicXML file
-           (.musicxml, .xml, .mxl) from your notation software.</p>
+    <section class="start" aria-labelledby="start-heading">
+      <h2 class="visually-hidden" id="start-heading">Start</h2>
 
-        <form id="upload-form">
-          <label class="file-field">
-            <input type="file" id="file-input" name="file"
-                   accept=".pdf,.png,.jpg,.jpeg,.musicxml,.xml,.mxl,application/pdf,image/png,image/jpeg">
-            <span class="file-field-label">Choose a file</span>
-          </label>
-          <button type="submit" class="button button--primary" id="upload-submit" disabled>
-            Analyze this page
-          </button>
-        </form>
-
-        <p class="note">
-          One page, up to 20&nbsp;MB. A multi-page file is accepted but only its
-          first page is analyzed. Printed notation only — handwriting is out of
-          scope.
+      <form id="upload-form" class="dropzone">
+        <label class="file-field">
+          <input type="file" id="file-input" name="file"
+                 accept=".pdf,.png,.jpg,.jpeg,.musicxml,.xml,.mxl,application/pdf,image/png,image/jpeg">
+          <span class="file-field-label">Choose a file</span>
+        </label>
+        <p class="dropzone-hint">or drop it here</p>
+        <button type="submit" class="button button--primary button--large" id="upload-submit" disabled>
+          Analyze this page
+        </button>
+        <p class="upload-formats note">
+          PDF, PNG, JPEG or MusicXML · one page · up to 20&nbsp;MB · printed notation
         </p>
-        <p class="note">
-          <b>A scan</b> is read by a transcription service, so the page image is
-          sent to Anthropic and is not stored beyond this session. Some measures
-          will come back unreadable, and they are marked rather than guessed.
-          <b>MusicXML</b> is read from the file itself: exact notes, nothing sent
-          anywhere, and no measure left for review.
-        </p>
+      </form>
 
-        <div class="upload-progress" id="upload-progress" hidden aria-live="polite">
-          <p class="upload-stage" id="upload-stage">Starting</p>
+      <p class="secondary-action">
+        Not ready to upload?
+        <a class="link-strong" href="/score/example">Try the example score</a>
+        — a real scan, already analyzed.
+      </p>
+
+      <div class="upload-progress" id="upload-progress" hidden aria-live="polite">
+        <p class="upload-stage" id="upload-stage">Starting</p>
+        <p class="note">
+          No progress bar: the stages take very different amounts of time and a
+          sweeping bar would be a guess. This is the stage actually running.
+        </p>
+      </div>
+
+      <div class="upload-error" id="upload-error" hidden role="alert">
+        <p class="upload-error-message" id="upload-error-message"></p>
+        <p class="upload-error-recovery" id="upload-error-recovery"></p>
+      </div>
+    </section>
+
+    <section class="benefits" aria-label="What you get">
+      <div class="benefit">
+        <h3>See where it gets hard</h3>
+        <p>The page is coloured passage by passage, from light green to maroon,
+           with a rating out of ten for each.</p>
+      </div>
+      <div class="benefit">
+        <h3>One passage at a time</h3>
+        <p>Click anywhere on the music and the sidebar tells you what that
+           passage is asking of you, and why.</p>
+      </div>
+      <div class="benefit">
+        <h3>Something to do about it</h3>
+        <p>A technique that fits the notation, the steps to execute it, what to
+           listen for, and how to put it back into the music.</p>
+      </div>
+    </section>
+
+    <section class="details" aria-label="Details">
+      <details class="detail">
+        <summary>What you can upload</summary>
+        <div class="detail-body">
           <p class="note">
-            No progress bar: the stages take very different amounts of time and a
-            sweeping bar would be a guess. This is the stage actually running.
+            A scan of printed violin notation — PDF, PNG or JPEG — or a MusicXML
+            file (.musicxml, .xml, .mxl) exported from notation software.
+            One page, up to 20&nbsp;MB. A multi-page file is accepted but only its
+            first page is analyzed. Printed notation only; handwriting is out of
+            scope.
+          </p>
+          <p class="note">
+            MusicXML is the more reliable path: the notes are read from the file
+            itself, so no measure is left for review. A scan is read by a
+            transcription service and some measures will come back unreadable.
+            Those are marked as unknown rather than guessed at, and they are never
+            shown as easy.
           </p>
         </div>
+      </details>
 
-        <div class="upload-error" id="upload-error" hidden role="alert">
-          <p class="upload-error-message" id="upload-error-message"></p>
-          <p class="upload-error-recovery" id="upload-error-recovery"></p>
+      <details class="detail">
+        <summary>What happens to your file</summary>
+        <div class="detail-body">
+          <p class="note">
+            <b>A scan</b> is sent to Anthropic to be transcribed. The page image
+            is not stored beyond this session, and your analysis lives in this
+            server's memory only — restarting it discards everything.
+          </p>
+          <p class="note">
+            <b>MusicXML</b> never leaves this machine. It is parsed and engraved
+            locally, and nothing is sent anywhere.
+          </p>
+          <p class="note">
+            No account, no sign-in, nothing kept. Practice choices you make are
+            held for this session and are not saved.
+          </p>
         </div>
-      </section>
+      </details>
 
-      <section class="start-card" aria-labelledby="example-heading">
-        <h2 id="example-heading">Example score</h2>
-        <p>
-          Wohlfahrt, Op. 45 Book 1 — a real scan, analyzed by the same pipeline an
-          upload will use. Needs no API credentials.
-        </p>
-        <a class="button button--primary" href="/score/example">Try example score</a>
-        <p class="note">
-          Clearly labelled as the example wherever it appears. It is never
-          substituted for an upload that failed.
-        </p>
-      </section>
-    </div>
+      <details class="detail">
+        <summary>What the rating does and does not mean</summary>
+        <div class="detail-body">
+          <p class="note">
+            The 0.0–10.0 scale is a transparent heuristic computed from what is
+            printed: note rate at the stated tempo, subdivision, displaced
+            accents, accidentals against the key, register above first position,
+            leaps, and bow demands. The same scale is used for every piece, so
+            two uploads can be compared. Nothing is stretched to fill it — an
+            easy page is supposed to look easy.
+          </p>
+          <p class="note">
+            It says nothing about your fingering, your string choices, your
+            shifts, your instrument or your level, because the notation does not
+            establish those. No violinist has reviewed the scale; it is
+            PracticeMap's own choice, not a grading system.
+          </p>
+        </div>
+      </details>
+    </section>
 
     <p class="status">
       {% if live_recognition %}
-        Recognition credentials are configured on this instance.
+        Recognition credentials are configured on this instance, so scans and
+        MusicXML can both be analyzed.
       {% else %}
-        Recognition credentials are not configured on this instance, so only the
-        prepared example is available.
+        Recognition credentials are not configured on this instance, so scans
+        cannot be transcribed. MusicXML import and the prepared example both
+        work without them.
       {% endif %}
     </p>
   </main>

@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C17 delivered. All three segmentation
+Status: demo-ready. C1–C6 and C8–C18 delivered. All three segmentation
 levels the spec requires are now implemented. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
@@ -797,6 +797,56 @@ judge whether recognition was right.
 The progression is now light green → green → yellow → orange → red → maroon, one
 anchor every two points, so each category spans exactly one interval between
 anchors. Ratings and accessible labels are shown alongside colour everywhere.
+
+## C18 — A front page that answers the reader's question first
+- [x] Complete
+- Dependencies: C17 (the copy describes passages, which did not exist before it).
+- Evidence: **324 tests pass**, 9 new in `tests/e2e/test_landing_page.py`;
+  inspected in Chromium at 1440, 820, 520, 390 and 360px with zero horizontal
+  overflow at every width and no JavaScript errors.
+
+The page opened with two equally weighted cards — "Your own scan" and "Example
+score" — so the reader had to choose between them before understanding either,
+and the answer to "what does this do for me?" sat under three paragraphs about
+transcription services, file size limits and which measures come back
+unreadable.
+
+Now: a headline, a one-sentence lede, **one** primary action, **one** secondary
+one. The upload target is large and doubles as a drop zone. "Try the example
+score" is a quiet link beneath it rather than a competing card. Three short
+lines say what the reader gets. Everything technical is folded into three
+expandable summaries — what you can upload, what happens to your file, what the
+rating does and does not mean.
+
+### Nothing honest was removed to get there
+A cleaner screen that has lost its disclosures is the same page with the true
+parts deleted, so each one is pinned by a test:
+
+- Supported formats, the page limit and the 20 MB cap stay **visible** without
+  opening anything.
+- The data-handling disclosure — a scan goes to Anthropic, MusicXML never leaves
+  the machine, nothing is stored — is one click away and asserted by text.
+- Upload progress still names the stage actually running and still explains why
+  there is no percentage.
+- A rejected upload still reports itself with a recovery action, stays on the
+  page, and is never silently replaced by the example. That test uploads a real
+  text file and checks the URL never reaches `/score/`.
+- The credential status still says what this instance can actually do, and now
+  says MusicXML and the example work without credentials rather than implying
+  nothing does.
+
+### Drag and drop
+Added as a convenience over the picker, not instead of it: the file input stays
+the accessible, keyboard-reachable path, and a drop assigns to it so there is
+one source of truth for which file is about to be sent. A multi-file drop takes
+the first rather than analyzing something the user did not point at, and a drop
+outside the zone is swallowed so the browser does not replace the app with a PDF
+viewer.
+
+### Styling
+No framework and no new dependency. The existing custom properties, serif
+display face and warm paper ground are unchanged; the landing rules replace the
+old `.empty-state` block in `src/static/app.css`.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

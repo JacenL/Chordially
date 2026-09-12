@@ -17,12 +17,65 @@ if (form) {
   const errorMessage = document.getElementById("upload-error-message");
   const errorRecovery = document.getElementById("upload-error-recovery");
 
-  input.addEventListener("change", () => {
+  function showChosen() {
     const file = input.files && input.files[0];
     submit.disabled = !file;
     if (label) label.textContent = file ? file.name : "Choose a file";
+    form.classList.toggle("has-file", Boolean(file));
     errorBox.hidden = true;
-  });
+  }
+
+  input.addEventListener("change", showChosen);
+
+  // Drag and drop, as a convenience over the file picker rather than instead of
+  // it. The picker stays the accessible path and is what the keyboard reaches;
+  // this only saves a dialog for someone who already has the scan in a folder.
+  // `DataTransfer` is assigned to the input rather than kept aside so there is
+  // one source of truth for "which file are we about to send".
+  if (window.DataTransfer) {
+    let depth = 0;
+
+    const stop = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+    };
+
+    form.addEventListener("dragenter", (event) => {
+      stop(event);
+      depth += 1;
+      form.classList.add("is-dragging");
+    });
+    form.addEventListener("dragover", (event) => {
+      stop(event);
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "copy";
+    });
+    form.addEventListener("dragleave", (event) => {
+      stop(event);
+      depth = Math.max(0, depth - 1);
+      if (depth === 0) form.classList.remove("is-dragging");
+    });
+    form.addEventListener("drop", (event) => {
+      stop(event);
+      depth = 0;
+      form.classList.remove("is-dragging");
+      const dropped = event.dataTransfer && event.dataTransfer.files;
+      if (!dropped || !dropped.length) return;
+      // One page per upload, so a multi-file drop takes the first rather than
+      // silently analyzing something the user did not point at.
+      const transfer = new DataTransfer();
+      transfer.items.add(dropped[0]);
+      input.files = transfer.files;
+      showChosen();
+    });
+
+    // A file dropped anywhere else on the page would otherwise be opened by the
+    // browser, replacing the app with a PDF viewer.
+    for (const type of ["dragover", "drop"]) {
+      window.addEventListener(type, (event) => {
+        if (!form.contains(event.target)) event.preventDefault();
+      });
+    }
+  }
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
