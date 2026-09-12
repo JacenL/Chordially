@@ -82,7 +82,6 @@ function init(data) {
     selectedMeasureId = first || null;
     paint();
     renderSidebar();
-    revealSelectionPanel();
     if (first) {
       scrollIntoPane(measureById.get(first));
       if (opts.focus) focusMeasure(first, false);
@@ -158,20 +157,6 @@ function init(data) {
       el.classList.toggle("is-selected", on);
       el.classList.toggle("is-context", !on && id === sectionId);
       el.setAttribute("aria-pressed", on ? "true" : "false");
-    }
-  }
-
-  // Selecting from the passage list, which sits far down the sidebar, used to
-  // leave the rating and factors scrolled off the top. The selection is the
-  // thing just asked for, so it is what should be on screen.
-  function revealSelectionPanel() {
-    const panel = el("selection-panel");
-    const sidebar = document.getElementById("sidebar");
-    if (!panel || !sidebar) return;
-    const panelBox = panel.getBoundingClientRect();
-    const sidebarBox = sidebar.getBoundingClientRect();
-    if (panelBox.top < sidebarBox.top) {
-      sidebar.scrollTop += panelBox.top - sidebarBox.top;
     }
   }
 

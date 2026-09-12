@@ -314,3 +314,16 @@ def test_phrase_outlines_can_be_hidden(page):
     assert page.locator(".layer--phrases.is-hidden").count() >= 1
     page.check("#toggle-phrases")
     assert page.locator(".layer--phrases.is-hidden").count() == 0
+
+
+def test_sidebar_passage_selection_keeps_list_in_view(page):
+    page.reload(wait_until="networkidle")
+    sidebar = page.locator("#sidebar")
+    target = sidebar.locator(".phrase-item--section").last
+    target.scroll_into_view_if_needed()
+    before = target.bounding_box()["y"]
+    assert sidebar.evaluate("el => el.scrollTop") > 100
+    target.click()
+    page.wait_for_load_state("networkidle")
+    assert sidebar.evaluate("el => el.scrollTop") > 100
+    assert abs(target.bounding_box()["y"] - before) < 40

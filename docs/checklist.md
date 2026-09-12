@@ -1113,3 +1113,11 @@ None. C1 and C2 are confirmed on origin/practice-map-build.
   browser tests passed, including count updates, indeterminate stages, mobile
   width, failure recovery, and done-only navigation. Diff check passed.
 - Delivery: local frontend branch; GitHub push remains blocked by authentication.
+
+
+## Frontend — preserve sidebar position on passage selection
+- Removed the explicit scroll-to-selection-panel action from passage selection.
+  The score still scrolls to the selected passage; the sidebar stays at the list.
+- Validation: 12 viewer browser tests passed, including a regression check after
+  selection and asynchronous guidance loading; diff check passed.
+- Delivery: local frontend branch; GitHub authentication remains unresolved.
