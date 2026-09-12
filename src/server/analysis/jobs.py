@@ -22,6 +22,7 @@ from typing import Literal
 
 from src.schemas.analysis import AnalysisBundle
 from src.server.analysis.upload import Provenance, UploadRejected, analyze_upload
+from src.server.recognition.audiveris_source import AudiverisUnavailable
 
 JobState = Literal["queued", "running", "done", "failed"]
 
@@ -86,7 +87,10 @@ def start(data: bytes, filename: str, content_type: str | None) -> Job:
             bundle, provenance = analyze_upload(
                 data, filename, content_type, progress=progress
             )
-        except UploadRejected as exc:
+        except (UploadRejected, AudiverisUnavailable) as exc:
+            # Both carry a sentence and an action. A recognition engine that is
+            # missing or that read nothing is a stated condition with something
+            # the user can do about it, not an internal fault.
             with _lock:
                 job.state = "failed"
                 job.stage = ""
