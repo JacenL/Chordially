@@ -166,13 +166,16 @@
           </p>
         </section>
 
-        <section class="panel panel--pending">
-          <h3 class="panel-heading">Practice instruction</h3>
-          <p class="panel-note">
-            Exercises, pace rules, listening goals and sources are the next
-            checkpoint. Nothing is shown here yet rather than showing generic advice
-            that ignores the passage you picked.
-          </p>
+        <section class="panel panel--practice" id="practice-panel">
+          <h3 class="panel-heading">How to practise this</h3>
+          <p class="panel-note" id="practice-loading">Select a passage.</p>
+
+          <div id="practice-body" hidden>
+            <div class="exercise" id="practice-primary"></div>
+            <div id="practice-alternatives"></div>
+          </div>
+
+          <p class="panel-note" id="practice-nofit" hidden></p>
         </section>
 
         <section class="panel">
@@ -217,6 +220,7 @@
     proficiency or validated examination grades.
   </footer>
 
+  <script id="score-meta" type="application/json">{{ {"scoreId": score_key} | tojson_safe }}</script>
   <script id="score-data" type="application/json">{{ payload | tojson_safe }}</script>
   <script type="module" src="/static/app.js"></script>
 </body>

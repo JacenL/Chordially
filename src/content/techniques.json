@@ -1,0 +1,145 @@
+{
+  "_comment": "Technique records. evidenceCategory says what backs each one: 'teacher pedagogy' and 'research-informed' cite a source that genuinely addresses the technique; 'app heuristic' means PracticeMap chose it and no source is claimed. Triggers are evaluated against features actually read from the notation -- never against a rating alone.",
+  "techniques": [
+    {
+      "id": "rhythm-pairs",
+      "title": "Complementary rhythms",
+      "evidenceCategory": "teacher pedagogy",
+      "sourceIds": ["S01"],
+      "fits": "A run of equal-duration notes, where the difficulty is coordination between consecutive notes rather than any single one.",
+      "triggerFeatures": ["even_run"],
+      "exclusions": [
+        "ties across the run",
+        "rests inside the run",
+        "tuplets",
+        "mixed note values",
+        "uncertain transcription"
+      ],
+      "steps": [
+        "Play the group written, slowly enough that every note speaks.",
+        "Now play it long-short: hold the first note of each pair and hurry the second. The pair still lasts exactly as long as it does on the page, so the beat does not move.",
+        "Play it short-long: the reverse. Each transition that was comfortable one way is exposed the other way.",
+        "Alternate the two patterns, then start the long-short pattern one note later so a different pair of notes is joined.",
+        "Return to the written even rhythm, with the written articulation, at the pace you began."
+      ],
+      "listeningGoals": [
+        "Pitch stays accurate when the finger has less time to arrive",
+        "The short note is genuinely short, not merely earlier",
+        "The bow stays in the string through the fast note",
+        "No tightening in the left hand between pairs"
+      ],
+      "tempoRule": "Start where the written rhythm is already clean. The rhythm variants make the passage harder, not easier, so they belong at a tempo you already own.",
+      "successCriteria": "Both patterns feel equally comfortable, and the written rhythm afterwards feels easier than when you started.",
+      "returnToContext": "Play the whole phrase written, then continue into the first note of the next phrase so the join is rehearsed too.",
+      "cautions": [
+        "This changes the written rhythm on purpose and is a practice transformation, not an edition."
+      ]
+    },
+    {
+      "id": "subdivision",
+      "title": "Count the subdivision, then play it",
+      "evidenceCategory": "app heuristic",
+      "sourceIds": [],
+      "fits": "Mixed note values or off-beat placement, where the demand is knowing where the beat is rather than moving the fingers fast.",
+      "triggerFeatures": ["mixed_values", "syncopation"],
+      "exclusions": ["tuplets against the prevailing subdivision"],
+      "steps": [
+        "Find the smallest note value in the passage and say it out loud, evenly, without the instrument.",
+        "Keep saying it and add the written rhythm by tapping, so the fast pulse continues underneath the long notes.",
+        "Play the passage while still hearing that pulse; let the long notes be measured against it rather than felt.",
+        "Drop the counting and keep the same placement."
+      ],
+      "listeningGoals": [
+        "Long notes last their full value and do not shorten into the next entry",
+        "Off-beat notes arrive late enough, which is usually the problem, rather than early",
+        "The pulse does not speed up during the easier bars"
+      ],
+      "tempoRule": "Slow enough that the smallest value is comfortably countable out loud.",
+      "successCriteria": "You can start the passage from any beat and place the following note correctly without restarting the count.",
+      "returnToContext": "Play the phrase from its beginning so the passage is re-entered in tempo rather than from a standing start.",
+      "cautions": [
+        "PracticeMap chose this technique; no source here establishes it."
+      ]
+    },
+    {
+      "id": "slow-with-goal",
+      "title": "Slow practice with one stated goal",
+      "evidenceCategory": "research-informed",
+      "sourceIds": ["S03"],
+      "fits": "A passage carrying several demands at once, where playing it slowly without deciding what to listen for tends to rehearse everything vaguely.",
+      "triggerFeatures": ["dense", "accidentals", "wide_intervals"],
+      "exclusions": [],
+      "steps": [
+        "Choose one thing to listen for, and only one. On this passage the first candidate is named above.",
+        "Play the passage slowly enough to hear that one thing, ignoring the rest for now.",
+        "Repeat, changing only that one element, until it is reliable.",
+        "Choose the next goal and repeat. Do not try to fix two at once.",
+        "Play at your normal pace and check whether the goal survived the change of speed."
+      ],
+      "listeningGoals": [
+        "The one thing you chose, judged honestly",
+        "Whether it still holds when the tempo returns"
+      ],
+      "tempoRule": "Slow is defined by the goal: slow enough to hear what you chose to fix, and no slower.",
+      "successCriteria": "The chosen element holds at your normal pace, not only at the slow one.",
+      "returnToContext": "Return to the written tempo and articulation and play the phrase whole.",
+      "cautions": [
+        "S03 supports having a purpose for slow practice and notes that slow and fast playing can differ. It does not establish a starting tempo or an increment; those numbers are PracticeMap's."
+      ]
+    },
+    {
+      "id": "transition-loop",
+      "title": "Loop the hard join",
+      "evidenceCategory": "app heuristic",
+      "sourceIds": [],
+      "fits": "One measure clearly harder than its neighbours, where the trouble is usually getting into and out of it rather than the measure itself.",
+      "triggerFeatures": ["local_peak"],
+      "exclusions": [],
+      "steps": [
+        "Take the last note before the hard measure and the first two notes inside it. That is the whole exercise.",
+        "Play just those notes, stopping cleanly, until the join is reliable.",
+        "Do the same at the other end: the last notes of the hard measure into the first note after it.",
+        "Join the two fragments and play the hard measure with one note on each side.",
+        "Play the phrase whole and notice whether the difficulty moved somewhere else."
+      ],
+      "listeningGoals": [
+        "The note before the hard measure keeps its full value instead of being clipped in preparation",
+        "The first note inside the hard measure is in tune without adjustment",
+        "No hesitation at the exit"
+      ],
+      "tempoRule": "The fragment is short enough to play at the real tempo. Use it.",
+      "successCriteria": "You can enter and leave the measure without a change of pace on either side.",
+      "returnToContext": "Play the phrase from the beginning, through the hard measure, into the next phrase's first note.",
+      "cautions": [
+        "PracticeMap chose this technique from the ratings; no source here establishes it."
+      ]
+    },
+    {
+      "id": "reconnect-overlap",
+      "title": "Play the join into the next idea",
+      "evidenceCategory": "app heuristic",
+      "sourceIds": ["S02"],
+      "fits": "Any phrase that has a following phrase. Practising a phrase to its last note teaches an ending the music does not have.",
+      "triggerFeatures": ["has_next_phrase"],
+      "exclusions": ["the final phrase, which has nothing to carry into"],
+      "steps": [
+        "Play the phrase written, and continue through the first note of the next phrase before stopping.",
+        "Notice what the join requires: a bow change, a string crossing, a hand that must already be somewhere else.",
+        "Practise only the last two notes of this phrase and the first of the next.",
+        "Play the phrase whole again with the join included.",
+        "Come back to this join later in the session rather than repeating it now until it is fluent."
+      ],
+      "listeningGoals": [
+        "The phrase ending is shaped, not just stopped",
+        "The first note of the next idea starts in time",
+        "Nothing is rushed in the last bar in anticipation"
+      ],
+      "tempoRule": "The tempo the phrase already works at.",
+      "successCriteria": "The join sounds like one continuous line, and you can start it from the phrase's last bar.",
+      "returnToContext": "This exercise is the return to context.",
+      "cautions": [
+        "S02 gives limited support for revisiting rather than massing repetitions, in a small study of clarinettists. The overlap rule itself is PracticeMap's."
+      ]
+    }
+  ]
+}

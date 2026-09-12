@@ -554,3 +554,109 @@ html, body {
 .upload-error-recovery { margin: 0; font-size: 13px; color: var(--ink-soft); }
 
 .notice--provenance { border-color: #C9D7E8; background: #F2F6FC; }
+
+/* ------------------------------------------------------------- practice */
+
+.panel--practice { border-color: var(--rule-strong); }
+
+.exercise-card { margin-top: 6px; }
+.exercise-card--primary { border-left: 3px solid var(--ink); padding-left: 12px; }
+
+.exercise-title {
+  font-family: var(--font);
+  font-size: 15px;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  cursor: default;
+}
+
+details.exercise-card > .exercise-title { cursor: pointer; }
+
+.evidence-badge {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #E8EEF9;
+  color: #2B4A86;
+  border: 1px solid #C6D5EE;
+}
+
+/* An app heuristic is not dressed up as evidence. */
+.evidence-badge--heuristic { background: #F1EDE4; color: #6B6355; border-color: var(--rule-strong); }
+
+.exercise-why { margin: 0 0 10px; font-size: 12.5px; color: var(--ink-faint); }
+.exercise-subheading {
+  margin: 12px 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.exercise-list { margin: 0; padding-left: 18px; font-size: 13px; color: var(--ink-soft); }
+.exercise-list li { margin-bottom: 4px; }
+.exercise-alt-heading {
+  margin: 16px 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+details.exercise-card {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+}
+
+/* ------------------------------------------------------- rhythm variants */
+
+.variants { display: flex; flex-direction: column; gap: 10px; margin: 4px 0 8px; }
+
+.variant {
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+}
+
+.variant-name { margin: 0; font-size: 13px; font-weight: 600; }
+.variant-description { margin: 2px 0 6px; font-size: 12px; color: var(--ink-faint); }
+.variant-notes { display: flex; flex-wrap: wrap; gap: 4px; }
+
+.variant-note {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper-raised);
+  line-height: 1.2;
+}
+
+.variant-note b { font-size: 12px; font-variant-numeric: tabular-nums; }
+.variant-note i { font-size: 9.5px; font-style: normal; color: var(--ink-faint); }
+
+/* Long and short are the whole point, so they are legible without the labels. */
+.variant-note--long { background: #EFEAdd; border-color: #C9BE9E; }
+.variant-note--short { background: #FFFDF9; border-style: dashed; }
+
+/* --------------------------------------------------------------- sources */
+
+.sources { margin-top: 12px; font-size: 12px; }
+.sources > summary { cursor: pointer; color: var(--ink-soft); }
+.source { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--rule); }
+.source a { color: #2B4A86; }
+.source-line { margin: 2px 0 0; font-size: 11.5px; color: var(--ink-faint); }
+.source-line--limit { color: #8A5A3A; }

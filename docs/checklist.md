@@ -1,12 +1,12 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: in progress. C1–C4 delivered.
+Status: in progress. C1–C4 and C6 delivered.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
 assumed.
 Working branch: practice-map-build, created from main at 95f7ceb.
-Current task: C6 (passage-specific practice instruction).
+Current task: integration, demo script, handoff.
 
 ## How this document is organized
 
@@ -271,7 +271,7 @@ C1's 87% on its smaller sample.
 - Evidence: pending.
 
 ## C6 — Passage-specific practice instruction
-- [ ] Complete
+- [x] Complete
 - Dependencies: C5.
 - Discharges T07 and T01's technique-library half.
 - Acceptance: sourced technique library with evidence categories, separating
@@ -284,7 +284,25 @@ C1's 87% on its smaller sample.
   criterion, return-to-context step, and expandable sources all present;
   unsupported transformations prevented; exercises referencing nonexistent notes
   or another score's IDs rejected.
-- Evidence: pending.
+- Evidence: **151 tests pass**, 27 of them on this checkpoint.
+  - Five techniques, each a validated record with steps, listening goals, a pace
+    rule, success criteria, a return-to-context step and evidence category.
+    Citations resolve on load; a technique claiming pedagogical or research
+    backing without a source fails validation.
+  - Rhythm variants are computed on `Fraction`s from the phrase's own notes and
+    every variant is asserted to total exactly the written duration, for eighth,
+    16th, quarter and 32nd runs. Pitch order is asserted unchanged.
+  - The pattern matches docs/music-pedagogy.md exactly: a 16th pair becomes a
+    dotted 16th plus a 32nd, summing to 2/16.
+  - Seven refusals are tested by name: runs that are too short, or contain
+    rests, ties, tuplets, mixed values, an already-dotted note, or a 64th with
+    no shorter printed value.
+  - Selection is driven by features read from the notation, never by a rating
+    alone. Different phrases of the fixture receive different primary
+    techniques, and a phrase whose measures could not be read never receives a
+    rhythm variation built from notes nobody read.
+  - Advice is addressed as score id plus phrase id; an unknown phrase or a
+    phrase from another score is a 404, not a best guess.
 
 ## C7 — Persistence, interaction states, and the demo
 - [ ] Complete
@@ -311,7 +329,7 @@ application has been tested.
 None. C1 and C2 are confirmed on origin/practice-map-build.
 
 ## Handoff
-- Next action: implement C6.
+- Next action: integration and demo documentation.
 - Outstanding external setup: credit on the Anthropic account funding
   `PRACTICEMAP_ANTHROPIC_API_KEY`. Nothing else is blocked on the user.
 - Last meaningful validation: 114 tests pass — `python -m pytest -q`,

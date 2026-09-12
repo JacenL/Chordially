@@ -11,6 +11,11 @@
  * and the sidebar says so instead of attaching it to a neighbour.
  */
 
+import { createPractice } from "./practice.js";
+
+const metaEl = document.getElementById("score-meta");
+const SCORE_KEY = metaEl ? JSON.parse(metaEl.textContent).scoreId : null;
+
 const dataEl = document.getElementById("score-data");
 if (dataEl) {
   const DATA = JSON.parse(dataEl.textContent);
@@ -18,6 +23,7 @@ if (dataEl) {
 }
 
 function init(data) {
+  const practice = createPractice(SCORE_KEY);
   const pane = document.getElementById("score-pane");
   const hoverCard = document.getElementById("hover-card");
   const measureEls = Array.from(document.querySelectorAll(".measure"));
@@ -166,6 +172,8 @@ function init(data) {
       el("sel-start").textContent = `${phrase.startReason} — ${phrase.startConfidence}`;
       el("sel-end").textContent = `${phrase.endReason} — ${phrase.endConfidence}`;
       el("sel-practice").textContent = phrase.practiceText;
+
+      practice.load(selectedPhraseId);
     } else if (measure) {
       // An unreadable or never-attempted measure. It belongs to no phrase, and
       // saying which of those it is matters: one is a judgement about the
@@ -178,6 +186,9 @@ function init(data) {
       show(el("sel-measure-note"), false);
       show(el("why-panel"), false);
       show(el("boundary-panel"), false);
+      practice.clear(
+        "This measure is not part of an analyzed phrase, so there is no passage to build an exercise from."
+      );
     }
   }
 

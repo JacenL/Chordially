@@ -20,6 +20,7 @@ from fastapi.templating import Jinja2Templates
 from markupsafe import Markup
 
 from src.config import PROJECT_ROOT, has_app_credentials, load_env
+from src.features.practice.coach import PassageNotFound, build_guidance
 from src.features.score_viewer.view_model import build_view, client_payload
 from src.server.analysis import jobs
 from src.server.analysis import upload as upload_mod
@@ -126,6 +127,72 @@ def job_status(job_id: str) -> dict:
     return job.as_dict()
 
 
+def _bundle_for(score_id: str):
+    """Resolve a score id to its analysis, example or upload."""
+    if score_id == "example":
+        return load_example()
+    bundle = jobs.get_bundle(score_id)
+    if bundle is None:
+        raise HTTPException(
+            status_code=404,
+            detail="That analysis is no longer available. Upload the file again.",
+        )
+    return bundle
+
+
+@app.get("/api/practice/{score_id}/{phrase_id}")
+def practice(score_id: str, phrase_id: str) -> dict:
+    """Practice instruction for one passage of one score.
+
+    The score id is part of the path on purpose: an exercise built for one
+    score must never be served for another, and a phrase id that does not
+    belong to this score is a 404 rather than a best guess.
+    """
+    try:
+        bundle = _bundle_for(score_id)
+    except ExampleUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+    try:
+        guidance = build_guidance(bundle, phrase_id)
+    except PassageNotFound as exc:
+        raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    return {
+        "phraseId": guidance.phrase_id,
+        "phraseLabel": guidance.phrase_label,
+        "rangeText": guidance.range_text,
+        "noteRangeText": guidance.note_range_text,
+        "challenge": guidance.challenge,
+        "observations": guidance.observations,
+        "primary": _exercise_payload(guidance.primary),
+        "alternatives": [_exercise_payload(a) for a in guidance.alternatives],
+        "noFitReason": guidance.no_fit_reason,
+    }
+
+
+def _exercise_payload(exercise) -> dict | None:
+    if exercise is None:
+        return None
+    return {
+        "techniqueId": exercise.technique_id,
+        "title": exercise.title,
+        "fits": exercise.fits,
+        "evidenceCategory": exercise.evidence_category,
+        "steps": exercise.steps,
+        "listeningGoals": exercise.listening_goals,
+        "tempoRule": exercise.tempo_rule,
+        "successCriteria": exercise.success_criteria,
+        "returnToContext": exercise.return_to_context,
+        "cautions": exercise.cautions,
+        "sources": exercise.sources,
+        "appliesTo": exercise.applies_to,
+        "triggerReason": exercise.trigger_reason,
+        "variants": exercise.variants,
+        "variantNote": exercise.variant_note,
+    }
+
+
 @app.get("/score/example", response_class=HTMLResponse)
 def example_score(request: Request) -> HTMLResponse:
     """The prepared example, annotated over its original scan.
@@ -147,6 +214,7 @@ def example_score(request: Request) -> HTMLResponse:
             "payload": client_payload(view),
             "live_recognition": has_app_credentials(),
             "provenance": None,
+            "score_key": "example",
         },
     )
 
@@ -170,5 +238,6 @@ def uploaded_score(request: Request, score_id: str) -> HTMLResponse:
             "payload": client_payload(view),
             "live_recognition": has_app_credentials(),
             "provenance": provenance,
+            "score_key": score_id,
         },
     )

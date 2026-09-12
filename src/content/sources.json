@@ -1,0 +1,35 @@
+{
+  "_comment": "Source metadata stored once and referenced by stable ID. evidenceCategory is the claim each source can actually carry -- it is not a quality score. Nothing here validates PracticeMap's 0.0-10.0 scale, and no source is cited as if it did.",
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Practising in rhythms and accents",
+      "author": "Simon Fischer",
+      "publication": "Basics / The Strad, August 2011",
+      "url": "https://www.simonfischeronline.com/uploads/5/7/7/9/57796211/242_august_2011_rhythm_practice.pdf",
+      "evidenceCategory": "teacher pedagogy",
+      "supports": "Complementary dotted rhythms, varying the pattern's starting point, and attending to pitch, sound, timing and ease.",
+      "doesNotSupport": "Any claim of a measured improvement rate, or that rhythm practice suits every passage."
+    },
+    {
+      "id": "S02",
+      "title": "Optimizing Music Learning: Exploring How Blocked and Interleaved Practice Schedules Affect Advanced Performance",
+      "author": "Carter and Grahn",
+      "publication": "Frontiers in Psychology, 2016",
+      "url": "https://doi.org/10.3389/fpsyg.2016.01251",
+      "evidenceCategory": "small experimental study",
+      "supports": "Limited support for alternating between passages and revisiting them later.",
+      "doesNotSupport": "An optimal violin practice schedule. Ten advanced clarinettists, with variation across raters."
+    },
+    {
+      "id": "S03",
+      "title": "Putting practice under the microscope: The perceived uses and limitations of slow instrumental music practice",
+      "author": "Emma Allingham and Clemens Wollner",
+      "publication": "Psychology of Music, 2023",
+      "url": "https://doi.org/10.1177/03057356221129650",
+      "evidenceCategory": "qualitative questionnaire research",
+      "supports": "Framing slow practice around a specific purpose, and acknowledging that slow and fast execution can differ.",
+      "doesNotSupport": "A universally optimal starting tempo or increment. PracticeMap's tempo numbers are app defaults."
+    }
+  ]
+}
