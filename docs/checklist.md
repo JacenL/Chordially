@@ -1,13 +1,13 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C4 and C6 delivered; C5 and C7's persistence half
-deliberately deferred and recorded as such below.
+Status: demo-ready. C1–C4, C6 and C8 delivered; C5 and C7's persistence half
+recorded as deferred below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
 assumed.
 Working branch: practice-map-build, created from main at 95f7ceb.
-Current task: none in flight. Next: C5 (phrase boundary editing).
+Current task: C9 (trouble spots), then C5 (phrase boundary editing).
 
 ## How this document is organized
 
@@ -342,6 +342,28 @@ C1's 87% on its smaller sample.
 - Evidence: **154 tests pass** — 151 offline plus 3 `live` browser/API tests.
   The full demo journey (upload, analyze, select, read an exercise) passes in
   Chromium in 7.3s with a warm cache and zero JavaScript errors.
+
+## C8 — Tempo recalculation
+- [x] Complete
+- Dependencies: C2, C3.
+- Why: the score page displayed "Set a tempo to recalculate" with no such
+  control. That was a false claim in the product, and the underlying feature is
+  real: `rate_measure` measures demand per second, so tempo changes every rating.
+- Acceptance: a supplied tempo re-rates every measure and phrase; a printed
+  tempo is never overwritten by a global setting; the shared example bundle is
+  not mutated; malformed input does not cost the user their analysis.
+- Evidence: **171 tests pass**, 20 new.
+  - Measured on the example: measure 1 rates 2.7 at 60 BPM, 3.2 assumed (90),
+    and 4.2 at 160. A faster tempo is asserted never to lower a rating, and to
+    raise at least one.
+  - `load_example` is lru_cached, so a test asserts the cached bundle's ratings,
+    per-measure tempos and assumptions are byte-identical after a retune. Without
+    the deep copy, one user's tempo would leak into every later request.
+  - A measure with a printed tempo keeps it under a 200 BPM override, and the
+    notice says how many did.
+  - Junk (`banana`, `90bpm`, `-5`) and out-of-range values fall back to the
+    assumed tempo and still render the score; out-of-range is refused rather
+    than clamped, so the page cannot disagree with the input box.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

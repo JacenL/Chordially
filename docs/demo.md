@@ -60,6 +60,16 @@ cached run and a live run are different facts and the page says which happened.
 Measured on this page: 11 systems, 61 measures, 15 phrases, 43 of 61 measures
 rated, ratings spanning 1.0–7.0.
 
+### 3b. Change the tempo (20 seconds)
+Type 160 into the toolbar's tempo field and press Recalculate. The whole ribbon
+warms: this etude at 160 BPM is not the same music it is at 90, and the ratings
+say so. Phrase 1 moves from 4.1 to 4.9. "back to assumed" restores the disclosed
+90 BPM default.
+
+Worth saying: the ratings measure demand per second, so tempo is not a display
+preference. Any measure that prints its own tempo keeps it, and the notice says
+how many did.
+
 ### 4. Select a passage (30 seconds)
 Click the first phrase in the sidebar list, or click straight on the score.
 Selection syncs the outline, the phrase list and the sidebar.
@@ -136,7 +146,8 @@ does no coordinate arithmetic at all.
   and no violinist has reviewed them; `fixtures/expected/review-phrases.md` is
   waiting for exactly that review.
 - **Tempo is assumed at 90 BPM** when none is printed, which the page states.
-  Recalculating from a user-supplied tempo is not built.
+  The toolbar's tempo field recalculates every rating from a supplied tempo;
+  measures that print their own tempo keep it.
 - **Phrase boundaries cannot be edited yet.** The spec calls for split/merge and
   boundary adjustment; it is not in this build.
 - **Nothing persists.** Analyses live in memory for the life of the process, and

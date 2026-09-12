@@ -207,7 +207,7 @@ def build_score(
     if assumed_tempo:
         assumptions.append(
             f"No tempo is printed, so ratings assume {DEFAULT_TEMPO_BPM:.0f} BPM. "
-            "Set a tempo to recalculate."
+            "Set a tempo above to recalculate."
         )
 
     return Score(

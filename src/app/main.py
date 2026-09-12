@@ -20,11 +20,13 @@ from fastapi.templating import Jinja2Templates
 from markupsafe import Markup
 
 from src.config import PROJECT_ROOT, has_app_credentials, load_env
+from src.features.difficulty.rubric import DEFAULT_TEMPO_BPM
 from src.features.practice.coach import PassageNotFound, build_guidance
 from src.features.score_viewer.view_model import build_view, client_payload
 from src.server.analysis import jobs
 from src.server.analysis import upload as upload_mod
 from src.server.analysis.example import ExampleUnavailable, load_example
+from src.server.analysis.recompute import parse_tempo, retune
 
 load_env()
 
@@ -194,7 +196,7 @@ def _exercise_payload(exercise) -> dict | None:
 
 
 @app.get("/score/example", response_class=HTMLResponse)
-def example_score(request: Request) -> HTMLResponse:
+def example_score(request: Request, tempo: str | None = None) -> HTMLResponse:
     """The prepared example, annotated over its original scan.
 
     Labelled as the example everywhere it appears. It is never served in place
@@ -205,22 +207,11 @@ def example_score(request: Request) -> HTMLResponse:
     except ExampleUnavailable as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
-    view = build_view(bundle)
-    return TEMPLATES.TemplateResponse(
-        request=request,
-        name="score.html",
-        context={
-            "view": view,
-            "payload": client_payload(view),
-            "live_recognition": has_app_credentials(),
-            "provenance": None,
-            "score_key": "example",
-        },
-    )
+    return _render_score(request, bundle, "example", tempo, provenance=None)
 
 
 @app.get("/score/{score_id}", response_class=HTMLResponse)
-def uploaded_score(request: Request, score_id: str) -> HTMLResponse:
+def uploaded_score(request: Request, score_id: str, tempo: str | None = None) -> HTMLResponse:
     """An analyzed upload. Held in memory for the life of the process."""
     bundle = jobs.get_bundle(score_id)
     if bundle is None:
@@ -228,8 +219,19 @@ def uploaded_score(request: Request, score_id: str) -> HTMLResponse:
             status_code=404,
             detail="That analysis is no longer available. Upload the file again.",
         )
-    view = build_view(bundle)
-    provenance = jobs.get_provenance(score_id)
+    return _render_score(
+        request, bundle, score_id, tempo, provenance=jobs.get_provenance(score_id)
+    )
+
+
+def _render_score(request: Request, bundle, score_key: str, tempo_raw, provenance):
+    """Render one analysis, optionally re-rated at a supplied tempo.
+
+    `retune` returns a copy, so the cached example bundle is never modified by a
+    request that sets a tempo.
+    """
+    tempo_bpm = parse_tempo(tempo_raw)
+    view = build_view(retune(bundle, tempo_bpm))
     return TEMPLATES.TemplateResponse(
         request=request,
         name="score.html",
@@ -238,6 +240,8 @@ def uploaded_score(request: Request, score_id: str) -> HTMLResponse:
             "payload": client_payload(view),
             "live_recognition": has_app_credentials(),
             "provenance": provenance,
-            "score_key": score_id,
+            "score_key": score_key,
+            "tempo_bpm": tempo_bpm,
+            "default_tempo": DEFAULT_TEMPO_BPM,
         },
     )

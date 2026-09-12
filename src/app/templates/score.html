@@ -27,6 +27,23 @@
           <button type="button" class="button button--quiet" data-zoom="reset">Fit</button>
         </div>
 
+        <form class="toolbar-group tempo-form" method="get" action="">
+          <label class="toolbar-label" for="tempo-input">Tempo</label>
+          <input class="tempo-input" type="number" id="tempo-input" name="tempo"
+                 min="20" max="300" step="1" inputmode="numeric"
+                 value="{{ '%.0f' | format(tempo_bpm) if tempo_bpm else '' }}"
+                 placeholder="{{ '%.0f' | format(default_tempo) }}"
+                 aria-describedby="tempo-help">
+          <span class="toolbar-label">BPM</span>
+          <button type="submit" class="button button--quiet">Recalculate</button>
+          {% if tempo_bpm %}
+            <a class="tempo-reset" href="?">back to assumed</a>
+          {% endif %}
+          <span class="visually-hidden" id="tempo-help">
+            Ratings measure demand per second, so changing the tempo changes every rating.
+          </span>
+        </form>
+
         <div class="toolbar-group">
           <label class="switch">
             <input type="checkbox" id="toggle-phrases" checked>
@@ -56,7 +73,9 @@
             </p>
           {% endif %}
           {% for item in view.assumptions %}
-            <p class="notice notice--assumption"><span class="notice-tag">Assumption</span>{{ item }}</p>
+            <p class="notice notice--assumption">
+              <span class="notice-tag">{{ "Tempo" if tempo_bpm else "Assumption" }}</span>{{ item }}
+            </p>
           {% endfor %}
           {% for item in view.warnings %}
             <p class="notice notice--warning"><span class="notice-tag">Recognition</span>{{ item }}</p>
