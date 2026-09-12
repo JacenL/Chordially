@@ -38,7 +38,7 @@ function init(data) {
   const measureEls = Array.from(document.querySelectorAll(".measure"));
   const phraseItems = Array.from(document.querySelectorAll(".phrase-item"));
   const sectionEls = Array.from(document.querySelectorAll(".section-outline"));
-  const ribbonEls = Array.from(document.querySelectorAll(".ribbon-segment"));
+  const highlightEls = Array.from(document.querySelectorAll(".difficulty-highlight"));
   const outlines = Array.from(
     document.querySelectorAll(".phrase-outline, .trouble-outline")
   );
@@ -82,7 +82,6 @@ function init(data) {
     selectedMeasureId = first || null;
     paint();
     renderSidebar();
-    revealSelectionPanel();
     if (first) {
       scrollIntoPane(measureById.get(first));
       if (opts.focus) focusMeasure(first, false);
@@ -140,7 +139,7 @@ function init(data) {
       el.classList.toggle("is-selected", on);
       el.tabIndex = on ? 0 : -1;
     }
-    for (const el of ribbonEls) {
+    for (const el of highlightEls) {
       el.classList.toggle("is-selected", el.dataset.sectionId === sectionId);
     }
 
@@ -158,20 +157,6 @@ function init(data) {
       el.classList.toggle("is-selected", on);
       el.classList.toggle("is-context", !on && id === sectionId);
       el.setAttribute("aria-pressed", on ? "true" : "false");
-    }
-  }
-
-  // Selecting from the passage list, which sits far down the sidebar, used to
-  // leave the rating and factors scrolled off the top. The selection is the
-  // thing just asked for, so it is what should be on screen.
-  function revealSelectionPanel() {
-    const panel = el("selection-panel");
-    const sidebar = document.getElementById("sidebar");
-    if (!panel || !sidebar) return;
-    const panelBox = panel.getBoundingClientRect();
-    const sidebarBox = sidebar.getBoundingClientRect();
-    if (panelBox.top < sidebarBox.top) {
-      sidebar.scrollTop += panelBox.top - sidebarBox.top;
     }
   }
 
@@ -539,8 +524,7 @@ function init(data) {
     item.addEventListener("click", () => selectEntry(item.dataset.phraseId));
   }
 
-  // A section fragment is a click target in its own right, and so is the band
-  // of ribbon under it. Both select the same passage as the measures inside it.
+  // Section fragments select the same passage as their measure hit targets.
   for (const sectionEl of sectionEls) {
     sectionEl.addEventListener("click", () => selectEntry(sectionEl.dataset.sectionId));
     sectionEl.addEventListener("keydown", (event) => {
@@ -550,12 +534,6 @@ function init(data) {
       }
     });
   }
-  for (const segment of ribbonEls) {
-    if (!segment.dataset.sectionId) continue;
-    segment.style.pointerEvents = "auto";
-    segment.addEventListener("click", () => selectEntry(segment.dataset.sectionId));
-  }
-
   for (const outline of outlines) {
     outline.addEventListener("click", (event) => {
       event.stopPropagation();

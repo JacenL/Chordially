@@ -113,11 +113,11 @@ def test_upload_analyze_select_and_read_an_exercise(server, browser_page):
     # Bands are practice passages, so there are fewer of them than measures,
     # and between them they still account for every measure.
     measures = page.locator(".measure").count()
-    bands = page.locator(".ribbon-segment").count()
-    assert 0 < bands < measures
+    bands = page.locator(".difficulty-highlight").count()
+    assert bands == measures
     covered = page.eval_on_selector_all(
-        ".ribbon-segment",
-        "els => els.flatMap(e => (e.dataset.measureIds || '').split(' ').filter(Boolean))",
+        ".difficulty-highlight",
+        "els => els.map(e => e.dataset.measureId)",
     )
     assert len(set(covered)) == measures
 

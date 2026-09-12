@@ -1288,3 +1288,86 @@ outage; a live run reached 43 of 61), **B5** (persistence + progress, was C7),
   a MusicXML or PDF into `fixtures/scores/`; do not fabricate one.
 - Demo pre-flight: `python -m pytest tests/e2e/test_demo_flow.py -m live -q`,
   after warming the transcription cache once on the demo machine.
+
+
+## Handoff
+- Next action: the C20 tracks. Backend starts at B1 (small, and F1 wants its
+  output) then B2a's Audiveris spike; frontend starts at F5 (install Chromium)
+  then F1. C7's remaining half is now B5.
+- Outstanding external setup: none. The Anthropic credit blocker is cleared and
+  live recognition is verified working.
+- Last meaningful validation: `python -m pytest -q` → **303 passed, 20 skipped,
+  5 deselected** on a machine without Chromium. The 20 skips are the Playwright
+  suite and the 5 deselected are the `live` demo-flow set; with Chromium
+  installed the offline total is 323. Install it with
+  `python -m playwright install chromium`.
+- Not yet obtained: a Mendelssohn Violin Concerto excerpt. The rubric's high end
+  is currently evidenced by constructed notation in `test_rubric_20.py` and by
+  the real Mozart K.156 import, not by a demanding concerto page. Dropping a
+  MusicXML or PDF excerpt into `fixtures/scores/` is all that is needed to check
+  the top of the scale against real notation.
+- Demo pre-flight: `python -m pytest tests/e2e/test_demo_flow.py -m live -q`.
+  Warm the transcription cache by running it once on the demo machine.
+
+
+## F01 — readable difficulty highlights and American English
+- Branch: `fix/frontend-score-highlights`, based on `1d55985`.
+- Scope: frontend templates, styles, selection wiring, displayed technique copy,
+  and relevant browser/integration checks. No recognition/rating/grouping changes.
+- Replaced opaque ribbon bars with multiply-blended, 18%-opacity measure fills;
+  removed overlapping section chips and duplicate hatching. Ratings and section
+  selection remain available through the existing sidebar and hover controls.
+- Validation: 20 real Chromium browser tests passed (viewer and landing page);
+  64 integration/practice tests passed, one live-provider test deselected.
+  `git diff --check` passed. No live recognition calls were made.
+- Delivery: ready to commit on the frontend branch; no shared-branch push or merge.
+
+### F01 follow-up — tighter highlight height
+- Reduced the decorative highlight to 84% of its previous height, centered on
+  the measure (8% inset per edge). Hit targets and analysis geometry stay intact.
+- Validation: all 11 viewer browser tests passed; diff whitespace check passed.
+- Delivery: local frontend branch; previous GitHub authentication blocker remains.
+
+
+## Frontend — measured upload and recognition progress
+- Replaced the text-only loading area with a labelled native progress bar.
+- Upload uses browser byte-transfer events; recognition uses the backend's
+  existing “read N of M sections” reports, labelled completed requests (not
+  successfully recognized measures). Percentages are per phase, never an ETA.
+- Stages without counts remain indeterminate; only a done job opens the score.
+- Prevented file replacement by drag/drop during an active upload.
+- Backend job contracts and recognition code unchanged. All 11 landing-page
+  browser tests passed, including count updates, indeterminate stages, mobile
+  width, failure recovery, and done-only navigation. Diff check passed.
+- Delivery: local frontend branch; GitHub push remains blocked by authentication.
+
+
+## Frontend — preserve sidebar position on passage selection
+- Removed the explicit scroll-to-selection-panel action from passage selection.
+  The score still scrolls to the selected passage; the sidebar stays at the list.
+- Validation: 12 viewer browser tests passed, including a regression check after
+  selection and asynchronous guidance loading; diff check passed.
+- Delivery: local frontend branch; GitHub authentication remains unresolved.
+
+
+## Final local integration — 2026-09-12
+- User authorized merging the completed backend with our frontend locally as
+  `final`, excluding any Grok wrapper. All remote backend task tips are ancestors
+  of the merged integration tip `bcc68e8`; no separate task branch was omitted.
+- Merge commit `381c33f` preserves our highlights, reduced height, American
+  English copy, measured progress, and sidebar scroll fix. Conflicts in the
+  template, landing-page tests and this checklist were resolved without dropping
+  backend analysis changes.
+- Frontend now reports actual Audiveris installation availability, labels scan
+  re-engraving, uses indeterminate recognition progress for Audiveris, and states
+  server-side processing and generated-page retention accurately.
+- Fresh-install fixes: added the MusicXML runtime dependencies and replaced the
+  obsolete API-key example with the Audiveris executable setting.
+- Validation: final full suite 344 passed, 3 skipped, 5 live tests deselected,
+  including 25 browser tests. Real MusicXML upload and missing-engine recovery
+  passed; home and engraved-score screenshots inspected. Dependency check and
+  diff check passed. No external recognition API was called.
+- Local limitation: Audiveris is not installed; the 3 skipped integration tests
+  require an uncommitted Audiveris export. Full scan recognition was not verified
+  on this Mac. B5/F3 persistence and F4 note-level edit contracts remain absent.
+- This final branch is local only, as requested. No remote merge or push.

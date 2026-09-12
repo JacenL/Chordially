@@ -70,9 +70,7 @@ def test_the_ribbon_accounts_for_every_measure_and_every_measure_is_clickable(cl
     assert set(covered) == set(data["measures"])
     assert len(covered) == len(set(covered)), "a measure is covered by two bands"
     assert set(hits) == set(data["measures"])
-    assert len(bands) < len(data["measures"]), (
-        "there is still roughly one band per measure, which is the heatmap C17 removed"
-    )
+    assert len(bands) == len(data["measures"])
 
 
 def test_every_measure_resolves_to_a_passage(client):
@@ -107,7 +105,7 @@ def test_unrated_measures_render_as_needing_review(client):
     assert unrated, "the fixture contains measures recognition could not read"
     for measure in unrated:
         assert measure["scoreText"] == UNRATED_LABEL
-    assert "ribbon-segment--unrated" in html
+    assert "difficulty-highlight--unrated" in html
 
 
 def test_recognition_warnings_are_shown_not_hidden(client):
@@ -140,4 +138,4 @@ def test_example_mode_works_without_application_credentials(monkeypatch):
         assert unauthenticated.get("/health").json()["live_recognition"] is False
         response = unauthenticated.get("/score/example")
         assert response.status_code == 200
-        assert 'class="ribbon-segment' in response.text
+        assert 'class="difficulty-highlight' in response.text

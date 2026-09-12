@@ -6,6 +6,22 @@ passage from light green to near-black, and tells you how to practise the one yo
 select — including complementary rhythm variations built from that passage's
 own notes.
 
+## Local final integration
+
+Branch `final` combines all backend branches merged through `bcc68e8` with the
+frontend work. Use Python 3.13 (tested locally), install `requirements-dev.txt`,
+and run `python -m uvicorn src.app.main:app --reload`. The local virtual
+environment is `.venv313`.
+
+The frontend uses subtle measure highlights, an upload/status bar, and preserves
+sidebar position during selection. Scanned uploads are re-engraved and labelled.
+The home screen reports when Audiveris is missing. No Grok wrapper is included.
+
+Audiveris is **not installed in this Mac checkout**. Configure its executable via
+`PRACTICEMAP_AUDIVERIS_EXE` in `.env` after installing it. MusicXML and example
+mode work now. Progress persistence and note-level boundary editing remain
+unimplemented backend contracts; they are not claimed complete by this merge.
+
 ## Quick start
 
 ```bash

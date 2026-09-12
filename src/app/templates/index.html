@@ -13,7 +13,7 @@
 
   <main class="landing">
     <section class="hero">
-      <h1 class="hero-title">Know what to practise<br>before you start playing.</h1>
+      <h1 class="hero-title">Know what to practice<br>before you start playing.</h1>
       <p class="hero-lede">
         Upload a page of violin music. PracticeMap divides it into passages,
         rates how demanding each one is, and tells you what to actually do about
@@ -47,10 +47,9 @@
 
       <div class="upload-progress" id="upload-progress" hidden aria-live="polite">
         <p class="upload-stage" id="upload-stage">Starting</p>
-        <p class="note">
-          No progress bar: the stages take very different amounts of time and a
-          sweeping bar would be a guess. This is the stage actually running.
-        </p>
+        <progress class="upload-progress-bar" id="upload-progress-bar" max="100"
+                  aria-labelledby="upload-stage" aria-describedby="upload-progress-detail"></progress>
+        <p class="note" id="upload-progress-detail">Waiting for progress from the server.</p>
       </div>
 
       <div class="upload-error" id="upload-error" hidden role="alert">
@@ -62,8 +61,8 @@
     <section class="benefits" aria-label="What you get">
       <div class="benefit">
         <h3>See where it gets hard</h3>
-        <p>The page is coloured passage by passage, from light green to
-           near-black, with a rating out of ten for each.</p>
+        <p>Each measure has a subtle difficulty highlight, from light green to
+           near-black. Select a passage to see its rating out of ten.</p>
       </div>
       <div class="benefit">
         <h3>One passage at a time</h3>
@@ -84,13 +83,13 @@
           <p class="note">
             A scan of printed violin notation — PDF, PNG or JPEG — or a MusicXML
             file (.musicxml, .xml, .mxl) exported from notation software.
-            One page, up to 20&nbsp;MB. A multi-page file is accepted but only its
-            first page is analyzed. Printed notation only; handwriting is out of
+            Up to 20&nbsp;MB. For scans, upload a single page. The viewer analyzes
+            the first engraved page of the first recognized part. Printed notation only; handwriting is out of
             scope.
           </p>
           <p class="note">
             MusicXML is the more reliable path: the notes are read from the file
-            itself, so no measure is left for review. A scan is recognized on
+            itself. Recognition and notation errors can still require review. A scan is recognized on
             this machine by Audiveris and some measures will come back
             unreadable. Those are marked as unknown rather than guessed at, and
             they are never shown as easy. A recognized scan is redrawn from what
@@ -104,14 +103,15 @@
         <summary>What happens to your file</summary>
         <div class="detail-body">
           <p class="note">
-            <b>Nothing you upload leaves this machine.</b> A scan is recognized
-            locally by Audiveris and MusicXML is parsed locally, so no file and
-            no page image is sent to any service. Your analysis lives in this
-            server's memory only — restarting it discards everything.
+            <b>Recognition runs on the server hosting PracticeMap.</b> Your file
+            is uploaded to that server, where Audiveris reads scans and MusicXML
+            is parsed locally. Neither path sends your music to an external AI
+            service. Analysis and edits live in server memory; restarting it
+            discards those results. Generated score pages remain in local server storage.
           </p>
           <p class="note">
-            No account, no sign-in, nothing kept. Practice choices you make are
-            held for this session and are not saved.
+            No account or sign-in is required. Practice choices are held for
+            this session and are not saved permanently.
           </p>
         </div>
       </details>
@@ -137,9 +137,13 @@
       </details>
     </section>
 
-    <p class="status">
-      Notation is recognized on this machine by Audiveris. No account, no API
-      key and no network call is involved in analyzing a page.
+    <p class="status" role="status">
+      {% if audiveris_available %}
+        Scan recognition is available on this machine through Audiveris. No API key is needed.
+      {% else %}
+        Scan recognition is not installed on this machine yet. You can import MusicXML
+        or try the example score now. No API key is needed.
+      {% endif %}
     </p>
   </main>
 

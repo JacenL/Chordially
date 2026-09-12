@@ -119,13 +119,13 @@
       "title": "Play the join into the next idea",
       "evidenceCategory": "app heuristic",
       "sourceIds": ["S02"],
-      "fits": "Any phrase that has a following phrase. Practising a phrase to its last note teaches an ending the music does not have.",
+      "fits": "Any phrase that has a following phrase. Practicing a phrase to its last note teaches an ending the music does not have.",
       "triggerFeatures": ["has_next_phrase"],
       "exclusions": ["the final phrase, which has nothing to carry into"],
       "steps": [
         "Play the phrase written, and continue through the first note of the next phrase before stopping.",
         "Notice what the join requires: a bow change, a string crossing, a hand that must already be somewhere else.",
-        "Practise only the last two notes of this phrase and the first of the next.",
+        "Practice only the last two notes of this phrase and the first of the next.",
         "Play the phrase whole again with the join included.",
         "Come back to this join later in the session rather than repeating it now until it is fluent."
       ],

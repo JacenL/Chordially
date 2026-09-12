@@ -1,5 +1,15 @@
 # PracticeMap — product specification
 
+## F01 — current frontend display override (2026-09-12)
+The user's latest request supersedes the ribbon presentation below: show a faint
+full-measure difficulty highlight using each measure's existing rating. Use a
+multiply blend at 18% opacity so dark notation remains dark, with neutral
+hatching for unrated measures. Remove opaque section chips from the score;
+names and one-decimal ratings stay in the sidebar and hover details. Section
+selection, grouping, and difficulty calculations are unchanged. Use American
+English “practice” in application copy.
+
+
 ## Product promise
 A violinist uploads sheet music and immediately understands where a piece becomes challenging, how it divides into musical ideas, and what to do to improve each passage. The sheet music remains the primary interface; advice appears beside the selected music.
 
@@ -52,7 +62,7 @@ near-black across the same 0–10 range:
 - 2.0 ≤ score < 4.0: Advanced Beginner.
 - 4.0 ≤ score < 6.0: Competent level.
 - 6.0 ≤ score < 8.0: Expert level.
-- 8.0 ≤ score ≤ 10.0: Extremely, extremely hard.
+- 8.0 ≤ score ≤ 10.0: Extremely hard.
 
 The scale is absolute and shared across pieces. Never normalize one upload to
 fill the range. An easy passage inside a difficult work keeps its own low

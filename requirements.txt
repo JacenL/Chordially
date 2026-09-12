@@ -13,3 +13,7 @@ opencv-python-headless==5.0.0.93  # staff, barline and measure detection
 pymupdf==1.28.2           # PDF page rendering
 
 anthropic==1.5.0          # notation transcription (needs PRACTICEMAP_ANTHROPIC_API_KEY)
+
+# MusicXML parsing and score engraving (also used after Audiveris recognition).
+music21==10.5.0
+verovio==6.3.0
