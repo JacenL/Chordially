@@ -1,9 +1,10 @@
 # PracticeMap
 
-Upload a page of printed violin sheet music. PracticeMap finds the phrases,
-rates every measure from 0.0 to 10.0, draws a measure-aligned difficulty ribbon
-under each system, and tells you how to practise the passage you select —
-including complementary rhythm variations built from that passage's own notes.
+Upload a page of printed violin sheet music. PracticeMap divides it into
+practice passages, rates each one from 0.0 to 10.0, colours the page passage by
+passage from light green to maroon, and tells you how to practise the one you
+select — including complementary rhythm variations built from that passage's
+own notes.
 
 ## Quick start
 
@@ -22,16 +23,21 @@ limitations. `docs/checklist.md` is the delivery status.
 ## What works
 
 - Upload a PDF, PNG or JPEG of one printed page and analyze that actual file.
-  Measured on the demo page: 11 systems, 61 measures, 15 phrases, 43 of 61
-  measures rated.
+  Measured on the demo page: 11 systems, 61 measures, 15 phrases grouped into
+  5 practice passages, 32 of 61 measures rated.
 - Or import MusicXML (`.musicxml`, `.xml`, `.mxl`), which is read exactly from
   the file — engraved with Verovio, no transcription service, and no measure left
   unrated. Measured on Mozart K.156: 145 of 145 measures rated.
 - OpenCV finds the staves, barlines and measures in the uploaded pixels; a
   vision model reads only the notation content. All geometry is exact code, so
   overlays sit on the real measures and survive zoom and resize.
-- A continuous per-system difficulty ribbon whose segment widths follow the real
-  engraved barlines, with the six colour anchors from `docs/design.md`.
+- A continuous per-system difficulty ribbon banded by practice passage rather
+  than by measure, whose widths follow the real engraved barlines, with the six
+  colour anchors from `docs/design.md`. One passage carries one rating and one
+  colour everywhere it appears, including across a line break.
+- Clicking anywhere inside a passage — a measure, its outline, or its ribbon
+  band — selects the whole passage and loads its guidance. Phrases and local
+  hard spots are secondary detail inside it.
 - Measures that could not be read stay unrated and hatched, visually distinct
   from both easy and hard, and a request that never completed is kept distinct
   from notation that was read and rejected.

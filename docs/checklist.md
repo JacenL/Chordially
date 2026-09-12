@@ -794,9 +794,13 @@ ribbon hatching, which obscured the very notation a reader needs in order to
 judge whether recognition was right.
 
 ### Colour
-The progression is now light green → green → yellow → orange → red → maroon, one
-anchor every two points, so each category spans exactly one interval between
-anchors. Ratings and accessible labels are shown alongside colour everywhere.
+The progression is **light green → yellow → orange → red → near-black**, five
+anchors evenly spaced at 2.5 points. (C17 first shipped a six-anchor
+light-green → green → yellow → orange → red → maroon ramp; the five-stop version
+above is the later explicit decision and replaced it in the same branch.) The
+anchors sit on a 2.5 grid while the category cut points sit on 2.0, so a
+category spans part of two ramps — ratings and accessible labels are shown
+alongside colour everywhere, so the colour is never the only statement.
 
 ## C18 — A front page that answers the reader's question first
 - [x] Complete
@@ -858,11 +862,16 @@ None. C1 and C2 are confirmed on origin/practice-map-build.
 
 ## Handoff
 - Next action: persistence (C7's remaining half), then within-measure
-  boundary editing, then structural sections.
+  boundary editing.
 - Outstanding external setup: none. The Anthropic credit blocker is cleared and
   live recognition is verified working.
-- Last meaningful validation: `python -m pytest -q` → 151 passed;
-  `python -m pytest -q -m live` → 3 passed. Browser tests skip themselves if
+- Last meaningful validation: `python -m pytest -q` → **324 passed**, 5
+  deselected (the `live` demo-flow set). Browser tests skip themselves if
   Chromium is absent; install it with `python -m playwright install chromium`.
+- Not yet obtained: a Mendelssohn Violin Concerto excerpt. The rubric's high end
+  is currently evidenced by constructed notation in `test_rubric_20.py` and by
+  the real Mozart K.156 import, not by a demanding concerto page. Dropping a
+  MusicXML or PDF excerpt into `fixtures/scores/` is all that is needed to check
+  the top of the scale against real notation.
 - Demo pre-flight: `python -m pytest tests/e2e/test_demo_flow.py -m live -q`.
   Warm the transcription cache by running it once on the demo machine.

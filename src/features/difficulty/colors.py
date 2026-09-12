@@ -1,10 +1,15 @@
 """Difficulty-to-colour mapping, exactly as specified in docs/design.md.
 
-The progression is light green -> green -> yellow -> orange -> red -> maroon,
-one anchor every two points. Values between anchors are interpolated linearly in
-sRGB. Linear sRGB interpolation is chosen over a perceptual space deliberately:
-the spec pins six exact hex values, and any perceptual blend would fail to
-reproduce them between anchors. The anchors themselves are reproduced exactly.
+The progression is light green -> yellow -> orange -> red -> near-black, evenly
+spaced at 2.5 points. Values between anchors are interpolated linearly in sRGB.
+Linear sRGB interpolation is chosen over a perceptual space deliberately: the
+spec pins exact hex values, and any perceptual blend would fail to reproduce
+them between anchors. The anchors themselves are reproduced exactly.
+
+The anchors sit on a 2.5 grid while the categories cut at 2.0, so a category
+spans part of two ramps rather than exactly one. That is deliberate: the
+progression is the one the product asked for, and bending it onto the category
+grid would have meant inventing a sixth colour nobody specified.
 
 The scale is absolute and identical for every score. A beginner etude occupies
 the light-green end and stays there; nothing is stretched to make one piece use
@@ -23,11 +28,10 @@ from __future__ import annotations
 
 ANCHORS: list[tuple[float, str]] = [
     (0.0, "#A5D6A0"),  # light green
-    (2.0, "#238B45"),  # green
-    (4.0, "#E5C229"),  # yellow
-    (6.0, "#EF8A24"),  # orange
-    (8.0, "#D73A3A"),  # red
-    (10.0, "#800020"),  # maroon
+    (2.5, "#E5C229"),  # yellow
+    (5.0, "#EF8A24"),  # orange
+    (7.5, "#D73A3A"),  # red
+    (10.0, "#1A1012"),  # near-black
 ]
 
 CATEGORIES: list[tuple[float, float, str]] = [

@@ -46,25 +46,43 @@ smoothly sweeping bar would be invented.
 ### 3. The analyzed page (45 seconds)
 What lands is the uploaded scan with three layers over it:
 
-- **Phrase outlines** with each phrase's name and 0.0–10.0 rating.
-- **The difficulty ribbon**, one unbroken run under each system, measure-aligned,
-  green through maroon. Segment widths follow the real engraved barlines.
+- **Passage outlines** with each passage's measure range and 0.0–10.0 rating.
+  A passage is one or more adjacent phrases that ask for the same kind of work;
+  it is what a click selects, and it keeps one rating and one colour across
+  every staff system it touches.
+- **The difficulty ribbon**, one unbroken run under each system, banded by
+  passage, light green through maroon. Band widths follow the real engraved
+  barlines. Worth saying out loud: this is deliberately *not* a colour per
+  measure — that was a picture of the rubric's rounding rather than of the
+  music.
 - **Hatched regions** where recognition could not read the notation. Say this
-  out loud: hatching is not "easy" and not "hard", it is *unknown*, and the
-  legend has a sixth entry for it.
+  out loud too: hatching is not "easy" and not "hard", it is *unknown*, and the
+  legend has a sixth entry for it. A hole inside a rated passage cuts its band
+  rather than inheriting its colour.
 
 Point at the **Source** line at the top. It states how many sections were read
 live and how many were reused from an earlier reading of that exact image. A
 cached run and a live run are different facts and the page says which happened.
 
-Measured on this page: 11 systems, 61 measures, 15 phrases, 43 of 61 measures
-rated, ratings spanning 1.0–7.0.
+Measured on this page: 11 systems, 61 measures, 15 phrases grouped into **5
+practice passages**, 32 of 61 measures rated, measure ratings spanning 0.2–3.5
+and passage ratings 1.6, 2.9 and 3.2 with two passages left unrated because
+recognition could not read them.
+
+Click two different measures inside the first passage. Same passage, same
+rating, same advice — only the "measure N selected" line changes. That is the
+point of the level.
 
 ### 3b. Change the tempo (20 seconds)
 Type 160 into the toolbar's tempo field and press Recalculate. The whole ribbon
 warms: this etude at 160 BPM is not the same music it is at 90, and the ratings
-say so. Phrase 1 moves from 4.1 to 4.9. "back to assumed" restores the disclosed
-90 BPM default.
+say so. The first passage moves from **1.6 to 2.9**, the last from **3.2 to
+5.6**. "back to assumed" restores the disclosed 90 BPM default.
+
+Note what does *not* move: the passage boundaries a user has set. Sections are
+re-derived at the new tempo — they group by difficulty, and difficulty moved —
+but a split you made is stored as a decision about a measure, not as a section,
+so it survives.
 
 Worth saying: the ratings measure demand per second, so tempo is not a display
 preference. Any measure that prints its own tempo keeps it, and the notice says
@@ -197,7 +215,7 @@ does no coordinate arithmetic at all.
   directly: no transcription service, nothing sent anywhere, and no measure left
   unrated. Only the first part and the first engraved page are analysed, and the
   page says so.
-- **Recognition is imperfect and says so.** On the demo page, 43 of 61 measures
+- **Recognition is imperfect and says so.** On the demo page, 32 of 61 measures
   validated. The other 18 failed an arithmetic check — their durations did not
   sum to the meter — and are left unrated rather than shown as a guess.
 - **Ratings are heuristic.** The 0.0–10.0 scale and its five categories are

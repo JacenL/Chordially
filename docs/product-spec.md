@@ -45,13 +45,14 @@ Keep each phrase's structural range separate from its practice range. Extend pra
 ## Difficulty ratings
 Every analyzed section and phrase receives a number from 0.0 to 10.0 inclusive, displayed with exactly one decimal digit, for example 6.7. Each analyzed measure also receives a rating; those feed the section and phrase numbers and are visible on hover, but they do not drive a measure-by-measure heat map. Missing/unreadable data remains unrated; do not use 0.0 as a missing value.
 
-Category mapping, an app heuristic rather than a validated grading system. Each
-category spans one interval of the color progression in design.md:
-- 0.0 ≤ score < 2.0: Beginner-friendly, light green into green.
-- 2.0 ≤ score < 4.0: Advanced Beginner, green into yellow.
-- 4.0 ≤ score < 6.0: Competent level, yellow into orange.
-- 6.0 ≤ score < 8.0: Expert level, orange into red.
-- 8.0 ≤ score ≤ 10.0: Extremely, extremely hard, red into maroon.
+Category mapping, an app heuristic rather than a validated grading system. The
+color progression in design.md runs light green → yellow → orange → red →
+near-black across the same 0–10 range:
+- 0.0 ≤ score < 2.0: Beginner-friendly.
+- 2.0 ≤ score < 4.0: Advanced Beginner.
+- 4.0 ≤ score < 6.0: Competent level.
+- 6.0 ≤ score < 8.0: Expert level.
+- 8.0 ≤ score ≤ 10.0: Extremely, extremely hard.
 
 The scale is absolute and shared across pieces. Never normalize one upload to
 fill the range. An easy passage inside a difficult work keeps its own low

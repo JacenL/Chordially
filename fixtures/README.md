@@ -32,11 +32,16 @@ for segmentation to find, rather than one invented for the demo.
 
 ### Honest limitation
 
-Book 1 is beginner repertoire. Expected difficulty ratings land roughly in the
-1.5–5 band, so a real page of this score will **not** produce an 8.0+ maroon
-measure. No rating is inflated to make the ribbon look better. The legend
-renders the full 0–10 scale with all five category labels regardless of what
-the loaded score actually spans.
+Book 1 is beginner repertoire, and that is what the ratings say. Under rubric
+2.0 the measures on this page span **0.2–3.5** at the assumed 90 BPM, and the
+five practice passages rate 1.6, 2.9 and 3.2 with two left unrated. A real page
+of this score will **not** produce an 8.0+ maroon band, and nothing is inflated
+to make the ribbon look richer. The legend renders the full 0–10 scale with all
+five category labels regardless of what the loaded score actually spans.
+
+Under rubric 1.0 the same page rated 1.0–6.8, with Etude 2 averaging 4.0 —
+"Competent level" for a first-position eighth-note study. `docs/architecture.md`
+records the seven counting errors behind that and what each one is now.
 
 ## scores/mozart-k156-mvt1.mxl
 

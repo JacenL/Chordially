@@ -55,18 +55,21 @@ Use documented interpolation between color anchors for numeric values, and keep
 adjoining bands flush. 'Continuous' means a connected score-aligned ribbon, not
 a gradient stretched arbitrarily across an entire page.
 
-Color anchors. The progression is light green -> green -> yellow -> orange ->
-red -> maroon, one anchor every two points, so each category spans exactly one
-interval between anchors:
+Color anchors. The progression is light green -> yellow -> orange -> red ->
+near-black, evenly spaced at 2.5 points:
 
-| Score | Color | Hex | Category reached at this anchor |
-|---|---|---|---|
-| 0.0 | Light green | #A5D6A0 | Beginner-friendly |
-| 2.0 | Green | #238B45 | Advanced Beginner |
-| 4.0 | Yellow | #E5C229 | Competent level |
-| 6.0 | Orange | #EF8A24 | Expert level |
-| 8.0 | Red | #D73A3A | Extremely, extremely hard |
-| 10.0 | Maroon | #800020 | — |
+| Score | Color | Hex |
+|---|---|---|
+| 0.0 | Light green | #A5D6A0 |
+| 2.5 | Yellow | #E5C229 |
+| 5.0 | Orange | #EF8A24 |
+| 7.5 | Red | #D73A3A |
+| 10.0 | Near-black | #1A1012 |
+
+The anchors sit on a 2.5 grid while the category cut points in product-spec.md
+sit on a 2.0 grid, so a category spans part of two ramps rather than exactly
+one. Always show the numeric rating and the category label alongside the color;
+the color is an at-a-glance cue, not the statement.
 
 The scale is absolute and identical for every score. Do not rescale a piece so
 its ribbon uses the whole range: a beginner method page is supposed to stay at
