@@ -86,6 +86,9 @@ class Measure(BaseModel):
         return self.quality in ("confident", "uncertain") and bool(self.note_ids)
 
 
+RibbonPlacement = Literal["clear", "crowded", "unmeasured"]
+
+
 class System(BaseModel):
     """One staff line. For solo violin, one staff is one system."""
 
@@ -94,6 +97,24 @@ class System(BaseModel):
     index: int = Field(ge=0)
     region: Region
     measure_ids: list[str] = Field(default_factory=list)
+
+    ribbon_region: Region | None = Field(
+        default=None,
+        description="Where the difficulty ribbon may be drawn for this system, "
+        "measured from the page's ink. May sit outside `region`: the blank gutter "
+        "straddles the boundary between two system boxes.",
+    )
+    ribbon_placement: RibbonPlacement = Field(
+        default="unmeasured",
+        description=(
+            "'clear' -- a blank gutter was found and the band sits in it. "
+            "'crowded' -- no gutter was tall enough, so the band was placed where "
+            "it obscures the least ink and may overlap notation. 'unmeasured' -- "
+            "there were no pixels to check, which is the case for an engraved page "
+            "served as SVG. Three states rather than a boolean, so 'not checked' "
+            "cannot read as 'fine'."
+        ),
+    )
 
 
 class Page(BaseModel):

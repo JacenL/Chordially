@@ -1,15 +1,18 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C19 delivered. C20 splits the remaining work
-into a backend track (B1–B6) and a frontend track (F1–F5); both are unstarted. All three segmentation
-levels the spec requires are now implemented. C7's persistence half and
-within-measure boundary editing remain, recorded below.
+Status: demo-ready. C1–C6 and C8–C20 delivered, plus B1, B2a and B2b — all
+merged into practice-map-build. Scan recognition runs locally through Audiveris
+and no path calls a provider. C20 split the remaining work into a backend track
+(B1–B6) and a frontend track (F1–F5); B3–B6 and F1–F5 are unstarted. All three
+segmentation levels the spec requires are implemented. C7's persistence half is
+now B5.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
 assumed.
-Working branch: practice-map-build, created from main at 95f7ceb.
-Current task: none in flight.
+Integration branch: practice-map-build, created from main at 95f7ceb.
+Current task: none in flight. **Read the Handoff section at the end of this file
+first — it is current and short.**
 
 ## How this document is organized
 
@@ -906,7 +909,7 @@ old `.empty-state` block in `src/static/app.css`.
 ### Backend track
 
 #### B1 — Where the ribbon may be drawn (do first; the frontend track waits on it)
-- [ ] Not started. Dependencies: none. Small.
+- [x] Complete. Dependencies: none.
 - Problem, measured on `fixtures/pages/wohlfahrt-p3.png`: `view_model.py` places
   the ribbon in the bottom 13% of each system band and its comment claims that
   sliver is whitespace. It is not. All 11 systems carry ink inside that band —
@@ -919,12 +922,40 @@ old `.empty-state` block in `src/static/app.css`.
   region where that fits; where it does not — which is the case on this page —
   keep a documented minimum height and set the flag rather than silently
   overlapping.
-- Acceptance: for every system of both fixtures, the emitted band either
-  contains zero ink pixels or has the flag set, asserted by a test that counts
-  ink in the emitted rectangle rather than trusting the constant; bands stay
-  flush and gapless horizontally; no style string carries a unit other than `%`
-  (the existing test); the false comment in `view_model.py` is corrected.
-- Do **not** decide the visual treatment here. That is F1.
+- Delivered: `cv_geometry.ribbon_band` finds the gutter from the page's own row
+  ink profile, `System.ribbon_region` and `System.ribbon_placement` carry it, and
+  `view_model.ribbon_band_rows` uses it, falling back to the old constants only
+  where nothing was measured. The highest qualifying gutter wins rather than the
+  widest, because the widest blank run under the fixture's last system is the
+  footer margin 80px below the music, which would read as a bar belonging to
+  nothing. Blankness allows `RIBBON_QUIET_INK_FRAC` — about six pixels across a
+  3,000px staff — because demanding literally zero lets one speck of scanner dust
+  veto a gutter that is plainly empty, and this fixture is a real scan.
+- Evidence: **317 passed**, 20 skipped, 5 deselected; 14 new tests in
+  `tests/unit/test_ribbon_band.py`, which count ink in the emitted rectangle
+  against the committed page image rather than checking a constant.
+  - Ink inside the band, per system, before → after: **1,340–8,422 → 2–98
+    pixels**. The worst single row inside a band called clear carries 9 pixels
+    across a ~3,000px staff, which is dust rather than notation.
+  - 10 of 11 systems have a verified-blank gutter; system 6 has none and says so.
+  - Rendered in Chromium: the first band reports `top: 13.2432%`, matching the
+    measured 583 of 4,400 rows, and both placement values appear in the DOM.
+- The example fixture was migrated by `scripts/measure_example_ribbon_bands.py`,
+  which re-detects staves on the committed PNG, asserts the count matches the
+  fixture's systems, and touches nothing else. Geometry only, no API key.
+- **A defect found by its own test.** The first version of the crowded fallback
+  placed the band as low as the space allowed. On system 6 that pushed it into
+  the *following* staff's notation — 7,988 ink pixels against the old fixed
+  placement's 1,842, four times worse than the bug being fixed. It now picks the
+  window that obscures the least ink, earliest on a tie, and covers 20. A test
+  pins that a crowded system is never made worse than before.
+- Left for F1, deliberately: the visual treatment, including what `crowded`
+  should look like. The interface is `data-ribbon-placement` on each
+  `.ribbon-segment`, carrying `clear`, `crowded` or `unmeasured`.
+- Known limit: the MusicXML path reports `unmeasured` and keeps the constant
+  placement, because an engraved page is served as SVG and has no pixels to
+  profile. Verovio's spacing is generous, so this is a smaller problem than the
+  scan had, but it is unmeasured rather than known-good.
 
 #### B2 — Audiveris as a third recognition adapter
 - [ ] Not started. Dependencies: none.
@@ -941,13 +972,62 @@ old `.empty-state` block in `src/static/app.css`.
   ~88% note-level strict F1 on clean engraved pages, ~58% mean on real scanned
   systems with usable output on 50 of 60, ~50% on photographs. Better than
   nothing on a clean 300dpi scan; not a guarantee.
-- **B2a — spike, no code path switched.** Install it, run
-  `Audiveris -batch -export -output <dir> -- fixtures/scores/wohlfahrt-op45-bk1-p3.pdf`,
-  and record: measures found against geometry's 61, how many pass
-  `validate_measure` against the meter, and a by-eye pitch spot-check of two
-  systems against the scan. Acceptance: a measured comparison against the
-  current vision path on the same page, and a written go/no-go in the style of
-  C1. A spike that reports worse numbers and stops is a successful spike.
+- **B2a — spike, no code path switched.** [x] Complete. Measured by
+  `scripts/spike_audiveris.py` on `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf`
+  with Audiveris **5.11.0**.
+
+  **Verdict: GO for B2b, with one design change — do not join Audiveris notes to
+  OpenCV measure boxes by index.**
+
+  Setup, cheaper than feared: the Windows console MSI unpacks with
+  `msiexec /a <msi> /qn TARGETDIR=<dir>`, which needs no administrator, writes
+  nothing to the registry and installs no system Java. The app image carries its
+  own JDK 25 and Tesseract 5.5.2 and runs from `work/` (gitignored). 81 MB
+  download, and `CLAUDE.md`'s pure-Python setup claim survives for everyone who
+  does not use this path.
+
+  | | Vision path (today) | Audiveris 5.11.0 |
+  |---|---|---|
+  | Measures reported | 61, matching geometry | **56** |
+  | Measures rated on the demo page | 32 of 61 (52%) | 50 of 56 validate (89%) |
+  | Time per page | 65s cold, 1.7s cached | **20.2s**, no cache needed |
+  | Cost and network | per-page API call | none, fully offline |
+  | Determinism | model sampling | deterministic |
+
+  The six rejections are genuine arithmetic failures, and Audiveris logged them
+  itself as "Voice too long" with the same excesses our gate found (1/16, 1/32,
+  3/16). Two independent readers agreeing on which measures are broken is a
+  better signal than either alone.
+
+  **The blocking finding.** The 5-measure shortfall is not one bad system: it is
+  exactly one measure missing from each of five different systems (1, 4, 5, 7, 8),
+  with the other six agreeing exactly. An index join would therefore misalign
+  notes against boxes on 5 of 11 systems — the precise failure `assemble` refuses
+  to commit, and it would put confident-looking notation over the wrong bars.
+
+  **And it may be OpenCV that is wrong.** Cropped at native resolution, the place
+  where our geometry starts measure 7 of system 4 shows no printed barline; the
+  notation runs continuously through it. That looks like a false split from a note
+  stem, not a measure Audiveris dropped. **One case out of five, checked by eye
+  and not conclusive** — the other four are unexamined. Settling this is the first
+  task of B2b, and the honest possibility is that Audiveris improves our geometry
+  rather than needing to be reconciled with it.
+  - `wohlfahrt-op45-bk1-p3.omr` carries the full sheet geometry: 11 systems (the
+    same 11 OpenCV found), 56 measures, and barlines, staff lines, note heads and
+    stems with coordinates. So taking geometry from Audiveris is a live option
+    rather than a rewrite.
+
+  **Two costs found on the way.**
+  - Audiveris's own MusicXML exporter throws `NumberFormatException` on a
+    `KEY_CANCEL` whose `fifths` is null — the naturals that cancel the key at the
+    Etude 2 to Etude 3 seam. The export still completes, but 26 of 56 measures
+    come out with no key signature at all, and the rubric needs one to tell an
+    accidental from a key-signature note. B2b must supply the key from elsewhere
+    or read it from the `.omr`, and must not silently treat "no key" as C major.
+  - Slurs read sanely: 15 spanners covering 27 notes of 416. An earlier draft of
+    the spike script reported 416 slurred notes, which was my own bug — the
+    default `slur="none"` is a truthy string. Fixed in the script; the
+    application was never affected.
 - **B2b — the adapter**, only if B2a says go. `audiveris_source.py` behind the
   same contract as `claude_adapter.py`, joined to `cv_geometry` measures by
   index through the existing count cross-check, selected by config with the
@@ -956,6 +1036,51 @@ old `.empty-state` block in `src/static/app.css`.
   the notes were read locally and nothing was sent to any service; zero provider
   calls; and with Audiveris absent the upload fails with a named recovery action
   rather than a traceback.
+
+#### B2b — Audiveris is the scan path
+- [x] Complete. Dependencies: B2a. Merged into `practice-map-build`.
+- Evidence: **342 tests pass**, 5 new. End to end on
+  `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf` through the browser: **15.7s**,
+  56 measures, **51 rated** against 32 of 61 on the cached vision run, nine
+  practice passages, ratings 0.0–4.2, zero provider calls, no JavaScript errors.
+
+**B2a's blocking finding was routed around rather than solved.** Audiveris
+reports 56 measures where `cv_geometry` reports 61, one missing in each of
+systems 1, 4, 5, 7 and 8, so an index join would misalign five of eleven
+systems. Sending the export through `load_musicxml` instead removes the
+disagreement: that path takes its geometry from the Verovio engraving of the
+same MusicXML the notes came from, so notes and measure boxes are two readings
+of one document rather than two documents needing reconciliation. The adapter is
+therefore about eighty lines — run the program, hand back the bytes — and B2b
+needed no new segmentation, no new geometry and no change to `assemble`.
+
+**The cost, disclosed rather than hidden.** The page shown for an uploaded scan
+is a re-engraving, not the user's image. The provenance notice says so in those
+words. `Provenance` gained a third state, `from_local_omr`, kept distinct from
+`from_file`: "read directly from the MusicXML file" would be a false claim about
+a page that was *recognized*, and recognition can be wrong in ways reading a file
+cannot. A test asserts the two sentences never merge.
+
+The committed example still renders over its original scan, so the
+annotated-scan visual is intact; the two routes are visibly different and both
+are labelled.
+
+**Not deleted, just not default.** The vision path stays reachable through
+`PRACTICEMAP_SCAN_ENGINE=vision`. A missing Audiveris raises
+`AudiverisUnavailable`, which carries a message and a recovery action and is
+handled alongside `UploadRejected` in the job runner — never a traceback, and
+never a silent fall back to a provider.
+
+### Two costs carried forward, not fixed
+- **The key signature at the Etude 2/3 seam.** Audiveris's exporter drops it.
+  Systems 0–6 export `key_fifths: None`, which `build_score` handles correctly by
+  carrying the last known key forward; system 8 exports an explicit `0` in the
+  middle of a one-sharp etude, which makes F# read as a printed accidental there
+  and nudges those ratings up. Reading the key from the `.omr` instead is the
+  fix, and it was out of budget.
+- **Setup is no longer one pip install for the scan path.** Audiveris is a Java
+  app. `README.md` now states the MSI unpack command and the three places
+  PracticeMap looks for the binary.
 
 #### B3 — Stop implying pitch was verified
 - [ ] Not started. Dependencies: none; strengthened by B2b.
@@ -1062,6 +1187,108 @@ application has been tested.
 
 ## Git delivery blockers
 None. C1 and C2 are confirmed on origin/practice-map-build.
+
+## Handoff — backend track, current as of 2026-09-12
+
+### You are the backend developer. A second developer owns the frontend.
+Yours: `src/schemas/`, `src/features/`, `src/server/`, `src/config.py`,
+`scripts/`, `tests/unit/`, `tests/integration/`. Route additions in
+`src/app/main.py` are shared, keep them small.
+**Do not edit** `src/static/` or `src/app/templates/` or `tests/e2e/` — that is
+F1–F5 and someone else's branch. A conflict there means a task strayed.
+
+### Branch state — B1, B2a and B2b are merged
+As of this session the user authorised merging and it is done.
+`practice-map-build` now contains the B1 ribbon fix, the B2a spike and the
+B2b Audiveris scan path; `main` is still untouched at 95f7ceb. The three
+task branches remain on the remote as history. Anything below this line that
+still says nothing is merged describes the state before it.
+
+#### The state it replaced
+
+| Branch | Head | Contains |
+|---|---|---|
+| `practice-map-build` | `750eba5` | integration branch; demo from this |
+| `backend/b1-ribbon-clear-band` | `bec22fe` | B1, complete, pushed |
+| `backend/b2a-audiveris-spike` | `887dc76` | B2a spike + verdict, pushed |
+| `main` | `95f7ceb` | untouched, leave it alone |
+
+Branch per task off `practice-map-build`: `backend/<task-id>-<slug>`. Push freely;
+a task branch may be broken, `practice-map-build` may not. **Merging into
+`practice-map-build` needs the user's explicit go-ahead** and has not been given —
+ask once, then record it in `docs/safe-execution.md`. Never force-push.
+
+Because B1 and B2a are unmerged, this file's B1/B2a entries exist only on their
+own branches. Check out the branch before trusting its entry.
+
+### Done in the last session
+- **C19** `1d55985` — killed copy that described superseded behaviour: `demo.md`
+  quoted pre-C16 calibration numbers a test now contradicts, and four places
+  still described the six-anchor maroon ramp.
+- **C20** `750eba5` — the two-track split and its acceptance conditions.
+- **B1** `bec22fe` — the ribbon covered notation on all 11 systems. Now measured
+  from the page's ink profile: `cv_geometry.ribbon_band` →
+  `System.ribbon_region` + `System.ribbon_placement` →
+  `view_model.ribbon_band_rows`. Ink under the band per system fell from
+  1,340–8,422 px to 2–98. 10 of 11 clear, 1 `crowded`. 317 pass on that branch.
+- **B2a** `887dc76` — Audiveris 5.11.0 spike. GO for B2b with the join redesigned.
+
+### Next backend task: settle the measure-count disagreement, then B2b
+Audiveris reports **56** measures where our OpenCV geometry reports **61**, as
+exactly one missing measure in each of systems 1, 4, 5, 7 and 8 (systems 0, 2, 3,
+6, 9, 10 agree exactly). An index join would misalign 5 of 11 systems.
+
+One spot-check suggests **our geometry is the wrong one**: at native resolution
+the point where it starts measure 7 of system 4 shows no printed barline and the
+notation runs through it, which looks like a note stem read as a barline. That is
+one of five, by eye, not conclusive. Settle all five before writing an adapter —
+if OpenCV is over-splitting, the fix is in `_find_barlines` /
+`_drop_spurious_barlines` and it improves the existing product too.
+
+Reproduce the spike (Audiveris is in `work/`, which is gitignored, so re-download
+if `work/` was wiped — 81 MB, no admin, no registry, no system Java):
+
+```
+msiexec /a work\audiveris\audiveris-5.11.0-console.msi /qn TARGETDIR=<abs>\work\audiveris\extracted
+work\audiveris\extracted\Audiveris\Audiveris.exe -batch -transcribe -export ^
+  -output work\audiveris-out -- fixtures\scores\wohlfahrt-op45-bk1-p3.pdf
+python scripts/spike_audiveris.py
+```
+MSI URL: `https://github.com/Audiveris/audiveris/releases/download/5.11.0/Audiveris-5.11.0-windowsConsole-x86_64.msi`
+
+Two known costs for B2b, both in the B2a entry above: Audiveris's exporter throws
+on the key cancellation at the Etude 2/3 seam so 26 of 56 measures export with no
+key signature (the rubric needs one; do not default it to C major), and its
+`.omr` file carries full sheet geometry — 11 systems, 56 measures, barlines and
+noteheads with coordinates — so taking geometry from Audiveris is an option.
+
+Then, in priority order: **B3** (nothing checks pitch; `validate_measure` only
+checks violin range and duration sum, so "confident" overstates what is known),
+**B4** (the committed example has 21 measures never read, from the C2 credit
+outage; a live run reached 43 of 61), **B5** (persistence + progress, was C7),
+**B6** (double stops, needs B2b).
+
+### Facts worth not re-deriving
+- Run: `python -m uvicorn src.app.main:app --reload`. Test: `python -m pytest -q`.
+- Baseline: **303 passed, 20 skipped, 5 deselected** on `practice-map-build`;
+  **317 passed** on the B1 branch. The 20 skips are Playwright with no Chromium
+  installed here; the 5 deselected are the `live` set. Don't report a browser
+  claim you did not run.
+- The example fixture `fixtures/expected/wohlfahrt-p3-analysis.json` is pinned by
+  many tests. Regenerate it with a script, never by hand:
+  `scripts/refresh_example_analysis.py` (no key, re-derives ratings),
+  `scripts/measure_example_ribbon_bands.py` (no key, B1's bands),
+  `scripts/build_example_fixture.py` (needs `PRACTICEMAP_ANTHROPIC_API_KEY`).
+- Example page quality today: 14 confident, 18 uncertain, 8 unreadable,
+  21 not_attempted → 32 of 61 rated.
+- Calibration guard: Etude 2 mean must stay below 2.0 and below Etude 3 at 60, 90
+  and 160 BPM (`tests/unit/test_calibration.py`). Currently 1.19 / 2.99.
+- Outstanding external setup: none. The Anthropic credit blocker is cleared.
+- Not yet obtained: a demanding concerto excerpt for the top of the rubric. Drop
+  a MusicXML or PDF into `fixtures/scores/`; do not fabricate one.
+- Demo pre-flight: `python -m pytest tests/e2e/test_demo_flow.py -m live -q`,
+  after warming the transcription cache once on the demo machine.
+
 
 ## Handoff
 - Next action: the C20 tracks. Backend starts at B1 (small, and F1 wants its

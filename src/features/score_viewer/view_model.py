@@ -52,14 +52,19 @@ from src.features.difficulty.rubric import (
 )
 from src.schemas.analysis import AnalysisBundle
 from src.schemas.geometry import Region
-from src.schemas.score import Difficulty, Measure, Phrase, Score
+from src.schemas.score import Difficulty, Measure, Phrase, Score, System
 
-# The ribbon lives inside the bottom of the system band. That band is the staff
-# plus margin, clamped by cv_geometry to halfway toward the neighbouring staff,
-# so its lowest sliver is the whitespace between systems: "directly below each
-# system" without covering any notation. Bands tile vertically with no gap
-# between them, so there is nowhere else to put it that is still attached to the
-# system it describes.
+# Fallback placement, used only when the analysis measured no band for a system:
+# the bottom of the system box, inset slightly.
+#
+# This used to be the only placement, on the reasoning that the box's lowest
+# sliver is the whitespace between systems. That reasoning was wrong and the
+# ribbon covered notation on every system of the fixture page -- stems, beams,
+# fingering digits and the treble clef's descender reach three to four staff
+# spaces below the bottom line, while the box reaches only halfway to the next
+# staff. `cv_geometry.ribbon_band` now measures the actual gutter and
+# `System.ribbon_region` carries it, so these constants apply only where no ink
+# was available to measure.
 RIBBON_HEIGHT_FRAC = 0.13
 RIBBON_INSET_FRAC = 0.02
 
@@ -144,6 +149,9 @@ class SystemView:
     measures: list[MeasureView]
     segments: list[RibbonSegment]
     has_ribbon: bool
+    # Whether the band this system's ribbon occupies was measured clear of ink.
+    # The interface decides what to do about "crowded"; this only reports it.
+    ribbon_placement: str = "unmeasured"
 
 
 @dataclasses.dataclass(frozen=True)
@@ -284,6 +292,22 @@ def _measure_aria(measure: Measure, difficulty: Difficulty | None) -> str:
     return f"Measure {measure.label}: {format_score(score)} out of 10, {category_for(score)}"
 
 
+def ribbon_band_rows(system: System) -> tuple[float, float]:
+    """(top, height) for one system's ribbon, as page fractions.
+
+    Prefers the band the analysis measured from the page's ink. Falls back to the
+    bottom of the system box only when nothing was measured, which is an engraved
+    page served as SVG rather than a scan.
+    """
+    if system.ribbon_region is not None:
+        return system.ribbon_region.y, system.ribbon_region.h
+    region = system.region
+    return (
+        region.y + region.h * (1.0 - RIBBON_INSET_FRAC - RIBBON_HEIGHT_FRAC),
+        region.h * RIBBON_HEIGHT_FRAC,
+    )
+
+
 def _ribbon_segments(
     system_region: Region,
     measures: list[Measure],
@@ -291,6 +315,7 @@ def _ribbon_segments(
     section_by_measure: dict[str, str],
     section_ratings: dict[str, Difficulty],
     section_labels: dict[str, str],
+    band: tuple[float, float],
 ) -> list[RibbonSegment]:
     """One flush run of colour across a system, banded by practice section.
 
@@ -312,8 +337,7 @@ def _ribbon_segments(
         return []
 
     ordered = sorted(measures, key=lambda m: m.region.x)
-    top = system_region.y + system_region.h * (1.0 - RIBBON_INSET_FRAC - RIBBON_HEIGHT_FRAC)
-    height = system_region.h * RIBBON_HEIGHT_FRAC
+    top, height = band
 
     # Group into runs. The key carries readability as well as identity so a hole
     # inside a section splits the band without merging into the next section.
@@ -500,8 +524,10 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
                         section_by_measure,
                         section_ratings,  # type: ignore[arg-type]
                         section_labels,
+                        ribbon_band_rows(system),
                     ),
                     has_ribbon=bool(members),
+                    ribbon_placement=system.ribbon_placement,
                 )
             )
 
