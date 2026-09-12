@@ -67,5 +67,34 @@ successCriteria, returnToContext, sourceIds, evidenceCategory.
 
 Store factual source metadata once, and refer to stable source IDs. Generated passage-specific advice must use valid technique IDs and real score ranges. Validate both before display.
 
+## Enabled techniques (rubric 3.0 / library additions)
+Sources S04–S11 in `src/content/sources.json`:
+
+| ID | Source | Category | What it supports |
+|---|---|---|---|
+| S04 | Fischer, *Classical shifts* (Strad, Jul 2000) | teacher pedagogy | Shift through the audible intermediate note, then hide it |
+| S05 | Galamian, *Principles of Violin Playing and Teaching* (1962) | teacher pedagogy | Equal bow division for slurs; shifting on the old finger; tempo raised in steps |
+| S06 | Fischer, *Splitting the double stop* (Strad, Feb 2001) | teacher pedagogy | Each voice alone, then tune lower to upper |
+| S07 | Fischer, *String crossing: staying close* (Strad, Sep 2002) | teacher pedagogy | Rehearse crossings on open strings; bow at the between-strings level |
+| S08 | Ash & Holding 1990, *Human Factors* 32(2) | small experimental study | Chaining (add a segment at a time) beat whole-task practice on a keyboard sequence |
+| S09 | Duke, Simmons & Cash 2009, *JRME* 56(4) | observational study | Precise error location and immediate correction predicted retention; total time did not |
+| S10 | Bernardi et al. 2013, *Front. Hum. Neurosci.* 7:451 | small experimental study | Mental practice improved accuracy/anticipation, less than physical practice |
+| S11 | Fischer, *Intonation: testing, relating, comparing* (Strad, Dec 2000) | teacher pedagogy | Check stopped notes against open strings; tune by relation |
+
+Techniques enabled from these: `shift-preparation` (S04, S05), `double-stop-split` (S06, S11), `crossing-open-strings` (S07), `bow-division` (S05), `add-a-note` (S08, S05), `stop-and-fix` (S09), `mental-run` (S10), `open-string-reference` (S11). Every technique whose trigger depends on an estimated feature (string, position) says so in its cautions; the rubric labels those features "(estimated)".
+
 ## Difficulty rubric research boundary
 The 0.0–10.0 rating is a product heuristic. Define and document features, weighting/aggregation, missing-data behavior, and reference examples during planning. Do not present the color categories as official violin qualifications. Prefer teacher review for later calibration; do not claim such review occurred in the hackathon.
+
+### Difficulty rubric anchors
+Rubric 3.0 (`src/features/difficulty/rubric.py`) is calibrated against constructed measures that match the level descriptions in graded string syllabi: the ASTA Certificate Advancement Program handbook (http://www.tnasta.org/docs/handbook.pdf) and Shar Music's difficulty ratings (https://www.sharmusic.com/pages/sheet-music-difficulty-ratings). The bands are the app's own; the syllabi are used only to order the anchors.
+
+| Band (0–10) | Anchor notation | Syllabus description drawn on |
+|---|---|---|
+| < 2.0 | First-position quarters/eighths in an open-string key, moderate tempo, no double stops | "Beginner": first position, simple keys and rhythms |
+| 2.0–4.0 | Eighths with accidentals or a few leaps, occasional relocation above first position, easy slurs | "Early intermediate": limited shifting, keys to three sharps/flats |
+| 4.0–6.0 | Sixteenths at moderate tempo, frequent string crossings, third position, occasional double stops | "Intermediate": positions 1–3, simple double stops, dotted rhythms |
+| 6.0–8.0 | Fast sixteenths high on the E string, thirds/sixths, several relocations per bar | "Advanced": all positions, double stops, fast passage work |
+| > 8.0 | Concerto texture: sixteenth double stops above the octave at fast tempo | "Concerto / professional" |
+
+The left-hand model (`lefthand.py`) is an estimate: it assumes the lowest workable position and the highest open string at or below each pitch, because printed parts rarely carry fingerings. Reviewers should treat "String crossings (estimated)" and "Position changes (estimated)" as upper-bound hints, not fingering advice. Tempo is read from a metronome mark, from `<sound tempo>`, or, failing both, from a tempo word (Presto, Andante…) with the assumption disclosed on the score.

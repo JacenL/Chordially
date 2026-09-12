@@ -1918,7 +1918,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -1937,7 +1938,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -1956,7 +1958,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -1975,7 +1978,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -1994,7 +1998,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2013,7 +2018,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2032,7 +2038,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -2051,7 +2058,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2070,7 +2078,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2089,7 +2098,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2108,7 +2118,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -2127,7 +2138,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2146,7 +2158,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2165,7 +2178,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2184,7 +2198,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2203,7 +2218,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2222,7 +2238,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2241,7 +2258,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2260,7 +2278,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -2279,7 +2298,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2298,7 +2318,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2317,7 +2338,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2336,7 +2358,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -2355,7 +2378,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2374,7 +2398,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2393,7 +2418,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2412,7 +2438,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -2431,7 +2458,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2450,7 +2478,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2469,7 +2498,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2488,7 +2518,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2507,7 +2538,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2526,7 +2558,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2545,7 +2578,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2564,7 +2598,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -2583,7 +2618,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2602,7 +2638,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2621,7 +2658,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2640,7 +2678,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -2659,7 +2698,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2678,7 +2718,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2697,7 +2738,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -2716,7 +2758,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2735,7 +2778,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2754,7 +2798,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -2773,7 +2818,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2792,7 +2838,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2811,7 +2858,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2830,7 +2878,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2849,7 +2898,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2868,7 +2918,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2887,7 +2938,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2906,7 +2958,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -2925,7 +2978,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2944,7 +2998,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -2963,7 +3018,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -2982,7 +3038,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3001,7 +3058,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3020,7 +3078,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3039,7 +3098,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3058,7 +3118,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3077,7 +3138,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3096,7 +3158,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3115,7 +3178,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3134,7 +3198,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3153,7 +3218,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3172,7 +3238,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -3191,7 +3258,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3210,7 +3278,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3229,7 +3298,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3248,7 +3318,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -3267,7 +3338,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3286,7 +3358,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3305,7 +3378,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3324,7 +3398,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -3343,7 +3418,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3362,7 +3438,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3381,7 +3458,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -3400,7 +3478,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3419,7 +3498,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3438,7 +3518,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3457,7 +3538,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3476,7 +3558,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -3495,7 +3578,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3514,7 +3598,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3533,7 +3618,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3552,7 +3638,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -3571,7 +3658,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3590,7 +3678,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3609,7 +3698,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3628,7 +3718,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -3647,7 +3738,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3666,7 +3758,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3685,7 +3778,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -3704,7 +3798,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3723,7 +3818,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3742,7 +3838,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3761,7 +3858,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3780,7 +3878,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -3799,7 +3898,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3818,7 +3918,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3837,7 +3938,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3856,7 +3958,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -3875,7 +3978,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3894,7 +3998,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3913,7 +4018,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -3932,7 +4038,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3951,7 +4058,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3970,7 +4078,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -3989,7 +4098,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4008,7 +4118,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4027,7 +4138,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4046,7 +4158,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4065,7 +4178,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4084,7 +4198,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -4103,7 +4218,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4122,7 +4238,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4141,7 +4258,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4160,7 +4278,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4179,7 +4298,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4198,7 +4318,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4217,7 +4338,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4236,7 +4358,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4255,7 +4378,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4274,7 +4398,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4293,7 +4418,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4312,7 +4438,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4331,7 +4458,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4350,7 +4478,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4369,7 +4498,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4388,7 +4518,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4407,7 +4538,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4426,7 +4558,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4445,7 +4578,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4464,7 +4598,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4483,7 +4618,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4502,7 +4638,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4521,7 +4658,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4540,7 +4678,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4559,7 +4698,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4578,7 +4718,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4597,7 +4738,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4616,7 +4758,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4635,7 +4778,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4654,7 +4798,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4673,7 +4818,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4692,7 +4838,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -4711,7 +4858,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4730,7 +4878,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4749,7 +4898,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4768,7 +4918,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -4787,7 +4938,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4806,7 +4958,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4825,7 +4978,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4844,7 +4998,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4863,7 +5018,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -4882,7 +5038,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4901,7 +5058,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4920,7 +5078,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4939,7 +5098,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4958,7 +5118,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4977,7 +5138,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -4996,7 +5158,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -5015,7 +5178,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5034,7 +5198,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5053,7 +5218,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5072,7 +5238,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5091,7 +5258,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5110,7 +5278,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5129,7 +5298,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5148,7 +5318,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -5167,7 +5338,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5186,7 +5358,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5205,7 +5378,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5224,7 +5398,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5243,7 +5418,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5262,7 +5438,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5281,7 +5458,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5300,7 +5478,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5319,7 +5498,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5338,7 +5518,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5357,7 +5538,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5376,7 +5558,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5395,7 +5578,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5414,7 +5598,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5433,7 +5618,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5452,7 +5638,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5471,7 +5658,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5490,7 +5678,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5509,7 +5698,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5528,7 +5718,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5547,7 +5738,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5566,7 +5758,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5585,7 +5778,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5604,7 +5798,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5623,7 +5818,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5642,7 +5838,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5661,7 +5858,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5680,7 +5878,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5699,7 +5898,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5718,7 +5918,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5737,7 +5938,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5756,7 +5958,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5775,7 +5978,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5794,7 +5998,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5813,7 +6018,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5832,7 +6038,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5851,7 +6058,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5870,7 +6078,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5889,7 +6098,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5908,7 +6118,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5927,7 +6138,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -5946,7 +6158,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5965,7 +6178,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -5984,7 +6198,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6003,7 +6218,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6022,7 +6238,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6041,7 +6258,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6060,7 +6278,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 4
+     "fingering": 4,
+     "chord_midis": []
     }
    },
    {
@@ -6079,7 +6298,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6098,7 +6318,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6117,7 +6338,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6136,7 +6358,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6155,7 +6378,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6174,7 +6398,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -6193,7 +6418,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6212,7 +6438,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6231,7 +6458,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -6250,7 +6478,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6269,7 +6498,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6288,7 +6518,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6307,7 +6538,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6326,7 +6558,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6345,7 +6578,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -6364,7 +6598,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6383,7 +6618,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6402,7 +6638,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6421,7 +6658,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6440,7 +6678,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6459,7 +6698,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6478,7 +6718,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6497,7 +6738,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -6516,7 +6758,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6535,7 +6778,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6554,7 +6798,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6573,7 +6818,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6592,7 +6838,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -6611,7 +6858,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6630,7 +6878,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6649,7 +6898,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": 0
+     "fingering": 0,
+     "chord_midis": []
     }
    },
    {
@@ -6668,7 +6918,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    },
    {
@@ -6687,7 +6938,8 @@
      "tie": "none",
      "slur": "none",
      "articulation": "none",
-     "fingering": null
+     "fingering": null,
+     "chord_midis": []
     }
    }
   ],
@@ -6697,12 +6949,14 @@
   "warnings": [
    "8 of 61 measures could not be read reliably and are left unrated.",
    "21 of 61 measures were never read because the recognition request did not complete. This is not a judgement about the notation, and re-running may succeed."
-  ]
+  ],
+  "assumed_tempo_bpm": null,
+  "assumed_tempo_reason": ""
  },
  "measure_difficulty": {
   "wohlfahrt-p3:m0000": {
    "target_id": "wohlfahrt-p3:m0000",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6716,11 +6970,11 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0001": {
    "target_id": "wohlfahrt-p3:m0001",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6735,11 +6989,11 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0002": {
    "target_id": "wohlfahrt-p3:m0002",
-   "score": 1.1,
+   "score": 1.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6748,16 +7002,22 @@
      "label": "Note rate",
      "contribution": 0.53,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.28,
+     "detail": "about 4 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0003": {
    "target_id": "wohlfahrt-p3:m0003",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6771,11 +7031,11 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0004": {
    "target_id": "wohlfahrt-p3:m0004",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6790,11 +7050,11 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0005": {
    "target_id": "wohlfahrt-p3:m0005",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6808,11 +7068,11 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0006": {
    "target_id": "wohlfahrt-p3:m0006",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6826,11 +7086,11 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0007": {
    "target_id": "wohlfahrt-p3:m0007",
-   "score": 1.8,
+   "score": 1.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6851,11 +7111,11 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0008": {
    "target_id": "wohlfahrt-p3:m0008",
-   "score": 1.1,
+   "score": 1.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6864,16 +7124,22 @@
      "label": "Note rate",
      "contribution": 0.53,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.28,
+     "detail": "about 4 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0009": {
    "target_id": "wohlfahrt-p3:m0009",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6888,7 +7154,7 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0010": {
    "target_id": "wohlfahrt-p3:m0010",
@@ -6901,17 +7167,23 @@
      "label": "Note rate",
      "contribution": 0.53,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.1,
+     "detail": "about 3 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0011": {
    "target_id": "wohlfahrt-p3:m0011",
-   "score": 1.8,
+   "score": 1.7,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6926,17 +7198,23 @@
      "label": "Accidentals outside the key",
      "contribution": 0.3,
      "detail": "1 printed accidental"
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.1,
+     "detail": "about 3 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0012": {
    "target_id": "wohlfahrt-p3:m0012",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6951,11 +7229,11 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0013": {
    "target_id": "wohlfahrt-p3:m0013",
-   "score": 1.8,
+   "score": 1.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6976,7 +7254,7 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0014": {
    "target_id": "wohlfahrt-p3:m0014",
@@ -6987,11 +7265,11 @@
    "assumptions": [
     "durations do not sum to the time signature"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0015": {
    "target_id": "wohlfahrt-p3:m0015",
-   "score": 1.1,
+   "score": 1.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7000,17 +7278,23 @@
      "label": "Note rate",
      "contribution": 0.53,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.28,
+     "detail": "about 4 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0016": {
    "target_id": "wohlfahrt-p3:m0016",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7025,11 +7309,11 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0017": {
    "target_id": "wohlfahrt-p3:m0017",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7044,11 +7328,11 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0018": {
    "target_id": "wohlfahrt-p3:m0018",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7063,7 +7347,7 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0019": {
    "target_id": "wohlfahrt-p3:m0019",
@@ -7076,17 +7360,23 @@
      "label": "Note rate",
      "contribution": 0.53,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.1,
+     "detail": "about 3 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0020": {
    "target_id": "wohlfahrt-p3:m0020",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7101,7 +7391,7 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0021": {
    "target_id": "wohlfahrt-p3:m0021",
@@ -7112,11 +7402,11 @@
    "assumptions": [
     "durations do not sum to the time signature"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0022": {
    "target_id": "wohlfahrt-p3:m0022",
-   "score": 1.1,
+   "score": 1.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7125,13 +7415,19 @@
      "label": "Note rate",
      "contribution": 0.53,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.28,
+     "detail": "about 4 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0023": {
    "target_id": "wohlfahrt-p3:m0023",
@@ -7144,16 +7440,22 @@
      "label": "Note rate",
      "contribution": 0.53,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.1,
+     "detail": "about 3 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0024": {
    "target_id": "wohlfahrt-p3:m0024",
-   "score": 1.2,
+   "score": 1.0,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7173,11 +7475,11 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0025": {
    "target_id": "wohlfahrt-p3:m0025",
-   "score": 1.1,
+   "score": 0.9,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7192,7 +7494,7 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0026": {
    "target_id": "wohlfahrt-p3:m0026",
@@ -7211,7 +7513,7 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0027": {
    "target_id": "wohlfahrt-p3:m0027",
@@ -7222,7 +7524,7 @@
    "assumptions": [
     "durations do not sum to the time signature"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0028": {
    "target_id": "wohlfahrt-p3:m0028",
@@ -7233,7 +7535,7 @@
    "assumptions": [
     "no transcription was produced for this region"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0029": {
    "target_id": "wohlfahrt-p3:m0029",
@@ -7244,7 +7546,7 @@
    "assumptions": [
     "no transcription was produced for this region"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0030": {
    "target_id": "wohlfahrt-p3:m0030",
@@ -7255,7 +7557,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0031": {
    "target_id": "wohlfahrt-p3:m0031",
@@ -7266,7 +7568,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0032": {
    "target_id": "wohlfahrt-p3:m0032",
@@ -7277,7 +7579,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0033": {
    "target_id": "wohlfahrt-p3:m0033",
@@ -7288,7 +7590,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0034": {
    "target_id": "wohlfahrt-p3:m0034",
@@ -7299,11 +7601,11 @@
    "assumptions": [
     "durations do not sum to the time signature"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0035": {
    "target_id": "wohlfahrt-p3:m0035",
-   "score": 2.9,
+   "score": 2.8,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7312,12 +7614,18 @@
      "label": "Note rate",
      "contribution": 1.33,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.15,
+     "detail": "about 3 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0036": {
    "target_id": "wohlfahrt-p3:m0036",
@@ -7328,7 +7636,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0037": {
    "target_id": "wohlfahrt-p3:m0037",
@@ -7339,7 +7647,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0038": {
    "target_id": "wohlfahrt-p3:m0038",
@@ -7350,11 +7658,11 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0039": {
    "target_id": "wohlfahrt-p3:m0039",
-   "score": 2.9,
+   "score": 2.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7368,11 +7676,11 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0040": {
    "target_id": "wohlfahrt-p3:m0040",
-   "score": 2.9,
+   "score": 2.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7386,7 +7694,7 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0041": {
    "target_id": "wohlfahrt-p3:m0041",
@@ -7397,7 +7705,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0042": {
    "target_id": "wohlfahrt-p3:m0042",
@@ -7408,7 +7716,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0043": {
    "target_id": "wohlfahrt-p3:m0043",
@@ -7419,7 +7727,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0044": {
    "target_id": "wohlfahrt-p3:m0044",
@@ -7430,7 +7738,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0045": {
    "target_id": "wohlfahrt-p3:m0045",
@@ -7441,7 +7749,7 @@
    "assumptions": [
     "no transcription was produced for this region"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0046": {
    "target_id": "wohlfahrt-p3:m0046",
@@ -7452,7 +7760,7 @@
    "assumptions": [
     "no transcription was produced for this region"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0047": {
    "target_id": "wohlfahrt-p3:m0047",
@@ -7463,7 +7771,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0048": {
    "target_id": "wohlfahrt-p3:m0048",
@@ -7474,7 +7782,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0049": {
    "target_id": "wohlfahrt-p3:m0049",
@@ -7485,7 +7793,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0050": {
    "target_id": "wohlfahrt-p3:m0050",
@@ -7496,11 +7804,11 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0051": {
    "target_id": "wohlfahrt-p3:m0051",
-   "score": 2.9,
+   "score": 2.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7514,11 +7822,11 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0052": {
    "target_id": "wohlfahrt-p3:m0052",
-   "score": 3.5,
+   "score": 3.0,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7538,7 +7846,7 @@
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0053": {
    "target_id": "wohlfahrt-p3:m0053",
@@ -7549,7 +7857,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0054": {
    "target_id": "wohlfahrt-p3:m0054",
@@ -7560,7 +7868,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0055": {
    "target_id": "wohlfahrt-p3:m0055",
@@ -7571,11 +7879,11 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0056": {
    "target_id": "wohlfahrt-p3:m0056",
-   "score": 2.9,
+   "score": 2.5,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7590,11 +7898,11 @@
     "tempo assumed",
     "recognition uncertain"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0057": {
    "target_id": "wohlfahrt-p3:m0057",
-   "score": 2.9,
+   "score": 3.3,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7603,12 +7911,18 @@
      "label": "Note rate",
      "contribution": 1.33,
      "detail": ""
+    },
+    {
+     "key": "string_crossings",
+     "label": "String crossings (estimated)",
+     "contribution": 0.41,
+     "detail": "about 4 string changes in 8 notes \u2014 estimated in the lowest position; no fingering is printed"
     }
    ],
    "assumptions": [
     "tempo assumed"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0058": {
    "target_id": "wohlfahrt-p3:m0058",
@@ -7619,7 +7933,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0059": {
    "target_id": "wohlfahrt-p3:m0059",
@@ -7630,7 +7944,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:m0060": {
    "target_id": "wohlfahrt-p3:m0060",
@@ -7641,7 +7955,7 @@
    "assumptions": [
     "this section was never read; the request did not complete"
    ],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   }
  },
  "phrases": [
@@ -8863,12 +9177,12 @@
  "phrase_difficulty": {
   "wohlfahrt-p3:sec00": {
    "target_id": "wohlfahrt-p3:sec00",
-   "score": 1.4,
-   "peak": 1.8,
-   "peak_target_id": "wohlfahrt-p3:m0007",
+   "score": 1.3,
+   "peak": 1.7,
+   "peak_target_id": "wohlfahrt-p3:m0011",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:sec01": {
    "target_id": "wohlfahrt-p3:sec01",
@@ -8877,16 +9191,16 @@
    "peak_target_id": null,
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:sec02": {
    "target_id": "wohlfahrt-p3:sec02",
-   "score": 2.9,
-   "peak": 2.9,
+   "score": 2.7,
+   "peak": 2.8,
    "peak_target_id": "wohlfahrt-p3:m0035",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:sec03": {
    "target_id": "wohlfahrt-p3:sec03",
@@ -8895,79 +9209,79 @@
    "peak_target_id": null,
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:sec04": {
    "target_id": "wohlfahrt-p3:sec04",
-   "score": 3.2,
-   "peak": 3.5,
-   "peak_target_id": "wohlfahrt-p3:m0052",
+   "score": 3.0,
+   "peak": 3.3,
+   "peak_target_id": "wohlfahrt-p3:m0057",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph000": {
    "target_id": "wohlfahrt-p3:ph000",
-   "score": 1.1,
-   "peak": 1.1,
-   "peak_target_id": "wohlfahrt-p3:m0000",
+   "score": 1.3,
+   "peak": 1.5,
+   "peak_target_id": "wohlfahrt-p3:m0002",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph001": {
    "target_id": "wohlfahrt-p3:ph001",
-   "score": 1.5,
-   "peak": 1.8,
+   "score": 1.3,
+   "peak": 1.5,
    "peak_target_id": "wohlfahrt-p3:m0007",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph002": {
    "target_id": "wohlfahrt-p3:ph002",
-   "score": 1.5,
-   "peak": 1.8,
+   "score": 1.4,
+   "peak": 1.7,
    "peak_target_id": "wohlfahrt-p3:m0011",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph003": {
    "target_id": "wohlfahrt-p3:ph003",
-   "score": 1.1,
-   "peak": 1.1,
+   "score": 1.5,
+   "peak": 1.5,
    "peak_target_id": "wohlfahrt-p3:m0015",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph004": {
    "target_id": "wohlfahrt-p3:ph004",
-   "score": 1.1,
+   "score": 1.0,
    "peak": 1.1,
-   "peak_target_id": "wohlfahrt-p3:m0016",
+   "peak_target_id": "wohlfahrt-p3:m0019",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph005": {
    "target_id": "wohlfahrt-p3:ph005",
-   "score": 1.1,
-   "peak": 1.1,
-   "peak_target_id": "wohlfahrt-p3:m0020",
+   "score": 1.3,
+   "peak": 1.5,
+   "peak_target_id": "wohlfahrt-p3:m0022",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph006": {
    "target_id": "wohlfahrt-p3:ph006",
-   "score": 1.0,
-   "peak": 1.2,
+   "score": 0.8,
+   "peak": 1.0,
    "peak_target_id": "wohlfahrt-p3:m0024",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph007": {
    "target_id": "wohlfahrt-p3:ph007",
@@ -8976,34 +9290,34 @@
    "peak_target_id": null,
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph008": {
    "target_id": "wohlfahrt-p3:ph008",
-   "score": 2.9,
-   "peak": 2.9,
+   "score": 2.8,
+   "peak": 2.8,
    "peak_target_id": "wohlfahrt-p3:m0035",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph009": {
    "target_id": "wohlfahrt-p3:ph009",
-   "score": 2.9,
-   "peak": 2.9,
+   "score": 2.5,
+   "peak": 2.5,
    "peak_target_id": "wohlfahrt-p3:m0039",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph010": {
    "target_id": "wohlfahrt-p3:ph010",
-   "score": 2.9,
-   "peak": 2.9,
+   "score": 2.5,
+   "peak": 2.5,
    "peak_target_id": "wohlfahrt-p3:m0040",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph011": {
    "target_id": "wohlfahrt-p3:ph011",
@@ -9012,34 +9326,34 @@
    "peak_target_id": null,
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph012": {
    "target_id": "wohlfahrt-p3:ph012",
-   "score": 2.9,
-   "peak": 2.9,
+   "score": 2.5,
+   "peak": 2.5,
    "peak_target_id": "wohlfahrt-p3:m0051",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph013": {
    "target_id": "wohlfahrt-p3:ph013",
-   "score": 3.5,
-   "peak": 3.5,
+   "score": 3.0,
+   "peak": 3.0,
    "peak_target_id": "wohlfahrt-p3:m0052",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   },
   "wohlfahrt-p3:ph014": {
    "target_id": "wohlfahrt-p3:ph014",
-   "score": 2.9,
-   "peak": 2.9,
-   "peak_target_id": "wohlfahrt-p3:m0056",
+   "score": 3.1,
+   "peak": 3.3,
+   "peak_target_id": "wohlfahrt-p3:m0057",
    "factors": [],
    "assumptions": [],
-   "rubric_version": "2.0"
+   "rubric_version": "3.0"
   }
  },
  "recognition": {

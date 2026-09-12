@@ -108,6 +108,8 @@ The authorized GitHub destination is https://github.com/arkyarky4546-ai/HackCMU-
 - Phrase lengths follow musical ideas. Two measures can be a genuine phrase; arbitrary two-measure slicing is not acceptable.
 - Phrase ratings and local measure ratings serve different UI roles.
 - The proposed difficulty category thresholds and color hex values are adjustable product defaults, not validated violin grades.
+- Rubric 3.0 adds double stops (by interval), string crossings, position changes and key remoteness; the string and position features are estimates from pitch alone and are labelled "(estimated)" in the API. Anchors and sources are in `docs/music-pedagogy.md`.
+- Tempo is taken from a metronome mark or `<sound tempo>`; when neither is printed a tempo word (Presto, Andante…) sets an assumed BPM that the score payload discloses (`assumed_tempo_bpm`, `assumed_tempo_reason`) and the retune endpoint can override.
 - An unreadable passage stays unrated rather than receiving a false number.
 - Research notes distinguish evidence from application choices. Additional candidate techniques require research before use.
 
