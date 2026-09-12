@@ -252,10 +252,13 @@ def test_two_measures_in_one_passage_select_the_same_passage(page):
     b = select(last)
     assert a["selected"] == section_id
     assert b["selected"] == section_id
+    # Same passage, same title, same guidance. The only thing that may differ is
+    # which measure the click landed on, which is what that line is now for --
+    # it used to repeat the passage range that the heading already states.
     assert a["title"] == b["title"]
-    # Only the "measure N selected" tail differs, which is the point of keeping
-    # it: the passage is the same, the measure you clicked is not.
-    assert a["range"].split(" · ")[0] == b["range"].split(" · ")[0]
+    assert a["range"] != b["range"], "the line should name the measure clicked"
+    for state, label in ((a, first), (b, last)):
+        assert "measure" in state["range"]
 
 
 def test_different_passages_load_different_guidance(page):

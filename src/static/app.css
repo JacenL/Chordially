@@ -1197,3 +1197,46 @@ details.exercise-card {
 .upload-progress-bar::-webkit-progress-bar { background: var(--rule); border-radius: 999px; }
 .upload-progress-bar::-webkit-progress-value { background: var(--select); border-radius: 999px; }
 .upload-progress-bar::-moz-progress-bar { background: var(--select); border-radius: 999px; }
+
+/* --------------------------------------------- beginner-facing sidebar (F2) */
+
+/* The word leads, the number follows. A 34px "1.4" next to a 12.5px
+   "Beginner-friendly" told the reader the number was the point; for someone
+   opening their first passage it is the least useful half of the pair. */
+.rating-row { align-items: baseline; gap: 10px; }
+.rating-value { font-size: 22px; }
+.rating-category { font-family: var(--font); font-size: 17px; font-weight: 600; }
+.rating-meta { order: -1; }
+
+/* Editing is a correction, not a first step, so it sits collapsed near the
+   bottom rather than above the guidance. */
+.panel-heading--summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  list-style: none;
+}
+.panel-heading--summary::-webkit-details-marker { display: none; }
+.panel-heading--summary::before { content: "+"; color: var(--ink-faint); }
+.adjust-details[open] .panel-heading--summary::before { content: "\2212"; }
+.adjust-details .edit-row { margin-top: 10px; }
+
+/* The extra rhythm patterns. One is shown; these are the rest. */
+.variants-more > summary {
+  cursor: pointer;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  padding: 4px 0;
+}
+.variants-more[open] > summary { margin-bottom: 6px; }
+
+/* What the colours mean, said once under the legend. Six swatches never
+   explained the axis they sit on. */
+.legend-caption {
+  width: 100%;
+  margin: 6px 0 0;
+  font-size: 11.5px;
+  color: var(--ink-faint);
+}

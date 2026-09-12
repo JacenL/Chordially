@@ -212,17 +212,21 @@ function init(data) {
       el("sel-title").textContent = isSpot ? "Hard spot" : entry.label;
       // Only name the selected measure when it adds something. On a one-measure
       // hard spot "measure 2 · measure 2 selected" is just noise.
-      const alreadyNamed = entry.rangeText === `measure ${measure ? measure.label : ""}`;
+      // The heading already says the range; repeating it here was the first
+      // thing a reader saw twice. This line says the one thing the heading
+      // cannot: which measure the click landed on. On a single-measure passage
+      // even that is redundant, so it goes away entirely.
+      const spansSeveral = (entry.measureIds || []).length > 1;
       el("sel-range").textContent =
-        entry.rangeText +
-        (measure && !alreadyNamed ? ` · measure ${measure.label} selected` : "");
+        measure && spansSeveral ? `measure ${measure.label} selected` : "";
+      show(el("sel-range"), Boolean(measure && spansSeveral));
 
       show(el("sel-rating-row"), true);
       el("sel-score").textContent = entry.isRated ? entry.scoreText : "—";
       el("sel-category").textContent = entry.isRated ? entry.category : data.unratedLabel;
       el("sel-peak").textContent =
         entry.isRated && entry.peakMeasureLabel
-          ? `hardest measure ${entry.peakMeasureLabel}: ${entry.peakText}`
+          ? `hardest bar here is measure ${entry.peakMeasureLabel}, at ${entry.peakText}`
           : "";
 
       // A section says in one line what it is asking for. The number alone does
@@ -354,11 +358,16 @@ function init(data) {
     for (const factor of factors) {
       const li = document.createElement("li");
       const label = document.createElement("span");
-      label.textContent = factor.detail ? `${factor.label} — ${factor.detail}` : factor.label;
+      // The player's words lead. The feature's own name and its point
+      // contribution are still exact and still reachable, one disclosure down
+      // in "How this number was worked out".
+      const plain = factor.plain || factor.label;
+      label.textContent = factor.detail ? `${plain} — ${factor.detail}` : plain;
 
       const weight = document.createElement("span");
       weight.className = "factor-weight";
       weight.textContent = factor.contribution;
+      weight.title = `${factor.label}: ${factor.contribution} of a possible ${factor.weight}`;
       // A contribution with no scale is a number nobody can judge. Showing what
       // it was drawn from turns "+0.8" into something a violinist can disagree
       // with: a quarter of everything note rate could have contributed.

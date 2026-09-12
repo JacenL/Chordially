@@ -7713,7 +7713,7 @@
    },
    "end_boundary": {
     "evidence": [],
-    "reason": "nothing here rises far above a modest demand",
+    "reason": "nothing here is especially demanding",
     "confidence": 0.6
    },
    "user_edited": false,
@@ -7789,7 +7789,7 @@
    },
    "end_boundary": {
     "evidence": [],
-    "reason": "nothing here rises far above a modest demand",
+    "reason": "nothing here is especially demanding",
     "confidence": 0.6
    },
    "user_edited": false,
@@ -7852,7 +7852,7 @@
    },
    "end_boundary": {
     "evidence": [],
-    "reason": "the demand here is mostly note rate",
+    "reason": "what this asks for: the notes come quickly",
     "confidence": 0.6
    },
    "user_edited": false,
@@ -7916,7 +7916,7 @@
    },
    "end_boundary": {
     "evidence": [],
-    "reason": "nothing here rises far above a modest demand",
+    "reason": "nothing here is especially demanding",
     "confidence": 0.6
    },
    "user_edited": false,
@@ -7979,7 +7979,7 @@
    },
    "end_boundary": {
     "evidence": [],
-    "reason": "the demand here is mostly note rate",
+    "reason": "what this asks for: the notes come quickly",
     "confidence": 0.6
    },
    "user_edited": false,

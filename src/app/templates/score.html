@@ -63,6 +63,10 @@
               <span class="legend-text">{{ entry['label'] }}<span class="legend-range">{{ entry['range'] }}</span></span>
             </span>
           {% endfor %}
+          <p class="legend-caption">
+            Colour shows how demanding a passage is — lightest green is easiest.
+            Hatching means the notation could not be read, which is neither.
+          </p>
         </div>
       </div>
 
@@ -218,31 +222,11 @@
           <p class="panel-note panel-note--demand" id="sel-demand" hidden></p>
           <p class="panel-note" id="sel-unrated" hidden></p>
           <p class="panel-note panel-note--flag" id="sel-measure-note" hidden></p>
-
-          <div class="edit-row" id="edit-row" hidden>
-            <label class="visually-hidden" for="split-at">Split this passage before measure</label>
-            <select class="edit-select" id="split-at"></select>
-            <button type="button" class="button button--quiet" id="split-btn">Split here</button>
-            <button type="button" class="button button--quiet" id="merge-btn">Merge with next</button>
-            <span class="edit-pill" id="edited-pill" hidden>edited</span>
-          </div>
-          <p class="panel-note" id="edit-note" hidden></p>
-          <p class="panel-note">
-            <a href="#" id="reset-edits">Undo all passage edits</a> — edits last
-            until the server restarts and are not saved.
-          </p>
         </section>
 
-        <section class="panel" id="why-panel" hidden>
-          <h3 class="panel-heading">Why this is challenging</h3>
-          <ul class="factor-list" id="sel-factors"></ul>
-          <p class="panel-note" id="sel-factors-note"></p>
-          <details class="sources rubric-details" id="rubric-details">
-            <summary>How this number was worked out</summary>
-            <div id="rubric-body"></div>
-          </details>
-        </section>
-
+        {# Guidance comes before the machinery. A player opening a passage wants
+           to be told what to do; the rating breakdown and the editing controls
+           are both answers to questions they have not asked yet. #}
         <section class="panel panel--practice" id="practice-panel">
           <h3 class="panel-heading">How to practice this</h3>
           <p class="panel-note" id="practice-loading">Select a passage.</p>
@@ -253,6 +237,16 @@
           </div>
 
           <p class="panel-note" id="practice-nofit" hidden></p>
+        </section>
+
+        <section class="panel" id="why-panel" hidden>
+          <h3 class="panel-heading">What makes this tricky</h3>
+          <ul class="factor-list" id="sel-factors"></ul>
+          <p class="panel-note" id="sel-factors-note"></p>
+          <details class="sources rubric-details" id="rubric-details">
+            <summary>How this number was worked out</summary>
+            <div id="rubric-body"></div>
+          </details>
         </section>
 
         <section class="panel" id="inside-panel" hidden>
@@ -274,9 +268,35 @@
           </dl>
           <p class="panel-note">
             Boundaries are inferred from the notation and can be wrong — the
-            confidence above says how thin the evidence was. Use Split or Merge
-            at the top of this panel to correct one.
+            confidence above says how thin the evidence was. Adjust one below.
           </p>
+        </section>
+
+        {# Editing lives here, collapsed, rather than above the guidance. These
+           are corrections for someone who disagrees with the segmentation, and
+           meeting them first told a beginner the wrong thing about what this
+           screen is for. #}
+        <section class="panel" id="adjust-panel" hidden>
+          <details class="adjust-details">
+            <summary class="panel-heading panel-heading--summary">
+              Adjust this passage
+              <span class="edit-pill" id="edited-pill" hidden>edited</span>
+            </summary>
+            <p class="panel-note">
+              If a passage covers too much or too little, move its boundary.
+            </p>
+            <div class="edit-row" id="edit-row" hidden>
+              <label class="visually-hidden" for="split-at">Split this passage before measure</label>
+              <select class="edit-select" id="split-at"></select>
+              <button type="button" class="button button--quiet" id="split-btn">Split here</button>
+              <button type="button" class="button button--quiet" id="merge-btn">Merge with next</button>
+            </div>
+            <p class="panel-note" id="edit-note" hidden></p>
+            <p class="panel-note">
+              <a href="#" id="reset-edits">Undo all passage edits</a> — edits last
+              until the server restarts and are not saved.
+            </p>
+          </details>
         </section>
 
         <section class="panel">
