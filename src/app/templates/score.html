@@ -155,8 +155,12 @@
 
             <div class="layer layer--ribbon" aria-hidden="true">
               {% for system in page.systems %}
+                {# data-ribbon-placement is the agreed hook for F1: "crowded"
+                   means no blank gutter was found for this system, so the band
+                   sits where it covers least and may still cross notation. #}
                 {% for segment in system.segments %}
                   <div class="ribbon-segment{% if not segment.is_rated %} ribbon-segment--unrated{% endif %}"
+                       data-ribbon-placement="{{ system.ribbon_placement }}"
                        style="{{ segment.style }}{% if segment.is_rated %};background:{{ segment.color }}{% endif %}"
                        data-measure-id="{{ segment.measure_id }}"
                        data-measure-ids="{{ segment.measure_ids | join(' ') }}"

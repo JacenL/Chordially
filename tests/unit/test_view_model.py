@@ -224,7 +224,13 @@ def test_a_bands_rating_is_its_sections_rating_everywhere_it_appears():
 
 
 def test_ribbon_sits_in_the_lower_band_of_its_system():
-    """Below the staff, inside the system's own box, never over the next one."""
+    """The fallback placement, for a system whose ink was never measured.
+
+    A real scan gets its band from `cv_geometry.ribbon_band` instead; see
+    tests/unit/test_ribbon_band.py, which counts the ink the band actually
+    covers. These synthetic systems carry no `ribbon_region`, so they exercise
+    the constant-based fallback that remains for engraved pages served as SVG.
+    """
     view = build_view(make_bundle([0.30, 0.20], [2.0, 4.0]))
     system = view.pages[0].systems[0]
     system_box = parse_style(system.style)

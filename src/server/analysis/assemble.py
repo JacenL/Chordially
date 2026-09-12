@@ -153,11 +153,24 @@ def build_score(
             beat_value = sig.get("beat_value") or beat_value
             if sig.get("key_fifths") is not None:
                 key_fifths = sig["key_fifths"]
+        # `ribbon_box` is None on the MusicXML path: an engraved page is served as
+        # SVG, so there are no pixels to measure and "unmeasured" is the truth.
+        ribbon_box = sysd.ribbon_box
         system = System(
             id=sys_id,
             page_index=page_index,
             index=sysd.index,
             region=Region(page_index=page_index, **vars(sysd.box)),
+            ribbon_region=(
+                Region(page_index=page_index, **vars(ribbon_box))
+                if ribbon_box is not None
+                else None
+            ),
+            ribbon_placement=(
+                "unmeasured"
+                if ribbon_box is None
+                else ("clear" if sysd.ribbon_is_clear else "crowded")
+            ),
         )
 
         for md in sysd.measures:
