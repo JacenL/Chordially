@@ -263,9 +263,18 @@ function init(data) {
 
       renderInside(isSection ? entry : section);
 
-      show(el("boundary-panel"), true);
+      // Boundary evidence now lives inside "Adjust this passage", and what to
+      // actually play is an instruction, so it sits with the guidance.
       el("sel-start").textContent = `${entry.startReason} — ${entry.startConfidence}`;
-      el("sel-end").textContent = `${entry.endReason} — ${entry.endConfidence}`;
+      // A section's `endReason` carries its demand summary rather than a reason
+      // for ending, so showing it under "Ends" printed a non-answer: "Ends:
+      // nothing here is especially demanding". Phrases do carry a real end
+      // reason, so the row appears for them and is dropped for sections.
+      const hasEndReason = entry.level !== "section";
+      show(el("sel-end-row"), hasEndReason);
+      if (hasEndReason) {
+        el("sel-end").textContent = `${entry.endReason} — ${entry.endConfidence}`;
+      }
       el("sel-practice").textContent = entry.practiceText;
 
       practice.load(selectedId);
@@ -283,7 +292,6 @@ function init(data) {
       show(el("sel-measure-note"), false);
       show(el("why-panel"), false);
       show(el("inside-panel"), false);
-      show(el("boundary-panel"), false);
       practice.clear(
         "This measure is not part of an analyzed passage, so there is no music to build an exercise from."
       );

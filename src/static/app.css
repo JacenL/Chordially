@@ -1307,3 +1307,51 @@ details.exercise-card {
    open the panel says it better, and on "What makes this tricky" the hint is
    literally the first line of the list underneath. */
 .panel--collapsible > details[open] > summary .summary-hint { display: none; }
+
+/* ------------------------------------------------ the piece, above the score */
+
+/* The title was only in the header bar, which reads as chrome. A player should
+   see what they are looking at attached to the notation itself. */
+.score-name {
+  margin: 0 0 10px;
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.score-name-tag {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #2B4A86;
+  background: #E8EEF9;
+  border: 1px solid #C6D5EE;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+/* What to play, at the top of the guidance rather than in a panel of facts
+   about segmentation. */
+.panel-note--play {
+  color: var(--ink);
+  border-left: 3px solid var(--rule-strong);
+  padding-left: 10px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .score-name { font-size: 18px; }
+}
+
+/* A dl row that can hide as a unit. `display: contents` keeps the dt and dd in
+   the grid they belong to instead of the wrapper becoming a grid item. */
+#sel-end-row { display: contents; }
+#sel-end-row[hidden] { display: none; }
