@@ -941,13 +941,62 @@ old `.empty-state` block in `src/static/app.css`.
   ~88% note-level strict F1 on clean engraved pages, ~58% mean on real scanned
   systems with usable output on 50 of 60, ~50% on photographs. Better than
   nothing on a clean 300dpi scan; not a guarantee.
-- **B2a — spike, no code path switched.** Install it, run
-  `Audiveris -batch -export -output <dir> -- fixtures/scores/wohlfahrt-op45-bk1-p3.pdf`,
-  and record: measures found against geometry's 61, how many pass
-  `validate_measure` against the meter, and a by-eye pitch spot-check of two
-  systems against the scan. Acceptance: a measured comparison against the
-  current vision path on the same page, and a written go/no-go in the style of
-  C1. A spike that reports worse numbers and stops is a successful spike.
+- **B2a — spike, no code path switched.** [x] Complete. Measured by
+  `scripts/spike_audiveris.py` on `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf`
+  with Audiveris **5.11.0**.
+
+  **Verdict: GO for B2b, with one design change — do not join Audiveris notes to
+  OpenCV measure boxes by index.**
+
+  Setup, cheaper than feared: the Windows console MSI unpacks with
+  `msiexec /a <msi> /qn TARGETDIR=<dir>`, which needs no administrator, writes
+  nothing to the registry and installs no system Java. The app image carries its
+  own JDK 25 and Tesseract 5.5.2 and runs from `work/` (gitignored). 81 MB
+  download, and `CLAUDE.md`'s pure-Python setup claim survives for everyone who
+  does not use this path.
+
+  | | Vision path (today) | Audiveris 5.11.0 |
+  |---|---|---|
+  | Measures reported | 61, matching geometry | **56** |
+  | Measures rated on the demo page | 32 of 61 (52%) | 50 of 56 validate (89%) |
+  | Time per page | 65s cold, 1.7s cached | **20.2s**, no cache needed |
+  | Cost and network | per-page API call | none, fully offline |
+  | Determinism | model sampling | deterministic |
+
+  The six rejections are genuine arithmetic failures, and Audiveris logged them
+  itself as "Voice too long" with the same excesses our gate found (1/16, 1/32,
+  3/16). Two independent readers agreeing on which measures are broken is a
+  better signal than either alone.
+
+  **The blocking finding.** The 5-measure shortfall is not one bad system: it is
+  exactly one measure missing from each of five different systems (1, 4, 5, 7, 8),
+  with the other six agreeing exactly. An index join would therefore misalign
+  notes against boxes on 5 of 11 systems — the precise failure `assemble` refuses
+  to commit, and it would put confident-looking notation over the wrong bars.
+
+  **And it may be OpenCV that is wrong.** Cropped at native resolution, the place
+  where our geometry starts measure 7 of system 4 shows no printed barline; the
+  notation runs continuously through it. That looks like a false split from a note
+  stem, not a measure Audiveris dropped. **One case out of five, checked by eye
+  and not conclusive** — the other four are unexamined. Settling this is the first
+  task of B2b, and the honest possibility is that Audiveris improves our geometry
+  rather than needing to be reconciled with it.
+  - `wohlfahrt-op45-bk1-p3.omr` carries the full sheet geometry: 11 systems (the
+    same 11 OpenCV found), 56 measures, and barlines, staff lines, note heads and
+    stems with coordinates. So taking geometry from Audiveris is a live option
+    rather than a rewrite.
+
+  **Two costs found on the way.**
+  - Audiveris's own MusicXML exporter throws `NumberFormatException` on a
+    `KEY_CANCEL` whose `fifths` is null — the naturals that cancel the key at the
+    Etude 2 to Etude 3 seam. The export still completes, but 26 of 56 measures
+    come out with no key signature at all, and the rubric needs one to tell an
+    accidental from a key-signature note. B2b must supply the key from elsewhere
+    or read it from the `.omr`, and must not silently treat "no key" as C major.
+  - Slurs read sanely: 15 spanners covering 27 notes of 416. An earlier draft of
+    the spike script reported 416 slurred notes, which was my own bug — the
+    default `slur="none"` is a truthy string. Fixed in the script; the
+    application was never affected.
 - **B2b — the adapter**, only if B2a says go. `audiveris_source.py` behind the
   same contract as `claude_adapter.py`, joined to `cv_geometry` measures by
   index through the existing count cross-check, selected by config with the
