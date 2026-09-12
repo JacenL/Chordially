@@ -173,7 +173,11 @@ class MeasureTranscription(BaseModel):
         return sum((n.duration for n in self.notes), Fraction(0))
 
 
-_PITCH_RE = re.compile(r"^([A-Ga-g])([#b]{0,2})(-?\d)$")
+# Accepts the conventional spellings a transcriber actually produces: sharps as
+# '#', flats as 'b', and a natural sign as 'n' (which cancels the key signature
+# and so means alter 0). Without 'n', a legitimate 'Gn4' is discarded and the
+# measure silently comes up a note short.
+_PITCH_RE = re.compile(r"^([A-Ga-g])([#bn]{0,2})(-?\d)$")
 
 _WIRE_VALUE_TO_NAME = {
     "1": "whole",
@@ -262,6 +266,20 @@ class WireSystem(BaseModel):
 
     model_config = {"extra": "forbid"}
 
+    # "Visible" is asked for separately because 0 is a legitimate key (C major)
+    # and cannot double as "absent". Without this flag, a chunk that simply
+    # shows no key signature -- which is every chunk that is not at the start of
+    # a system -- reports 0 and silently overwrites a correctly detected key.
+    # That is exactly how a 2/4 G-major etude reverted to 4/4 C major mid-page
+    # during the C1 fixture build.
+    signature_visible: bool = Field(
+        default=False,
+        description=(
+            "True only if a clef and key/time signature are actually PRINTED at "
+            "the left edge of this image. False for a crop taken from the middle "
+            "of a staff line, even though the music is of course still in some key."
+        ),
+    )
     beats: int = Field(default=0, description="Time signature numerator, 0 if not visible.")
     beat_value: int = Field(default=0, description="Time signature denominator, 0 if not visible.")
     key_fifths: int = Field(
@@ -358,6 +376,59 @@ class MeasureValidation(BaseModel):
     low_confidence: bool = False
 
 
+def repair_uniform_scale(
+    t: MeasureTranscription, expected: Fraction
+) -> tuple[MeasureTranscription, str] | None:
+    """Repair a whole-measure beam miscount, and only that.
+
+    The one recurring recognition error on beamed etude writing is reading a
+    run of eighths as 16ths (or the reverse): heavy printing makes one thick
+    beam look like two. It has a signature no other error has -- every note in
+    the measure carries the same value, and the total is off by exactly a factor
+    of two or four. Under those conditions the alternative reading makes the
+    measure exactly complete, and the note sequence is unchanged; only the
+    printed value is.
+
+    Deliberately narrow. It refuses to act on a mixed-rhythm measure, on tuplets,
+    on ties, or on any discrepancy that is not an exact power-of-two ratio, so it
+    cannot quietly "fix" a genuinely wrong transcription into looking right. The
+    caller marks any repaired measure uncertain and records what was done.
+    """
+    notes = t.notes
+    if not notes or expected <= 0:
+        return None
+    if len({n.value for n in notes}) != 1:
+        return None
+    if any(n.dots or n.tuplet_actual or n.tie != "none" for n in notes):
+        return None
+
+    actual = t.total_duration
+    if actual <= 0 or actual == expected:
+        return None
+
+    ratio = expected / actual
+    if ratio not in (Fraction(2), Fraction(4), Fraction(1, 2), Fraction(1, 4)):
+        return None
+
+    order = ["64th", "32nd", "16th", "eighth", "quarter", "half", "whole"]
+    steps = {Fraction(2): 1, Fraction(4): 2, Fraction(1, 2): -1, Fraction(1, 4): -2}[ratio]
+    current = notes[0].value
+    target_index = order.index(current) + steps
+    if not 0 <= target_index < len(order):
+        return None
+    target = order[target_index]
+
+    repaired = t.model_copy(
+        update={"notes": [n.model_copy(update={"value": target}) for n in notes]}
+    )
+    if repaired.total_duration != expected:
+        return None
+    return repaired, (
+        f"every note read as {current}; re-read as {target}, which completes the "
+        f"measure exactly. Beam count was ambiguous in print."
+    )
+
+
 def validate_measure(
     t: MeasureTranscription,
     expected_beats: int | None,
@@ -415,12 +486,18 @@ def validate_measure(
     # A short measure the model already doubted is more likely a dropped note,
     # so it does not get the benefit of the doubt.
     if allow_partial and actual < expected and t.legible:
+        # Genuine short measures exist -- a pickup, or a measure split across a
+        # system break. But so does a measure that came up short because a note
+        # was missed, and from the arithmetic alone the two are indistinguishable.
+        # So it is accepted rather than discarded, and marked uncertain rather
+        # than confident. It gets a rating; it does not get to look verified.
         return MeasureValidation(
             ok=True,
-            reason="partial measure (pickup or split across a system break)",
+            reason="incomplete measure: a pickup, a split across a system break, or a missed note",
             expected=str(expected),
             actual=str(actual),
             is_pickup=True,
+            low_confidence=True,
         )
 
     return MeasureValidation(

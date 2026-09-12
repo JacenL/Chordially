@@ -76,6 +76,65 @@ architecture.md's decision log with its rationale.
    as a confidence marker, moved the rate from 44% to 87% without weakening the
    gate: the two measures that genuinely failed to add up are still rejected.
 
+## C2 — Domain contracts, rubric, segmentation
+- [x] Complete
+- Acceptance: validated domain schemas; numeric rating and colour policy with
+  aggregation; phrase segmentation; tests over boundaries and missing data.
+- Evidence: **79 unit tests pass.** They pin the six colour anchors byte-exactly,
+  the half-open category edges (2.0 is Advanced Beginner, not Beginner-friendly),
+  `None` rendering differently from 0.0, peak-biased phrase aggregation, the
+  practice-overlap rule including a final phrase that borrows nothing, exact
+  rational durations for dots and tuplets, and every case the beam repair must
+  refuse.
+- Artifacts: `fixtures/expected/wohlfahrt-p3-analysis.json` (drives example mode,
+  no credentials needed) and `fixtures/expected/review-phrases.md` (awaiting a
+  violinist's review; its header says so).
+- Delivery: see C2 commit.
+
+### Two correctness bugs found and fixed during C2
+
+1. **Key and meter drifted across the page.** `key_fifths` defaults to 0, which
+   is also a legitimate value (C major), so a chunk that simply showed no key
+   signature reported 0 and silently overwrote a correct reading. Combined with
+   running all chunks concurrently — where later chunks read context before
+   earlier ones had written it — the page's 2/4 G-major etude was analyzed as
+   4/4 in C, and a spurious key change at measure 10 produced a false
+   0.98-confidence structural boundary. Fixed by asking explicitly whether a
+   signature is *printed* in the image, and by a two-pass order: system starts
+   first, everything else after. The page now reports exactly two key/meter
+   states, at measures 1 and 29, which matches the score.
+2. **Recognition and provider failure were conflated.** A measure whose request
+   never completed was recorded identically to one recognition read and
+   rejected. `not_attempted` is now a distinct state, so an outage or an
+   exhausted credit balance cannot masquerade as poor recognition.
+
+### Measured recognition on the fixture page
+
+| Outcome | Measures | Meaning |
+|---|---|---|
+| confident | 14 | read and validated against the meter |
+| uncertain | 18 | validated, but flagged (beam repair applied, or short measure) |
+| unreadable | 8 | genuinely rejected: durations did not add up |
+| **not_attempted** | **21** | **never read — see the blocker below** |
+
+**32 of the 40 measures actually attempted validated (80%)**, consistent with
+C1's 87% on its smaller sample.
+
+## BLOCKER — application API credit exhausted
+- Status: **blocking live recognition. Not blocking anything else.**
+- Symptom: HTTP 400 `invalid_request_error` on 12 of 34 chunks.
+- Actual message: *"Your credit balance is too low to access the Anthropic API."*
+- This is the **application's** account, funding `PRACTICEMAP_ANTHROPIC_API_KEY`.
+  It is separate from the Claude Code session's own usage.
+- What is needed: credit on that Anthropic account. **Do not paste a key into
+  chat**; the existing `.env` entry is already correct and does not need changing.
+- Mitigation in place: a transcription cache (`work/transcription-cache/`, keyed
+  by image bytes + model + prompt, gitignored) holds the 22 chunks that did
+  succeed. Re-running rebuilt the fixture in **3 seconds instead of 685**, and
+  when credit is restored only the 12 failed chunks will cost anything.
+- Work continues on everything that does not need the provider: C3's viewer and
+  ribbon run entirely against the saved fixture.
+
 ## T01 — Establish musical evidence and example inputs
 - [ ] Complete
 - Dependencies: T00.

@@ -1,0 +1,183 @@
+"""Analyze the fixture page once and save the result as the example.
+
+Two artifacts come out of one run:
+
+* `fixtures/expected/<name>-analysis.json` -- the prepared analysis that drives
+  example mode. This is what lets the app run end to end with no credentials
+  configured, using a *real* scan rather than invented data.
+* `fixtures/expected/review-phrases.md` -- a human-readable rendering of the
+  phrases, boundary reasons and per-measure ratings, for a violinist to check.
+
+Costs real API calls. Run it deliberately, not on every start.
+
+    python scripts/build_example_fixture.py --page 3
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from src.config import PROJECT_ROOT, load_env  # noqa: E402
+from src.features.difficulty.colors import category_for, format_score  # noqa: E402
+from src.server.analysis import orchestrate  # noqa: E402
+from src.server.analysis.assemble import (  # noqa: E402
+    build_score,
+    fingerprint,
+    rate_phrases,
+    rate_score,
+    segment_score,
+)
+from src.server.recognition import cv_geometry as cg  # noqa: E402
+
+OUT_DIR = PROJECT_ROOT / "fixtures" / "expected"
+PAGES_DIR = PROJECT_ROOT / "fixtures" / "pages"
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--pdf", default="fixtures/scores/wohlfahrt-op45-bk1.pdf")
+    ap.add_argument("--page", type=int, default=3)
+    ap.add_argument("--name", default="wohlfahrt-p3")
+    ap.add_argument("--effort", default="medium")
+    args = ap.parse_args()
+
+    load_env()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    PAGES_DIR.mkdir(parents=True, exist_ok=True)
+
+    pdf_path = PROJECT_ROOT / args.pdf
+    print(f"analyzing {pdf_path.name} page {args.page} ...")
+
+    gray = cg.render_page(str(pdf_path), args.page)
+    hires = cg.render_page(str(pdf_path), args.page, dpi=cg.CROP_DPI)
+
+    # The page image the browser will show. Written at the crop resolution so it
+    # stays sharp when zoomed; overlays are normalized so resolution is free.
+    page_png = PAGES_DIR / f"{args.name}.png"
+    page_png.write_bytes(cg.encode_png(hires))
+    print(f"page image -> {page_png.relative_to(PROJECT_ROOT)}")
+
+    analysis = orchestrate.analyze_page(
+        gray, hires, effort=args.effort, progress=lambda m: print(f"  {m}", end="\r")
+    )
+    print()
+
+    score = build_score(
+        score_id=args.name,
+        content_fingerprint=fingerprint(pdf_path.read_bytes()),
+        geometry=analysis.geometry,
+        transcriptions=analysis.transcriptions,
+        signatures_by_system=analysis.signatures_by_system,
+        not_attempted=analysis.not_attempted,
+        input_kind="example",
+        title="Wohlfahrt, Op. 45 Book 1 — Etudes 2 and 3",
+        is_example=True,
+        image_url=f"/fixtures/pages/{args.name}.png",
+    )
+    measure_ratings = rate_score(score)
+    phrases = segment_score(score)
+    phrase_ratings = rate_phrases(phrases, measure_ratings)
+
+    payload = {
+        "score": score.model_dump(mode="json"),
+        "measure_difficulty": {k: v.model_dump(mode="json") for k, v in measure_ratings.items()},
+        "phrases": [p.model_dump(mode="json") for p in phrases],
+        "phrase_difficulty": {k: v.model_dump(mode="json") for k, v in phrase_ratings.items()},
+        "recognition": {
+            "chunks_attempted": analysis.chunks_attempted,
+            "mismatched_chunks": analysis.mismatched_chunks,
+            "errors": analysis.errors,
+            "latency_s": round(analysis.latency_s, 1),
+            "input_tokens": analysis.input_tokens,
+            "output_tokens": analysis.output_tokens,
+            "cache_read_tokens": analysis.cache_read_tokens,
+        },
+    }
+    out_json = OUT_DIR / f"{args.name}-analysis.json"
+    out_json.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+    rated = [d for d in measure_ratings.values() if d.score is not None]
+    unrated = [d for d in measure_ratings.values() if d.score is None]
+    print(f"\nanalysis -> {out_json.relative_to(PROJECT_ROOT)}")
+    print(f"  measures: {len(score.measures)}  rated: {len(rated)}  unrated: {len(unrated)}")
+    if rated:
+        print(f"  rating range: {min(d.score for d in rated):.1f} – {max(d.score for d in rated):.1f}")
+    print(f"  phrases: {len(phrases)}")
+    print(f"  chunk mismatches: {analysis.mismatched_chunks}")
+    print(f"  wall time in requests: {analysis.latency_s:.0f}s  cache reads: {analysis.cache_read_tokens}")
+
+    write_review(args.name, score, measure_ratings, phrases, phrase_ratings, analysis)
+    print(f"review  -> {(OUT_DIR / 'review-phrases.md').relative_to(PROJECT_ROOT)}")
+    return 0
+
+
+def write_review(name, score, measure_ratings, phrases, phrase_ratings, analysis) -> None:
+    lines: list[str] = []
+    a = lines.append
+    a("# Review: inferred phrases and ratings")
+    a("")
+    a("**Status: NOT YET REVIEWED BY A MUSICIAN.**")
+    a("")
+    a("Generated by the pipeline from a real scan. Nothing here has been checked")
+    a("by a violinist yet. Replace this status line when it has, and record what")
+    a("was corrected -- an absence of corrections below is not evidence of")
+    a("correctness.")
+    a("")
+    a(f"Source: `{name}`, {len(score.measures)} measures, {len(phrases)} phrases.")
+    a("")
+    a("## What to check")
+    a("")
+    a("1. Do the phrase boundaries fall where a musical idea actually ends?")
+    a("2. Is a boundary marked low-confidence one you would also hesitate over?")
+    a("3. Are the relative difficulty ratings in a sensible order?")
+    a("4. Any measure marked 'Needs review' that is plainly legible on the page?")
+    a("")
+    a("Boundary confidence is honest about thin evidence: etudes are often")
+    a("continuous, with no rest or cadence to mark a phrase end, and a bare")
+    a("barline is deliberately weak evidence.")
+    a("")
+
+    for p in phrases:
+        d = phrase_ratings.get(p.id)
+        rating = format_score(d.score if d else None)
+        cat = category_for(d.score if d else None)
+        peak = format_score(d.peak if d else None)
+        first = score.measure(p.measure_ids[0])
+        last = score.measure(p.measure_ids[-1])
+        a(f"### {p.label} — measures {first.label}–{last.label}")
+        a("")
+        a(f"- Rating **{rating}** ({cat}), local peak {peak}")
+        a(f"- Starts: {p.start_boundary.reason} _(confidence {p.start_boundary.confidence:.2f})_")
+        a(f"- Ends: {p.end_boundary.reason} _(confidence {p.end_boundary.confidence:.2f})_")
+        if p.has_practice_overlap:
+            nxt = score.measure(p.practice_end.measure_id)
+            a(f"- Practice range runs on into measure {nxt.label} so the join is rehearsed.")
+        else:
+            a("- No following note to borrow; this is the last phrase.")
+        a("")
+        a("| Measure | Rating | Category | Recognition |")
+        a("|---|---|---|---|")
+        for mid in p.measure_ids:
+            m = score.measure(mid)
+            md = measure_ratings.get(mid)
+            s = md.score if md else None
+            a(f"| {m.label} | {format_score(s)} | {category_for(s)} | {m.quality} |")
+        a("")
+
+    if analysis.errors:
+        a("## Recognition problems recorded")
+        a("")
+        for e in analysis.errors:
+            a(f"- {e}")
+        a("")
+
+    (OUT_DIR / "review-phrases.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

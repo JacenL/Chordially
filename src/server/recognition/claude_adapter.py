@@ -118,9 +118,13 @@ the staff.
 a 16th, three is a 32nd. Heavy or blotted printing can make one thick beam look \
 like two -- check the beam's thickness against a clearly single-beamed group \
 elsewhere in the same system before deciding.
-- A system may begin with a clef, key signature and time signature. Report them \
-in the header fields. They are not a measure, so measure 0 is the first measure \
-that actually contains notes.
+- A system may begin with a clef, key signature and time signature. If and only \
+if they are actually printed in this image, set signature_visible true and fill \
+in the header fields. If this crop was taken from the middle of a staff line and \
+shows no clef at its left edge, set signature_visible false -- the music is \
+still in some key, but you are not being asked to infer it, and guessing one \
+would overwrite what was read where it really was printed. A printed signature \
+is not a measure: measure 0 is the first measure that contains notes.
 - The key signature applies throughout; write an accidental into `p` only when \
 one is printed in that measure.
 - Small digits above or below notes are left-hand fingerings, not pitches. \
