@@ -185,11 +185,40 @@ def bundle() -> AnalysisBundle:
     return AnalysisBundle.load_path(EXAMPLE_PATH)
 
 
-def test_the_example_yields_spots(bundle):
+def test_the_example_has_no_local_obstacle_because_it_genuinely_has_none(bundle):
+    """This page used to yield a spot, and it should not.
+
+    Wohlfahrt Op. 45 Etude 2 is a uniform first-position eighth-note study. The
+    spot it produced before B7 was measure 8, which rated 0.9 above its phrase
+    only because two printed accidentals were charged at full price at three
+    notes a second. Once execution demands are scaled by the time available,
+    measure 8 stops being harder than its neighbours -- because it isn't.
+
+    Asserting the absence rather than deleting the test: "not every phrase gets
+    one, and that is the point" is C14's rule, and this fixture is now the case
+    that proves it. The mechanism is exercised on synthetic spreads above, and
+    it still fires on real music -- 4 spots on the Audiveris reading of this same
+    PDF, 11 on the Mozart page.
+    """
     retuned = retune(bundle, None)
-    assert [p for p in retuned.phrases if p.level == "trouble_spot"], (
-        "the example should contain at least one local obstacle"
-    )
+    assert [p for p in retuned.phrases if p.level == "trouble_spot"] == []
+
+    # ...and it is absent for the stated reason: nothing stands far enough above
+    # its phrase. If this margin is ever reached again here, the test above is
+    # wrong rather than merely stale.
+    from src.features.segmentation.phrases import LOCAL_PEAK_MARGIN
+
+    by_id = retuned.measure_difficulty
+    worst = 0.0
+    for phrase in (p for p in retuned.phrases if p.level == "phrase"):
+        rated = [
+            by_id[m].score
+            for m in phrase.measure_ids
+            if m in by_id and by_id[m].score is not None
+        ]
+        if len(rated) >= 3:
+            worst = max(worst, max(rated) - sum(rated) / len(rated))
+    assert worst < LOCAL_PEAK_MARGIN, worst
 
 
 def test_at_most_one_spot_per_phrase_on_the_real_score(bundle):
