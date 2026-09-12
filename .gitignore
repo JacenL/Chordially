@@ -1,0 +1,25 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Dependencies and build output; adapt to selected stack
+node_modules/
+.next/
+dist/
+build/
+.venv/
+__pycache__/
+*.pyc
+
+# Generated output and private uploads
+coverage/
+playwright-report/
+test-results/
+uploads/
+tmp/
+work/
+*.log
+.DS_Store
