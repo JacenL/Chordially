@@ -16,6 +16,7 @@ real and located, and every one whose content could not be read is marked
 from __future__ import annotations
 
 import dataclasses
+import os
 import time
 from typing import Callable
 
@@ -31,6 +32,7 @@ from src.server.analysis.assemble import (
     rate_score,
     segment_score,
 )
+from src.server.recognition import audiveris_source as omr
 from src.server.recognition import cv_geometry as cg
 from src.server.recognition import musicxml_source as mx
 
@@ -92,12 +94,24 @@ class Provenance:
     # "0 sections read live" would describe a recognition run that never
     # happened, and would understate the result: these notes are exact.
     from_file: bool = False
+    # A scan read by Audiveris on this machine. Kept distinct from `from_file`
+    # on purpose: "read directly from the MusicXML file" would be a false claim
+    # about a page that was recognized, and recognition can be wrong in ways
+    # reading a file cannot. What the two share is that nothing left the machine.
+    from_local_omr: bool = False
 
     @property
     def used_provider(self) -> bool:
         return self.chunks_from_provider > 0
 
     def sentence(self) -> str:
+        if self.from_local_omr:
+            return (
+                "Notation recognized on this machine by Audiveris — no "
+                "transcription service was called and nothing was sent "
+                "anywhere. The page below is re-engraved from what it read, "
+                "not your original scan."
+            )
         if self.from_file:
             return (
                 "Notes read directly from the MusicXML file — exact, with no "
@@ -113,6 +127,13 @@ class Provenance:
         if self.chunks_failed:
             parts.append(f"{self.chunks_failed} not read")
         return f"Notation sections: {', '.join(parts)}."
+
+
+# Which engine reads a scan. "audiveris" runs locally and calls no provider;
+# "vision" is the original path and is kept reachable rather than deleted, so a
+# machine without Audiveris installed still has a route. The default is local:
+# a demo that depends on a credit balance is a demo that can stop working.
+SCAN_ENGINE = os.environ.get("PRACTICEMAP_SCAN_ENGINE", "audiveris").strip().lower()
 
 
 def validate(data: bytes, filename: str, content_type: str | None) -> str:
@@ -318,6 +339,16 @@ def analyze_upload(
 
     if kind == "musicxml":
         return _analyze_musicxml(data, filename, score_id, started, say)
+
+    if SCAN_ENGINE == "audiveris":
+        # A scan becomes MusicXML first, and then takes the MusicXML path
+        # exactly as an imported file would. Notes and measure boxes then come
+        # from one document instead of two that have to be reconciled -- see
+        # `audiveris_source` for why that matters here specifically.
+        say("Reading the notation on this machine with Audiveris")
+        exported = omr.transcribe(data, filename)
+        bundle, _ = _analyze_musicxml(exported, filename, score_id, started, say)
+        return bundle, Provenance(from_local_omr=True)
 
     say("Rendering the page")
     rendered = render_upload(data, kind)
