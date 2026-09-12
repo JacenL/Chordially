@@ -171,7 +171,7 @@ def validate(data: bytes, filename: str, content_type: str | None) -> str:
     if kind is None:
         raise UploadRejected(
             f"{filename or 'That file'} is not a supported format.",
-            "PracticeMap reads PDF, PNG and JPEG scans of printed notation, and "
+            "Chordially reads PDF, PNG and JPEG scans of printed notation, and "
             "MusicXML files (.musicxml, .xml, .mxl). Export your score to one of "
             "those and try again.",
         )
@@ -229,7 +229,7 @@ def render_upload(data: bytes, kind: str) -> RenderedPage:
                 raise UploadRejected(
                     "No staff lines were found in the first "
                     f"{min(page_count, MAX_PAGES_SCANNED)} page(s) of that PDF.",
-                    "PracticeMap reads clear printed notation. Check that the "
+                    "Chordially reads clear printed notation. Check that the "
                     "pages are upright, in focus, and not handwritten.",
                 )
             index, gray = chosen
@@ -366,7 +366,7 @@ def analyze_upload(
     if not geometry.systems:
         raise UploadRejected(
             "No staff lines were found on that page.",
-            "PracticeMap reads clear printed notation. Check that the page is "
+            "Chordially reads clear printed notation. Check that the page is "
             "upright, in focus, and not handwritten, then try again.",
         )
 

@@ -1,4 +1,4 @@
-# PracticeMap — demo script
+# Chordially — demo script
 
 Status: an account of working software. Every number below was measured on
 2026-09-12 against the build at commit `7a68e74` or later, not estimated.
@@ -149,7 +149,7 @@ structural range.
 
 Open **Sources**. Simon Fischer's article is cited with what it supports *and
 what it does not*: it is teacher pedagogy, not a controlled trial. Techniques
-PracticeMap chose on its own are badged "app heuristic" and say so.
+Chordially chose on its own are badged "app heuristic" and say so.
 
 ### 5b. Drill the hard spot inside it (25 seconds)
 Some phrases carry a dark box around one or two measures — a **hard spot**, the
@@ -223,7 +223,7 @@ does no coordinate arithmetic at all.
   validated. The other 18 failed an arithmetic check — their durations did not
   sum to the meter — and are left unrated rather than shown as a guess.
 - **Ratings are heuristic.** The 0.0–10.0 scale and its five categories are
-  PracticeMap's own, documented in the rubric and inspectable from the sidebar.
+  Chordially's own, documented in the rubric and inspectable from the sidebar.
   No source here validates them and no violinist has reviewed them;
   `fixtures/expected/review-phrases.md` is the packet waiting for that review.
 - **One external check exists, and it is weak.** Wohlfahrt printed these studies
@@ -242,7 +242,7 @@ does no coordinate arithmetic at all.
 - **Nothing persists.** Analyses live in memory for the life of the process, and
   self-reported practice progress is not stored. Restarting the server loses
   uploaded analyses; the example is always available.
-- **No audio.** PracticeMap does not listen to you and cannot tell you whether
+- **No audio.** Chordially does not listen to you and cannot tell you whether
   you played it correctly. Success criteria are self-assessed by design.
 - **Fingerings, shifts and string choices are never asserted** from interval
   size alone, because the notation does not establish them.

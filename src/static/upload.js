@@ -142,7 +142,7 @@ if (form) {
       if (!payload.id) throw new Error("Missing job ID");
       job = payload;
     } catch (err) {
-      fail("The upload did not reach the server.", "Check that PracticeMap is still running, then try again.");
+      fail("The upload did not reach the server.", "Check that Chordially is still running, then try again.");
       return;
     }
 
@@ -178,7 +178,7 @@ if (form) {
       }
       setTimeout(() => poll(jobId), 700);
     } catch (err) {
-      fail("Lost contact with the server while analyzing.", "Check that PracticeMap is still running, then try again.");
+      fail("Lost contact with the server while analyzing.", "Check that Chordially is still running, then try again.");
     }
   }
 

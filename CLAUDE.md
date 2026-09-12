@@ -1,4 +1,4 @@
-# PracticeMap — project instructions
+# Chordially — project instructions
 
 ## Mission
 Build a polished hackathon web app that accepts scanned violin sheet music, identifies musical phrases, assigns explainable difficulty estimates from 0.0 to 10.0, displays a continuous measure-by-measure green-to-maroon difficulty ribbon, and teaches exactly how to practice a selected passage in a sidebar.

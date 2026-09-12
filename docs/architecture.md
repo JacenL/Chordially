@@ -1,4 +1,4 @@
-# PracticeMap — architecture decisions
+# Chordially — architecture decisions
 
 Status: proposed constraints; stack and providers are intentionally undecided.
 During Plan Mode, recommend the concrete architecture. After approval, replace the decision slots below with the selected implementation and supporting documentation links.

@@ -1,4 +1,4 @@
-# PracticeMap — product specification
+# Chordially — product specification
 
 ## F01 — current frontend display override (2026-09-12)
 The user's latest request supersedes the ribbon presentation below: show a faint

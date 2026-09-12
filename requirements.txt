@@ -1,4 +1,4 @@
-# PracticeMap runtime dependencies, pinned to the versions this was built and
+# Chordially runtime dependencies, pinned to the versions this was built and
 # tested against on CPython 3.14.6 (Windows). Everything here is imported by
 # src/ or scripts/; nothing is listed speculatively.
 

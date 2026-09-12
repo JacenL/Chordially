@@ -103,7 +103,7 @@ def start(data: bytes, filename: str, content_type: str | None) -> Job:
                 job.stage = ""
                 job.error = f"Analysis failed: {type(exc).__name__}: {exc}"
                 job.recovery = (
-                    "This is a fault in PracticeMap rather than in your file. "
+                    "This is a fault in Chordially rather than in your file. "
                     "Try the example score, or try a different page."
                 )
             return

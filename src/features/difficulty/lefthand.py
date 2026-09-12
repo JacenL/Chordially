@@ -1,7 +1,7 @@
 """Left-hand demands estimated from pitch alone, and labelled as estimates.
 
 The notation does not print where a note is played. CLAUDE.md is explicit that
-PracticeMap must not *assert* a shift, a string or a fingering the page does not
+Chordially must not *assert* a shift, a string or a fingering the page does not
 establish, and the rubric honours that: nothing here is reported as what the
 player does. What it reports is what the pitches *require at minimum* under one
 disclosed model -- the lowest workable position -- which is the reading a

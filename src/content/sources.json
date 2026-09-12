@@ -1,5 +1,5 @@
 {
-  "_comment": "Source metadata stored once and referenced by stable ID. evidenceCategory is the claim each source can actually carry -- it is not a quality score. Nothing here validates PracticeMap's 0.0-10.0 scale, and no source is cited as if it did.",
+  "_comment": "Source metadata stored once and referenced by stable ID. evidenceCategory is the claim each source can actually carry -- it is not a quality score. Nothing here validates Chordially's 0.0-10.0 scale, and no source is cited as if it did.",
   "sources": [
     {
       "id": "S01",
@@ -29,7 +29,7 @@
       "url": "https://doi.org/10.1177/03057356221129650",
       "evidenceCategory": "qualitative questionnaire research",
       "supports": "Framing slow practice around a specific purpose, and acknowledging that slow and fast execution can differ.",
-      "doesNotSupport": "A universally optimal starting tempo or increment. PracticeMap's tempo numbers are app defaults."
+      "doesNotSupport": "A universally optimal starting tempo or increment. Chordially's tempo numbers are app defaults."
     },
     {
       "id": "S04",

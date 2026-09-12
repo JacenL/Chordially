@@ -124,7 +124,7 @@ def test_the_data_handling_disclosure_is_still_reachable(page):
     index = next(i for i, text in enumerate(summaries) if "your file" in text.lower())
     page.locator(".detail summary").nth(index).click()
     body = page.locator(".detail").nth(index).locator(".detail-body").inner_text()
-    assert "server hosting PracticeMap" in body
+    assert "server hosting Chordially" in body
     assert "external AI" in body
     assert "Generated score pages remain" in body
 

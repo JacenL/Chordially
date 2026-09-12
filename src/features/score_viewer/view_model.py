@@ -48,6 +48,7 @@ from src.features.difficulty.rubric import (
     DEFAULT_TEMPO_BPM,
     WEIGHTS,
     aggregate_phrase,
+    plain_reason,
     rubric_explanation,
 )
 from src.schemas.analysis import AnalysisBundle
@@ -88,6 +89,9 @@ def _box_style(region: Region) -> str:
 @dataclasses.dataclass(frozen=True)
 class FactorView:
     label: str
+    # The same demand in a player's words. What the sidebar leads with; `label`
+    # and the numbers below it move into the rubric disclosure.
+    plain: str
     contribution: str
     detail: str
     # The weight this contribution was drawn from. "+0.8" alone is a number with
@@ -263,6 +267,7 @@ def _factors(difficulty: Difficulty | None, limit: int | None = None) -> list[Fa
     return [
         FactorView(
             label=f.label,
+            plain=plain_reason(f.key),
             contribution=f"+{f.contribution:.1f}",
             detail=f.detail,
             weight=f"{WEIGHTS.get(f.key, 0.0):.1f}",
@@ -677,6 +682,7 @@ def _factor_payload(factors: list[FactorView]) -> list[dict]:
     return [
         {
             "label": f.label,
+            "plain": f.plain,
             "contribution": f.contribution,
             "detail": f.detail,
             "weight": f.weight,

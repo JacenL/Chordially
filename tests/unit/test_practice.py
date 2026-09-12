@@ -144,7 +144,7 @@ def test_app_heuristics_say_so_in_their_cautions():
     for technique in library.techniques.values():
         if technique.evidenceCategory == "app heuristic":
             joined = " ".join(technique.cautions).lower()
-            assert "heuristic" in joined or "practicemap" in joined, technique.id
+            assert "heuristic" in joined or "chordially" in joined, technique.id
 
 
 def test_every_technique_returns_the_player_to_the_music():

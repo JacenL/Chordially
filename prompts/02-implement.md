@@ -1,4 +1,4 @@
-Implement the approved PracticeMap plan now. Follow CLAUDE.md, docs/checklist.md, and docs/safe-execution.md.
+Implement the approved Chordially plan now. Follow CLAUDE.md, docs/checklist.md, and docs/safe-execution.md.
 
 The authorized GitHub destination is https://github.com/arkyarky4546-ai/HackCMU-Happy-. Verify the repository and use practice-map-build by default. Preserve existing work and inspect fetch and push URLs.
 

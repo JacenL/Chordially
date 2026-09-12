@@ -43,7 +43,7 @@ from __future__ import annotations
 
 import dataclasses
 
-from src.features.difficulty.rubric import WEIGHTS, aggregate_phrase
+from src.features.difficulty.rubric import WEIGHTS, aggregate_phrase, plain_reason
 from src.schemas.score import Anchor, Difficulty, Measure, Phrase, PhraseBoundary
 
 # How far a phrase's rating may sit from the running mean of the section it
@@ -175,7 +175,7 @@ _DEMAND_PHRASE = {
     "key_remoteness": "a remote key",
 }
 
-NO_DOMINANT_TEXT = "nothing here rises far above a modest demand"
+NO_DOMINANT_TEXT = "nothing here is especially demanding"
 
 
 def _demand_text(key: str | None) -> str:
@@ -352,10 +352,14 @@ def find_sections(
             if first.id != last.id
             else f"Measure {first.label}"
         )
+        # Said the way a player would say it. `_DEMAND_PHRASE` names the feature
+        # for a boundary sentence, where the noun reads better; this line is the
+        # first thing someone sees about a passage, so it uses the rubric's
+        # player-facing wording instead.
         demands = sorted({p.dominant for p in group if p.dominant})
         summary = (
-            "the demand here is mostly "
-            + " and ".join(_demand_text(d) for d in demands)
+            "what this asks for: "
+            + " and ".join(plain_reason(d) for d in demands)
             if demands
             else NO_DOMINANT_TEXT
         )

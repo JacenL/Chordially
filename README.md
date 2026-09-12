@@ -1,6 +1,6 @@
-# PracticeMap
+# Chordially
 
-Upload a page of printed violin sheet music. PracticeMap divides it into
+Upload a page of printed violin sheet music. Chordially divides it into
 practice passages, rates each one from 0.0 to 10.0, colours the page passage by
 passage from light green to near-black, and tells you how to practise the one you
 select — including complementary rhythm variations built from that passage's
@@ -170,7 +170,7 @@ unpacks without administrator rights and carries its own JDK:
 msiexec /a Audiveris-5.11.0-windowsConsole-x86_64.msi /qn TARGETDIR=work\audiveris\extracted
 ```
 
-PracticeMap looks for it at `work/audiveris/extracted/Audiveris/Audiveris.exe`,
+Chordially looks for it at `work/audiveris/extracted/Audiveris/Audiveris.exe`,
 then at `PRACTICEMAP_AUDIVERIS_EXE`, then on `PATH`. When it is absent, a scan
 upload fails with a sentence and a recovery action; MusicXML import and the
 example score still work. Set `PRACTICEMAP_SCAN_ENGINE=vision` to use the

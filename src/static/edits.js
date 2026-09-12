@@ -17,9 +17,13 @@
 export function createEditor(scoreKey, tempoBpm) {
   const el = (id) => document.getElementById(id);
   const row = el("edit-row");
+  // The whole panel hides with the controls. An "Adjust this passage" heading
+  // that opens onto nothing is worse than no heading.
+  const panel = el("adjust-panel");
   const select = el("split-at");
   const note = el("edit-note");
   const pill = el("edited-pill");
+  const current_note = el("edit-current");
 
   if (!row) return { show: () => {}, hide: () => {} };
 
@@ -27,6 +31,7 @@ export function createEditor(scoreKey, tempoBpm) {
 
   function hide() {
     row.hidden = true;
+    if (panel) panel.hidden = true;
     if (note) note.hidden = true;
   }
 
@@ -37,6 +42,12 @@ export function createEditor(scoreKey, tempoBpm) {
     }
     current = section;
     row.hidden = false;
+    if (panel) panel.hidden = false;
+    // Name what is about to change. "Split into two here" is only predictable
+    // if you can see what "this" currently covers.
+    if (current_note) {
+      current_note.textContent = `Now: ${section.rangeText}.`;
+    }
     if (note) note.hidden = true;
     if (pill) pill.hidden = !section.userEdited;
 

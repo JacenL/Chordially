@@ -7,6 +7,15 @@
  * point is that the durations add up.
  */
 
+// The technique library's evidence categories, said in words a player has.
+// The categories themselves are unchanged -- this only translates them at the
+// point of display, and the original stays in the element's title attribute.
+const EVIDENCE_WORDING = {
+  "teacher pedagogy": "from a teacher's method",
+  "app heuristic": "our own suggestion",
+  "research-informed": "backed by research",
+};
+
 export function createPractice(scoreKey, tempoBpm) {
   const el = (id) => document.getElementById(id);
   let token = 0;
@@ -86,24 +95,41 @@ export function createPractice(scoreKey, tempoBpm) {
     const badge = document.createElement("span");
     badge.className = "evidence-badge";
     // An app heuristic is marked differently from something a teacher or a
-    // study actually backs. The reader should be able to tell at a glance.
+    // study actually backs. The reader should be able to tell at a glance --
+    // which means saying it in words a reader has, not in the vocabulary the
+    // technique library files it under. The distinction is unchanged; only the
+    // wording is, and the exact category stays on the element for anyone
+    // inspecting it.
     if (exercise.evidenceCategory === "app heuristic") {
       badge.classList.add("evidence-badge--heuristic");
     }
-    badge.textContent = exercise.evidenceCategory;
+    badge.textContent = EVIDENCE_WORDING[exercise.evidenceCategory]
+      || exercise.evidenceCategory;
+    badge.title = exercise.evidenceCategory;
     title.append(badge);
     root.append(title);
 
-    root.append(
-      para(
-        "exercise-why",
-        "Chosen because " + exercise.triggerReason + ". Applies to " + exercise.appliesTo + "."
-      )
-    );
+    const why = para("exercise-why", "");
+    const whyLabel = document.createElement("b");
+    whyLabel.textContent = "Why this one: ";
+    why.append(whyLabel, document.createTextNode(exercise.triggerReason + "."));
+    root.append(why);
 
     if (exercise.variants && exercise.variants.length) {
       const variants = document.createElement("div");
       variants.className = "variants";
+      // Only the first pattern is shown. Three grids of pitch-and-duration
+      // chips at once is the densest thing on the page, and a player works
+      // through them one at a time anyway -- the rest are a click away.
+      const [lead, ...rest] = exercise.variants;
+      const extra = rest.length ? document.createElement("details") : null;
+      if (extra) {
+        extra.className = "variants-more";
+        const summary = document.createElement("summary");
+        summary.textContent =
+          rest.length === 1 ? "Show the other pattern" : `Show the other ${rest.length} patterns`;
+        extra.append(summary);
+      }
       for (const variant of exercise.variants) {
         const block = document.createElement("div");
         block.className = "variant";
@@ -123,8 +149,9 @@ export function createPractice(scoreKey, tempoBpm) {
           row.append(chip);
         }
         block.append(row);
-        variants.append(block);
+        (variant === lead || !extra ? variants : extra).append(block);
       }
+      if (extra) variants.append(extra);
       root.append(variants);
       if (exercise.variantNote) root.append(para("panel-note", exercise.variantNote));
     }
