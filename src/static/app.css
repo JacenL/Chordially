@@ -688,3 +688,83 @@ details.exercise-card {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* -------------------------------------------------------- trouble spots */
+
+/* A trouble spot sits inside its phrase, so its outline has to read as nested
+   rather than as a competing region: solid where the phrase is dashed, tighter,
+   and in neutral ink. Deliberately not a difficulty colour -- design.md keeps
+   selection and difficulty on separate channels, and a red box inside an orange
+   phrase would read as a third rating. */
+.trouble-outline {
+  position: absolute;
+  border: 1.5px solid rgba(35, 32, 27, 0.55);
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(255, 253, 249, 0.6);
+  /* The measure hit-target layer sits above this one and handles the click,
+     resolving to this spot. Claiming pointer events here would only create a
+     dead zone where the outline swallowed them instead. */
+  pointer-events: none;
+}
+
+.trouble-outline.is-selected {
+  border-color: var(--select);
+  border-width: 2px;
+  background: rgba(27, 26, 23, 0.06);
+}
+
+/* Top-right, not bottom: the bottom of the box is where the ribbon runs, and a
+   chip there covers the colour it is describing. */
+.trouble-chip {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(35, 32, 27, 0.86);
+  color: #FFF9EE;
+  font-size: 10px;
+  line-height: 15px;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.trouble-chip b { font-variant-numeric: tabular-nums; }
+.trouble-outline:hover .trouble-chip,
+.trouble-outline.is-selected .trouble-chip { opacity: 1; }
+
+/* The parent phrase while a spot inside it is selected: still clearly present,
+   but not competing with the thing actually selected. */
+.phrase-outline.is-context { border-style: solid; border-color: rgba(27, 26, 23, 0.45); }
+.phrase-item.is-context { background: #F6F2EA; }
+
+/* --------------------------------------------------------- breadcrumb */
+
+.breadcrumb { margin: 0 0 2px; font-size: 12.5px; color: var(--ink-faint); }
+
+/* ------------------------------------------------- nested phrase rows */
+
+/* Nesting is drawn, not spelled. A box-drawing glyph rendered as a stray
+   capital L in the UI font, which is worse than no marker at all. */
+.phrase-item--spot {
+  margin-left: 18px;
+  padding-left: 12px;
+  border-left: 1px solid var(--rule-strong);
+  border-radius: 0 6px 6px 0;
+  width: calc(100% - 18px);
+}
+
+.phrase-item--spot::before {
+  content: "";
+  position: absolute;
+  margin-left: -12px;
+  width: 8px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.phrase-item--spot { position: relative; }
+.phrase-item--spot .phrase-item-label { font-size: 12.5px; color: var(--ink-soft); }
+.phrase-item--spot .phrase-item-score { font-size: 13px; }

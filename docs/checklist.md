@@ -1,13 +1,13 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C4, C6 and C8 delivered; C5 and C7's persistence half
-recorded as deferred below.
+Status: demo-ready. C1–C4, C6, C8 and C9 delivered; C5 and C7's persistence
+half recorded as deferred below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
 assumed.
 Working branch: practice-map-build, created from main at 95f7ceb.
-Current task: C9 (trouble spots), then C5 (phrase boundary editing).
+Current task: C5 (phrase boundary editing).
 
 ## How this document is organized
 
@@ -364,6 +364,44 @@ C1's 87% on its smaller sample.
   - Junk (`banana`, `90bpm`, `-5`) and out-of-range values fall back to the
     assumed tempo and still render the score; out-of-range is refused rather
     than clamped, so the page cannot disagree with the input box.
+
+## C9 — Trouble spots: the third segmentation level
+- [x] Complete
+- Dependencies: C2, C3, C8.
+- Discharges the product spec's third level and journey step 6, "explore a local
+  trouble spot without losing the parent phrase context".
+- Acceptance: a short technical range inside a phrase, marked only where one
+  genuinely stands out; selectable without losing the parent; practice
+  instruction applies to it; distinct from the phrase outline and from the
+  difficulty colours.
+- Evidence: **190 tests pass**, 26 new on this checkpoint.
+  - On the example at the assumed tempo: 3 trouble spots across 15 phrases.
+    Restraint is the point — a spot in every phrase would be noise, and a test
+    asserts there are fewer spots than phrases.
+  - Negative cases pinned: a uniformly hard phrase, a uniformly easy one, a rise
+    below the 0.8 margin, a phrase too short to have an inside, and a phrase
+    whose peak measure is unrated all yield no spot.
+  - **Spots are derived, never stored.** They follow the ratings, and ratings
+    follow tempo: the example has 3 spots at 90 BPM and 2 at 160, because
+    Phrase 1's spot stops standing out once the whole phrase is demanding. A
+    test asserts the sets differ, and another that retuning twice does not
+    accumulate them.
+  - Every spot's measures are a subset of its parent's; a spot crossing a system
+    gets one region fragment per system; a spot borrows no practice overlap,
+    because overlap is a phrase-level rule.
+  - `region_fragments` was extracted from `segment_score` so phrases and spots
+    share one implementation; the existing segmentation tests covered the
+    refactor.
+
+### One interaction defect found and fixed
+
+The on-score trouble-spot outline was unclickable: the measure hit-target layer
+sits above the annotation layer and intercepted every pointer event, so the box
+was decoration. Rather than fight the z-order, selection now resolves to the
+**most specific target owning a measure** — clicking the measure a spot is
+marked on selects the spot, any other measure selects its phrase, and the parent
+stays in context either way. The outline stops claiming pointer events, so it
+cannot create a dead zone. Found by a browser test, not by reading the code.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

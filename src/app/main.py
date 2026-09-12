@@ -143,15 +143,20 @@ def _bundle_for(score_id: str):
 
 
 @app.get("/api/practice/{score_id}/{phrase_id}")
-def practice(score_id: str, phrase_id: str) -> dict:
+def practice(score_id: str, phrase_id: str, tempo: str | None = None) -> dict:
     """Practice instruction for one passage of one score.
 
     The score id is part of the path on purpose: an exercise built for one
     score must never be served for another, and a phrase id that does not
     belong to this score is a 404 rather than a best guess.
+
+    The bundle is retuned before lookup for two reasons: trouble spots are
+    derived rather than stored, so a spot id only resolves against a retuned
+    bundle; and technique selection reads rating factors, which move with
+    tempo, so advice must be computed at the tempo the page is showing.
     """
     try:
-        bundle = _bundle_for(score_id)
+        bundle = retune(_bundle_for(score_id), parse_tempo(tempo))
     except ExampleUnavailable as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 

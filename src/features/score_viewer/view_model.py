@@ -120,6 +120,7 @@ class PhraseView:
     id: str
     label: str
     level: str
+    parent_id: str | None
     score_text: str
     category: str
     color: str
@@ -157,6 +158,7 @@ class ScoreView:
     is_example: bool
     pages: list[PageView]
     phrases: list[PhraseView]
+    trouble_spots: list[PhraseView]
     legend: list[dict]
     assumptions: list[str]
     warnings: list[str]
@@ -295,6 +297,7 @@ def _confidence_text(confidence: float) -> str:
 def build_view(bundle: AnalysisBundle) -> ScoreView:
     score = bundle.score
     phrases = [p for p in bundle.phrases if p.level == "phrase"]
+    spots = [p for p in bundle.phrases if p.level == "trouble_spot"]
     owner_by_measure: dict[str, str] = {}
     for measure in score.measures:
         owner = owning_phrase(score, phrases, measure)
@@ -362,8 +365,7 @@ def build_view(bundle: AnalysisBundle) -> ScoreView:
             )
         )
 
-    phrase_views: list[PhraseView] = []
-    for phrase in phrases:
+    def view_for(phrase: Phrase) -> PhraseView:
         difficulty = bundle.phrase_rating(phrase.id)
         rating = difficulty.score if difficulty else None
         peak = difficulty.peak if difficulty else None
@@ -396,11 +398,11 @@ def build_view(bundle: AnalysisBundle) -> ScoreView:
                 else "No measure in this phrase could be rated."
             )
 
-        phrase_views.append(
-            PhraseView(
+        return PhraseView(
                 id=phrase.id,
                 label=phrase.label,
                 level=phrase.level,
+                parent_id=phrase.parent_id,
                 score_text=format_score(rating),
                 category=category_for(rating),
                 color=color_for(rating),
@@ -419,7 +421,13 @@ def build_view(bundle: AnalysisBundle) -> ScoreView:
                 factors=peak_factors,
                 unrated_reason=unrated_reason,
             )
-        )
+
+    phrase_views = [view_for(p) for p in phrases]
+    # A trouble spot whose parent vanished is dropped rather than orphaned: the
+    # sidebar nests them, and a nested row with nothing to nest under is a bug
+    # the reader would have to interpret.
+    known = {p.id for p in phrases}
+    spot_views = [view_for(s) for s in spots if s.parent_id in known]
 
     quality_counts: dict[str, int] = {}
     for measure in score.measures:
@@ -435,6 +443,7 @@ def build_view(bundle: AnalysisBundle) -> ScoreView:
         is_example=score.is_example,
         pages=pages,
         phrases=phrase_views,
+        trouble_spots=spot_views,
         legend=legend(),
         assumptions=list(score.assumptions),
         warnings=list(score.warnings),
@@ -460,6 +469,16 @@ def client_payload(view: ScoreView) -> dict:
     where they are tested.
     """
     measures = [m for page in view.pages for system in page.systems for m in system.measures]
+    # Phrases and trouble spots share one map: selection, the sidebar and the
+    # practice lookup treat them identically, and `level` is what distinguishes
+    # them where it matters.
+    selectable = list(view.phrases) + list(view.trouble_spots)
+    # Which trouble spot, if any, covers each measure. Selection resolves to the
+    # most specific thing that owns a measure: clicking the measure a hard spot
+    # is marked on should select the hard spot, not the whole phrase around it.
+    spot_by_measure = {
+        mid: spot.id for spot in view.trouble_spots for mid in spot.measure_ids
+    }
     return {
         "scoreId": view.score_id,
         "defaultPhraseId": view.default_phrase_id,
@@ -468,6 +487,7 @@ def client_payload(view: ScoreView) -> dict:
             m.id: {
                 "label": m.label,
                 "phraseId": m.phrase_id,
+                "spotId": spot_by_measure.get(m.id),
                 "scoreText": m.score_text,
                 "category": m.category,
                 "color": m.color,
@@ -483,6 +503,8 @@ def client_payload(view: ScoreView) -> dict:
         "phrases": {
             p.id: {
                 "label": p.label,
+                "level": p.level,
+                "parentId": p.parent_id,
                 "scoreText": p.score_text,
                 "category": p.category,
                 "color": p.color,
@@ -500,6 +522,6 @@ def client_payload(view: ScoreView) -> dict:
                 "measureIds": p.measure_ids,
                 "fragmentCount": p.fragment_count,
             }
-            for p in view.phrases
+            for p in selectable
         },
     }

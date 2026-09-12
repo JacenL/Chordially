@@ -7,7 +7,7 @@
  * point is that the durations add up.
  */
 
-export function createPractice(scoreKey) {
+export function createPractice(scoreKey, tempoBpm) {
   const el = (id) => document.getElementById(id);
   let token = 0;
 
@@ -28,8 +28,13 @@ export function createPractice(scoreKey) {
     const mine = ++token;
     clear("Reading this passage…");
     try {
+      // The active tempo goes with the request: rating factors drive technique
+      // selection, and those move with tempo. Advice for a passage at 160 BPM
+      // is not necessarily the advice for it at 90.
+      const query = tempoBpm ? "?tempo=" + encodeURIComponent(tempoBpm) : "";
       const response = await fetch(
-        "/api/practice/" + encodeURIComponent(scoreKey) + "/" + encodeURIComponent(phraseId)
+        "/api/practice/" + encodeURIComponent(scoreKey) + "/" +
+          encodeURIComponent(phraseId) + query
       );
       if (mine !== token) return; // a newer selection has already won
       if (!response.ok) {

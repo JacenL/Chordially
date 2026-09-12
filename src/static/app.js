@@ -23,12 +23,14 @@ if (dataEl) {
 }
 
 function init(data) {
-  const practice = createPractice(SCORE_KEY);
+  const practice = createPractice(SCORE_KEY, metaEl ? JSON.parse(metaEl.textContent).tempo : null);
   const pane = document.getElementById("score-pane");
   const hoverCard = document.getElementById("hover-card");
   const measureEls = Array.from(document.querySelectorAll(".measure"));
   const phraseItems = Array.from(document.querySelectorAll(".phrase-item"));
-  const outlines = Array.from(document.querySelectorAll(".phrase-outline"));
+  const outlines = Array.from(
+    document.querySelectorAll(".phrase-outline, .trouble-outline")
+  );
 
   const measureById = new Map(measureEls.map((el) => [el.dataset.measureId, el]));
   const order = data.measureOrder.filter((id) => measureById.has(id));
@@ -38,9 +40,13 @@ function init(data) {
 
   // -------------------------------------------------------------- selection
 
+  // Most specific wins. A measure a hard spot is marked on selects that spot;
+  // every other measure selects its phrase. Either way the parent phrase stays
+  // in context, so nothing is lost by the more specific choice.
   function phraseOf(measureId) {
     const m = data.measures[measureId];
-    return m ? m.phraseId : null;
+    if (!m) return null;
+    return m.spotId || m.phraseId;
   }
 
   function selectMeasure(measureId, opts = {}) {
@@ -86,23 +92,42 @@ function init(data) {
     if (scroll) scrollIntoPane(el);
   }
 
+  // A trouble spot lives inside a phrase, and selecting it must not throw the
+  // phrase away -- "explore a local trouble spot without losing the parent
+  // phrase context" is the requirement. So selection carries both: the thing
+  // selected, and the phrase it belongs to. For a plain phrase they are equal.
+  function parentOf(id) {
+    const entry = id ? data.phrases[id] : null;
+    return entry && entry.parentId ? entry.parentId : id;
+  }
+
   function paint() {
+    const contextPhraseId = parentOf(selectedPhraseId);
+
     for (const el of measureEls) {
       const id = el.dataset.measureId;
       el.classList.toggle("is-selected", id === selectedMeasureId);
       el.classList.toggle(
         "in-selected-phrase",
-        selectedPhraseId != null && el.dataset.phraseId === selectedPhraseId && id !== selectedMeasureId
+        contextPhraseId != null && el.dataset.phraseId === contextPhraseId && id !== selectedMeasureId
       );
       if (id === selectedMeasureId) el.setAttribute("aria-current", "true");
       else el.removeAttribute("aria-current");
     }
     for (const el of outlines) {
-      el.classList.toggle("is-selected", el.dataset.phraseId === selectedPhraseId);
+      const id = el.dataset.phraseId;
+      // The parent stays outlined while a spot inside it is selected.
+      el.classList.toggle("is-selected", id === selectedPhraseId || id === contextPhraseId);
+      el.classList.toggle(
+        "is-context",
+        id === contextPhraseId && id !== selectedPhraseId
+      );
     }
     for (const el of phraseItems) {
-      const on = el.dataset.phraseId === selectedPhraseId;
+      const id = el.dataset.phraseId;
+      const on = id === selectedPhraseId;
       el.classList.toggle("is-selected", on);
+      el.classList.toggle("is-context", !on && id === contextPhraseId);
       el.setAttribute("aria-pressed", on ? "true" : "false");
     }
   }
@@ -134,10 +159,18 @@ function init(data) {
     if (!measure && !phrase) return;
 
     if (phrase) {
-      el("sel-title").textContent = phrase.label;
+      const parentId = phrase.parentId;
+      const parent = parentId ? data.phrases[parentId] : null;
+      show(el("sel-breadcrumb"), Boolean(parent));
+      if (parent) el("sel-breadcrumb").textContent = `${parent.label} ›`;
+
+      el("sel-title").textContent = parent ? "Hard spot" : phrase.label;
+      // Only name the selected measure when it adds something. On a one-measure
+      // trouble spot "measure 2 · measure 2 selected" is just noise.
+      const alreadyNamed = phrase.rangeText === `measure ${measure ? measure.label : ""}`;
       el("sel-range").textContent =
         phrase.rangeText +
-        (measure ? ` · measure ${measure.label} selected` : "");
+        (measure && !alreadyNamed ? ` · measure ${measure.label} selected` : "");
       show(el("sel-rating-row"), true);
       el("sel-score").textContent = phrase.isRated ? phrase.scoreText : "—";
       el("sel-category").textContent = phrase.isRated ? phrase.category : data.unratedLabel;
@@ -178,6 +211,7 @@ function init(data) {
       // An unreadable or never-attempted measure. It belongs to no phrase, and
       // saying which of those it is matters: one is a judgement about the
       // notation, the other is a judgement about us.
+      show(el("sel-breadcrumb"), false);
       el("sel-title").textContent = `Measure ${measure.label}`;
       el("sel-range").textContent = "Not part of an analyzed phrase.";
       show(el("sel-rating-row"), false);

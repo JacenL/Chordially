@@ -106,6 +106,18 @@
                   </div>
                 {% endfor %}
               {% endfor %}
+
+              {% for spot in view.trouble_spots %}
+                {% for style in spot.region_styles %}
+                  <div class="trouble-outline" style="{{ style }}"
+                       data-phrase-id="{{ spot.id }}"
+                       data-parent-id="{{ spot.parent_id }}">
+                    {% if loop.first %}
+                      <span class="trouble-chip">Hard spot <b>{{ spot.score_text }}</b></span>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% endfor %}
             </div>
 
             <div class="layer layer--ribbon" aria-hidden="true">
@@ -148,6 +160,7 @@
       <div class="sidebar-inner">
         <section class="panel panel--selection" id="selection-panel" aria-live="polite">
           <p class="panel-eyebrow">Selected passage</p>
+          <p class="breadcrumb" id="sel-breadcrumb" hidden></p>
           <h2 class="panel-title" id="sel-title">Nothing selected</h2>
           <p class="panel-range" id="sel-range">Click a measure, or pick a phrase below.</p>
 
@@ -213,6 +226,18 @@
                   <span class="phrase-item-score{% if not phrase.is_rated %} phrase-item-score--unrated{% endif %}">{{ phrase.score_text }}</span>
                 </button>
               </li>
+              {% for spot in view.trouble_spots if spot.parent_id == phrase.id %}
+                <li>
+                  <button type="button" class="phrase-item phrase-item--spot" data-phrase-id="{{ spot.id }}"
+                          aria-label="Hard spot inside {{ phrase.label }}, {{ spot.range_text }}, rated {{ spot.score_text }}">
+                    <span class="phrase-item-text">
+                      <span class="phrase-item-label">Hard spot</span>
+                      <span class="phrase-item-range">{{ spot.range_text }}</span>
+                    </span>
+                    <span class="phrase-item-score">{{ spot.score_text }}</span>
+                  </button>
+                </li>
+              {% endfor %}
             {% endfor %}
           </ul>
         </section>
@@ -239,7 +264,7 @@
     proficiency or validated examination grades.
   </footer>
 
-  <script id="score-meta" type="application/json">{{ {"scoreId": score_key} | tojson_safe }}</script>
+  <script id="score-meta" type="application/json">{{ {"scoreId": score_key, "tempo": tempo_bpm} | tojson_safe }}</script>
   <script id="score-data" type="application/json">{{ payload | tojson_safe }}</script>
   <script type="module" src="/static/app.js"></script>
 </body>

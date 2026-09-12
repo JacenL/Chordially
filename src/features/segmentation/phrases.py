@@ -193,3 +193,109 @@ def boundary_from_candidate(cand: Candidate | None, fallback: str) -> PhraseBoun
     return PhraseBoundary(
         evidence=cand.evidence, reason=cand.reason, confidence=round(confidence, 2)
     )
+
+
+# --------------------------------------------------------------------------
+# Trouble spots: the third level, inside a phrase
+# --------------------------------------------------------------------------
+
+# How far above its phrase's mean a measure must sit to count as a local
+# obstacle rather than part of a uniformly demanding phrase. Shared with the
+# practice coach so one number governs both what is marked and what is taught.
+LOCAL_PEAK_MARGIN = 0.8
+
+# A phrase needs an inside before something can be inside it. With two measures
+# there is no "local" -- the peak is simply half the phrase.
+MIN_PHRASE_MEASURES_FOR_SPOT = 3
+
+# A trouble spot is a short technical range, per the spec. Two measures is the
+# ceiling; beyond that it is the phrase that is hard, not a spot within it.
+MAX_SPOT_MEASURES = 2
+
+
+def find_trouble_spots(
+    score,
+    phrases: list,
+    measure_ratings: dict,
+) -> list:
+    """One trouble spot per phrase that genuinely has a local obstacle.
+
+    Not every phrase gets one, and that is the point. Marking a spot inside a
+    phrase whose measures are all equally demanding would be noise: it would
+    tell a player to isolate a passage that is not, locally, the problem.
+
+    Ratings drive this rather than notation features, deliberately. The question
+    "is this measure harder than its neighbours" is exactly what the rating
+    answers, and a spot must move when the tempo changes -- which it does,
+    because these are re-derived whenever ratings are.
+    """
+    from src.schemas.score import Anchor, Phrase, PhraseBoundary
+    from src.server.analysis.assemble import region_fragments
+
+    by_id = {m.id: m for m in score.measures}
+    spots: list = []
+
+    for phrase in phrases:
+        if phrase.level != "phrase":
+            continue
+
+        members = [by_id[mid] for mid in phrase.measure_ids if mid in by_id]
+        rated = [
+            (m, measure_ratings[m.id].score)
+            for m in members
+            if m.id in measure_ratings and measure_ratings[m.id].score is not None
+        ]
+        if len(rated) < MIN_PHRASE_MEASURES_FOR_SPOT:
+            continue
+
+        mean = sum(score_value for _, score_value in rated) / len(rated)
+        over = [m for m, value in rated if value - mean >= LOCAL_PEAK_MARGIN]
+        if not over:
+            continue
+
+        # Adjacent measures over the threshold belong to one spot; the rule is
+        # a short range, so take the strongest run and cap its length.
+        over_ordinals = {m.ordinal for m in over}
+        runs: list[list] = []
+        for measure in sorted(over, key=lambda m: m.ordinal):
+            if runs and measure.ordinal - runs[-1][-1].ordinal == 1:
+                runs[-1].append(measure)
+            else:
+                runs.append([measure])
+
+        def strength(run: list) -> float:
+            return max(measure_ratings[m.id].score or 0.0 for m in run)
+
+        best = max(runs, key=strength)[:MAX_SPOT_MEASURES]
+        del over_ordinals
+
+        first, last = best[0], best[-1]
+        reason = (
+            f"rated {strength(best):.1f} against {mean:.1f} across the phrase"
+        )
+        spots.append(
+            Phrase(
+                id=f"{phrase.id}:ts0",
+                label=f"Hard spot in {phrase.label}",
+                level="trouble_spot",
+                parent_id=phrase.id,
+                structural_start=Anchor(measure_id=first.id, note_index=0),
+                structural_end=Anchor(
+                    measure_id=last.id, note_index=max(0, len(last.note_ids) - 1)
+                ),
+                practice_start=Anchor(measure_id=first.id, note_index=0),
+                practice_end=Anchor(
+                    measure_id=last.id, note_index=max(0, len(last.note_ids) - 1)
+                ),
+                has_practice_overlap=False,
+                regions=region_fragments(best),
+                start_boundary=PhraseBoundary(
+                    evidence=[], reason=reason, confidence=0.5
+                ),
+                end_boundary=PhraseBoundary(
+                    evidence=[], reason=reason, confidence=0.5
+                ),
+                measure_ids=[m.id for m in best],
+            )
+        )
+    return spots

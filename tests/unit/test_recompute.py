@@ -45,14 +45,25 @@ def test_a_faster_tempo_never_lowers_a_rating(bundle):
 
 
 def test_phrase_ratings_follow_their_measures(bundle):
+    """Compared over phrases only: trouble spots legitimately differ by tempo."""
     slow = retune(bundle, 60.0)
     fast = retune(bundle, 160.0)
-    for pid, slow_rating in slow.phrase_difficulty.items():
-        fast_rating = fast.phrase_difficulty[pid]
+    phrase_ids = [p.id for p in slow.phrases if p.level == "phrase"]
+    assert phrase_ids
+
+    for pid in phrase_ids:
+        slow_rating, fast_rating = slow.phrase_difficulty[pid], fast.phrase_difficulty[pid]
         if slow_rating.score is None or fast_rating.score is None:
             assert slow_rating.score is None and fast_rating.score is None
             continue
         assert fast_rating.score >= slow_rating.score
+
+
+def test_phrase_set_is_stable_across_tempo(bundle):
+    """Tempo re-rates the music; it must not re-segment it."""
+    slow = {p.id for p in retune(bundle, 60.0).phrases if p.level == "phrase"}
+    fast = {p.id for p in retune(bundle, 160.0).phrases if p.level == "phrase"}
+    assert slow == fast
 
 
 def test_retuning_to_none_restores_the_assumed_tempo(bundle):

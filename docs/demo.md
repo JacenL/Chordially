@@ -108,6 +108,18 @@ Open **Sources**. Simon Fischer's article is cited with what it supports *and
 what it does not*: it is teacher pedagogy, not a controlled trial. Techniques
 PracticeMap chose on its own are badged "app heuristic" and say so.
 
+### 5b. Drill the hard spot inside it (25 seconds)
+Some phrases carry a dark box around one or two measures — a **hard spot**, the
+spec's third level below section and phrase. Click measure 14 inside Phrase 3.
+The sidebar shows a breadcrumb, "Phrase 3 › Hard spot", and Phrase 3 stays
+outlined on the score: you have gone one level in without losing where you are.
+The exercise re-targets to just those measures.
+
+Only three of the fifteen phrases have one, and that restraint is deliberate — a
+spot marked on every phrase would say nothing. They are also derived rather than
+stored, so they move with the tempo: set 160 BPM and one of them disappears,
+because once the whole phrase is demanding, that measure no longer stands out.
+
 ### 6. A contrasting passage (20 seconds)
 Select Phrase 8. It gets a different technique, because its measures could not
 all be read and there is no even run to pair. Nothing generic is substituted.

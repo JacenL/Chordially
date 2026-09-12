@@ -25,6 +25,7 @@ the server.
 from __future__ import annotations
 
 from src.features.difficulty.rubric import DEFAULT_TEMPO_BPM
+from src.features.segmentation.phrases import find_trouble_spots
 from src.schemas.analysis import AnalysisBundle
 from src.server.analysis.assemble import rate_phrases, rate_score
 
@@ -77,6 +78,14 @@ def retune(bundle: AnalysisBundle, tempo_bpm: float | None) -> AnalysisBundle:
         applied += 1
 
     fresh.measure_difficulty = rate_score(score)
+
+    # Trouble spots are derived, never stored. "Is this measure harder than its
+    # neighbours" is a question about ratings, and ratings move with tempo -- a
+    # spot saved at 90 BPM would be wrong the moment someone types 160. Rebuild
+    # them from whatever the ratings just became.
+    phrases = [p for p in fresh.phrases if p.level != "trouble_spot"]
+    spots = find_trouble_spots(score, phrases, fresh.measure_difficulty)
+    fresh.phrases = phrases + spots
     fresh.phrase_difficulty = rate_phrases(fresh.phrases, fresh.measure_difficulty)
     score.assumptions = _assumptions(tempo_bpm, applied, printed)
     return fresh

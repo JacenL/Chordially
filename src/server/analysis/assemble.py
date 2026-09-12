@@ -257,6 +257,32 @@ def rate_score(score: Score) -> dict[str, Difficulty]:
     return out
 
 
+def region_fragments(measures: list[Measure]) -> list[Region]:
+    """One rectangle per system the measures touch, never one box spanning several.
+
+    A span crossing a system break is not a rectangle. Modelling it as fragments
+    is what stops a phrase outline from swallowing the unrelated notation that
+    sits between its two ends on the page.
+    """
+    out: list[Region] = []
+    for sys_id in dict.fromkeys(m.system_id for m in measures):
+        in_sys = [m for m in measures if m.system_id == sys_id]
+        left = min(m.region.x for m in in_sys)
+        right = max(m.region.right for m in in_sys)
+        top = min(m.region.y for m in in_sys)
+        bottom = max(m.region.bottom for m in in_sys)
+        out.append(
+            Region(
+                page_index=in_sys[0].region.page_index,
+                x=left,
+                y=top,
+                w=max(1e-6, right - left),
+                h=max(1e-6, bottom - top),
+            )
+        )
+    return out
+
+
 def segment_score(score: Score) -> list[Phrase]:
     """Divide the score into phrases, then extend each into a practice range."""
     ordered = score.measures_in_order()
@@ -304,23 +330,7 @@ def segment_score(score: Score) -> list[Phrase]:
                 has_overlap = True
                 break
 
-        # One region fragment per system, never a single box spanning several.
-        regions: list[Region] = []
-        for sys_id in dict.fromkeys(m.system_id for m in members):
-            in_sys = [m for m in members if m.system_id == sys_id]
-            left = min(m.region.x for m in in_sys)
-            right = max(m.region.right for m in in_sys)
-            top = min(m.region.y for m in in_sys)
-            bottom = max(m.region.bottom for m in in_sys)
-            regions.append(
-                Region(
-                    page_index=in_sys[0].region.page_index,
-                    x=left,
-                    y=top,
-                    w=max(1e-6, right - left),
-                    h=max(1e-6, bottom - top),
-                )
-            )
+        regions = region_fragments(members)
 
         phrases.append(
             Phrase(
