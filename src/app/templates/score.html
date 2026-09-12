@@ -153,15 +153,17 @@
               {% endfor %}
             </div>
 
-            <div class="layer layer--ribbon" aria-hidden="true">
+            {# Multiply blending tints the paper without whitening dark notation.
+               Keep each measure's actual rating and existing section selection. #}
+            <div class="layer layer--difficulty" aria-hidden="true">
               {% for system in page.systems %}
-                {% for segment in system.segments %}
-                  <div class="ribbon-segment{% if not segment.is_rated %} ribbon-segment--unrated{% endif %}"
-                       style="{{ segment.style }}{% if segment.is_rated %};background:{{ segment.color }}{% endif %}"
-                       data-measure-id="{{ segment.measure_id }}"
-                       data-measure-ids="{{ segment.measure_ids | join(' ') }}"
-                       {% if segment.section_id %}data-section-id="{{ segment.section_id }}"{% endif %}
-                       title="{{ segment.aria_label }}"></div>
+                {% for measure in system.measures %}
+                  <div class="difficulty-highlight{% if not measure.is_rated %} difficulty-highlight--unrated{% endif %}"
+                       style="{{ measure.style }};--difficulty-color:{{ measure.color }}"
+                       data-measure-id="{{ measure.id }}"
+                       data-measure-ids="{{ measure.id }}"
+                       {% if measure.section_id %}data-section-id="{{ measure.section_id }}"{% endif %}
+                       title="{{ measure.aria_label }}"></div>
                 {% endfor %}
               {% endfor %}
             </div>
@@ -241,7 +243,7 @@
         </section>
 
         <section class="panel panel--practice" id="practice-panel">
-          <h3 class="panel-heading">How to practise this</h3>
+          <h3 class="panel-heading">How to practice this</h3>
           <p class="panel-note" id="practice-loading">Select a passage.</p>
 
           <div id="practice-body" hidden>
@@ -329,7 +331,7 @@
             {% endfor %}
           </ul>
           <p class="panel-note">
-            Unread measures are hatched on the ribbon and left unrated, even where
+            Unread measures have neutral hatching and left unrated, even where
             they fall inside a rated passage. They are not easy passages and they
             are not hard ones — they are unknown.
           </p>

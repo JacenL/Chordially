@@ -110,11 +110,11 @@ def test_page_and_overlays_render(page):
     # Bands are passages, so there are far fewer of them than measures, and
     # every measure is still accounted for by exactly one.
     measures = page.locator(".measure").count()
-    bands = page.locator(".ribbon-segment").count()
-    assert 0 < bands < measures / 2
+    bands = page.locator(".difficulty-highlight").count()
+    assert bands == measures
     covered = page.eval_on_selector_all(
-        ".ribbon-segment",
-        "els => els.flatMap(e => (e.dataset.measureIds || '').split(' ').filter(Boolean))",
+        ".difficulty-highlight",
+        "els => els.map(e => e.dataset.measureId)",
     )
     assert len(covered) == measures
     assert len(set(covered)) == measures
@@ -156,23 +156,27 @@ def test_overlays_hold_their_place_through_zoom(page):
     page.wait_for_timeout(120)
 
 
-def test_ribbon_segments_touch_in_the_rendered_page(page):
-    """Continuity as the browser actually lays it out, not just as computed."""
-    rows = page.evaluate(
-        """() => {
-            const bySystem = {};
-            for (const el of document.querySelectorAll('.ribbon-segment')) {
-                const box = el.getBoundingClientRect();
-                const key = Math.round(box.top);
-                (bySystem[key] ||= []).push([box.left, box.right]);
-            }
-            return Object.values(bySystem).map((row) => row.sort((a, b) => a[0] - b[0]));
-        }"""
-    )
-    assert len(rows) >= 10
-    for row in rows:
-        for (_, right), (left, _) in zip(row, row[1:]):
-            assert abs(left - right) < 1.0
+def test_highlights_preserve_notation_and_match_measure_regions(page):
+    for width in (1400, 820):
+        page.set_viewport_size({"width": width, "height": 900})
+        checks = page.evaluate("""() => {
+            const layer = getComputedStyle(document.querySelector('.layer--difficulty'));
+            return {
+                blend: layer.mixBlendMode,
+                opacity: Number(layer.opacity),
+                aligned: [...document.querySelectorAll('.difficulty-highlight')].every(el => {
+                    const target = document.getElementById('hit-' + el.dataset.measureId);
+                    const a = el.getBoundingClientRect(), b = target.getBoundingClientRect();
+                    return ['x', 'y', 'width', 'height'].every(k => Math.abs(a[k] - b[k]) < 1);
+                }),
+            };
+        }""")
+        assert checks['blend'] == 'multiply'
+        assert 0 < checks['opacity'] <= 0.2
+        assert checks['aligned']
+    assert page.locator('.ribbon-segment').count() == 0
+    assert page.locator('.section-chip:visible').count() == 0
+    page.set_viewport_size({"width": 1400, "height": 900})
 
 
 def test_clicking_a_measure_selects_its_whole_passage(page):

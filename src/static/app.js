@@ -38,7 +38,7 @@ function init(data) {
   const measureEls = Array.from(document.querySelectorAll(".measure"));
   const phraseItems = Array.from(document.querySelectorAll(".phrase-item"));
   const sectionEls = Array.from(document.querySelectorAll(".section-outline"));
-  const ribbonEls = Array.from(document.querySelectorAll(".ribbon-segment"));
+  const highlightEls = Array.from(document.querySelectorAll(".difficulty-highlight"));
   const outlines = Array.from(
     document.querySelectorAll(".phrase-outline, .trouble-outline")
   );
@@ -140,7 +140,7 @@ function init(data) {
       el.classList.toggle("is-selected", on);
       el.tabIndex = on ? 0 : -1;
     }
-    for (const el of ribbonEls) {
+    for (const el of highlightEls) {
       el.classList.toggle("is-selected", el.dataset.sectionId === sectionId);
     }
 
@@ -539,8 +539,7 @@ function init(data) {
     item.addEventListener("click", () => selectEntry(item.dataset.phraseId));
   }
 
-  // A section fragment is a click target in its own right, and so is the band
-  // of ribbon under it. Both select the same passage as the measures inside it.
+  // Section fragments select the same passage as their measure hit targets.
   for (const sectionEl of sectionEls) {
     sectionEl.addEventListener("click", () => selectEntry(sectionEl.dataset.sectionId));
     sectionEl.addEventListener("keydown", (event) => {
@@ -550,12 +549,6 @@ function init(data) {
       }
     });
   }
-  for (const segment of ribbonEls) {
-    if (!segment.dataset.sectionId) continue;
-    segment.style.pointerEvents = "auto";
-    segment.addEventListener("click", () => selectEntry(segment.dataset.sectionId));
-  }
-
   for (const outline of outlines) {
     outline.addEventListener("click", (event) => {
       event.stopPropagation();

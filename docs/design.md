@@ -1,5 +1,15 @@
 # PracticeMap — interface specification
 
+## F01 — current frontend display override (2026-09-12)
+The user's latest request supersedes the ribbon presentation below: show a faint
+full-measure difficulty highlight using each measure's existing rating. Use a
+multiply blend at 18% opacity so dark notation remains dark, with neutral
+hatching for unrated measures. Remove opaque section chips from the score;
+names and one-decimal ratings stay in the sidebar and hover details. Section
+selection, grouping, and difficulty calculations are unchanged. Use American
+English “practice” in application copy.
+
+
 ## Visual direction
 Build a focused music-study workspace: warm off-white background, dark readable typography, generous space, restrained controls, and crisp score rendering. Use color primarily to communicate difficulty and selection. The product is a score-centered practice tool, not a chat transcript or analytics dashboard.
 

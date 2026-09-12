@@ -906,3 +906,16 @@ None. C1 and C2 are confirmed on origin/practice-map-build.
   the top of the scale against real notation.
 - Demo pre-flight: `python -m pytest tests/e2e/test_demo_flow.py -m live -q`.
   Warm the transcription cache by running it once on the demo machine.
+
+
+## F01 — readable difficulty highlights and American English
+- Branch: `fix/frontend-score-highlights`, based on `1d55985`.
+- Scope: frontend templates, styles, selection wiring, displayed technique copy,
+  and relevant browser/integration checks. No recognition/rating/grouping changes.
+- Replaced opaque ribbon bars with multiply-blended, 18%-opacity measure fills;
+  removed overlapping section chips and duplicate hatching. Ratings and section
+  selection remain available through the existing sidebar and hover controls.
+- Validation: 20 real Chromium browser tests passed (viewer and landing page);
+  64 integration/practice tests passed, one live-provider test deselected.
+  `git diff --check` passed. No live recognition calls were made.
+- Delivery: ready to commit on the frontend branch; no shared-branch push or merge.

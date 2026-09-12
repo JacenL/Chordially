@@ -1139,3 +1139,28 @@ details.exercise-card {
 .phrase-item--spot .phrase-item-label { font-size: 12.5px; color: var(--ink-soft); }
 
 .panel-note--demand { color: var(--ink-soft); font-size: 13px; }
+
+/* F01: tint the paper across each measure instead of covering ledger notes
+   with a solid ribbon. Blend the whole layer with the original scan; applying
+   opacity to this decorative layer leaves controls and text fully readable. */
+.page { isolation: isolate; }
+.layer--difficulty {
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.18;
+}
+.difficulty-highlight {
+  position: absolute;
+  background: var(--difficulty-color);
+}
+.difficulty-highlight--unrated {
+  background: repeating-linear-gradient(
+    45deg, transparent 0 5px, var(--unrated) 5px 8px);
+}
+/* Ratings and names remain in the sidebar and hover card. Page chips can
+   overlap fingerings and ledger lines, even when placed above the staff. */
+.section-chip { display: none; }
+.section-outline:hover { background: transparent; }
+.section-outline.is-selected { box-shadow: none; }
+.measure:hover, .measure.is-selected { background: transparent; box-shadow: none; }
+.measure--unrated::after { display: none; }

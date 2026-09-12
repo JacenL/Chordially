@@ -145,7 +145,7 @@ def test_uploading_the_real_page_produces_a_real_analysis(client):
     assert job is not None and job["state"] == "done", job
     page = client.get(f"/score/{job['scoreId']}")
     assert page.status_code == 200
-    assert 'class="ribbon-segment' in page.text
+    assert 'class="difficulty-highlight' in page.text
     assert "Source" in page.text  # provenance disclosure is always present
 
 
@@ -236,5 +236,5 @@ def test_musicxml_reaches_a_rendered_score_through_http(client):
     page = client.get(f"/score/{job['scoreId']}")
     assert page.status_code == 200
     assert ".svg" in page.text, "the engraved page should be served as SVG"
-    assert 'class="ribbon-segment' in page.text
-    assert "ribbon-segment--unrated" not in page.text, "nothing should be hatched"
+    assert 'class="difficulty-highlight' in page.text
+    assert "difficulty-highlight--unrated" not in page.text, "nothing should be hatched"
