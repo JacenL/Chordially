@@ -808,3 +808,29 @@ details.exercise-card {
 
 #edit-note { color: #8A5A3A; }
 #reset-edits { color: var(--ink-faint); }
+
+/* ------------------------------------------------------- rubric disclosure */
+
+.rubric-details { margin-top: 10px; }
+.rubric-scale { margin: 8px 0; font-size: 12px; color: var(--ink-soft); }
+
+.rubric-weights { list-style: none; margin: 6px 0 0; padding: 0; }
+
+.rubric-weights li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  padding: 2px 0;
+}
+
+.rubric-weights .rubric-weight { font-variant-numeric: tabular-nums; color: var(--ink-faint); }
+
+/* The blind spots carry the same weight as the weights themselves. A rating
+   presented without them invites the reader to assume it covers more than it
+   does, which is the specific way a number like this misleads. */
+.rubric-blind { list-style: disc; margin: 6px 0 0; padding-left: 18px; font-size: 12px; color: var(--ink-soft); }
+.rubric-blind li { margin-bottom: 4px; }
+.rubric-review { margin-top: 10px; font-size: 12px; color: #8A5A3A; }
+.factor-weight-of { color: var(--ink-faint); font-size: 11px; }

@@ -239,12 +239,68 @@ function init(data) {
       const li = document.createElement("li");
       const label = document.createElement("span");
       label.textContent = factor.detail ? `${factor.label} — ${factor.detail}` : factor.label;
+
       const weight = document.createElement("span");
       weight.className = "factor-weight";
       weight.textContent = factor.contribution;
+      // A contribution with no scale is a number nobody can judge. Showing what
+      // it was drawn from turns "+0.8" into something a violinist can disagree
+      // with: a quarter of everything note rate could have contributed.
+      if (factor.weight) {
+        const scale = document.createElement("span");
+        scale.className = "factor-weight-of";
+        scale.textContent = ` of ${factor.weight}`;
+        weight.append(scale);
+      }
       li.append(label, weight);
       list.append(li);
     }
+  }
+
+  // The rubric is the same for the whole score, so it is rendered once.
+  function renderRubric() {
+    const rubric = data.rubric;
+    const body = el("rubric-body");
+    if (!rubric || !body) return;
+
+    body.replaceChildren();
+    body.append(para("rubric-scale", rubric.scale));
+    body.append(
+      para("source-line", `Rubric version ${rubric.version} · tempo used: ${rubric.tempo}`)
+    );
+
+    body.append(para("exercise-subheading", "Weights, in points of the 10"));
+    const weights = document.createElement("ul");
+    weights.className = "rubric-weights";
+    for (const entry of rubric.weights) {
+      const li = document.createElement("li");
+      const name = document.createElement("span");
+      name.textContent = entry.label;
+      const value = document.createElement("span");
+      value.className = "rubric-weight";
+      value.textContent = entry.weight;
+      li.append(name, value);
+      weights.append(li);
+    }
+    body.append(weights);
+
+    body.append(para("exercise-subheading", "What this rating cannot see"));
+    const blind = document.createElement("ul");
+    blind.className = "rubric-blind";
+    for (const item of rubric.blindSpots) {
+      const li = document.createElement("li");
+      li.textContent = item;
+      blind.append(li);
+    }
+    body.append(blind);
+    body.append(para("rubric-review", rubric.review));
+  }
+
+  function para(className, text) {
+    const node = document.createElement("p");
+    node.className = className;
+    node.textContent = text;
+    return node;
   }
 
   // ------------------------------------------------------------- hover card
@@ -385,6 +441,8 @@ function init(data) {
   }
 
   // ---------------------------------------------------------------- startup
+
+  renderRubric();
 
   if (data.defaultPhraseId) selectPhrase(data.defaultPhraseId, { focus: false });
   else if (order.length) setRovingTarget(order[0]);

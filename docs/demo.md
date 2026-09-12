@@ -79,6 +79,16 @@ measure inside it — and why: "Note rate +0.8, Fast subdivision +0.8, Off-beat
 placement +0.6", measured on the hardest measure rather than averaged across
 the phrase.
 
+Open **How this number was worked out**. This is the answer to the question a
+judge or a teacher will actually ask. It shows every weight in the rubric, the
+tempo the rating was computed from, and — given the same prominence — the seven
+things the rubric cannot see: bowing beyond what is printed, fingering, string
+choice, shifts, your hand, your level, and how it sounds. It also says outright
+that no violinist has reviewed the scale.
+
+The explanation is generated from the same constants that compute the ratings, so
+it cannot drift into describing a rubric the code no longer implements.
+
 Show the boundary panel. Each boundary carries a plain-language reason and an
 honest confidence: "The line settles downward onto the tonic — moderate evidence
 (0.37)". On continuous etude writing that confidence is often low, and it says

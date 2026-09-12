@@ -338,3 +338,59 @@ def test_example_legend_shows_every_category_including_unrated(example_view):
     labels = [entry["label"] for entry in example_view.legend]
     assert labels[-1] == UNRATED_LABEL
     assert len(labels) == 6
+
+
+# --------------------------------------------------------------------------
+# The rubric disclosure
+# --------------------------------------------------------------------------
+
+
+def test_rubric_disclosure_is_built_from_the_weights_that_rate(example_view):
+    """The explanation cannot drift from the code, because it reads from it."""
+    from src.features.difficulty.rubric import LABELS, WEIGHTS
+
+    rubric = example_view.rubric
+    assert {w["label"] for w in rubric["weights"]} == set(LABELS.values())
+    for entry in rubric["weights"]:
+        key = next(k for k, v in LABELS.items() if v == entry["label"])
+        assert entry["weight"] == f"{WEIGHTS[key]:.1f}"
+    assert f"{sum(WEIGHTS.values()):.1f}" in rubric["scale"]
+
+
+def test_rubric_names_what_it_cannot_see(example_view):
+    """A rating shown without its blind spots invites over-reading."""
+    blind = " ".join(example_view.rubric["blindSpots"]).lower()
+    for absent in ("fingering", "string", "shift", "bow", "hand"):
+        assert absent in blind
+
+
+def test_rubric_states_that_no_violinist_has_reviewed_it(example_view):
+    assert "no violinist has reviewed" in example_view.rubric["review"].lower()
+
+
+def test_every_factor_reports_the_weight_it_came_from(example_view):
+    from src.features.difficulty.rubric import WEIGHTS
+
+    seen = 0
+    for phrase in example_view.phrases:
+        for factor in phrase.factors:
+            assert factor.weight, factor.label
+            assert float(factor.weight) in WEIGHTS.values()
+            assert factor.share.endswith("%")
+            seen += 1
+    assert seen, "the example should expose some rating factors"
+
+
+def test_a_supplied_tempo_is_not_reported_back_as_an_assumption():
+    """`tempo_is_assumed` means the page prints none; it is not about the user."""
+    from src.server.analysis.recompute import retune
+
+    bundle = AnalysisBundle.load_path(EXAMPLE_PATH)
+    assumed = build_view(retune(bundle, None), supplied_tempo=None)
+    supplied = build_view(retune(bundle, 160.0), supplied_tempo=160.0)
+
+    assert "assumed" in assumed.rubric["tempo"]
+    assert "90" in assumed.rubric["tempo"]
+    assert "you supplied" in supplied.rubric["tempo"]
+    assert "160" in supplied.rubric["tempo"]
+    assert "assumed" not in supplied.rubric["tempo"]

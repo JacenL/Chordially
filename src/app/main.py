@@ -289,7 +289,7 @@ def _render_score(request: Request, bundle, score_key: str, tempo_raw, provenanc
     request that sets a tempo.
     """
     tempo_bpm = parse_tempo(tempo_raw)
-    view = build_view(retune(bundle, tempo_bpm))
+    view = build_view(retune(bundle, tempo_bpm), supplied_tempo=tempo_bpm)
     return TEMPLATES.TemplateResponse(
         request=request,
         name="score.html",

@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6, C8 and C9 delivered. C7's persistence half and
+Status: demo-ready. C1–C6 and C8–C10 delivered. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
@@ -425,6 +425,36 @@ was decoration. Rather than fight the z-order, selection now resolves to the
 marked on selects the spot, any other measure selects its phrase, and the parent
 stays in context either way. The outline stops claiming pointer events, so it
 cannot create a dead zone. Found by a browser test, not by reading the code.
+
+## C10 — Show the rubric at the point of use
+- [x] Complete
+- Dependencies: C2, C3, C8.
+- Why: every screen is organised around a 0.0–10.0 number, and a reader who
+  asked "why 6.8?" got three factor labels and a footer disclaimer. The rubric
+  cannot be validated in an afternoon, but it can be made arguable.
+- Acceptance: the full rubric is inspectable beside the rating it produced; the
+  explanation is generated from the constants that compute ratings, not written
+  by hand; what the rubric cannot see is stated as prominently as what it can.
+- Evidence: **212 tests pass**, 5 new.
+  - `rubric_explanation()` reads `WEIGHTS`, `LABELS`, `RUBRIC_VERSION` and the
+    curve from `src/features/difficulty/rubric.py`. A test asserts the disclosed
+    weights equal the weights actually used, so a hand-edited explanation cannot
+    drift from the code — the failure mode this design exists to prevent.
+  - Each factor now reports the weight it was drawn from: "Note rate +0.8 of
+    3.4" instead of "+0.8". A contribution with no scale is a number nobody can
+    judge.
+  - Seven blind spots listed by name — bowing beyond what is printed, fingering,
+    string choice, shifts, the player's hand, the player's level, and the sound
+    itself — each with why the rubric is silent about it.
+  - The disclosure states plainly that no violinist has reviewed the scale and
+    names the review packet.
+
+### One defect found while building it
+
+`tempo_is_assumed` means "the page prints no tempo", which stays true after the
+user supplies one. Reusing it for the disclosure reported a user's own 160 BPM
+back to them as an assumption. Supplied-ness is now passed explicitly through
+`build_view(..., supplied_tempo=...)`, and a test pins the distinction.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

@@ -36,6 +36,11 @@ from src.features.difficulty.colors import (
     format_score,
     legend,
 )
+from src.features.difficulty.rubric import (
+    DEFAULT_TEMPO_BPM,
+    WEIGHTS,
+    rubric_explanation,
+)
 from src.schemas.analysis import AnalysisBundle
 from src.schemas.geometry import Region
 from src.schemas.score import Difficulty, Measure, Phrase, Score
@@ -71,6 +76,10 @@ class FactorView:
     label: str
     contribution: str
     detail: str
+    # The weight this contribution was drawn from. "+0.8" alone is a number with
+    # no scale; "+0.8 of a possible 3.4" is something a reader can argue with.
+    weight: str
+    share: str
 
 
 @dataclasses.dataclass(frozen=True)
@@ -169,6 +178,7 @@ class ScoreView:
     unrated_label: str
     unrated_color: str
     default_phrase_id: str | None
+    rubric: dict
 
 
 def _anchor_key(score: Score, measure_id: str, note_index: int) -> tuple[int, int]:
@@ -200,7 +210,17 @@ def _factors(difficulty: Difficulty | None, limit: int | None = None) -> list[Fa
     if limit is not None:
         ordered = ordered[:limit]
     return [
-        FactorView(label=f.label, contribution=f"+{f.contribution:.1f}", detail=f.detail)
+        FactorView(
+            label=f.label,
+            contribution=f"+{f.contribution:.1f}",
+            detail=f.detail,
+            weight=f"{WEIGHTS.get(f.key, 0.0):.1f}",
+            share=(
+                f"{f.contribution / WEIGHTS[f.key] * 100:.0f}%"
+                if WEIGHTS.get(f.key)
+                else ""
+            ),
+        )
         for f in ordered
     ]
 
@@ -295,7 +315,7 @@ def _confidence_text(confidence: float) -> str:
     return f"weak evidence ({confidence:.2f})"
 
 
-def build_view(bundle: AnalysisBundle) -> ScoreView:
+def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> ScoreView:
     score = bundle.score
     phrases = [p for p in bundle.phrases if p.level == "phrase"]
     spots = [p for p in bundle.phrases if p.level == "trouble_spot"]
@@ -439,6 +459,17 @@ def build_view(bundle: AnalysisBundle) -> ScoreView:
         1 for d in bundle.measure_difficulty.values() if d.score is not None
     )
 
+    # The tempo the ratings on screen were actually computed from, read off the
+    # measures rather than guessed. `supplied_tempo` is a separate fact from
+    # `tempo_is_assumed`: the latter means "the page prints no tempo", which
+    # stays true even after the user supplies one, and conflating them would
+    # report a user's own 160 BPM back to them as an assumption.
+    analyzable = [m for m in score.measures if m.is_analyzable]
+    rating_tempo = supplied_tempo or next(
+        (m.tempo_bpm for m in analyzable if m.tempo_bpm), DEFAULT_TEMPO_BPM
+    )
+    tempo_is_assumed = supplied_tempo is None
+
     return ScoreView(
         score_id=score.id,
         title=score.title or "Untitled score",
@@ -454,12 +485,22 @@ def build_view(bundle: AnalysisBundle) -> ScoreView:
         rated_total=rated_total,
         unrated_label=UNRATED_LABEL,
         unrated_color=UNRATED_COLOR,
+        rubric=rubric_explanation(rating_tempo, tempo_is_assumed),
         default_phrase_id=phrase_views[0].id if phrase_views else None,
     )
 
 
 def _factor_payload(factors: list[FactorView]) -> list[dict]:
-    return [{"label": f.label, "contribution": f.contribution, "detail": f.detail} for f in factors]
+    return [
+        {
+            "label": f.label,
+            "contribution": f.contribution,
+            "detail": f.detail,
+            "weight": f.weight,
+            "share": f.share,
+        }
+        for f in factors
+    ]
 
 
 def client_payload(view: ScoreView) -> dict:
@@ -483,6 +524,7 @@ def client_payload(view: ScoreView) -> dict:
     }
     return {
         "scoreId": view.score_id,
+        "rubric": view.rubric,
         "defaultPhraseId": view.default_phrase_id,
         "unratedLabel": view.unrated_label,
         "measures": {

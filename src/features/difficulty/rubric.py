@@ -213,3 +213,60 @@ def aggregate_phrase(measure_scores: list[float | None]) -> tuple[float | None, 
     peak = max(rated)
     combined = PHRASE_MEAN_WEIGHT * mean + PHRASE_PEAK_WEIGHT * peak
     return round(combined, 1), round(peak, 1)
+
+
+# What the rubric demonstrably cannot see. Kept next to the weights because it
+# is the other half of the same claim: a rating built from these features is
+# silent about everything below, and a number presented without that context
+# invites the reader to assume it covers more than it does.
+#
+# Each entry names a thing a violinist would reasonably expect to affect
+# difficulty, and why this rubric has nothing to say about it.
+BLIND_SPOTS: list[str] = [
+    "Bowing beyond what is printed — slurs are read, but bow distribution, "
+    "retakes and the plan for the whole phrase are not.",
+    "Fingering. Printed digits are read where they appear; nothing is inferred, "
+    "because the notation does not establish a fingering.",
+    "String choice and string crossings, which follow from fingering rather "
+    "than from pitch alone.",
+    "Shifts. A wide interval is counted as a wide interval, never asserted to "
+    "be a position change.",
+    "Your hand, your instrument and your setup.",
+    "Your level. The rating describes what the passage demands, not whether it "
+    "is hard for you.",
+    "How the passage sounds. PracticeMap never hears you play.",
+]
+
+
+def rubric_explanation(tempo_bpm: float, tempo_is_assumed: bool) -> dict:
+    """The rubric, described from the constants that implement it.
+
+    Built here rather than written into a template on purpose: a hand-written
+    explanation of a rubric is a second implementation of it, and it would
+    eventually disagree with the first. Everything below is read from WEIGHTS,
+    LABELS and the curve actually used.
+    """
+    return {
+        "version": RUBRIC_VERSION,
+        "tempo": f"{tempo_bpm:.0f} BPM"
+        + (" (assumed — none is printed)" if tempo_is_assumed else " (you supplied this)"),
+        "scale": (
+            "Each feature below is measured from the printed notation, scaled to "
+            "0–1, and multiplied by its weight. The weights sum to "
+            f"{sum(WEIGHTS.values()):.1f}, more than 10, because the total is then "
+            "put through a curve that compresses near the top. That is what lets "
+            "several moderate demands accumulate the way they do in reality "
+            "without any single one reaching the top of the scale alone."
+        ),
+        "weights": [
+            {"key": key, "label": LABELS[key], "weight": f"{weight:.1f}"}
+            for key, weight in sorted(WEIGHTS.items(), key=lambda kv: -kv[1])
+        ],
+        "blindSpots": list(BLIND_SPOTS),
+        "review": (
+            "No violinist has reviewed this scale. The category labels and cut "
+            "points are PracticeMap's own choices, not a validated grading "
+            "system. fixtures/expected/review-phrases.md is the packet a teacher "
+            "would mark up."
+        ),
+    }
