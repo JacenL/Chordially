@@ -2,7 +2,7 @@
 
 This decides whether Audiveris replaces the vision model on the scan path. It
 changes no code path and writes nothing into the application: it reads an
-Audiveris MusicXML export and puts it through PracticeMap's own gate, so the two
+Audiveris MusicXML export and puts it through Chordially's own gate, so the two
 recognition routes are judged by the same standard.
 
 Prepare the export first. The unpacked Audiveris app-image needs no system Java
@@ -18,7 +18,7 @@ Then:
 
 What is measured, and why each number matters:
 
-* **Measure count against geometry.** PracticeMap maps notes onto the scan by
+* **Measure count against geometry.** Chordially maps notes onto the scan by
   measure, and `assemble.build_score` refuses to shift a mismatched chunk into
   place. If Audiveris and OpenCV disagree about how many measures the page has,
   every downstream overlay is suspect. This is the load-bearing number, exactly
@@ -84,7 +84,7 @@ def main() -> int:
     print(f"slurred notes             {slurred}")
     print()
 
-    print("--- PracticeMap's own gate: do the durations sum to the meter? ---")
+    print("--- Chordially's own gate: do the durations sum to the meter? ---")
     verdicts = Counter()
     failures: list[tuple[int, str, str]] = []
     for index, measure in enumerate(measures, start=1):

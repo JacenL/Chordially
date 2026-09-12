@@ -1,4 +1,4 @@
-"""PracticeMap web application.
+"""Chordially web application.
 
 Serves the whole product from one process: the score viewer, the upload
 endpoint, and the practice sidebar. Run it with
@@ -47,7 +47,7 @@ STATIC_DIR.mkdir(parents=True, exist_ok=True)
 # viewer needs the scan it is annotating and nothing else.
 PAGE_IMAGE_DIR = PROJECT_ROOT / "fixtures" / "pages"
 
-app = FastAPI(title="PracticeMap", docs_url=None, redoc_url=None)
+app = FastAPI(title="Chordially", docs_url=None, redoc_url=None)
 app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 if PAGE_IMAGE_DIR.exists():
     app.mount(

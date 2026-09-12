@@ -1,5 +1,5 @@
 {
-  "_comment": "Technique records. evidenceCategory says what backs each one: 'teacher pedagogy' and 'research-informed' cite a source that genuinely addresses the technique; 'app heuristic' means PracticeMap chose it and no source is claimed. Triggers are evaluated against features actually read from the notation -- never against a rating alone.",
+  "_comment": "Technique records. evidenceCategory says what backs each one: 'teacher pedagogy' and 'research-informed' cite a source that genuinely addresses the technique; 'app heuristic' means Chordially chose it and no source is claimed. Triggers are evaluated against features actually read from the notation -- never against a rating alone.",
   "techniques": [
     {
       "id": "rhythm-pairs",
@@ -58,7 +58,7 @@
       "successCriteria": "You can start the passage from any beat and place the following note correctly without restarting the count.",
       "returnToContext": "Play the phrase from its beginning so the passage is re-entered in tempo rather than from a standing start.",
       "cautions": [
-        "PracticeMap chose this technique; no source here establishes it."
+        "Chordially chose this technique; no source here establishes it."
       ]
     },
     {
@@ -84,7 +84,7 @@
       "successCriteria": "The chosen element holds at your normal pace, not only at the slow one.",
       "returnToContext": "Return to the written tempo and articulation and play the phrase whole.",
       "cautions": [
-        "S03 supports having a purpose for slow practice and notes that slow and fast playing can differ. It does not establish a starting tempo or an increment; those numbers are PracticeMap's."
+        "S03 supports having a purpose for slow practice and notes that slow and fast playing can differ. It does not establish a starting tempo or an increment; those numbers are Chordially's."
       ]
     },
     {
@@ -111,7 +111,7 @@
       "successCriteria": "You can enter and leave the measure without a change of pace on either side.",
       "returnToContext": "Play the phrase from the beginning, through the hard measure, into the next phrase's first note.",
       "cautions": [
-        "PracticeMap chose this technique from the ratings; no source here establishes it."
+        "Chordially chose this technique from the ratings; no source here establishes it."
       ]
     },
     {
@@ -138,7 +138,7 @@
       "successCriteria": "The join sounds like one continuous line, and you can start it from the phrase's last bar.",
       "returnToContext": "This exercise is the return to context.",
       "cautions": [
-        "S02 gives limited support for revisiting rather than massing repetitions, in a small study of clarinettists. The overlap rule itself is PracticeMap's."
+        "S02 gives limited support for revisiting rather than massing repetitions, in a small study of clarinettists. The overlap rule itself is Chordially's."
       ]
     }
   ]

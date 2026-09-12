@@ -338,6 +338,6 @@ def build_guidance(bundle: AnalysisBundle, phrase_id: str) -> Guidance:
             ""
             if primary
             else "The notation read here does not support a specific technique. "
-            "Rather than recommending something generic, PracticeMap is saying so."
+            "Rather than recommending something generic, Chordially is saying so."
         ),
     )

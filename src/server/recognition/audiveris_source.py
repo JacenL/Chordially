@@ -154,7 +154,7 @@ def transcribe(data: bytes, filename: str) -> bytes:
             detail = _tail(completed.stderr) or _tail(completed.stdout)
             raise AudiverisUnavailable(
                 "Audiveris read that file but produced no notation.",
-                "PracticeMap reads clear printed notation. Check the page is "
+                "Chordially reads clear printed notation. Check the page is "
                 "upright, in focus and not handwritten, then try again."
                 + (f" Audiveris reported: {detail}" if detail else ""),
             )

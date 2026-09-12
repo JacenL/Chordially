@@ -1,4 +1,4 @@
-Debug the issue described below in PracticeMap. Read CLAUDE.md, the current checklist, and the relevant architecture/product requirements first.
+Debug the issue described below in Chordially. Read CLAUDE.md, the current checklist, and the relevant architecture/product requirements first.
 
 Issue:
 [Paste what you did, what happened, what you expected, and any available error output.]

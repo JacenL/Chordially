@@ -1,6 +1,6 @@
 """Does the rubric agree with an editor who graded this music by hand?
 
-PracticeMap's 0.0-10.0 scale is its own invention. Nothing in this repository
+Chordially's 0.0-10.0 scale is its own invention. Nothing in this repository
 validates it, and no violinist has reviewed it. But the fixture page happens to
 carry an external reference: Wohlfahrt's Op. 45 studies are printed in
 increasing order of difficulty, and this page contains Etude 2 and Etude 3. So

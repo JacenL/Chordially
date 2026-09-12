@@ -1,4 +1,4 @@
-# PracticeMap — research and technique foundation
+# Chordially — research and technique foundation
 
 ## Evidence policy
 Use primary music-practice research and identifiable violin teachers' own materials. Distinguish experimental findings, qualitative reports, teacher pedagogy, and app heuristics. Summarize in original language and link sources. Do not manufacture citations or imply that a source validates the app's numeric difficulty scale.

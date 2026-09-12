@@ -580,7 +580,7 @@ BLIND_SPOTS: list[str] = [
     "Your hand, your instrument and your setup.",
     "Your level. The rating describes what the passage demands, not whether it "
     "is hard for you.",
-    "How the passage sounds. PracticeMap never hears you play.",
+    "How the passage sounds. Chordially never hears you play.",
 ]
 
 
@@ -623,7 +623,7 @@ def rubric_explanation(tempo_bpm: float, tempo_is_assumed: bool) -> dict:
         "blindSpots": list(BLIND_SPOTS),
         "review": (
             "No violinist has reviewed this scale. The category labels and cut "
-            "points are PracticeMap's own choices, not a validated grading "
+            "points are Chordially's own choices, not a validated grading "
             "system. fixtures/expected/review-phrases.md is the packet a teacher "
             "would mark up."
         ),

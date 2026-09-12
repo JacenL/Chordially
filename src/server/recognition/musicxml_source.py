@@ -384,7 +384,7 @@ def _view_box(root) -> tuple[float, float]:
                 return float(parts[2]), float(parts[3])
     raise MusicXmlRejected(
         "The engraved page had no coordinate system.",
-        "This is a fault in PracticeMap rather than in your file.",
+        "This is a fault in Chordially rather than in your file.",
     )
 
 

@@ -9,7 +9,7 @@ fields; nothing here is precious.
 Source: `wohlfahrt-p3`, 61 measures, 15 phrases,
 from a real scan of Wohlfahrt Op. 45 Book 1.
 
-## What PracticeMap claims, and what it does not
+## What Chordially claims, and what it does not
 
 **Claims:** that these numbers describe what each passage *demands*, read
 from the printed notation, under a stated tempo, and that they are a

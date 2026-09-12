@@ -167,7 +167,7 @@ def write_review(name, score, measure_ratings, phrases, phrase_ratings, analysis
     a(f"Source: `{name}`, {len(score.measures)} measures, {len(phrases)} phrases,")
     a("from a real scan of Wohlfahrt Op. 45 Book 1.")
     a("")
-    a("## What PracticeMap claims, and what it does not")
+    a("## What Chordially claims, and what it does not")
     a("")
     a("**Claims:** that these numbers describe what each passage *demands*, read")
     a("from the printed notation, under a stated tempo, and that they are a")

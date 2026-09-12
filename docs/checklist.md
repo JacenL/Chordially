@@ -1,4 +1,4 @@
-# PracticeMap — authoritative delivery checklist
+# Chordially — authoritative delivery checklist
 
 Status: demo-ready. C1–C6 and C8–C20 delivered, plus B1, B2a and B2b — all
 merged into practice-map-build. Scan recognition runs locally through Audiveris
@@ -1080,7 +1080,7 @@ never a silent fall back to a provider.
   fix, and it was out of budget.
 - **Setup is no longer one pip install for the scan path.** Audiveris is a Java
   app. `README.md` now states the MSI unpack command and the three places
-  PracticeMap looks for the binary.
+  Chordially looks for the binary.
 
 #### B3 — Stop implying pitch was verified
 - [ ] Not started. Dependencies: none; strengthened by B2b.

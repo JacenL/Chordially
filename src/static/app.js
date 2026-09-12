@@ -1,4 +1,4 @@
-/* PracticeMap viewer.
+/* Chordially viewer.
  *
  * This module does selection, keyboard navigation and sidebar text. It does no
  * coordinate arithmetic: every overlay was positioned in percentages by the

@@ -1,4 +1,4 @@
-Plan the PracticeMap application in this repository using Claude Opus 5 in Plan Mode.
+Plan the Chordially application in this repository using Claude Opus 5 in Plan Mode.
 
 Read CLAUDE.md and all files under docs/ before forming the plan. They contain the actual product requirements, design, musical evidence, engineering constraints, and task checklist. Inspect the existing repository and available environment.
 
