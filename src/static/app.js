@@ -72,6 +72,7 @@ function init(data) {
     selectedMeasureId = first || null;
     paint();
     renderSidebar();
+    revealSelectionPanel();
     if (first) {
       scrollIntoPane(measureById.get(first));
       if (opts.focus) focusMeasure(first, false);
@@ -132,6 +133,20 @@ function init(data) {
       el.classList.toggle("is-selected", on);
       el.classList.toggle("is-context", !on && id === contextPhraseId);
       el.setAttribute("aria-pressed", on ? "true" : "false");
+    }
+  }
+
+  // Selecting from the phrase list, which sits far down the sidebar, used to
+  // leave the rating and factors scrolled off the top. The selection is the
+  // thing just asked for, so it is what should be on screen.
+  function revealSelectionPanel() {
+    const panel = el("selection-panel");
+    const sidebar = document.getElementById("sidebar");
+    if (!panel || !sidebar) return;
+    const panelBox = panel.getBoundingClientRect();
+    const sidebarBox = sidebar.getBoundingClientRect();
+    if (panelBox.top < sidebarBox.top) {
+      sidebar.scrollTop += panelBox.top - sidebarBox.top;
     }
   }
 
@@ -441,6 +456,18 @@ function init(data) {
   }
 
   // ---------------------------------------------------------------- startup
+
+  const noticesToggle = document.getElementById("notices-toggle");
+  if (noticesToggle) {
+    noticesToggle.addEventListener("click", () => {
+      const notices = document.getElementById("notices");
+      const collapsed = notices.classList.toggle("is-collapsed");
+      noticesToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      document.getElementById("notices-toggle-label").textContent = collapsed
+        ? "Show notes about this score"
+        : "Hide notes about this score";
+    });
+  }
 
   renderRubric();
 

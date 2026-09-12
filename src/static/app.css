@@ -148,7 +148,16 @@ html, body {
   padding: 16px 20px;
 }
 
-.score-column { flex: 1 1 auto; min-width: 0; }
+/* A column that owns the viewport height, so the pane below the toolbar takes
+   whatever the notices are not using. The previous fixed cap meant collapsing
+   them changed nothing -- the pane was already at its ceiling. */
+.score-column {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 32px);
+}
 
 .sidebar {
   flex: 0 0 var(--sidebar-width);
@@ -163,9 +172,9 @@ html, body {
 
 .toolbar {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 18px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
   padding: 10px 12px;
   border: 1px solid var(--rule);
   border-radius: var(--radius);
@@ -173,13 +182,22 @@ html, body {
   margin-bottom: 12px;
 }
 
+/* Controls on one row, the six-item legend on its own. Together they wrapped
+   into an unreadable block below about 1200px. */
+.toolbar-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; }
 .toolbar-group { display: flex; align-items: center; gap: 6px; }
 .toolbar-label { font-size: 13px; color: var(--ink-soft); }
 .zoom-value { font-variant-numeric: tabular-nums; font-size: 13px; min-width: 46px; text-align: center; }
 
 .switch { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-soft); cursor: pointer; }
 
-.legend { flex: 1 1 auto; flex-wrap: wrap; gap: 4px 12px; justify-content: flex-end; }
+.legend {
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  justify-content: flex-start;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+}
 .legend-item { display: inline-flex; align-items: center; gap: 6px; }
 
 .legend-swatch {
@@ -231,7 +249,8 @@ html, body {
   background: var(--paper-raised);
   padding: 12px;
   overflow: auto;
-  max-height: calc(100vh - 150px);
+  flex: 1 1 auto;
+  min-height: 240px;
 }
 
 /* The page is the positioning context for every overlay. Overlays are placed
@@ -358,7 +377,8 @@ html, body {
   line-height: 15px;
   color: var(--ink-soft);
   white-space: nowrap;
-  opacity: 0.72;
+  opacity: 0.5;
+  transition: opacity 90ms linear;
 }
 
 .phrase-outline:hover .phrase-chip,
@@ -499,7 +519,8 @@ html, body {
     max-height: none;
   }
   .legend { justify-content: flex-start; }
-  .score-pane { max-height: 70vh; }
+  .score-column { max-height: none; }
+  .score-pane { max-height: 70vh; flex: 0 1 auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -714,11 +735,15 @@ details.exercise-card {
 }
 
 /* Top-right, not bottom: the bottom of the box is where the ribbon runs, and a
-   chip there covers the colour it is describing. */
+   chip there covers the colour it is describing. Hidden until wanted, for the
+   same reason the phrase chips are held back -- a dense page can carry thirty of
+   these, and thirty labels over the notation is not information. */
 .trouble-chip {
   position: absolute;
   right: 3px;
   top: 3px;
+  opacity: 0;
+  transition: opacity 90ms linear;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -729,12 +754,14 @@ details.exercise-card {
   font-size: 10px;
   line-height: 15px;
   white-space: nowrap;
-  opacity: 0.85;
 }
 
 .trouble-chip b { font-variant-numeric: tabular-nums; }
-.trouble-outline:hover .trouble-chip,
-.trouble-outline.is-selected .trouble-chip { opacity: 1; }
+
+/* The outline itself never disappears -- the hard spot stays visible as a
+   region; only its label waits to be asked for. */
+.trouble-outline.is-selected .trouble-chip,
+.measure:hover ~ .layer .trouble-chip { opacity: 1; }
 
 /* The parent phrase while a spot inside it is selected: still clearly present,
    but not competing with the thing actually selected. */
@@ -834,3 +861,38 @@ details.exercise-card {
 .rubric-blind li { margin-bottom: 4px; }
 .rubric-review { margin-top: 10px; font-size: 12px; color: #8A5A3A; }
 .factor-weight-of { color: var(--ink-faint); font-size: 11px; }
+
+/* A chip is legible when its own phrase is selected or hovered, and when the
+   pointer is anywhere in the score and not on another phrase. */
+.phrase-outline:hover .phrase-chip,
+.phrase-outline.is-selected .phrase-chip,
+.phrase-outline.is-context .phrase-chip {
+  opacity: 1;
+  background: var(--paper-raised);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* --------------------------------------------------------- reclaimed space */
+
+/* Notices are important on first read and pure furniture afterwards. Collapsing
+   them hands roughly 120px back to the score, which on a laptop is a whole
+   system. */
+.notices-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--paper-raised);
+  font: inherit;
+  font-size: 12px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.notices-toggle:hover { background: #F2EDE3; }
+.notices-count { font-variant-numeric: tabular-nums; color: var(--ink-faint); }
+.notices.is-collapsed { display: none; }
+

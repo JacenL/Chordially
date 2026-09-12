@@ -19,6 +19,7 @@
   <div class="workspace">
     <div class="score-column">
       <div class="toolbar" role="toolbar" aria-label="Score view controls">
+        <div class="toolbar-controls">
         <div class="toolbar-group">
           <span class="toolbar-label" id="zoom-label">Zoom</span>
           <button type="button" class="button button--quiet" data-zoom="out" aria-label="Zoom out">−</button>
@@ -51,6 +52,8 @@
           </label>
         </div>
 
+        </div>
+
         <div class="toolbar-group legend" role="group" aria-label="Difficulty legend">
           {% for entry in view.legend %}
             <span class="legend-item">
@@ -63,7 +66,12 @@
       </div>
 
       {% if view.assumptions or view.warnings or provenance %}
-        <div class="notices">
+        <button type="button" class="notices-toggle" id="notices-toggle"
+                aria-expanded="true" aria-controls="notices">
+          <span id="notices-toggle-label">Hide notes about this score</span>
+          <span class="notices-count">{{ view.assumptions | length + view.warnings | length + (1 if provenance else 0) }}</span>
+        </button>
+        <div class="notices" id="notices">
           {% if provenance %}
             <p class="notice notice--provenance">
               <span class="notice-tag">Source</span>{{ provenance.sentence() }}
@@ -210,8 +218,9 @@
             <dt>Practice range</dt><dd id="sel-practice"></dd>
           </dl>
           <p class="panel-note">
-            Boundaries are inferred from the notation and can be wrong. Editing them
-            arrives with phrase editing.
+            Boundaries are inferred from the notation and can be wrong — the
+            confidence above says how thin the evidence was. Use Split or Merge
+            at the top of this panel to correct one.
           </p>
         </section>
 

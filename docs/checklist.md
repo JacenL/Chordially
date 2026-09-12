@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C12 delivered. C7's persistence half and
+Status: demo-ready. C1–C6 and C8–C13 delivered. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
@@ -564,6 +564,34 @@ ordered within each system — the same property the ribbon depends on.
    Passing `None` there left every measure without a meter and therefore without
    a rating. The importer now supplies the signature in force at each system's
    first measure, and a test asserts every system carries one.
+
+## C13 — Interface polish
+- [x] Complete
+- Dependencies: C12.
+- Scope: five specific problems observed in rendered screenshots, not a redesign.
+- Evidence: **244 tests pass**; verified in Chromium at 1440, 1100 and 820px with
+  no horizontal overflow at any width and no JavaScript errors.
+
+1. **The toolbar was unreadable below ~1200px.** Zoom, tempo, the phrase toggle
+   and a six-item legend shared one wrapping row. The legend now has its own row
+   under the controls.
+2. **Labels buried the notation they described.** The Mozart page carries 35
+   phrases and ~30 hard spots; at 0.72 opacity that is 65 chips over the music.
+   Hard-spot chips are now hidden until their spot is selected — the outline
+   still shows the region — and phrase chips sit at 0.5 until hovered or
+   selected. A stale `opacity: 0.85` further down the file was overriding the
+   intended hidden state and is gone.
+3. **Collapsing the notices gained nothing.** `.score-pane` had a fixed
+   `max-height: calc(100vh - 150px)`, so it was already at its ceiling no matter
+   what sat above it. The score column now owns the viewport height and the pane
+   takes what is left: collapsing the notices hands back **180px**, about a whole
+   system on a laptop.
+4. **The rating scrolled out of view.** Selecting a phrase from the bottom of the
+   sidebar list left the rating and factors above the fold. The selection panel
+   is now brought back into view.
+5. **Stale copy contradicting a shipped feature.** The boundary panel still read
+   "Editing them arrives with phrase editing" — directly above the Split and
+   Merge controls delivered in C5. It now points at them.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same
