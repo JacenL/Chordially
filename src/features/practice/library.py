@@ -19,7 +19,7 @@ CONTENT_DIR = Path(__file__).resolve().parent.parent.parent / "content"
 
 EvidenceCategory = Literal[
     "teacher pedagogy", "research-informed", "small experimental study",
-    "qualitative questionnaire research", "app heuristic",
+    "qualitative questionnaire research", "observational study", "app heuristic",
 ]
 
 

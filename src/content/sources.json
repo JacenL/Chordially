@@ -30,6 +30,86 @@
       "evidenceCategory": "qualitative questionnaire research",
       "supports": "Framing slow practice around a specific purpose, and acknowledging that slow and fast execution can differ.",
       "doesNotSupport": "A universally optimal starting tempo or increment. PracticeMap's tempo numbers are app defaults."
+    },
+    {
+      "id": "S04",
+      "title": "Classical shifts (Basics)",
+      "author": "Simon Fischer",
+      "publication": "The Strad, July 2000",
+      "url": "https://www.simonfischeronline.com/uploads/5/7/7/9/57796211/109classical_shifts.pdf",
+      "evidenceCategory": "teacher pedagogy",
+      "supports": "Rehearsing a shift through its intermediate note: the old finger slides to the new position before the new finger drops, then the slide is hidden.",
+      "doesNotSupport": "Which finger a given passage should use; that depends on the edition and the player."
+    },
+    {
+      "id": "S05",
+      "title": "Principles of Violin Playing and Teaching",
+      "author": "Ivan Galamian",
+      "publication": "Prentice-Hall, 1962 (Dover reprint)",
+      "url": "https://archive.org/details/principlesofviol0000gala",
+      "evidenceCategory": "teacher pedagogy",
+      "supports": "Dividing the bow into equal parts for a slurred group; shifting on the old finger; practising with the tempo raised in steps only after control is secure.",
+      "doesNotSupport": "Any measured learning-rate claim."
+    },
+    {
+      "id": "S06",
+      "title": "Splitting the double stop (Basics)",
+      "author": "Simon Fischer",
+      "publication": "The Strad, February 2001",
+      "url": "https://www.simonfischeronline.com/basics-series.html",
+      "evidenceCategory": "teacher pedagogy",
+      "supports": "Practising each voice of a double stop alone with the full bow contact, then tuning the lower voice to the upper before recombining.",
+      "doesNotSupport": "Fingerings for a particular double-stop passage."
+    },
+    {
+      "id": "S07",
+      "title": "String crossing: staying close (Basics)",
+      "author": "Simon Fischer",
+      "publication": "The Strad, September 2002",
+      "url": "https://www.simonfischeronline.com/basics-series.html",
+      "evidenceCategory": "teacher pedagogy",
+      "supports": "Keeping the bow at the level between two strings during repeated crossings and rehearsing the crossing on open strings first.",
+      "doesNotSupport": "Which string a note should be played on when the part does not say."
+    },
+    {
+      "id": "S08",
+      "title": "Backward versus forward chaining in the acquisition of a keyboard skill",
+      "author": "David W. Ash and Dennis H. Holding",
+      "publication": "Human Factors 32(2):139-146, 1990. doi:10.1177/001872089003200202",
+      "url": "https://doi.org/10.1177/001872089003200202",
+      "evidenceCategory": "small experimental study",
+      "supports": "Learning a short sequence by adding one segment at a time (chaining) beat practising the whole sequence at once; forward chaining was slightly better than backward.",
+      "doesNotSupport": "Results for violin, for long passages, or for experienced players; the task was a short keyboard sequence with novices."
+    },
+    {
+      "id": "S09",
+      "title": "It's not how much; it's how: characteristics of practice behavior and retention of performance skills",
+      "author": "Robert A. Duke, Amy L. Simmons and Carla Davis Cash",
+      "publication": "Journal of Research in Music Education 56(4):310-321, 2009. doi:10.1177/0022429408328851",
+      "url": "https://doi.org/10.1177/0022429408328851",
+      "evidenceCategory": "observational study",
+      "supports": "The best-retained performances came from practice in which errors were located precisely, corrected immediately, and the corrected spot was repeated until it was stable; total practice time did not predict the ranking.",
+      "doesNotSupport": "A causal claim: 17 pianists were observed on one passage, nobody was assigned a strategy."
+    },
+    {
+      "id": "S10",
+      "title": "Mental practice promotes motor anticipation: evidence from skilled music performance",
+      "author": "Nicolo F. Bernardi, Alexander Schories, Hans-Christian Jabusch, Barbara Colombo and Eckart Altenmuller",
+      "publication": "Frontiers in Human Neuroscience 7:451, 2013. doi:10.3389/fnhum.2013.00451",
+      "url": "https://doi.org/10.3389/fnhum.2013.00451",
+      "evidenceCategory": "small experimental study",
+      "supports": "Mentally rehearsing a passage (hearing it and imagining the movements, without playing) improved accuracy and anticipatory movement in skilled pianists, though less than physical practice did.",
+      "doesNotSupport": "That mental practice replaces playing, or results for violinists."
+    },
+    {
+      "id": "S11",
+      "title": "Intonation: testing, relating, comparing (Basics)",
+      "author": "Simon Fischer",
+      "publication": "The Strad, December 2000",
+      "url": "https://www.simonfischeronline.com/basics-series.html",
+      "evidenceCategory": "teacher pedagogy",
+      "supports": "Checking stopped notes against open strings and their harmonics, and tuning by relation to a stable neighbouring note rather than in isolation.",
+      "doesNotSupport": "An exact intonation system; players choose between equal, just and expressive tuning by context."
     }
   ]
 }

@@ -5,9 +5,13 @@
       "id": "rhythm-pairs",
       "title": "Complementary rhythms",
       "evidenceCategory": "teacher pedagogy",
-      "sourceIds": ["S01"],
+      "sourceIds": [
+        "S01"
+      ],
       "fits": "A run of equal-duration notes, where the difficulty is coordination between consecutive notes rather than any single one.",
-      "triggerFeatures": ["even_run"],
+      "triggerFeatures": [
+        "even_run"
+      ],
       "exclusions": [
         "ties across the run",
         "rests inside the run",
@@ -41,8 +45,13 @@
       "evidenceCategory": "app heuristic",
       "sourceIds": [],
       "fits": "Mixed note values or off-beat placement, where the demand is knowing where the beat is rather than moving the fingers fast.",
-      "triggerFeatures": ["mixed_values", "syncopation"],
-      "exclusions": ["tuplets against the prevailing subdivision"],
+      "triggerFeatures": [
+        "mixed_values",
+        "syncopation"
+      ],
+      "exclusions": [
+        "tuplets against the prevailing subdivision"
+      ],
       "steps": [
         "Find the smallest note value in the passage and say it out loud, evenly, without the instrument.",
         "Keep saying it and add the written rhythm by tapping, so the fast pulse continues underneath the long notes.",
@@ -65,9 +74,15 @@
       "id": "slow-with-goal",
       "title": "Slow practice with one stated goal",
       "evidenceCategory": "research-informed",
-      "sourceIds": ["S03"],
+      "sourceIds": [
+        "S03"
+      ],
       "fits": "A passage carrying several demands at once, where playing it slowly without deciding what to listen for tends to rehearse everything vaguely.",
-      "triggerFeatures": ["dense", "accidentals", "wide_intervals"],
+      "triggerFeatures": [
+        "dense",
+        "accidentals",
+        "wide_intervals"
+      ],
       "exclusions": [],
       "steps": [
         "Choose one thing to listen for, and only one. On this passage the first candidate is named above.",
@@ -93,7 +108,9 @@
       "evidenceCategory": "app heuristic",
       "sourceIds": [],
       "fits": "One measure clearly harder than its neighbours, where the trouble is usually getting into and out of it rather than the measure itself.",
-      "triggerFeatures": ["local_peak"],
+      "triggerFeatures": [
+        "local_peak"
+      ],
       "exclusions": [],
       "steps": [
         "Take the last note before the hard measure and the first two notes inside it. That is the whole exercise.",
@@ -118,10 +135,16 @@
       "id": "reconnect-overlap",
       "title": "Play the join into the next idea",
       "evidenceCategory": "app heuristic",
-      "sourceIds": ["S02"],
+      "sourceIds": [
+        "S02"
+      ],
       "fits": "Any phrase that has a following phrase. Practicing a phrase to its last note teaches an ending the music does not have.",
-      "triggerFeatures": ["has_next_phrase"],
-      "exclusions": ["the final phrase, which has nothing to carry into"],
+      "triggerFeatures": [
+        "has_next_phrase"
+      ],
+      "exclusions": [
+        "the final phrase, which has nothing to carry into"
+      ],
       "steps": [
         "Play the phrase written, and continue through the first note of the next phrase before stopping.",
         "Notice what the join requires: a bow change, a string crossing, a hand that must already be somewhere else.",
@@ -139,6 +162,273 @@
       "returnToContext": "This exercise is the return to context.",
       "cautions": [
         "S02 gives limited support for revisiting rather than massing repetitions, in a small study of clarinettists. The overlap rule itself is PracticeMap's."
+      ]
+    },
+    {
+      "id": "shift-preparation",
+      "title": "Shift through the intermediate note",
+      "evidenceCategory": "teacher pedagogy",
+      "sourceIds": [
+        "S04",
+        "S05"
+      ],
+      "fits": "A passage whose pitch range cannot be covered from one hand position, so the hand must relocate at least once.",
+      "triggerFeatures": [
+        "position_changes"
+      ],
+      "exclusions": [
+        "passages that stay within one hand position",
+        "open-string-only lines"
+      ],
+      "steps": [
+        "Find the note before each relocation and the note after it. Decide which finger is on the string when the hand moves; this is your travelling finger.",
+        "Play the note before the shift, then slide that same finger to where it lands in the new position and hold that intermediate note audibly. Only then drop the new finger.",
+        "Repeat the slide with the intermediate note shorter each time until it is a ghost you can feel but the listener cannot hear.",
+        "Play the two notes around the shift as a pair, then the whole bar, keeping the hand loose during the move.",
+        "Play the phrase written; the shift should now arrive without a search."
+      ],
+      "listeningGoals": [
+        "The intermediate note lands exactly in tune before the new finger drops",
+        "No squeeze of the thumb during the slide",
+        "The bow keeps its speed through the shift so the sound does not thin",
+        "The arrival note is in tune on the first attempt, not adjusted after"
+      ],
+      "tempoRule": "Slow enough that the intermediate note can be heard and checked. Speed comes when the hand knows the distance.",
+      "successCriteria": "Three arrivals in a row land in tune without adjustment, at a tempo one step below the written one.",
+      "returnToContext": "Play from the start of the phrase through the shift and on into the next bar so the shift is rehearsed in motion, not from standstill.",
+      "cautions": [
+        "PracticeMap estimates hand positions from pitch range alone; no fingering is printed, so your edition's fingering decides where the shift really is.",
+        "This is a practice transformation: the audible slide is removed before performance."
+      ]
+    },
+    {
+      "id": "double-stop-split",
+      "title": "Split the double stop",
+      "evidenceCategory": "teacher pedagogy",
+      "sourceIds": [
+        "S06",
+        "S11"
+      ],
+      "fits": "A passage with double stops, where two voices must be tuned and bowed together.",
+      "triggerFeatures": [
+        "double_stops"
+      ],
+      "exclusions": [
+        "single-line passages"
+      ],
+      "steps": [
+        "Play only the upper voice of each double stop, in rhythm, with the bow on both strings but the lower finger lifted.",
+        "Play only the lower voice the same way, keeping the upper finger in place on its string, silent.",
+        "Play the upper voice and tune the lower to it: place the lower finger, listen for the interval to settle, then move on.",
+        "Play the double stops written, slowly, listening to the interval rather than to either note.",
+        "Play the phrase written."
+      ],
+      "listeningGoals": [
+        "Each voice alone is in tune before they are combined",
+        "Both strings speak at the same instant",
+        "The bow weight is shared so neither string is crushed",
+        "Thirds and sixths ring without a beating sound"
+      ],
+      "tempoRule": "Tempo is irrelevant until each voice is in tune alone; then return towards the written tempo in steps.",
+      "successCriteria": "The interval sounds still, without beating, on the first placement in three attempts.",
+      "returnToContext": "Play the bar before, the double stops, and the bar after, so the hand shape is found from the preceding position.",
+      "cautions": [
+        "Interval hardness is estimated from written pitches; PracticeMap does not know which strings you use."
+      ]
+    },
+    {
+      "id": "crossing-open-strings",
+      "title": "String crossings on open strings first",
+      "evidenceCategory": "teacher pedagogy",
+      "sourceIds": [
+        "S07"
+      ],
+      "fits": "A passage that moves between strings often, where the bow arm's level changes are the demand rather than the fingers.",
+      "triggerFeatures": [
+        "string_crossings"
+      ],
+      "exclusions": [
+        "passages that stay on one string"
+      ],
+      "steps": [
+        "Play the passage's rhythm on open strings only, crossing between the strings the notes would use, with no left hand.",
+        "Find the bow level that sits between the two strings involved and keep the arm there; let the wrist and fingers make the small change.",
+        "Add the left hand for one bar, keeping the bow arm's movement as small as it was on open strings.",
+        "Play the phrase written."
+      ],
+      "listeningGoals": [
+        "The crossing is silent: no scratch from the bow catching the neighbouring string",
+        "The tone matches on both strings",
+        "Skipped strings are crossed with one arm movement, not two"
+      ],
+      "tempoRule": "Open-string version at the written tempo is the target; fingered version starts slower.",
+      "successCriteria": "The open-string rhythm is clean at the written tempo and the fingered version at one step below.",
+      "returnToContext": "Play the phrase written, then once more with the following phrase attached.",
+      "cautions": [
+        "Which string a note is on is estimated from pitch (lowest workable position); your fingering may cross more or less."
+      ]
+    },
+    {
+      "id": "bow-division",
+      "title": "Divide the bow for the slur",
+      "evidenceCategory": "teacher pedagogy",
+      "sourceIds": [
+        "S05"
+      ],
+      "fits": "Long slurs or many notes under one bow, where running out of bow forces the tone to thin or the tempo to drift.",
+      "triggerFeatures": [
+        "bow_demand"
+      ],
+      "exclusions": [
+        "passages with separate bows throughout"
+      ],
+      "steps": [
+        "Count the notes under the longest slur and divide the bow into that many equal parts; mark the halfway point mentally.",
+        "Play the slur on one open string, in rhythm, watching that the halfway point arrives at the middle note.",
+        "Add the written notes, keeping the same division.",
+        "Play the phrase written, checking the bow does not run out before the last slurred note."
+      ],
+      "listeningGoals": [
+        "Even tone from the first to the last note of the slur",
+        "No acceleration towards the end of the bow",
+        "The bow change after the slur is not louder than the notes before it"
+      ],
+      "tempoRule": "At the written tempo the bow speed is fixed by the slur length, so practise at the written tempo with less bow rather than slower with more.",
+      "successCriteria": "The slur uses the whole bow evenly with the same tone at both ends.",
+      "returnToContext": "Play the phrase written, with the dynamics.",
+      "cautions": [
+        "Bow demand is estimated from slur length and note count; bowings are often editorial."
+      ]
+    },
+    {
+      "id": "add-a-note",
+      "title": "Add a note at a time",
+      "evidenceCategory": "small experimental study",
+      "sourceIds": [
+        "S08",
+        "S05"
+      ],
+      "fits": "A dense, fast passage where playing the whole thing repeatedly is not making it more secure.",
+      "triggerFeatures": [
+        "dense"
+      ],
+      "exclusions": [
+        "passages already secure at tempo"
+      ],
+      "steps": [
+        "Play the first two notes of the passage at the written tempo, stop, and check they were clean.",
+        "Add the third note. Then the fourth. Each time, start from the beginning of the group.",
+        "When a new note breaks the group, stay at that length until it is clean three times in a row, then continue.",
+        "When the whole group is built, play it twice more, then the whole phrase."
+      ],
+      "listeningGoals": [
+        "Every added note is as clean as the one before it",
+        "The tempo does not sag as the group grows",
+        "The stop after each attempt is a real stop, used to judge"
+      ],
+      "tempoRule": "Written tempo (or close to it) from the first pair. The chunk is short enough that speed is not the limit.",
+      "successCriteria": "The full group at tempo, three times in a row, without a slip.",
+      "returnToContext": "Play the phrase written, then from the previous phrase into this one.",
+      "cautions": [
+        "The evidence is a small keyboard study with novices; it suggests the method, it does not prove it for violin."
+      ]
+    },
+    {
+      "id": "stop-and-fix",
+      "title": "Stop at the error and fix it before going on",
+      "evidenceCategory": "observational study",
+      "sourceIds": [
+        "S09"
+      ],
+      "fits": "A passage where several demands stack up, so mistakes are likely and a mistake in the run-through tends to be glossed over.",
+      "triggerFeatures": [
+        "multiple_demands",
+        "local_peak"
+      ],
+      "exclusions": [
+        "passages already clean in the run-through"
+      ],
+      "steps": [
+        "Play the passage once at a comfortable tempo. The moment something goes wrong, stop, and name exactly what: which note, which hand, what kind of miss.",
+        "Play only the two or three notes around the miss until they are right.",
+        "Widen to the bar, then to the phrase. If the same spot fails again, go back to the two or three notes.",
+        "Only when the run-through is clean does the tempo move up one step."
+      ],
+      "listeningGoals": [
+        "The exact note where things go wrong, not just the bar",
+        "Whether the miss is pitch, rhythm, or bow",
+        "That the fix survives being put back in context"
+      ],
+      "tempoRule": "Raise the tempo only after a clean run at the current one.",
+      "successCriteria": "A clean run-through of the phrase at the target tempo, with no spot passed over.",
+      "returnToContext": "Play the phrase, then the phrase before and after it, at the same tempo.",
+      "cautions": [
+        "Duke and colleagues observed pianists, not violinists, and did not assign strategies, so this is a strong pattern, not a proven cause."
+      ]
+    },
+    {
+      "id": "mental-run",
+      "title": "Hear it before you play it",
+      "evidenceCategory": "small experimental study",
+      "sourceIds": [
+        "S10"
+      ],
+      "fits": "A passage that combines several demands at once, where the hands need a clear model of what comes next.",
+      "triggerFeatures": [
+        "multiple_demands"
+      ],
+      "exclusions": [
+        "passages you can already sing from memory"
+      ],
+      "steps": [
+        "Read the passage without the instrument and hear each pitch and rhythm in your head, at a slow tempo.",
+        "Read it again, this time imagining the finger and bow movements as you hear each note.",
+        "Play it once, slowly. Notice which notes you did not anticipate: those are the spots to practise physically.",
+        "Alternate one mental pass with one played pass until the played pass matches what you heard."
+      ],
+      "listeningGoals": [
+        "Whether the inner hearing is precise or only approximate",
+        "Which notes arrive as a surprise when played",
+        "Whether the rhythm imagined matches the rhythm played"
+      ],
+      "tempoRule": "Mental passes can be at any tempo; played passes start slow.",
+      "successCriteria": "The played pass contains no note you had not already heard coming.",
+      "returnToContext": "Play the phrase written, then the whole section.",
+      "cautions": [
+        "The evidence is for skilled pianists and mental practice was less effective than playing; use it alongside, not instead of, physical practice."
+      ]
+    },
+    {
+      "id": "open-string-reference",
+      "title": "Tune against the open strings",
+      "evidenceCategory": "teacher pedagogy",
+      "sourceIds": [
+        "S11"
+      ],
+      "fits": "A passage with many accidentals or in a remote key, where the ear has few familiar landmarks.",
+      "triggerFeatures": [
+        "accidentals",
+        "key_remote"
+      ],
+      "exclusions": [
+        "passages in first position in an open-string key"
+      ],
+      "steps": [
+        "Find every note in the passage that is an open string or its octave and play it against the open string until it rings.",
+        "For each accidental, find the nearest of these landmark notes and play the pair slowly: landmark, accidental, landmark.",
+        "Play the passage slowly, stopping on each accidental to check it against its landmark.",
+        "Play the phrase written."
+      ],
+      "listeningGoals": [
+        "Octaves with the open strings ring without beating",
+        "The accidental is tuned in relation to a neighbour, not in isolation",
+        "Sharps and flats are not systematically high or low"
+      ],
+      "tempoRule": "Slow enough to hear each checked note ring; then the written tempo.",
+      "successCriteria": "The accidentals are in tune on the first placement in a slow run and hold at tempo.",
+      "returnToContext": "Play the phrase written and the following phrase, since the key often changes back.",
+      "cautions": [
+        "Which notes are accidentals depends on the printed key signature; a transcription error would mislead this."
       ]
     }
   ]

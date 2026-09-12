@@ -99,16 +99,53 @@ def _phrase_notes(bundle: AnalysisBundle, phrase: Phrase) -> list[NoteEvent]:
     return events
 
 
-def _factor_strength(bundle: AnalysisBundle, measure_id: str | None, key: str) -> float:
-    if not measure_id:
-        return 0.0
-    difficulty = bundle.measure_rating(measure_id)
-    if difficulty is None:
-        return 0.0
-    for factor in difficulty.factors:
-        if factor.key == key:
-            return factor.contribution
-    return 0.0
+def _factor_strength(bundle: AnalysisBundle, measure_ids: list[str], key: str) -> float:
+    """Strongest contribution of one rubric factor across the phrase's measures.
+
+    The peak measure alone would hide a demand that sits in a different bar
+    (double stops in bar 2, a shift in bar 3): the phrase gets the technique
+    for whichever bar shows it most clearly.
+    """
+    best = 0.0
+    for measure_id in measure_ids:
+        difficulty = bundle.measure_rating(measure_id)
+        if difficulty is None:
+            continue
+        for factor in difficulty.factors:
+            if factor.key == key:
+                best = max(best, factor.contribution)
+    return best
+
+
+# Rubric factor key -> coach trigger name. Contributions are on the rubric's
+# 0-10 scale; a trigger fires at FACTOR_TRIGGER.
+_FACTOR_TRIGGERS = {
+    "syncopation": "syncopation",
+    "note_rate": "dense",
+    "chromatic": "accidentals",
+    "leaps": "wide_intervals",
+    "double_stops": "double_stops",
+    "string_crossings": "string_crossings",
+    "position_changes": "position_changes",
+    "bow_demand": "bow_demand",
+    "key_remoteness": "key_remote",
+}
+
+_TRIGGER_TEXT = {
+    "syncopation": "notes land off the beat",
+    "dense": "the note rate is high for the assumed tempo",
+    "accidentals": "printed accidentals take the line outside the key",
+    "wide_intervals": "the line moves by wide intervals",
+    "double_stops": "double stops are written",
+    "string_crossings": "the line changes string often (estimated from pitch)",
+    "position_changes": "the pitch range needs more than one hand position (estimated)",
+    "bow_demand": "long slurs or many notes share one bow",
+    "key_remote": "the key signature is remote from the open strings",
+}
+
+# How many distinct demands must reach FACTOR_TRIGGER before a passage counts
+# as stacking several at once.
+MULTIPLE_DEMANDS_MIN = 2
 
 
 def _features(bundle: AnalysisBundle, phrase: Phrase) -> dict[str, float]:
@@ -116,7 +153,6 @@ def _features(bundle: AnalysisBundle, phrase: Phrase) -> dict[str, float]:
     notes = _phrase_notes(bundle, phrase)
     sounded = [n for n in notes if not n.is_rest]
     difficulty = bundle.phrase_rating(phrase.id)
-    peak_id = difficulty.peak_target_id if difficulty else None
 
     run_start, run_len = rhythm.longest_even_run(notes)
     durations = {n.duration for n in sounded}
@@ -129,14 +165,19 @@ def _features(bundle: AnalysisBundle, phrase: Phrase) -> dict[str, float]:
     mean = sum(rated) / len(rated) if rated else 0.0
     peak = difficulty.peak if difficulty and difficulty.peak is not None else 0.0
 
+    measure_ids = list(phrase.measure_ids)
+    factors = {
+        trigger: _factor_strength(bundle, measure_ids, key)
+        for key, trigger in _FACTOR_TRIGGERS.items()
+    }
+    demands = sum(1 for v in factors.values() if v >= FACTOR_TRIGGER)
+
     return {
         "even_run": float(run_len) if run_len >= rhythm.MIN_RUN else 0.0,
         "even_run_start": float(run_start),
         "mixed_values": 1.0 if len(durations) > 1 else 0.0,
-        "syncopation": _factor_strength(bundle, peak_id, "syncopation"),
-        "dense": _factor_strength(bundle, peak_id, "note_rate"),
-        "accidentals": _factor_strength(bundle, peak_id, "chromatic"),
-        "wide_intervals": _factor_strength(bundle, peak_id, "leaps"),
+        **factors,
+        "multiple_demands": float(demands),
         "local_peak": max(0.0, peak - mean),
         "has_next_phrase": 1.0 if phrase.has_practice_overlap else 0.0,
     }
@@ -155,15 +196,10 @@ def _fires(technique: Technique, features: dict[str, float]) -> tuple[bool, str]
             reasons.append("one measure is clearly harder than the rest of the phrase")
         elif trigger == "has_next_phrase" and value > 0:
             reasons.append("a following phrase exists to carry into")
-        elif trigger in ("syncopation", "dense", "accidentals", "wide_intervals") and value >= FACTOR_TRIGGER:
-            reasons.append(
-                {
-                    "syncopation": "notes land off the beat",
-                    "dense": "the note rate is high for the assumed tempo",
-                    "accidentals": "printed accidentals take the line outside the key",
-                    "wide_intervals": "the line moves by wide intervals",
-                }[trigger]
-            )
+        elif trigger == "multiple_demands" and value >= MULTIPLE_DEMANDS_MIN:
+            reasons.append(f"{int(value)} separate demands reach the trigger level in this phrase")
+        elif trigger in _TRIGGER_TEXT and value >= FACTOR_TRIGGER:
+            reasons.append(_TRIGGER_TEXT[trigger])
     return bool(reasons), "; ".join(reasons)
 
 
@@ -304,11 +340,22 @@ def build_guidance(bundle: AnalysisBundle, phrase_id: str) -> Guidance:
         # Rank by how specifically the passage called for it: a rhythm variation
         # built from printed notes outranks generic advice, and an isolated hard
         # measure outranks a whole-phrase observation.
+        # Techniques aimed at a specific notated demand rank by that demand's
+        # rubric contribution, so a phrase full of double stops leads with the
+        # double-stop exercise rather than with generic advice.
         weight = {
             "rhythm-pairs": 4.0 + features["even_run"] / 10.0,
-            "transition-loop": 3.0 + features["local_peak"],
+            "double-stop-split": 3.5 + features["double_stops"],
+            "shift-preparation": 3.2 + features["position_changes"],
+            "crossing-open-strings": 3.0 + features["string_crossings"],
+            "transition-loop": 2.6 + features["local_peak"],
+            "bow-division": 2.8 + features["bow_demand"],
+            "open-string-reference": 2.5 + max(features["accidentals"], features["key_remote"]),
             "subdivision": 2.0 + features["syncopation"],
+            "stop-and-fix": 1.8 + 0.3 * features["multiple_demands"],
+            "add-a-note": 1.5 + features["dense"],
             "slow-with-goal": 1.0 + features["dense"],
+            "mental-run": 0.8 + 0.2 * features["multiple_demands"],
             "reconnect-overlap": 0.5,
         }.get(technique.id, 0.0)
         candidates.append((weight, view))
