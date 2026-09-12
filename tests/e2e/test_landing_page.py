@@ -113,16 +113,20 @@ def test_the_technical_detail_is_folded_away_but_present(page):
 
 
 def test_the_data_handling_disclosure_is_still_reachable(page):
-    """Sending a scan to a provider has to be stated somewhere a user can find."""
+    """Where an upload goes has to be stated somewhere a user can find.
+
+    Since B2b the answer is "nowhere", which is a stronger claim than the old
+    one and so needs saying at least as plainly.
+    """
     summaries = page.eval_on_selector_all(
         ".detail summary", "els => els.map(e => e.textContent.trim())"
     )
     index = next(i for i, text in enumerate(summaries) if "your file" in text.lower())
     page.locator(".detail summary").nth(index).click()
     body = page.locator(".detail").nth(index).locator(".detail-body").inner_text()
-    assert "Anthropic" in body
-    assert "not stored" in body
-    assert "never leaves this machine" in body
+    assert "leaves this machine" in body
+    assert "sent to any service" in body
+    assert "not stored" in body or "discards everything" in body
 
 
 def test_supported_formats_are_visible_without_opening_anything(page):
@@ -178,6 +182,9 @@ def test_the_page_works_at_phone_width(page):
     assert page.errors == [], page.errors  # type: ignore[attr-defined]
 
 
-def test_the_credential_status_is_stated(page):
-    status = page.locator(".status").inner_text()
-    assert "credentials" in status.lower()
+def test_where_recognition_runs_is_stated(page):
+    """It used to say whether credentials were configured. There are none now,
+    and saying so is the honest replacement rather than dropping the line."""
+    status = page.locator(".status").inner_text().lower()
+    assert "this machine" in status
+    assert "no api key" in status

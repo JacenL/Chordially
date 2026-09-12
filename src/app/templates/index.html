@@ -90,10 +90,12 @@
           </p>
           <p class="note">
             MusicXML is the more reliable path: the notes are read from the file
-            itself, so no measure is left for review. A scan is read by a
-            transcription service and some measures will come back unreadable.
-            Those are marked as unknown rather than guessed at, and they are never
-            shown as easy.
+            itself, so no measure is left for review. A scan is recognized on
+            this machine by Audiveris and some measures will come back
+            unreadable. Those are marked as unknown rather than guessed at, and
+            they are never shown as easy. A recognized scan is redrawn from what
+            was read, so the page you see is engraved notation rather than your
+            original image.
           </p>
         </div>
       </details>
@@ -102,13 +104,10 @@
         <summary>What happens to your file</summary>
         <div class="detail-body">
           <p class="note">
-            <b>A scan</b> is sent to Anthropic to be transcribed. The page image
-            is not stored beyond this session, and your analysis lives in this
+            <b>Nothing you upload leaves this machine.</b> A scan is recognized
+            locally by Audiveris and MusicXML is parsed locally, so no file and
+            no page image is sent to any service. Your analysis lives in this
             server's memory only — restarting it discards everything.
-          </p>
-          <p class="note">
-            <b>MusicXML</b> never leaves this machine. It is parsed and engraved
-            locally, and nothing is sent anywhere.
           </p>
           <p class="note">
             No account, no sign-in, nothing kept. Practice choices you make are
@@ -139,14 +138,8 @@
     </section>
 
     <p class="status">
-      {% if live_recognition %}
-        Recognition credentials are configured on this instance, so scans and
-        MusicXML can both be analyzed.
-      {% else %}
-        Recognition credentials are not configured on this instance, so scans
-        cannot be transcribed. MusicXML import and the prepared example both
-        work without them.
-      {% endif %}
+      Notation is recognized on this machine by Audiveris. No account, no API
+      key and no network call is involved in analyzing a page.
     </p>
   </main>
 

@@ -1,9 +1,11 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C19 delivered. C20 split the remaining work
-into a backend track (B1–B6) and a frontend track (F1–F5). B1 and B2a are done
-on their own branches; the rest are unstarted. All three segmentation levels the
-spec requires are implemented. C7's persistence half is now B5.
+Status: demo-ready. C1–C6 and C8–C20 delivered, plus B1, B2a and B2b — all
+merged into practice-map-build. Scan recognition runs locally through Audiveris
+and no path calls a provider. C20 split the remaining work into a backend track
+(B1–B6) and a frontend track (F1–F5); B3–B6 and F1–F5 are unstarted. All three
+segmentation levels the spec requires are implemented. C7's persistence half is
+now B5.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
@@ -1035,6 +1037,51 @@ old `.empty-state` block in `src/static/app.css`.
   calls; and with Audiveris absent the upload fails with a named recovery action
   rather than a traceback.
 
+#### B2b — Audiveris is the scan path
+- [x] Complete. Dependencies: B2a. Merged into `practice-map-build`.
+- Evidence: **342 tests pass**, 5 new. End to end on
+  `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf` through the browser: **15.7s**,
+  56 measures, **51 rated** against 32 of 61 on the cached vision run, nine
+  practice passages, ratings 0.0–4.2, zero provider calls, no JavaScript errors.
+
+**B2a's blocking finding was routed around rather than solved.** Audiveris
+reports 56 measures where `cv_geometry` reports 61, one missing in each of
+systems 1, 4, 5, 7 and 8, so an index join would misalign five of eleven
+systems. Sending the export through `load_musicxml` instead removes the
+disagreement: that path takes its geometry from the Verovio engraving of the
+same MusicXML the notes came from, so notes and measure boxes are two readings
+of one document rather than two documents needing reconciliation. The adapter is
+therefore about eighty lines — run the program, hand back the bytes — and B2b
+needed no new segmentation, no new geometry and no change to `assemble`.
+
+**The cost, disclosed rather than hidden.** The page shown for an uploaded scan
+is a re-engraving, not the user's image. The provenance notice says so in those
+words. `Provenance` gained a third state, `from_local_omr`, kept distinct from
+`from_file`: "read directly from the MusicXML file" would be a false claim about
+a page that was *recognized*, and recognition can be wrong in ways reading a file
+cannot. A test asserts the two sentences never merge.
+
+The committed example still renders over its original scan, so the
+annotated-scan visual is intact; the two routes are visibly different and both
+are labelled.
+
+**Not deleted, just not default.** The vision path stays reachable through
+`PRACTICEMAP_SCAN_ENGINE=vision`. A missing Audiveris raises
+`AudiverisUnavailable`, which carries a message and a recovery action and is
+handled alongside `UploadRejected` in the job runner — never a traceback, and
+never a silent fall back to a provider.
+
+### Two costs carried forward, not fixed
+- **The key signature at the Etude 2/3 seam.** Audiveris's exporter drops it.
+  Systems 0–6 export `key_fifths: None`, which `build_score` handles correctly by
+  carrying the last known key forward; system 8 exports an explicit `0` in the
+  middle of a one-sharp etude, which makes F# read as a printed accidental there
+  and nudges those ratings up. Reading the key from the `.omr` instead is the
+  fix, and it was out of budget.
+- **Setup is no longer one pip install for the scan path.** Audiveris is a Java
+  app. `README.md` now states the MSI unpack command and the three places
+  PracticeMap looks for the binary.
+
 #### B3 — Stop implying pitch was verified
 - [ ] Not started. Dependencies: none; strengthened by B2b.
 - Problem: `validate_measure` checks two things — every note inside the violin's
@@ -1150,7 +1197,15 @@ Yours: `src/schemas/`, `src/features/`, `src/server/`, `src/config.py`,
 **Do not edit** `src/static/` or `src/app/templates/` or `tests/e2e/` — that is
 F1–F5 and someone else's branch. A conflict there means a task strayed.
 
-### Branch state — nothing is merged
+### Branch state — B1, B2a and B2b are merged
+As of this session the user authorised merging and it is done.
+`practice-map-build` now contains the B1 ribbon fix, the B2a spike and the
+B2b Audiveris scan path; `main` is still untouched at 95f7ceb. The three
+task branches remain on the remote as history. Anything below this line that
+still says nothing is merged describes the state before it.
+
+#### The state it replaced
+
 | Branch | Head | Contains |
 |---|---|---|
 | `practice-map-build` | `750eba5` | integration branch; demo from this |

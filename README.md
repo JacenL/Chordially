@@ -13,9 +13,9 @@ pip install -r requirements-dev.txt
 python -m uvicorn src.app.main:app --reload
 ```
 
-Open http://127.0.0.1:8000. The example score at `/score/example` works with no
-credentials at all. Analyzing your own upload needs
-`PRACTICEMAP_ANTHROPIC_API_KEY` in `.env` (copy `.env.example`).
+Open http://127.0.0.1:8000. Nothing needs an API key: MusicXML is parsed
+locally and a scanned page is recognized locally by Audiveris. See
+**Reading scans** below for the one extra install that needs.
 
 `docs/demo.md` is the demo script, with measured timings and an honest list of
 limitations. `docs/checklist.md` is the delivery status.
@@ -23,14 +23,16 @@ limitations. `docs/checklist.md` is the delivery status.
 ## What works
 
 - Upload a PDF, PNG or JPEG of one printed page and analyze that actual file.
-  Measured on the demo page: 11 systems, 61 measures, 15 phrases grouped into
-  5 practice passages, 32 of 61 measures rated.
+  Audiveris recognizes it on this machine — no API key, no network call, no
+  credit balance, and the same page gives the same answer every time. Measured
+  on the demo page: 14.8s, 56 measures, 51 rated, nine practice passages. The
+  page shown is re-engraved from what was read, which the source line says.
 - Or import MusicXML (`.musicxml`, `.xml`, `.mxl`), which is read exactly from
-  the file — engraved with Verovio, no transcription service, and no measure left
+  the file — engraved with Verovio, no recognition step, and no measure left
   unrated. Measured on Mozart K.156: 145 of 145 measures rated.
-- OpenCV finds the staves, barlines and measures in the uploaded pixels; a
-  vision model reads only the notation content. All geometry is exact code, so
-  overlays sit on the real measures and survive zoom and resize.
+- The committed example is the other route: a real scan with OpenCV-measured
+  geometry, annotated over the original page image. All geometry is exact code,
+  so overlays sit on the real measures and survive zoom and resize.
 - A continuous per-system difficulty ribbon banded by practice passage rather
   than by measure, whose widths follow the real engraved barlines, with the five
   colour anchors from `docs/design.md`. One passage carries one rating and one
@@ -134,18 +136,33 @@ python -m playwright install chromium    # once, for the browser tests
 python -m uvicorn src.app.main:app --reload   # run the app: http://127.0.0.1:8000
 python -m pytest -q                            # whole suite
 python -m pytest tests/unit tests/integration -q   # fast: no browser needed
-python scripts/build_example_fixture.py        # rebuild the example (needs credentials)
+python scripts/refresh_example_analysis.py     # re-derive the example, no key needed
+python scripts/build_example_fixture.py        # re-read the scan (needs credentials)
 ```
 
 There is no build step, no bundler and no type-checker configured: the client is
 plain ES modules served as-is.
 
+### Reading scans
+Scan recognition runs locally through **Audiveris 5.11**, which is a Java
+application and so is not covered by `pip install`. The Windows console MSI
+unpacks without administrator rights and carries its own JDK:
+
+```
+msiexec /a Audiveris-5.11.0-windowsConsole-x86_64.msi /qn TARGETDIR=work\audiveris\extracted
+```
+
+PracticeMap looks for it at `work/audiveris/extracted/Audiveris/Audiveris.exe`,
+then at `PRACTICEMAP_AUDIVERIS_EXE`, then on `PATH`. When it is absent, a scan
+upload fails with a sentence and a recovery action; MusicXML import and the
+example score still work. Set `PRACTICEMAP_SCAN_ENGINE=vision` to use the
+original Anthropic path instead.
+
 ### Environment variables
-Copy `.env.example` to `.env` and fill in `PRACTICEMAP_ANTHROPIC_API_KEY`. The
-app reads only that variable and deliberately ignores an ambient
-`ANTHROPIC_API_KEY`, so example mode cannot appear credentialed when the
-application's own key is unset. The example score at `/score/example` needs no
-credentials at all.
+Optional. `PRACTICEMAP_ANTHROPIC_API_KEY` in `.env` (copy `.env.example`) is
+needed only for the legacy vision scan path and for re-reading the example scan
+from source. The app reads only that variable and deliberately ignores an
+ambient `ANTHROPIC_API_KEY`.
 
 ## Why CLAUDE.md is focused
 It contains substantial persistent instructions while detailed specifications live in dedicated documents. Even in a single long session, instructions compete with source files, tool results, and conversation context. Claude Code guidance recommends concise project memory; referenced files are read when relevant, whereas imports load their content at startup.

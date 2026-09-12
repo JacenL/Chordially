@@ -33,10 +33,11 @@ There is one primary action — a large upload target that also accepts a droppe
 file — and one quiet secondary route beneath it, the clearly labelled example.
 Read the limits aloud; they are on the screen without opening anything: one
 page, 20 MB, printed notation. Then open **What happens to your file** to show
-that a scan goes to Anthropic to be read, MusicXML never leaves the machine, and
-nothing is stored. The detail is folded away, not deleted.
+that nothing you upload leaves the machine at all — a scan is recognized locally
+by Audiveris, MusicXML is parsed locally, and nothing is stored. The detail is
+folded away, not deleted.
 
-### 2. Upload the real score (30 seconds warm, ~65 seconds cold)
+### 2. Upload the real score (~15 seconds, offline)
 Choose `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf` and press **Analyze this
 page**. This is a real one-page scan of Wohlfahrt Op. 45 Book 1, page 4 of the
 book.
