@@ -39,6 +39,7 @@ import zipfile
 from fractions import Fraction
 
 from src.features.difficulty.rubric import beat_unit
+from src.features.difficulty.tempo import TempoReading, tempo_from_words
 from src.schemas.music import MeasureTranscription, NoteEvent
 from src.server.recognition.cv_geometry import (
     BOX_MARGIN_STAVESPACE,
@@ -104,6 +105,11 @@ class MusicXmlPage:
     # rubric counts in. None when the export carries no metronome mark, in which
     # case the assumed tempo applies and is disclosed as an assumption.
     printed_tempo_bpm: float | None = None
+    # When nothing is printed but a tempo word is, the beat rate that word
+    # customarily implies, and the word itself. This becomes the *assumed*
+    # tempo -- disclosed and retunable -- rather than a printed one.
+    inferred_tempo_bpm: float | None = None
+    tempo_evidence: str = ""
 
 
 # --------------------------------------------------------------------------
@@ -293,30 +299,79 @@ def slur_positions(part) -> dict[int, str]:
     return positions
 
 
-def printed_tempo(part, beats: int | None, beat_value: int | None) -> float | None:
-    """The file's first metronome mark, expressed in notated beats per minute.
+def _to_notated_beat(
+    number: float, referent_quarter_length: float, beats: int | None, beat_value: int | None
+) -> float | None:
+    """Convert a mark written against its own beat unit into notated beats/min.
 
     A mark is written against a beat unit of its own choosing -- half note in cut
     time, dotted quarter in 6/8 -- and the rubric counts the notated beat, so the
     two have to be reconciled with exact arithmetic rather than assumed equal.
     """
+    if not number or not referent_quarter_length:
+        return None
+    printed_beat = Fraction(referent_quarter_length).limit_denominator(64) / 4
+    notated_beat = beat_unit(beats, beat_value) if beats and beat_value else printed_beat
+    if notated_beat <= 0:
+        return None
+    return round(float(number) * float(printed_beat / notated_beat), 2)
+
+
+def read_tempo(part, beats: int | None, beat_value: int | None) -> TempoReading | None:
+    """The tempo the file establishes, firmest evidence first.
+
+    1. A metronome number. music21 stores a printed `<per-minute>` mark as
+       `number`, and a MusicXML `<sound tempo="144"/>` -- which is how most
+       notation programs export the tempo they play back at -- as
+       `numberSounding` with `number` left None. The previous reader checked
+       only `number`, so an exported Presto at 144 was rated at the 90 BPM
+       fallback. Both are read as printed tempi now; `<sound>` is by definition
+       in quarter notes per minute, and the referent music21 attaches to it
+       says so.
+    2. A tempo word. "Presto" over the first measure is not a metronome mark,
+       but it is far better evidence than a fixed fallback, so it becomes the
+       *assumed* tempo: disclosed as an inference from the word, and retunable.
+
+    The part is searched first; a marking printed only above the top part of a
+    full score is then looked for in the score itself, which is where an
+    ensemble export puts it.
+    """
+    from music21 import expressions as m21expressions
     from music21 import tempo as m21tempo
 
-    marks = list(part.recurse().getElementsByClass(m21tempo.MetronomeMark))
-    for mark in marks:
-        number = getattr(mark, "number", None)
-        referent = getattr(mark, "referent", None)
-        if not number or referent is None or not referent.quarterLength:
-            continue
-        printed_beat = Fraction(referent.quarterLength).limit_denominator(64) / 4
-        if beats and beat_value:
-            notated_beat = beat_unit(beats, beat_value)
-        else:
-            notated_beat = printed_beat
-        if notated_beat <= 0:
-            continue
-        return round(float(number) * float(printed_beat / notated_beat), 2)
+    containers = [part]
+    parent = getattr(part, "activeSite", None)
+    if parent is not None and parent is not part:
+        containers.append(parent)
+
+    for container in containers:
+        for mark in container.recurse().getElementsByClass(m21tempo.MetronomeMark):
+            number = getattr(mark, "number", None) or getattr(mark, "numberSounding", None)
+            referent = getattr(mark, "referent", None)
+            quarter_length = float(referent.quarterLength) if referent is not None else 0.0
+            bpm = _to_notated_beat(number, quarter_length, beats, beat_value) if number else None
+            if bpm is not None:
+                return TempoReading(bpm=bpm, printed=True, evidence="a metronome mark")
+
+    for container in containers:
+        for element in container.recurse().getElementsByClass(
+            (m21tempo.MetronomeMark, m21tempo.TempoText, m21expressions.TextExpression)
+        ):
+            text = getattr(element, "text", None) or getattr(element, "content", None)
+            match = tempo_from_words(text)
+            if match is not None:
+                bpm, word = match
+                return TempoReading(
+                    bpm=bpm, printed=False, evidence=f"the word {str(text).strip()!r}"
+                )
     return None
+
+
+def printed_tempo(part, beats: int | None, beat_value: int | None) -> float | None:
+    """A metronome tempo in notated beats per minute, or None. Kept for callers
+    that want only what is printed and not what a word implies."""
+    reading = read_tempo(part, beats, beat_value)
+    return reading.bpm if reading is not None and reading.printed else None
 
 
 def transcribe_part(part, measure_limit: int) -> list[MeasureTranscription]:
@@ -572,11 +627,13 @@ def load_musicxml(data: bytes) -> MusicXmlPage:
             cursor += 1
 
     first = next(iter(transcriptions_list), None)
-    tempo_bpm = printed_tempo(
+    tempo = read_tempo(
         part,
         first.beats_in_measure if first else None,
         first.beat_value if first else None,
     )
+    printed_bpm = tempo.bpm if tempo is not None and tempo.printed else None
+    inferred_bpm = tempo.bpm if tempo is not None and not tempo.printed else None
 
     return MusicXmlPage(
         geometry=geometry,
@@ -589,5 +646,7 @@ def load_musicxml(data: bytes) -> MusicXmlPage:
         measures_in_part=total_measures,
         measures_on_page=on_page,
         signatures_by_system=signatures,
-        printed_tempo_bpm=tempo_bpm,
+        printed_tempo_bpm=printed_bpm,
+        inferred_tempo_bpm=inferred_bpm,
+        tempo_evidence=tempo.evidence if tempo is not None else "",
     )

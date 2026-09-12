@@ -154,6 +154,19 @@ class Score(BaseModel):
     )
     warnings: list[str] = Field(default_factory=list)
 
+    assumed_tempo_bpm: float | None = Field(
+        default=None,
+        description=(
+            "The tempo assumed for measures that print none, when the page gives "
+            "a reason to assume something other than the fixed fallback -- a tempo "
+            "word such as Presto. None means the fallback applies."
+        ),
+    )
+    assumed_tempo_reason: str = Field(
+        default="",
+        description="Why that tempo was assumed, in words a musician can check against the page.",
+    )
+
     def measure(self, measure_id: str) -> Measure | None:
         return next((m for m in self.measures if m.id == measure_id), None)
 

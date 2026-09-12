@@ -28,7 +28,7 @@ from src.features.difficulty.rubric import DEFAULT_TEMPO_BPM
 from src.features.segmentation.phrases import find_trouble_spots
 from src.features.segmentation.sections import find_sections
 from src.schemas.analysis import AnalysisBundle
-from src.server.analysis.assemble import rate_phrases, rate_score
+from src.server.analysis.assemble import rate_phrases, rate_score, tempo_assumption_text
 
 # A violinist's plausible range. Outside it the note-rate feature saturates and
 # the rating stops meaning anything, so the value is refused rather than clamped
@@ -69,13 +69,18 @@ def retune(bundle: AnalysisBundle, tempo_bpm: float | None) -> AnalysisBundle:
     fresh = bundle.model_copy(deep=True)
     score = fresh.score
 
+    # "Restore the assumed tempo" means the tempo this score assumes, which is
+    # the fixed fallback only when the page gave no better reason -- a score
+    # headed "Presto" goes back to its Presto, not to 90.
+    default_bpm = score.assumed_tempo_bpm or DEFAULT_TEMPO_BPM
+
     applied = 0
     printed = 0
     for measure in score.measures:
         if not measure.tempo_is_assumed:
             printed += 1
             continue
-        measure.tempo_bpm = tempo_bpm if tempo_bpm is not None else DEFAULT_TEMPO_BPM
+        measure.tempo_bpm = tempo_bpm if tempo_bpm is not None else default_bpm
         applied += 1
 
     fresh.measure_difficulty = rate_score(score)
@@ -101,11 +106,19 @@ def retune(bundle: AnalysisBundle, tempo_bpm: float | None) -> AnalysisBundle:
     spots = find_trouble_spots(score, phrases, fresh.measure_difficulty)
     fresh.phrases = sections + phrases + spots
     fresh.phrase_difficulty = rate_phrases(fresh.phrases, fresh.measure_difficulty)
-    score.assumptions = _assumptions(tempo_bpm, applied, printed)
+    score.assumptions = _assumptions(
+        tempo_bpm, applied, printed, score.assumed_tempo_bpm, score.assumed_tempo_reason
+    )
     return fresh
 
 
-def _assumptions(tempo_bpm: float | None, applied: int, printed: int) -> list[str]:
+def _assumptions(
+    tempo_bpm: float | None,
+    applied: int,
+    printed: int,
+    assumed_tempo_bpm: float | None = None,
+    assumed_tempo_reason: str = "",
+) -> list[str]:
     """The tempo disclosure, matching what was actually done to the measures."""
     if applied == 0 and printed == 0:
         return []
@@ -113,10 +126,7 @@ def _assumptions(tempo_bpm: float | None, applied: int, printed: int) -> list[st
     if tempo_bpm is None:
         if applied == 0:
             return []
-        text = (
-            f"No tempo is printed, so ratings assume {DEFAULT_TEMPO_BPM:.0f} BPM. "
-            "Set a tempo above to recalculate."
-        )
+        text = tempo_assumption_text(assumed_tempo_bpm, assumed_tempo_reason)
     else:
         text = f"Ratings recalculated at {tempo_bpm:.0f} BPM, which you supplied."
 

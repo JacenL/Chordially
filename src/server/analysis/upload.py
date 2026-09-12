@@ -292,6 +292,11 @@ def _analyze_musicxml(
         # MusicXML states the sounding pitch, key signature already applied.
         accidental_convention="sounding",
         tempo_bpm=page.printed_tempo_bpm,
+        # A tempo word with no metronome mark becomes the assumed tempo, named
+        # as such. A Presto rated at the 90 BPM fallback is a wrong rating of
+        # every measure on the page.
+        assumed_tempo_bpm=page.inferred_tempo_bpm,
+        assumed_tempo_reason=page.tempo_evidence if page.inferred_tempo_bpm else "",
     )
 
     if page.part_count > 1:

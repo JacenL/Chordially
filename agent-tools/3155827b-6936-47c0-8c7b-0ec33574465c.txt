@@ -1,0 +1,286 @@
+Psychological Perspectives on Musical Experiences and Skills - 11. Memory for Music
+
+---
+
+- Psychological Perspectives on Musical Experiences and Skills
+- 11. Memory for Music
+
+# 11. Memory for Music: Research and Practice for Performers
+
+Jane Ginsborg
+
+©2024 Jane Ginsborg, CC BY-NC 4.0 https://doi.org/10.11647/OBP.0389.11
+
+## Introduction
+
+Memory is intrinsic both to appreciating and making music. We use it when we hear music, when we listen to it, and when we sing or play it. While hearing music can evoke semantic memory for factual knowledge that we have accumulated throughout our lives, it can also evoke episodic or autobiographical memory, bringing the past to life so vividly that it seems to be present for performer and listener alike. Semantic and autobiographical memory are both forms of retrospective memory, used when listening to music actively rather than hearing it passively, while prospective memory enables us to predict what is to come in the music. To perform notated music from memory, musicians must memorise it. Successful memorisation of music is typically the result of two processes. One is spontaneous and gives rise to serial cuing, while the other is deliberate, producing content-addressable memory (Chaffin et al., 2016). While many professional musicians—particularly solo singers and pianists—are expected to perform from memory nowadays, this is a relatively recent convention dating from the mid-19th century. Once it had become established, however, musicians, teachers, and psychologists began to explore both the pedagogy and the psychology of memorisation.
+
+### Aims
+
+The main contribution of this chapter is a review of the history of the pedagogy of memorisation, an outline of the empirical research on memorisation, brief summaries of three studies conducted in the Western Balkans, summaries of three of my own studies conducted in Western Europe, and recommendations based on the research evidence. To provide a context for this contribution, I begin by giving examples of autobiographical memories evoked by music, discussing the roles of retrospective and prospective memory when listening to music, and introducing the two processes underlying successful memorisation.
+
+### Main discussion
+
+#### Autobiographical memory for music
+
+Proust referred to the experience of tasting a madeleine as stopping time. Hearing familiar music can also stop time; Davies called this the ‘Darling, they’re playing our tune!’ effect (1978, pp. 69–70). It is because music can have this effect that radio programmes such as the BBC’s Desert Island Discs are so popular. Celebrities tell stories about their lives, prompted by the music they have chosen, and their choices evoke listeners’ memories too. Another radio programme broadcast by the BBC in 2016 provides two striking illustrations of autobiographical memory for music (Gorb, 2016). The Italian pianist and composer Francesco Lotoro interviewed the 83-year-old film director Jack Garfein, who sang a song he had first heard in a Nazi death camp 70 years earlier, composed and sung on his way to the gas chamber by a Polish boy whose name is long forgotten. Lotoro himself has amassed an archive of 8,000 scores—in some cases mere fragments notated on cheese wrappings and toilet paper—of music composed by victims of the Holocaust. One was Viktor Ullmann, whose one-act opera The Emperor of Atlantis was composed in Theresienstadt in 1943/44, but not performed in London until 1981. Ullmann had been working on a new monodrama for speaker and orchestra, ‘The Way of Love and Death of Cornet Christoph Rilke’, when he was murdered in 1944, but had orchestrated only the first movement. From detailed notes on his intended orchestration, it was possible for the composer Adam Gorb to reconstruct a fragment of the third movement, which was performed and recorded in 2015 by the BBC Philharmonic Orchestra.
+
+The present that was experienced by both the nameless Polish boy and Viktor Ullmann was shattered violently—dis-membered—by the Holocaust, so that for each one the present suddenly became the past. Their music, however, was preserved and has been brought back to life; it has literally been re-membered and performed so that it is possible for listeners to experience the past in the present. This is one of the features of music that makes it so valuable when working with or caring for people with memory loss as the result of dementia. When the music is familiar, such as hymns sung at church or Christmas carols at home, memories can be shared without having to be articulated in words. The neurologist Oliver Sacks (2007) argues that even unfamiliar music can reach people with dementia, when talking or touching no longer seems to get through to them, because they experience music in the moment.
+
+#### Retrospective and prospective memory
+
+We rely on the contents of our long-term memory to provide a context for understanding music we are listening to for the first time, and on our short-term memory for the sequences of sounds (timbres, pitches, rhythms, harmonies) that have immediately preceded our perception of music in the moment. We use prospective memory to predict what we are about to hear, and can be delighted both by the fulfilment and the violation of our expectations (Meyer, 1956). Fulfilment and violation can be simultaneous when the expectation is veridical (i.e., for the next event in a work we know well), even though the musical event is schematically unexpected in that it breaches ‘automatic, culturally generic expectations’ (Bharucha, 1994, p. 216), such as the ‘surprise’ chord in Haydn’s Symphony No. 94. More recent theories of prospective memory for music have been proposed. According to Narmour’s Implication-Realization model (e.g., 1992), automatic and largely implicit bottom-up generative processes interact with top-down processes deriving from the learned knowledge of musical style. In her theory of melodic expectation, Margulis (2005) identified the roles of stability, proximity, direction, and mobility in the music for which listeners implicitly form expectations, and Huron’s (2006) model encompasses imagination, tension, prediction, reaction, and appraisal (ITPRA). Neuroscientific research reviewed by Salimpoor et al. (2015) explains prospective memory for music in terms of the interaction of dopamine release with the activation of cortical regions associated with the processing of musical structures, emotion, and reward; finally, Trainor and Zatorre (2016) draw on the results of EEG and fMRI studies to support the proposed mechanisms underlying expectation and prediction.
+
+While listeners are not necessarily performers themselves, all performers are listeners. They monitor their own performances as they unfold, often comparing them to their own or others’ previous performances of the same work and, unless they are giving solo performances, listening to those of their fellow musicians. This process of monitoring, involving both retrospective and prospective memory for different kinds of information, enables performers to identify and meet each local goal as they encounter it in the music. In oral traditions, musicians rely on retrospective auditory memory to remember the sound of others’ renditions and produce their own versions, if appropriate. When musicians read music from notation, imagining its sounds, they are using a skill originally known as visualisation (Gieseking & Leimer, 1932/1972) and now referred to as notational audiation (Gordon, 1976), because the sound of music can be imagined not only by readers but also improvisers and composers. In the context of score-reading, however, audiation involves translating symbols into sounds by drawing on the associations between them that the musician has learned and stored in their long-term memory.
+
+#### Memorisation: Serial cuing and content-addressable memory
+
+The skills of playing an instrument and singing, like those of reading and audiating, rely on associations stored in long-term memory. These skills are developed through practice, often involving rote repetition, and are largely procedural. They enable musicians to perform sequences of musical material such as scales, arpeggios, and chord progressions automatically, without having consciously to recall what comes next. This is known as serial cuing, since playing one passage cues the next. It is vital that musicians develop the motor, muscle, finger, or tactile (i.e., kinaesthetic) memory to acquire these skills. It is dangerous, however, for them to rely solely on serial cuing when performing from memory as sequences can so easily be disrupted, causing the musician to experience a memory lapse. Unless they also have content-addressable memory for the music, as the result of deliberate practice (Ericsson, 2013, p. 534), there is often no alternative to starting again and hoping for the best. By contrast, content-addressable memory empowers performers to retrieve the music they are to play or sing at will from their long-term memory, starting at any location in the piece. If they experience a memory lapse despite having used analytic or conceptual strategies in the course of deliberate practice, they can jump forward or back to the nearest landmark in their mental map or representation of the piece, referred to by Chaffin and his colleagues as a performance cue (PC; e.g., Chaffin et al., 2002), rather than going back to the beginning.
+
+#### The history of music memorisation
+
+It is worth remembering that only a small minority of professional musicians, mostly singers and pianists, are expected to perform Western classical music from memory, and that this has only been so since the middle of the 19th century. Before then, memorisation was deplored on the grounds that musicians could not be relied upon to play what had been written. According to Leopold Mozart (1756), ‘one should not give [a beginner] […] melodious pieces which remain easily in his memory […] [or] he will accustom himself to play by ear and at random’ (p. 35). Hummel (1828) claimed that if children played from memory, they would ‘never attain to any readiness in reading the notes’ (p. v). But a concert given by the cellist Bernhard Romberg (1767–1841) had already been reviewed ecstatically as follows:
+
+> Spurning the printed music as an aide-memoire he takes his place, the magic instrument in his hands, and, without hiding himself behind a music stand, presents to the public the whole picture of a free, unrestricted ruler of the kingdom of tones. (Novellistik, 1822, pp. 25–26)
+
+The first pianist known to have played from memory in public was Clara Wieck (later Schumann), who performed Beethoven’s Sonata in F, Op. 57, in 1837. Although she was described by Frau von Arnim as ‘“the most insufferable artist she had ever come across,” who had the “audacity” to play the whole of her programmes by heart’ (May 1912, p. 196), Liszt nevertheless played more than forty works in Vienna the following year, by composers including Beethoven, Weber, Chopin, Scarlatti, and Handel, all from memory. In 1839 Czerny explicitly recommended ‘[committing] to memory a good number of little, easy, but tasteful pieces; so that […] you may be able to play by heart’ (p. 41), and the first pragmatic advice to singers on memory was given by the pedagogue Maria Anfossi (1837): ‘[if] a phrase begins a little before the turning of the page, turn first and sing such bar or bars from memory’ (p. 77). Performing from memory became popular in the second half of the 19th century, with the nine-year-old Bizet performing piano sonatas by Mozart from memory in 1847, and inspiring the parents and managers of subsequent child prodigies to demonstrate ever more impressive feats of memory as well as pianism; so it is not surprising that a pedagogy of memorisation began to develop at the very end of the 19th century.
+
+#### The early pedagogy of music memorisation
+
+Shinn (1898) was the first author to identify ‘forms of memory belonging respectively to the ear, the fingers, the eye, and the intellect employed more or less continuously throughout the progress of a piece’ (Mishra, 2010, p. 9), that is, what we would now call auditory, kinaesthetic, visual, and conceptual memory. Next, Theodor Leschetizky recommended the use of conceptual memory, and avoiding the inadvertent reinforcement of bad habits by establishing good habits from the start:
+
+> Thought is indispensable in the study of pieces, as they are learned first by the brain, and from that by the fingers […]. To memorize a piece, read it through at the keyboard only once, to get its outline without creating any faulty habits of fingering. Then take one or two measures at a time […] analyse the harmonies, and decide upon the fingering and pedalling. (quoted in Brée, 1913/1997, p. 57)
+
+Like Shinn, Hughes (1915) referred to memorising ‘by ear, visual memory, either of the notes on the printed page or the notes on the keyboard, and by finger memory or reflex action’ (p. 595), but he also introduced the idea that musicians should articulate their mental representation of the music they were memorising:
+
+> On one or both of [ear or visual memory] are dependent the very useful and important methods of learning the harmonic and formal structure of the composition to be memorized and of being able to say the notes, or at least to bring up a very distinct mental picture of them. (p. 595)
+
+At around the same time, singers were being exhorted to memorise:
+
+> Song deals with the great human emotions expressed in words, and the singer stands face to face with his audience. Every friend of expression that has been given him he is in duty bound to make the most of. Hard work is not easy, memorizing is a work of extreme laboriousness, but when that work is done, it is in the singer’s possession for ever. (Plunket Greene, 1912, p. 12)
+
+Plunket Greene’s five rules for memorising were to ‘learn the song in rough; memorise it; polish it musically first; reconcile the phrasing to the text; [and] absorb the accompaniment of the song’ (1912, pp. 233–37). Taylor (1914), however, recommended what we would now call automatisation: ‘In studying a song, the first thing to do is memorise it, so that the mind will not be taxed with trying to recall the words and the melody’ (p. 26); while Curtis (1914), like Leschetizky, recommended mental practice: ‘All work of learning and memorizing music should be mental. When the mind is concentrated upon learning the melody, rhythm and construction of a composition, the voice should not be used’ (p. 207).
+
+#### Research on musicians’ memorising strategies
+
+These rules and recommendations were based, of course, on their authors’ own experiences of teaching and performing and, although further books and articles for musicians continued (and continue) to be published, it was not until the late 1930s that music memorisation began to be a topic of interest to psychologists, inspired by the pioneering research of Rubin-Rabson (1937, 1940a,b, 1941a,b,c,d). She found that analytic pre-study improved recall, as did using mental practice and learning pieces in small sections; using a distributed rather than a massed strategy (i.e., several short practice sessions rather than one long one); and, for pianists, practising music for left and right hands separately.
+
+The efficacy of memorising strategies based on the auditory, kinaesthetic, visual, and conceptual forms of memory identified by Shinn (1898), Leschetizky (as cited in Brée, 1913/1997)), and Hughes (1915) has been investigated empirically, with mixed results. The evidence supports the use of auditory strategies such as listening to recorded performances (Bernardi et al., 2013; Rosenthal, 1984; Rosenthal et al., 1988). Highben and Palmer (2004), for example, asked pianists to practise short, specially composed pieces of music, with and without auditory and motor feedback. Recall was best when they practised as normal and worst when they had to imagine both the feel of the keyboard and the sound of the music, although those who described themselves as being able to play by ear and did well on a test of aural abilities were least affected by not being able to hear their own playing. Bernardi et al. (2013) tested the effect of mental practice by asking pianists to practise two unfamiliar pieces by Domenico Scarlatti, one physically and the other mentally, before performing them from memory. Memorisation was most effective when the pianists were experienced in analysing the formal structure of the pieces they were learning and had used auditory imagery for pitch. Loimusalo and Huovinen (2018) also studied mental practice, and found that pianists were more likely to use imagery for pitch in tonal music and rhythm in atonal music.
+
+Children and beginners often associate practice with repetition. This kinaesthetic strategy is vital for the development of procedural memory, which underlies serial cuing, but performers can also use it deliberately to automatise certain sequences and free them to attend to other aspects of the performance such as conveying expression. The student pianists who participated in a study by Davidson-Kelly et al. (2012) reported preferring physical strategies (e.g., practising slowly, with hands separately, varying notated rhythms) to mental strategies (e.g., analysing the music and memorising it before beginning to play). Gerling and Dos Santos (2017) found that pianists memorising Classical and Romantic works deliberately memorised kinaesthetic cues including awareness of the direction in which their hands moved at particular locations in the music, and developed their procedural knowledge of what they referred to as the topography of the keyboard and its association with the type and direction of their body movements.
+
+While some musicians claim to make use of photographic or eidetic recall, others develop visual memory for the musical score in the course of learning. Nuki (1984) found that student pianists who reported deliberately using a visual strategy were quicker to memorise than those who used kinaesthetic, auditory, or combined strategies, but they were also expert in sight-reading and solfège and were thus likely to have had superior audiation skills. More recently, student pianists’ responses to the Musical Memorization Inventory (Mishra, 2007) indicated more frequent use of analytic and auditory strategies than kinaesthetic and visual strategies.
+
+Kinaesthetic strategies can also be used to support the development of mental (i.e., conceptual) representations. Independent analysis of video recordings of my own preparation for performance of the first Ricercar from Stravinsky’s Cantata (Ginsborg, 2009) showed that I used different kinds of body movement as I learned and memorised. Beating a pulse provided the framework for ensuring rhythmic accuracy; conducting helped me form a metrical representation, which was crucial since the metre shifts from 4/8 to 3/8 both between and within sections. Once I had memorised the piece, gesture underpinned my communication of semantic meaning both musical and verbal.
+
+While the deliberate memorisation of notated music involves encoding and storing visual, auditory, and kinaesthetic information in long-term memory so that it can be retrieved at will, strategies focusing on memorising one type of information over another have not been shown to be effective. To date, most efforts to link perceptual learning modalities or visual, aural, and kinaesthetic learning styles (Swassing & Barbe, 1979) with preferences for using visual, auditory, and kinaesthetic strategies when memorising music have been unsuccessful. Mishra (2007) found only very small correlations between the scores of eighty-two respondents’ scores on the Learning Styles Test (LdPride, n.d.), the Visual, Aural, Read/Write, Kinesthetic (VARK) Questionnaire (Fleming, n.d.), and her own Musical Memorization Inventory. Odendaal (2013, 2016) found no evidence from several studies using a range of methods to support the applicability of perceptual learning style theory to memorisation.
+
+Analytic or conceptual strategies are, however, vital for developing content-addressable memory, as recommended by the early pedagogues, before starting to sing (Curtis, 1914; Taylor, 1914), early in the learning process (Leschetizky, as cited in Brée, 1913/1997), and/or throughout the whole period of preparation (Shinn, 1898). These strategies are only accessible to the musician if they have semantic knowledge stored in their long-term memory of the tonal, harmonic, and compositional structures typical of the music they are learning, enabling them to divide or chunk the work to be performed into sections so that they can be learned and memorised separately before being recombined (Bernardi et al., 2013). Hughes (1915) suggested verbalising musical material; the most effective memorisers in Nuki’s (1984) study were expert in sight-reading and solfège; and Apostolaki (2013) describes solfège (using either movable or fixed ‘do’) as a framework for verbalising. Timperman and Miksza (2019) tested the effectiveness of another way of verbalising. They asked two groups of student string players to learn a short piece of music and perform it from memory. Participants in one group were also asked to talk about the piece in detail before performing, and had better recall of it after 24 hours.
+
+Mental practice is the strategy that has been investigated most frequently in recent years (see Mielke & Comeau, 2019). This can include formal, structural analysis, and visual, auditory, kinaesthetic, and conceptual imagery. Deliberate physical practice involves mental practice, however, so it makes sense that they should be combined (Bernardi et al., 2013).
+
+#### Research on performance from memory using the longitudinal case study approach
+
+Most of the research described above involved the participation of groups of musicians, typically students. Longitudinal case studies, by contrast, are used to investigate individual musicians’ preparation for performance over extended periods of time. This method was pioneered by the cognitive scientist Roger Chaffin, who has collaborated with a number of expert musicians including the pianist Gabriela Imreh (e.g., Chaffin et al., 2002), the cellist Tânia Lisboa (e.g., Lisboa et al., 2015), and myself (e.g., Chaffin et al., 2023). In this section I will outline the methods used in longitudinal case study research before briefly summarising three studies conducted in the Western Balkans and—in more detail—three that I have conducted in Western Europe using this approach.
+
+#### Methods used in the longitudinal case study approach
+
+All longitudinal case studies use broadly similar methods. The musician audio- or video-records all their practice sessions and performances so they can subsequently be transcribed, analysed, and illustrated in practice graphs. Such graphs provide an indication of the musician’s practice behaviour (e.g., the sections of the music they worked on and how often they repeated each segment). The musician annotates copies of the musical score, either at the end of each practice session or of the whole rehearsal period, to indicate their thoughts while practising. The locations of each annotation are called practice or rehearsal features. The musician annotates further copies of the score after their performance to indicate their thoughts while performing; the locations of these thoughts are called performance cues (PCs). Multiple regression analyses using PCs as predictor variables and practice behaviour as outcome variables show how musicians’ mental representations of music determine their approaches to practice and performance (e.g., Ginsborg & Chaffin, 2011a), and their long-term memory for the music that has been memorised (Ginsborg & Chaffin, 2011b). Content analyses can be made of individual musicians’ spoken verbal commentaries while practising (e.g., Fonte, 2020), and of the rehearsal talk of two musicians working together (e.g., Ginsborg & Bennett, 2021, 2022).
+
+#### Brief summary of three longitudinal case studies (Western Balkans)
+
+Žauhar and Bajšanski (2012) report a study, for example, of a third-year undergraduate piano student who recorded all her practice sessions as she prepared a performance from memory of Bach’s Prelude and Fugue in E minor. They transcribed and analysed the recordings and were able to show from her use of structural bars as starting places that the hierarchical organization of the work informed her approach to memorization. In a subsequent study, Žauhar, Matić, Dražul, and Bajšanski (2020) used a similar approach in a study of a second-year high school pianist’s learning and memorization of a 20th-century composition, the Fourth Study by Boris Papandopulo (1956). The results of the analysis highlighted the role of the pianist’s own segmentation of the piece as she practised and memorised it, rather than its formal structure, as determined by the pianist and a music theorist. To find out whether a professional pianist with more experience of analysing and performing contemporary music would make more use of the hierarchical organization of a 20th-century work while memorizing it, Žauhar, Crnjanski, and Bajšanski carried out a follow-up study in which the second author also memorized and performed Papandopulo’s Fourth Study. This study is reported in detail in Chapter 10 of the present volume. While the professional pianist took a similar approach to that of the high-school student, her segmentation of the work was more closely related to the formal structure of the work, and she began to memorise it as early as the fourth practice session, suggesting that she was quicker to create a mental representation of the work on which she was able to draw when playing from memory. These studies underline the importance of including music theory, harmony, and analysis in curricula for performers to enable them to learn and memorize more efficiently and, potentially, to give more effective performances from memory.
+
+#### Summary of three longitudinal case studies (Western Europe)
+
+##### Study 1
+
+My first longitudinal case study involved tracking my preparation for performance of the first Ricercar from Stravinsky’s Cantata (see above). The performance took place in 2003, and my first reports of the research were published in 2006 (Ginsborg et al., 2006a, 2006b; Ginsborg, 2009; see also Ginsborg & Chaffin, 2011a, 2011b, and Chaffin et al., 2023). At this time a central assumption of PC theory was that PCs are a subset of practice features, suggesting that performers’ thoughts while performing have been prepared in the course of their practice sessions. This was not my experience, however, nor that of other performers.
+
+##### Study 2
+
+I therefore set out to explore the role of spontaneity in a similar study of my practice and performance of Schoenberg’s Two Songs Op. 14. Several months after giving the public performance, I recorded and analysed a reconstructed performance from memory, in vivo, with and without piano accompaniment (Ginsborg et al., 2012). While I retained some practice features as PCs in both performances (core PCs), I retained others in one performance but not the other (non-core PCs) and, crucially, some spontaneous thoughts in the first performance served as PCs in the second (functional PCs).
+
+##### Study 3
+
+Although the findings of Study 2 were promising, they were not based on repeated public performances. To show that some spontaneous thoughts (i.e., thoughts in performance that had not occurred previously in practice) could serve as PCs in a subsequent performance, I would have to give more than one performance. One of the aims of Study 3 was to ask questions arising from the findings of Studies 1 and 2; its other aim was to follow up a previous investigation of the role of familiarity and expertise in four singer-pianist duos (Ginsborg & King, 2012; King & Ginsborg, 2011).
+
+Unlike the majority of longitudinal case studies reported by Chaffin and his colleagues, Studies 1 and 2 were carried out not by a soloist performing solo repertoire but by the members of a duo. My musical partner was my husband, the composer, conductor, and pianist George Nicholson. For Study 3, I formed a new duo with the viola player Dawn Bennett (Ginsborg & Bennett, 2021, 2022)—hitherto unknown to me other than as an academic living on the other side of the world—so that we could explore our developing familiarity with each other as well as the music: settings by Boris Tchaikovsky (1925–1996) of two poems by the English poet Rudyard Kipling, translated very loosely into Russian.
+
+I stayed in Dawn’s house in Western Australia for a week. We spent just over four hours practising independently and nearly three-and-a-half hours rehearsing together. We recorded all our individual practice sessions and joint rehearsals, and in due course the recordings were transcribed and analysed. We gave two public performances at the end of the week, and a third one when Dawn visited the UK ten months later. We each performed one of the two songs from memory, reading the other from the musical score.
+
+After the first and second rehearsal periods, and each of the three performances, we annotated copies of our scores to indicate the locations of features and PCs in the following categories: structural (e.g., boundaries between sections, subsections, or switches, i.e., where the same passage can lead in two or more directions), basic (prepare, breath, word pronunciation, pitch, fingering, bowing), interpretive (word meaning, sound, tempo, dynamics), expressive, memory, coordinate, and shared (expressive and coordinate).
+
+We analysed the data to answer four research questions:
+
+1. Which practice features did we attend to, individually and together, when memorising and not memorising? Certain categories were more salient when we were memorising (e.g., for Dawn: pitch, tempo, coordination with singer; for me: preparation, and the meaning of the lyrics). By contrast, we were able to focus on other categories when we were reading from the score (e.g., sound for Dawn, subsection boundaries for me).
+
+2. To what extent did the practice features remain salient in each of the memorised and non-memorised performances? For Dawn, memory was most salient in the first and, to a lesser extent, third performances from memory. Basic features were most salient in the second and third performances, and interpretive features and coordination with me were most salient in the third performance from memory. For me, basic features were highly and equally salient in all three performances from memory, as were shared features for both of us in the first and second performances, although less so in the third.
+
+3. What proportions of practice features overall were retained in memorised performances as core and non-core PCs? Dawn retained 3.95% of rehearsal features as core PCs (i.e., in all three performances) but 63.2% as non-core PCs (in one or two performances), while I retained 21.2% of rehearsal features as core PCs and 24.2% as non-core PCs. Taken together, these findings indicate that attention to rehearsal features does underlie retrieval from memory, as predicted by PC theory, but that spontaneous thoughts while performing can also play an important role, as suggested by Ginsborg et al. (2012).
+
+4. Finally, what proportions of spontaneous thoughts could be considered functional PCs? The proportions of spontaneous thoughts in the first performance that recurred in both the second and third performances were very small for both Dawn (3.2%) and myself (5.8%). By contrast, the proportions of spontaneous thoughts in the first performance that recurred in the second were comparatively high (58.1% for Dawn and 82.4% for myself). Yet while 22.7% of Dawn’s spontaneous thoughts in the second performance recurred in the third, I had just one spontaneous thought in the second performance that did not recur in the third.
+
+It is perhaps not surprising that relatively few spontaneous thoughts in the first and—to a lesser extent—the second performance functioned as retrieval cues in the third, since the two performances were separated by ten months. That the proportions of spontaneous thoughts in the first performance recurred in the second performance, however, highlights what every musician knows from experience: what happens in performance is not necessarily the same as what happens in rehearsal, and new insights can inform subsequent performances.
+
+### Conclusion: Implications for performers and their teachers
+
+The results of the experimental and longitudinal case study research on musicians’ memorising strategies and recall for music in both the Western Balkans and Western Europe, outlined above, support the following recommendations in addition to the inclusion of music theory, harmony, and analysis in conservatoire and university music department curricula. Because spontaneous memorisation is to a certain extent inevitable, performers should remember that practice makes permanent (rather than perfect) and learn as accurately as possible when first preparing for performance.
+
+Performers should undertake deliberate practice with the aim of developing content-addressable memory for the music in order to ensure accurate and secure recall when performing. They should create a mental representation or map of the work by identifying structural boundaries that enable them to divide the music into chunks or sections, learn them separately, and then recombine them. They can of course think of these sections as chapters or episodes in a narrative or an emotional journey. It is important to practise and memorise the links between them, as performers are more likely both to experience and to recover from a memory lapse between rather than within sections. Backward chaining can be useful, working section-by-section from the end of the piece to the beginning, and then reversing the process so as to head towards the double bar. While Gruson (1988) suggests that pianists should practise with left and right hands separately at first, evidence from my research indicates that expert singers should memorise lyrics and melodies simultaneously (Ginsborg, 2002; Ginsborg & Sloboda, 2007).
+
+Next, performers should make the basic decisions (Chaffin et al., 2002) that vary from instrument to instrument. These may concern breathing for singers, wind, and brass players; fingering and pedalling for pianists; bowing for string players. Because such decisions are assimilated and automatised during the course of practice and rehearsal, they can be provisional at first but should be fixed as soon as possible.
+
+Auditory, visual, and kinaesthetic memorising strategies should be used as appropriate to both the music and the individual musician. Auditory strategies include listening to recordings of the work (or the accompaniment if available) and imagining or playing along with them. All performers should develop their audiation skills so as to be able to undertake mental practice. Visual strategies include reinforcing mental representations by annotating scores in pencil or with coloured pens. Repetitive practice strengthens procedural memory and can be regarded as a kinaesthetic strategy best deployed once initial decisions shaping the conception of the work and its performance have been made. That said, these initial decisions may be rejected, and new decisions made, as performers develop their own interpretation of the work, in the course of maintenance practice or overlearning once the music has been learned and memorised, during mental practice, and when they are not thinking consciously about the music. It is worth noting these new decisions and their locations in the score, as they are potential performance cues that can prevent or enable recovery from memory lapses.
+
+Finally, it is a convention, not a law, that music is performed from memory. Many well-known successful musicians prefer to play with the score. Audiences may prefer performances from memory (Williamon, 1999) but the effect is very small (Kopiez et al., 2017). If multiple strategies are used to memorise, then, if one fails, the others enable the performer to keep going. And if memory lapses do occur, the audience is unlikely to notice or care, provided the performer doesn’t make it obvious from their own reaction (Waddell & Williamon, 2017). Ultimately, what matters most is the overall quality of the performance.
+
+### References
+
+Anfossi, M. (1837). Trattato teorico-pratico sull’arte del canto: A theoretical and practical treatise on the art of singing. Published by the authoress. https://babel.hathitrust.org/cgi/pt?id=mdp.39015080971149&view=1up&seq=5&skin=2021
+
+Apostolaki, A. (2013). The significance of familiar structures in music memorisation and performance. In E. King & H. M. Prior (eds), Music and familiarity: Listening, musicology and performance (pp. 283–238). Ashgate. https://doi.org/10.4324/9781315596600
+
+Bernardi, N.F., Schories, A., Jabusch, H.-C., Colombo, B., & Altenmüller, E. (2013). Mental practice in music memorization: An ecological-empirical study. Music Perception: An Interdisciplinary Journal, 30(3), 275–290. https://doi.org/10.1525/mp.2012.30.3.275
+
+Bharucha, J.J. (1994). Tonality and expectation. In R. Aiello & J.A. Sloboda (eds), Musical perceptions (pp. 213–239). Oxford University Press.
+
+Brée, M. (1997). The Leschetizky method: A guide to fine and correct piano playing. Dover Publications. (Original work published 1913)
+
+Chaffin, R., Demos, A.P., & Logan, T. (2016). Performing from memory. In S. Hallam, I. Cross, & M. Thaut (eds), The Oxford handbook of music psychology (2nd ed., pp. 559–571). Oxford University Press. https://doi.org/10.1093/oxfordhb/9780198722946.001.0001
+
+Chaffin, R., Ginsborg, J., Dixon, J., & Demos, A. P. (2023). Recovery from memory failure when recalling a memorized performance: The role of musical structure and performance cues. Musicae Scientiae, 27(1), 94–116. https://doi.org/10.1177/10298649211025491
+
+Chaffin, R., Imreh, G., & Crawford, M. (2002). Practicing perfection: Memory and piano performance. Lawrence Erlbaum.
+
+Curtis, H.H. (1914). Voice building and tone placing, showing a new method of relieving injured vocal cords by tone exercises (3rd ed.). D. Appleton and Co. (Original work published 1896)
+
+Czerny, C. (1839). Letters to a young lady on the art of playing the pianoforte from the earliest rudiments to the highest state of cultivation: Written as an appendix to every school for that instrument. R. Cocks and Company.
+
+Davidson-Kelly, K., Moran, N., & Overy, K. (2012). Learning and memorisation amongst advanced piano students: A questionnaire study. In E. Cambouropoulos, C. Tsougras, P. Mavromatis, & K. Pastiadis (eds), Proceedings of the 12th International Conference on Music Perception and Cognition and the 8th Triennial Conference of the European Society for the Cognitive Sciences of Music (pp. 248–249). Thessaloniki, Greece, 23–28 July. https://www.academia.edu/67857257/Learning_and_memorisation_amongst_advanced_piano_students_a_questionnaire_survey
+
+Davies, J.B. (1978). The psychology of music. Stanford University Press.
+
+Ericsson, K. A. (2013). Training history, deliberate practice and elite sports performance: An analysis in response to Tucker and Collins review—What makes champions? British Journal of Sports Medicine, 47(9), 533–535. https://doi.org/10.1136/bjsports-2012-091767
+
+Fleming, N.D. (n.d.) VARK: A guide to learning styles. https://vark-learn.com/
+
+Fonte, V. (2020). Reconsidering memorisation in the context of non-tonal piano music [Unpublished doctoral dissertation]. Royal College of Music, London.
+
+Gerling, C.C., & Dos Santos, R.A.T. (2017). How do undergraduate piano students memorize their repertoires? International Journal of Music Education, 35(1), 60–78. https://doi.org/10.1177/0255761415619427
+
+Gieseking, W., & Leimer, K. (1972). Piano technique. Dover Publications. (Original work published 1932).
+
+Ginsborg, J. (2002). Classical singers learning and memorising a new song: An observational study. Psychology of Music, 30(1), 58–101. https://doi.org/10.1177/0305735602301007
+
+Ginsborg, J. (2009). Beating time: The role of kinaesthetic learning in the development of mental representations for music. In A. Mornell (ed.), Art in motion: Musical and athletic motor learning and performance (pp. 121–142). Peter Lang.
+
+Ginsborg, J., & Bennett, D. (2021). Developing familiarity in a new duo. Rehearsal talk and performance cues. Frontiers in Psychology, 12, Article 590987. https://doi.org/10.3389/fpsyg.2021.590987
+
+Ginsborg, J., & Bennett, D. (2022). Developing familiarity: Rehearsal talk in a newly formed duo. In R. Timmers, F. Bailes, & H. Daffern (eds), Together in music: Coordination, expression, participation (pp. 89–95). Oxford University Press. https://doi.org/10.1093/oso/9780198860761.001.0001
+
+Ginsborg, J., & Chaffin, R. (2011a). Preparation and spontaneity in performance: A singer’s thoughts while singing Schoenberg. Psychomusicology: Music, Mind & Brain, 21(1–2), 137–158. https://doi.org/10.1037/h0094009
+
+Ginsborg, J., & Chaffin, R. (2011b). Performance cues in singing: Evidence from practice and recall. In I. Deliège & J. W. Davidson (eds), Music and the mind: Essays in honour of John Sloboda (pp. 339–360). Oxford University Press. https://doi.org/10.1093/acprof:osbol/9780199581566.001.0001
+
+Ginsborg, J., Chaffin, R., & Demos, A.P. (2012). Different roles for prepared and spontaneous thoughts: A practice-based study of musical performance from memory. Journal of Interdisciplinary Music Studies, 6(2), 201–231. https://repository.rncm.ac.uk/111/
+
+Ginsborg, J., Chaffin, R., & Nicholson, G. (2006a). Shared performance cues in singing and conducting: A content analysis of talk during practice. Psychology of Music, 34(2), 167–194. https://doi.org/10.1177/0305735606061851
+
+Ginsborg, J., Chaffin, R., & Nicholson, G. (2006b). Shared performance cues: Predictors of expert individual practice and ensemble rehearsal. In M. Baroni, A. R. Addessi, R. Caterina, & M. Costa (eds), Proceedings of the 9th International Conference on Music Perception and Cognition (pp. 913–919). Bologna, Italy.
+
+Ginsborg, J., & King, E.C. (2012). Rehearsal talk: Familiarity and expertise in singer-pianist duos. Musicae Scientiae, 16(2), 148–167. https://doi.org/ 10.1177/1029864911435733
+
+Ginsborg, J., & Sloboda, J.A. (2007). Singers’ recall for the words and melody of a new, unaccompanied song. Psychology of Music, 35(3), 421–440. https://doi.org/10.1177/0305735607072654
+
+Gorb, A. (2016, January 21). Raising the Dead [Audio recording]. BBC Radio 4. https://www.bbc.co.uk/programmes/b06wg9gt
+
+Gordon, E. (1976). Tonal and rhythm patterns: An objective analysis. SUNY Press.
+
+Gruson, L.M. (1988). Rehearsal skill and musical competence: Does practice make perfect? In J. Sloboda (ed.), Generative processes in music: The psychology of performance, improvisation, and composition (pp. 91–112). Oxford University Press.
+
+Highben, Z., & Palmer, C. (2004). Effects of auditory and motor mental practice in memorized piano performance. Bulletin of the Council for Research in Music Education, 159, 58–65. https://www.researchgate.net/publication/287869623_Effects_of_Auditory_and_Motor_Mental_Practice_in_Memorized_Piano_Performance
+
+Hughes, E. (1915). Musical memory in piano playing and piano study. Musical Quarterly, 1(4), 592–603. https://archive.org/details/jstor-738068/page/n3/mode/2up
+
+Hummel, J.N. (1828). A complete theoretical and practical course of instruction on the art of playing the piano forte. T. Boosey.
+
+Huron, D.B. (2006). Sweet anticipation: Music and the psychology of expectation. MIT Press. https://doi.org/10.7551/mitpress/6575.001.0001
+
+King, E.C., & Ginsborg, J. (2011). Gestures and glances: Interactions in ensemble performance. In A. Gritten & E.C. King (eds), New perspectives on music and gesture (pp. 177–201). Ashgate Publishing. https://doi.org/10.4324/9781315598048
+
+Kopiez, R., Wolf, A., & Platz, F. (2017). Small influence of performing from memory on audience evaluation. Empirical Musicology Review, 12(1–2), 2–14. https://doi.org/ 10.18061/emr.v12i1-2.5553
+
+LdPride. (n.d.) Learning Styles Test. https://www.ldpride.net/test/learning-style-test.html
+
+Lisboa, T., Chaffin, R., & Demos, A.P. (2015). Recording thoughts while memorizing music: A case study. Frontiers in Psychology, 5, Article 1561. https://doi.org/10.3389/fpsyg.2014.01561
+
+Loimusalo, N.J., & Huovinen, E. (2018). Memorizing silently to perform tonal and nontonal notated music: A mixed-methods study with pianists. Psychomusicology: Music, Mind, and Brain, 28(4), 222–239. https://doi.org/10.1037/pmu0000227
+
+Margulis, E.H. (2005). A model of melodic expectation. Music Perception: An Interdisciplinary Journal, 22(4), 663–714. https://doi.org/10.1525/MP.2005.22.4.663
+
+May, F. (1912). The girlhood of Clara Schumann: Clara Wieck and her time. Edward Arnold.
+
+Meyer, L.B. (1956). Emotion and meaning in music. University of Chicago Press.
+
+Mielke, S., & Comeau, G. (2019). Developing a literature-based glossary and taxonomy for the study of mental practice in music performance. Musicae Scientiae, 23(2), 196–211. https://doi.org/10.1177/1029864917715062
+
+Mishra, J. (2007). Correlating musical memorization styles and perceptual learning modalities. Visions of Research in Music Education, 9, Article 4. https://opencommons.uconn.edu/vrme/vol9/iss1/4
+
+Mishra, J. (2010). A century of memorization pedagogy. Journal of Historical Research in Music Education, 32(1), 3–18. https://doi.org/10.1177/153660061003200102
+
+Mozart, L. (1756). Versuch einer gründlichen Violinschule [Treatise on the fundamental principles of violin-playing]. Johann Jakob Lotter.
+
+Narmour, E. (1992). The analysis and cognition of melodic complexity: The Implication-Realization model. University of Chicago Press.
+
+Novellistik (anonymous reviewer) (1822). Bernhard Romberg in Wien. Allgemeine musikalische Zeitung mit besonderer Rücksicht auf den österreichischen Kaiserstaat, 6(4), 25–26.
+
+Nuki, M. (1984). Memorization of piano music. Psychologia: An International Journal of Psychology in the Orient, 27(3), 157–163. https://psycnet.apa.org/record/1985-27176-001
+
+Odendaal, A. (2013). Perceptual learning style as an influence on the practising of instrument students in higher music education [Unpublished doctoral dissertation]. Sibelius Academy, Helsinki. https://taju.uniarts.fi/handle/10024/6532
+
+Odendaal, A. (2016). (Mis)matching perceptual learning styles and practicing behavior in tertiary level Western Classical instrumentalists. Psychology of Music, 44(3), 353–368. https://doi.org/10.1177/0305735614567933
+
+Plunket Greene, H. (1912). Interpretation in Song. Macmillan: Stainer and Bell.
+
+Rosenthal, R.K. (1984). The relative effects of guided model, model only, guide only, and practice only treatments on the accuracy of advanced instrumentalists’ musical performance. Journal of Research in Music Education, 32(4), 265–273. https://doi.org/10.2307/3344924
+
+Rosenthal, R.K., Wilson, M., Evans, M., & Greenwalt, L. (1988). Effects of different practice conditions on advanced instrumentalists’ performance accuracy. Journal of Research in Music Education, 36(4), 250–257. https://doi.org/10.2307/3344877
+
+Rubin-Rabson, G. (1937). The influence of analytical pre-study in memorising piano music. Archives of Psychology, 31, 1–53.
+
+Rubin-Rabson, G. (1940a). Studies in the psychology of memorizing piano music. II. A comparison of massed and distributed practice. Journal of Educational Psychology, 31, 270–84. https://psycnet.apa.org/record/1940-04947-001
+
+Rubin-Rabson, G. (1940b). Studies in the psychology of memorizing piano music. III. A comparison of the whole and the part approach. Journal of Educational Psychology, 31, 460–76.
+
+Rubin-Rabson, G. (1941a). Studies in the psychology of memorizing piano music. IV. The effect of incentive. Journal of Educational Psychology, 32(1), 45–54. https://doi.org/10.1037/h0061124
+
+Rubin-Rabson, G. (1941b). Studies in the psychology of memorizing piano music. V: A comparison of pre-study periods of varied length. Journal of Educational Psychology, 32(2), 101–112. https://doi.org/10.1037/h0054496
+
+Rubin-Rabson, G. (1941c). Studies in the psychology of memorizing piano music. VI A comparison of two forms of mental rehearsal and keyboard overlearning. Journal of Educational Psychology, 32(8), 593–602. https://doi.org/10.1037/H0058481
+
+Rubin-Rabson, G. (1941d). Studies in the psychology of memorizing piano music. VII. A comparison of three degrees of overlearning. Journal of Educational Psychology, 32(9), 688–696. https://doi.org/10.1037/H0054174
+
+Sacks, O. (2007). Musicophilia: Tales of music and the brain. Alfred A. Knopf.
+
+Salimpoor, V.N., Zald, D.H., Zatorre, R.J., Dagher, A., & McIntosh, A.R. (2015). Predictions and the brain: How musical sounds become rewarding. Trends in Cognitive Sciences, 19(2), 86–91. https://doi.org/10.1016/j.tics.2014.12.001
+
+Shinn, F.G. (1898). The memorizing of piano music for performance. Proceedings of the Musical Association, 25, 1–25. https://doi.org/10.1093/jrma/25.1.1
+
+Swassing, R.H., & Barbe, W.B. (1979). The Swassing-Barbe Modality Index: Directions for administration and scoring. Zaner-Bloser.
+
+Taylor, D.C. (1914). Self-Help for singers; A manual for self-instruction in voice culture based on the old Italian method. H. W. Gray Co.
+
+Timperman, E., & Miksza, P. (2019). Verbalization and musical memory in string players. Musicae Scientiae, 23(2), 212–230. https://doi.org/10.1177/1029864917727332
+
+Trainor, L.J., & Zatorre, R.J. (2016). The neurobiology of musical expectations from perception to emotion. In S. Hallam, I. Cross, & M. Thaut (eds), The Oxford handbook of music psychology (2nd ed., pp. 285–306). Oxford University Press. https://doi.org/10.1093/oxfordhb/9780198722946.001.0001
+
+Waddell, G., & Williamon, A. (2017). Eye of the beholder: Stage entrance behavior and facial expression affect continuous quality ratings in music performance. Frontiers in Psychology, 8, Article 513. https://doi.org/10.3389/fpsyg.2017.00513
+
+Williamon, A. (1999). The value of performing from memory. Psychology of Music, 27(1), 84–95. https://doi.org/10.1177/0305735699271008
+
+Žauhar, V., & Bajšanski, I. (2012). Uloga formalne strukture i izvedbene zahtjevnosti glazbenoga djela kod upamćivanja notnoga teksta: studija slučaja [The role of formal structure and technical complexity of a piece of music in memorizing music score: A case study]. Psihologijske teme, 21(2), 225–247. https://hrcak.srce.hr/89528
+
+Žauhar, V., Matić, A., Dražul, A., & Bajšanski, I. (2020). Memorizing the contemporary piano piece of music: The effects of the formal structure, pianist’s segmentation, and technical difficulties. In B. Bogunović & S. Nikolić (eds) (2020). Proceedings of PAM-IE Belgrade 2019. Faculty of Music, University of Arts in Belgrade. https://www.fmu.bg.ac.rs/wp-content/uploads/2020/12/psychology-and-music-08_zauhar-et-al.pdf
+
+By using this website, you consent to the use of cookies in accordance with our Privacy Policy.

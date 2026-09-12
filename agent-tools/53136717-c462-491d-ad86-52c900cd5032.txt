@@ -1,0 +1,1036 @@
+# A systematic approach to bowing and its application in violin playing
+
+UTAS Research Repository. Published: 2020-01-01. Dissertation. 0 citations.
+
+## Authors
+
+- KZ De Ridder: h-index 0; 0 citations; corresponding author
+
+## Topics
+
+- Musicians’ Health and Performance
+- Musicology and Musical Analysis
+- Diverse Musicological Studies
+
+---
+
+# The Modern Technique of Violin Bowing
+
+## Abstract
+
+The aim of this research was to formulate systematic studies for the right-arm to achieve finer outcomes in violin performance. As modern violin practice involves the marking of numerical symbols on the score to indicate left-hand 'fingerings' it is necessary to question why no equivalent system is utilised for the training of the right-arm. Although a system for the notation of bow divisions was formulated by French violinist Lucien Capet over one hundred years ago, its use is virtually unidentified in modern violin playing and teaching. The research method adopted in this project was performance-oriented and focused on incorporating Capet's eight-part bow division notation system into daily analytical practise allowing for core movements of the right-arm and the distribution of the bow to be documented and made habitual for the performance situation. Critical reflections on the process and specifically the application into key performance repertoire are provided in this exegesis, which contextualises the research conducted.
+
+The findings of this study were that setting parameters for bow distribution generated a higher level of response to address combinations of colour, timbre, mood and articulation.
+
+Notation of bow distribution is not to be understood as a rigid barrier or impediment to personal expression. On the contrary, once habitualised, it provides full awareness and control of the right arm, resulting in a refined, and highly nuanced regulation of sound to convey the desired musical expression.
+
+warm and exceptional guidance throughout this research project. From the start of candidature, not only from an academic perspective were they inspiring but also personally encouraging, making everything seem possible through sleep deprivation and newborn.
+
+Thank you to my mentor in Paris, Guillaume Sutre and family who invited me into their home with such kindness. Sutre's exquisite sound, musical expression and humility has had a profound impact on me.
+
+To my family, Simon who throughout these research years has ensured barely a moment missed with our beautiful, now toddler Otto; our little family is the greatest gift of all. Thanks must also be given to my mother and late father who selflessly spent a lot of their time travelling long distances ensuring my brothers and I participate in various eisteddfods, festivals and concerts and creating musical opportunities for our remote and regional Far North Queensland community. ..................................................................................................... The most significant authority on violin bowing was found to be French violinist Lucien Capet (1873-1928). Capet's theoretical output include a treatise and several annotated etudes detailing the possibilities of the bow alongside hundreds of exercises to enable better control of musical expression. What makes Capet's contribution unique was that he set out parameters for the distribution of the bow by a method of notating the findings onto the score via a lettered and numbered system. 3 pet's annotated system of the right-arm was adopted and extended upon in this research.
+
+## Table of Figures
+
+An extra division of the bow was added to the existing system and greater consideration given to the alteration of bow speed to serve musical interpretation. Most importantly Capet's system was applied to much of the original analysis included in this research project; trialed under the pressure of performance.
+
+By documenting practical experimentation of bow distribution onto the score via a notation system, one of the expected outcomes of this exegesis includes for fundamental movements of violin bowing to be described in literature more accurately than previously achieved, demonstrating its validity in modern violin practice.
+
+Although the scope of this study involves mostly advanced violin performance, the analysis includes ideas applicable to all levels of study. This research differs from others in its field by involving the practical application of information documented from analytical study and the observation of its effect on performance. French publishing houses in the eighteenth-century produced large quantities of self-study material addressing advanced violin performance. Central to French violin pedagogy was attention to musical expression through nuance and articulation of the bow, with a focal point of study being the ability to distribute the bow equally.
+
+One of the first to discuss bowing in great detail was L'Abbe Le Fils (1727-1803) in 13 Baillot, L'art Du Violon, 93. 14 Baillot, 120.
+
+Principes du Violon (1761). 8 The flexibility of the right-hand fingers was said to play an important role in smooth changes of the bow, as well as functioning as 'springs' to absorb the motions between arm and string in strong strokes (minimising the crushing of the strings).
+
+One of the most important of all authors on bowing was French violinist Pierre Baillot (1771-1842). Baillot's first contribution Méthode de Violin was co-authored by Pierre Rode (1774-1830) and Rudolph Kreutzer (1766-1831). First published in 1793 the treatise addressed basic to complex bowing pattern exercises with nomenclature of bow strokes. foot_1 An important bowing influence in Méthode de Violin was the extensive use of legato; likely an Italian influence via their mentor Giovanni Battista Viotti (1755-1824).
+
+In 1834 (five years after the death of his colleagues Kreutzer and Rode), Baillot made an individual and detailed contribution to the literature base with his instructional treatise L'Art Du Violon. Baillot expanded upon his co-authored publication with more theoretical knowledge; the desirable right-hand strokes, basic bow divisions, the role of nuance in musical expression and contact-point. foot_2
+
+The elasticity of the wood and its function in basic bow strokes was observed more by Baillot than almost any other author. Attention to bow flexibility meant consideration was made to not only the organisation and refinement of nuance and articulation, but also the timbre.
+
+Baillot suggested from each of the four strings a character could be drawn resembling the timbre of many other instruments including the oboe, flute, horn, trumpet, harmonica, harp, piano and organ. 11 The study of bow distribution by Baillot appears for the purpose of musical expression. Baillot divided the bow mostly into three equal parts with each section of bow having its own unique tonal quality and function (see Figure 3 ). Baillot explored the use of 'on' and 'off-the-string strokes' and their combinations. Fast strokes such as détaché, martelé and staccato were suggested to be initiated 'from-the-string' by execution of the wrist and forearm. Other fast-moving strokes such as élastiques, sautillé, ricochet were to be played 'off-the-string' with careful consideration given to the elasticity of the wood. Baillot also wrote of composite strokes which utilised both 'on' and 'off-thestring' motions. Composite strokes included the traînes (a dragged stroke), as well as the grand détaché (a fast, on-the-string stroke with pressure that is released between strokes). 13 other technique discussed by Baillot is bariolage; a term to describe a series of notes played on different strings. Bariolage according to Baillot involved alternate notes being
+
+deliberately played on open string for a contrast of timbre to be heard. 14 e aspect of Baillot's methods rather outdated in terms of modern violin playing was the distinct lack of involvement of the upper arm in violin bowing. On observation of leading modern violinists, the involvement of the upper arm is evident. The suggested posture of Baillot was a low or hugging-to-body upper arm is often referred to as belonging to the 'Old 13 Baillot, L'art Du Violon, 93. 14 Baillot, 120. Bow divisions lettered and numbered by De Beriot. 18 In Germany the management of the bow was well documented by Louis Spohr in Violin Schule (1832). 19 According to researcher Clive Brown, admiration for the works of Pierre Rode meant many elements of the French style were incorporated into Spohr's own teaching methods. 20 Spohr wrote of some advanced bowing strokes including an up-bow staccato (staccato leggiero). He rejected the use of the sautillé stroke in classical repertoire (favouring an on-the string stroke) however included new techniques in his methods such as the spiccato stroke. 21 Spohr suggested elevation of the right-elbow to lever from one string to the other rather than involving the upper-arm. 22 ohr insisted a straight bow motion was the foundation of all bow strokes; not only suggesting a parallel angle of the bow be kept to the bridge but to avoid all curved motions at the start, duration and release of the stroke. As presented later in this chapter, the parallel bow as an absolute principle has since been proven unwarranted by multiple sources, demonstrating all bow strokes by the laws of motion, are circular in nature. 23 Amongst Spohr's finer contributions included attention to the sounding-point (the placement of the bow between bridge and fingerboard) to control both volume and timbre. Spohr also indicated the sounding-point be adapted to the thickness of each string. 24 roughout the twentieth century, little literature was produced to keep up with modern requirements of violin bowing; particularly systematic instruction relevant to advanced violin performance. Lucien Capet (1873-1928) produced the last and most conclusive of all written material for modern bowing technique, titled La Technique Supérieure de la Archet (1916).
+
+Originally in the French language, the English interpretation of Capet's treatise was published only recently, in 2007. Capet declared that fine violin playing required first and foremost great facility of the righthand. His publication Superior Bowing Technique provided no less than 600 exercises for the training of the right-hand. Although some of the exercises could be applied to a lesser skilled violinist, most of the information is directed at the advanced violinist.
+
+One of the most important developments by Capet was the use of a notation system to document how the bow could be divided. Capet advised as a basic rule, the bow should be divided into as many equal parts as there are notes on one bow (as many as eight equal parts),
+
+thus demanding a high level of training to gain control of various lengths of the bow. Capet labelled the various parts of the bow using letters and numbers. As shown in Figure 6 , letter A corresponds to the use of the whole bow, the letter B for half bow parts, letter C for quarter bow parts, letter D for eighth bow parts, and the letter E for third bow parts. was partly due to omitting when it was appropriate to move away from equal bow distribution for the sake of changing musical expression. 30 Lafitte and Wieniaswki. Although relatively short, The Violin and its Technique devotes much of its text to observations of the bow. Like Baillot, Rivarde was observant to the timbre produced at various point of the bow, taking into consideration also the flexibility of the stick and hair. 31 . Rivarde called for the contraction (use) of the upper arm muscle without constricting the muscles around the shoulder, so to produce a free and independent forearm stroke.
+
+One who appears to have adopted many of Rivarde's principles was Hungarian Carl Flesch The twentieth-century otherwise witnessed few developments for stand-alone resources for right-arm technique. One who claimed a 'modern approach' to advanced violin bowing was called for the contraction (use) of the upper arm muscle without constricting the muscles around the shoulder, so to produce a free and independent forearm stroke.
+
+Harold Berkley (1896 -1965). In 'Modern Violin Playing' Berkley provided examples of analytical practise in advanced playing and extracted the various skills required to perform standard violin repertoire in much the way this research itself is designed. At times Berkley appears to be subjective. For example, although critical to the categorisation of schools in violin playing, Berkley himself defines modern violin playing to be Russian based, quoting on the topic of physical naturalness: "the only method that fulfils these requirements is the 31 Rivarde, Nouvelle méthode de violon théorique, 106. 32 Carl Flesch, Problems of Tone Production in Violin Playing (New York: Carl Fischer, 1934); Carl Flesch, The Art of Violin Playing, Volume 1, ed. Eric Rosenblith, repr., 2000. (New Jersey: Charles Dumont & Son Inc, 1939); Carl Flesch and Yehudi Menuhin, Violin Fingering: Its Theory and Practice: English Adaptation by Boris Schwarz (London: Barrie and Rockliff, 1966). modern way -often called the Russian method, from the fact that it has been extensively used by the Russian school of violinists, most of them pupils of the late Leopold Auer". 33 e who is often referred to as the main representative of a modern violin technique is esteemed pedagogue Ivan Galamian. Galamian took a scientific approach to the technicalities of the violin, successfully combining traditions of various violin schools into a working technique. 34 Mentored by Hungarian born Leopold Auer and the French Lucien Capet, Galamian acknowledged the role of fine bowing in high artistic expression.
+
+Prior research comparing both historical and contemporary information was completed in 2010 by Kelley Johnson at the University of Iowa, as part of a doctoral research project.
+
+Johnson observed what technical knowledge had either diminished or developed since the publication of Capet's La Technique Supérieure De L'archet. When Johnson surveyed major texts by contemporary pedagogue Simon Fischer (b.1956) to Ivan Galamian (1903-1981), Carl Flesch (1873-1944) and Lucien Capet (1873-1928) she discovered that only thirty-five percent of the texts evaluated contained independent information, with no new technical developments of significance made in recent times. Capet's La Technique Supérieure de l'Archet was determined the most advanced self-study material for violin bowing; Johnson suggesting that many of Capet's teaching principles have been absorbed into mainstream violin teaching without being properly credited to Capet. 35 Swiss violinist Phillipe Borer (former student of the University of Tasmania) in his Masters dissertation: Aspects of European Influences on Violin Playing & Teaching in Australia, amalgamated theoretics with practical research. Similar to my own research project, Borer 33 Berkley, "The Modern Technique of Violin Bowing," 9. 34 Ivan Galamian, Principles of Violin Playing & Teaching (New Jersey: Prentice Hall Inc., 1962). 35 Johnson, "Lucien Capet: Comparisons and Connections to Contemporary Violin Bowing Technique," 1.
+
+provided preparatory exercises to solve challenges in violin technique. 36 Although Borer acknowledges that training anticipatory movements of the right-arm is crucial to advanced violin performance, only left-hand fingerings are noted and the exercises provided did not serve the purpose of describing the applied bow distribution.
+
+A later twentieth century author Robert Jacoby stated much of existing violin material was written either by effective teachers or by popular performers; neither forms truly satisfying analytical study of the bow arm. 37 Jacoby also noted a viewpoint of many in current violin pedagogical practices; that there has been a move away from 'schools' of playing to a more culminative attitude. He argued that many existing treatises were biased towards one method of playing, with a lack of rationale determining the given principles and procedures.
+
+Most recently, popular UK based Simon Fischer exemplified analytical study in his publications The Basics and Practice amongst others. Fischer created original exercises to train specific skills and repertoire and demonstrated the possibility (and necessity) in modern playing to be able to merge principles of many playing traditions. 38 though the re-introduction and evaluation of previously discovered techniques in violin bowing continues in modern times it does not serve as a substitute for the development of new systematic study material (such as etudes or practical exercises). Research suggests the majority of analytical studies for violin bowing were written in the eighteenth and nineteenth centuries and therefore there is a need for analysis which targets the modern instrument and technique. 36 Borer, "Aspects of European Influences on Violin Playing and Teaching in Australia," 174-81. 37 Robert Jacoby, Violin Technique: A Practical Analysis for Performers. (London: Novello & Co., Ltd, 1985) 1-5. 38 Simon Fischer, Practice (London: Peters Edition Limited, 2004); Simon Fischer, The Basics (London: Peters Edition Limited, 2012).
+
+## Methodology
+
+This research is distinctive in its analytical approach to performance preparation with documentation of original systematic exercises to train a fine bowing technique. The validity of systematic right-arm training in advanced violin performance can be evaluated according to whether greater control of the bow improves performance outcomes.
+
+Previously, academic literature lacked the resource to accurately describe bowing motions used in violin performance. Therefore, it was determined that if distribution of the bow was accurately measured, variables of bowing (ratios of speed and weight, the flexibility of the stick at various points and the manner in which the bow is applied and released from the string) could also be documented for further study.
+
+Just as it is standard practice to mark left-hand fingerings onto the score, the discovery of Lucien Capet's lettered and numbered system for the division of the bow means an equivalent already exists for the right-arm but remains virtually unused. For the first time in over one hundred years, Capet's notation system is applied in academic research. Bow divisions selected through my own analytical practise are marked underneath the original exercises provided in Chapter Two.
+
+Systematic bowing exercises applied in preparation of the associated folio performances, provide content deficient in existing academic research; delivering insights of practical knowledge into the body of literature. An extension of Capet's notation system including a six-equal-part division, labelled 'F'. The analytical studies provided in this chapter seek to address primarily musical expression, and finer bowing is simply the tool to achieve this. An area of study I feel is often neglected in advanced stages of study is warming up, so a segment addressing this is provided first.
+
+## Warming Up
+
+The following exercises addressed some of my own technical weaknesses in bowing, demanding a quick response between mental command and the physical application. The purpose of the first warm-up exercise (Figure 10 ) was to acquire a strong and active movement of the right-arm on open strings. Divided into three equal parts, the bow was drawn with some circular movement of the elbow assisting a freely moving upper arm in the shoulder socket. Not allowing for too much free wrist movement, the right-hand fingers were kept flexible but with adequate contact of the finger pads on the bow. In Figure 13 pronation was applied to notes marked forte whereas supination was reserved for the rests (marked piano). In Figure 14 , supination was applied in piano on the marked notes and pronation in the rests (marked forte). By involving a metronome in practise, spatial, physical and rhythmical accuracy improved. Another tool for sustaining sound is a term often referred as right-arm vibrato; ondulation.
+
+Applied to long notes, the application of right-arm vibrato is achieved via small vertical wave motions of the bow. To train this stroke, smaller subdivisions of a long-sustained note were deliberately pulsated with the bow, the wave movements slowly refined until virtually
+
+imperceptible. An example as shown in Figure 23 not only trained deeper penetration of the string but also strengthened rhythmical awareness. Spun-sound exercises with dynamics can be exercised in at least two ways; via adjustment of bow speed and pressure of the bow or by using equal speed and adjusting only the pressure and contact point. Spun sound exercises with dynamics.
+
+## Bach Solo Sonata No.1 in G minor, BWV 1001
+
+During this study Lucien Capet's annotated edition of the Bach Sonatas were used alongside Bach's original handwritten manuscript (located in the appendix of the popular Ivan Galamian edition). 44 In Capet's edition, the upper half of the bow was found to be too frequently used; a stylistic preference at the time of Capet. Although the upper part of the bow is favourable to control rhythmic precision, the greater elasticity of the bow stick around the balance point was found to provide expression more appropriate the modern instrument and the application of 'historically informed ideas' followed in modern performance practice. There are, however, many interesting ideas provided in the edition by Capet, including the approach to chordal playing; in particular which notes to release and which to sustain for greater melodic impact. Complete harmonic analysis is out of the scope of this research as the priority is to form great control of the bow. To plan for performance however, many musical passages were treated as either 'melodic' or 'rhythmic'. What is meant by 'melodic' phrasing is drawing on the legato style of Italian violin playing (which inspired the French style). In the music of Bach for example, 'melodic' refers to being more freed to stretch the rhythm within the pulse (often using longer strokes), whereas 'rhythmic' phrasing refers to a stricter 'in tempo' playing, often applying shorter articulation. Pivoting exercises were used to increase the facility of the right-arm in three and four note double-stops. Considering the appropriate balance of the bow through the fingers of the righthand, the aim was to adequately grip the strings but not crush the sound. To improve the balance of the bow, a middle note or notes (according to whether a three or four note chord) were given extra weight for better sustain.
+
+## II.Fuga
+
+Responsiveness of the right-arm was crucial in performing the second movement. The greatest challenge was little transition time between varying articulation, dynamic levels and between singular note and chordal techniques.
+
+Directly at the start of the movement, two articulations were used to present the subject; one long and one short. To structure the phrasing in the entire movement it was decided that each time the subject reappeared, it was to be treated with the same articulation. Although the first D note in bar 1 is an upbeat (to which an up-bow would usually be applied), a gentle down-bow gave a more natural flow to the phrase. As illustrated in Figure 30 , the second third of the bow (division E2) was applied to the first four notes of the fugue, with the fourth eighth of the bow (division D4) used for the marked shorter notes. A caesura was marked between the sixteenth notes which were easily rushed in performance. Seven open string levels.
+
+To best understand each new string angle, a circular motion was used to pivot across the string levels with the bow hair remaining on the string. The angle of the bow and the path of motion used to move through the string levels is illustrated via my own diagram in Figure 33 . Finer movements of the smaller joints (fingers, wrist) were applied to rapid passages to avoid jerking motions of the arm, however some involvement of the forearm was also required for control and rhythmical cleanliness.
+
+Very large movements of the upper arm were mostly reserved for jumping and pivoting over consecutive strings. One of the observations from open string analysis is how much easier it is to swing quickly to the E string than it is to move the arm into the correct position for the G string (requiring the upper arm to move the required forty-five-degree angle with the bow).
+
+In chordal passages, it was sometimes necessary to grip all three strings simultaneously; for example, to interpret a specific character or to gain superior rhythmical placement of the chord. This was trained by first blocking the bow hair evenly over three strings in a small division of the bow such as the first fourth part of the bow (C1), drawing a short but fast stroke. Once small amounts of bow were controlled, more bow length was applied. Dotted rhythms improved the responsiveness of the right-arm. The bow in Figure 37 was divided into a number of divisions, using either one or two bows to a bar. Halves (B1, B2, B12) or thirds (E123) and six divisions of the bow were applied (F123456). In its arpeggiated form, each chord features a common note (the middle note), which was used as a pivot or balance note for the bow. Other chords were selected for a stronger, shorter and more rhythmic focus, such as the three-note chords where subject material features in the middle voice (marked blue in Figure 43 ).
+
+## III.Siciliano
+
+From the beginning of the third movement a consistent pulse needed to be established, flexible enough to allow for the flow of the implied dance-rhythm. As recommend by Capet, a down-down bowing in the dotted quaver to semi-quaver pattern was preferred. This bowing was suited well to the dance rhythm or 'groove' and also helped to create the desired organlike sustain. 46 Each down-down bowing featured a small retake of the bow; however the distribution needed to be quite compact as it becomes more difficult to retake once the upper half of the bow is reached as it is further away from the weight of the frog which should be used in order to perform a natural movement. The D semiquaver shown on the second downbow was treated as a passing note and not an appoggiatura to the F, requiring adequate length of stroke. Although the F is marked as requiring the entire length of the bow (division A), the bow was found to leave the string at some point around the second or third eighth of the bow (division D3 or D2) to prepare for the next bow. 46 Bach, 6 Sonatas À Violon Seul.10. The F on beat three of the first bar was treated as a somewhat light and lifted beat for the continuation of the dance-like flow. Due to voicing, it was also required to employ some breath before the upbeat and develop enough speed in the bow to sustain sound until the placement of the next downbeat. In performance, it is occasionally necessary to quickly lift the bow rather than pivot over adjacent strings. One advantage of lifting is the strings continue to ring freely instead of being muted by the resting bow.
+
+Capet wrote in his annotated Bach edition that when the melody continues in the bass it is sometimes necessary to leave the second quaver earlier, therefore adequate weight must be applied to the bass note at the start of the stroke in order for the chord to sustain at the release of the bow. 47
+
+## Allegro con spirito
+
+The opening passage of this sonata is lyrical in character. To avoid a static right-arm, a curved motion was applied on approach to the first note. The original piano dynamic given by Mozart in bar 1 indicates the tone colour should be of more breath than brilliance however in my score this was amended to a mezzo piano in order to avoid a hesitant quality of sound in performance. Special treatment was given to the highest note of the phrase in bar two (G), which exposed the anticipated change in harmony. Using the original bowing, a dolce character was applied in bar 7 with emphasis on the D note (see Figure 61 ). On beat four of bar 41, a short articulation which allowed the notes to 'speak' rather than 'jump' was achieved by a longer length and depth of stroke than previously applied. From bar 85, more bite to the sound was applied via a smaller section of bow. The bow needed to grip the string in order for it to continue to sustain once the bow had been lifted off; this meant the arm needed to continue in its natural circular course of movement. Nuancing was applied in bars 98 and 100 on each note of the legato crescendo.
+
+## Solo Sonata No.3 by Eugene Ysaÿe
+
+As Eugene Ysaÿe's third solo sonata is through-composed (a work not defined by movements) the annotations have been segmented in this chapter by the marked tempo changes.
+
+## Lento molto sostenuto
+
+The opening of Ysaÿe's third sonata involves some of the most difficult factors of violin performance; a soft sustained line. The performance style indicated by the composer as In modo di recitativo is for a single bar that must develop gradually over four lines of music.
+
+To achieve a smoother connection of the bow with the string in soft beginnings, the bow tip was kept slightly vertical until the moment it was placed. This meant that whilst travelling to the desired area of the bow to initiate the first stroke, larger muscles were employed to stabilise the right-arm. If the bow was tipped horizontally too soon, smaller muscles were engaged due to the bow being held against gravitational force.
+
+A dark colour was applied to the first A note (sul tasto) with between three quarters and the entire bow length divided amongst the first three notes. The next note (C#) was placed at the middle of the bow where the stick was flexible, continuing the stroke in the upper half of the bow the arm was in a comfortable position to cross strings to place the F (at division C4). As marked tenuto in Figure 73 , placing more emphasis on the F directed a more tonal impression to the listener. Ysaÿe Solo Sonata No.3. Bar 1. Sustained double-stops at half the performance tempo.
+
+The pianissimo which followed was achieved via senza vibrato. It was decided not to give too much melodic importance to the G or F else the sensation of 'bareness' was lost. The pianissimo was tapered off to resolve one segment before the following segment would start.
+
+In very soft passages, breathing out just before or as the bow was drawn improved a number of factors such as the ability to create suspense and achieve mysterious qualities of sound.
+
+When breath was drawn in before placing the bow on the string it often produced a sound which was too concrete.
+
+A new colour was created after the rest on the E-sharp (see Figure 78 ). As boxed in red, the F-sharp to the E-flat was determined one point of harmonic interest whilst the sforzando Ab to G note was given most importance (marked crescendo). There was a decrease in bow speed during the F-natural to allow preparation for the pivot to the D string and D-flat note. This pivoting avoided the accidental scraping of the bow on any other string (which often occurs whilst playing low in the bow). For greater quality of sound, the bow speed was increased during the E-flat rolling back to harmonic on the D.
+
+To avoid unintentional diminuendo, it was determined best to sustain the dynamic from the sforzando G fermata until the quaver rest after the A-natural. Expression was applied to the falling D-flat to A-natural and C to D-flat as marked. To train the accuracy of the quaver rests; singing a note in each quaver rest ensured breathing out and in turn a more legato feeling of the spacing between sections.
+
+## Molto moderato quasi lento
+
+At the beginning of bar two the bow was positioned just over the fingerboard. The semiquaver required adequate bow weight and length. A caesura was placed as shown in Figure 80 to indicate a small breath in the phrasing. The semi-quaver double-stopped sixths based on G and B-natural needed to move towards the next bar with a slightly more concentrated sound (including an appropriate adjustment of the vibrato). An instance of unequal bow distribution occurs here. A faster bow speed was applied at the start of the dotted quaver, slowing the bow in preparation for the semiquaver double-stop, before increasing the bow speed again towards the point. The final two quavers of the bar were performed leaning towards the downbeat of bar three. In bar 3 the aim was to produce a serious character, moving quickly to an intense state which continued into the 3/8 section Allegro in tempo giusto e con bravura. In bar 7, the second note in each group of four semiquavers was accented while practising for rhythmic control and to maintain activity in the stroke. A similar exercise is shown in Figure 82 All in Tempo giusto e con bravura From bar 12 it was necessary to isolate inaccurate shifts of the left-hand and co-ordinate the right-hand appropriately. Figure 83 was exercised in the lower half of the bow (division B1) with a concentrated stroke. Looping exercises for difficult passagework in bars 34 and 35 were notated with bow divisions in Figure 87 . Observation was particularly required where one voice or string level was dropped. In Figure 88 , notes requiring more bow pressure in bar 37 are marked red;
+
+greater clarity was achieved by applying more pressure to the upper note of intervals larger than a fifth, and more pressure to the lower note in intervals smaller than a fifth. Less bow speed at a closer proximity to the bridge created the desired colour; although a sound with a little 'air' was finally used in performance. The bottom line was also isolated for practise as shown in Figure 94 . From bar 56, more focus was placed on sustaining the top melodic line. At bar 66 a fast bow speed was required for the descending triplets on the A and E strings (in a fortissimo dynamic). A slight rallentando before dolce con espressivo was also applied. Directly at dolce con espress the dynamic is marked piano in the score however it was important to find a core to the sound rather than allowing for a flautando effect. To achieve this, a more concentrated bow speed and length was used.
+
+Time was stretched at the poco meno a grazioso in bar 72, allowing for more lyrical playing in the top quarter of the bow (division C4). It was noted on a number of commercial recordings that A tempo moved forward in speed rather than reverting to the previous (original) tempo; therefore, I also allowed myself flexibility in the shaping of this phrase.
+
+From bar 70 a different sound was applied for contrast; a more airy and edgy sound.
+
+At bar 74, the falling double-stop stroke from an E and B-natural double-stop to the B-flat to E-flat double-stop were played glissando with crescendo. The second occurrence was applied with a clean shift and a lesser dynamic (which was still allowed to swell within its new dynamic level). In the Lent segment, points for greater expression and nuance were boxed in red as shown in Figure 95 . As well as sustaining a fortissimo dynamic at bar 93, a more 'acidic' sound was applied for contrast. A number of opportunities to reflect some folk-impressions presented themselves throughout the composition. This included making the distinction of a mordent ornamentation rather than a trill in bar 106 (starting from the note itself and not from the note above as is common practice in classical repertoire). In the same bar, a glissando was also applied between the A and E double-stop into the D double-stop appoggiatura.
+
+In bars 107-112 a martelé stroke was defined using the middle third of the bow. By bar 110 a collé stroke was applied, concentrating on an initial bite and push and pull action of the bow with the forearm. Rhythmic loops as shown in Figure 96 cemented the stroke between bars 107-112.
+
+## Piu mosso
+
+In the fast string crossings in bars 113-4 attention was given to the lower two strings; in particular, the note falling on the G string which was accented until the motion of the bow was learnt. Blocking notes in the left-hand wherever possible made it easier to assess rapid right-hand movements. As it was often questioned whether the left or right-arm was causing co-ordinational delays a dotted exercise was applied. At bar 118, the last note of each group of four was nuanced with a weighted but short stroke.
+
+To counteract difficulties of these fast pivoting segments, the note before jumping over strings was also accented; buying time to get back to the lower string. The final bars of the movement required a strong and precise stroke. If too much bow was used, the strings vibrated too long and the result was a muddled sound of sustained multiple stops instead of each individual stop sounding out clearly before the next was played. The bottom quarter (C2) was used to start the stroke at bar 119 and by Poco a poco slargando the area was limited to the second eighth division (D2). The proximity of the bow from the fingerboard to the bridge was adjusted from the lower to upper strings. Due to the impracticality of using the upper arm for each string level at the required tempo, the forearm was used to compensate. The upper arm was moved slightly back during the stroke as to get out of the way of the forearm.
+
+A selection of looping exercises at performance speed addressed the co-ordination of rapidly changing left-hand fingers. The previous note in each two-note segment is repeated, helping to solidify the motion of the right-arm. The angle of the bow-stick from bars 119-127 was placed slightly at an angle so that the notes stopped high on the E string were played closer to the bridge than the lower strings.
+
+The passage was worked through daily with a metronome (from very slow to a faster than performance speed). In terms of bow distribution, the length of the first note was measured by deliberately pulsating semi-quaver subdivisions as shown in Figure 106 . Using only the upper half of the bow for the détaché scale did not create the desired richness or volume of sound. It was determined that at the release of the sustained D note, a quick retake to the balance point for the E meant room for the stroke length to be increased for the remainder of the scale; working towards the bow tip via a zig-zag movement. Observing Leonidas Kavakos instruct a masterclass in Copenhagen with an advanced student, Kavakos noted that as in earlier works of the Baroque and Classical era, it was often appropriate to emphasise one note in a chord more than others according to the harmony and its importance to the chord (such as a leading note or suspension). 49 From the opening bars of the solo violin line, The F-natural notes were chosen as points of interest in the harmonic structure, emphasising the minor tonality. See highlighted in red in Figure 107 . To train evenness of rhythm in the quintuplets from the upbeat to bar 105 until bar 111, the upper half of the bow (B2) was employed using a forearm détaché stroke. In this area of the 50 Zakhar Bron, 'Teaches Brahms: at the Verbier Festival), directed by Mischa Scorer. (video of masterclass), The Masterclass Media Foundation, 2012, accessed 13 Jun 2016. https://www.medici.tv/en/artists/zakhar-bron/ . bow, changes of down and up bows were less audible and so the feeling of legato could be emulated whilst practising the precise rhythm. As in a significant amount of material composed by Brahms, the downbeat frequently features an overlapping 'hemiola' pattern (that is the downbeat is deliberately concealed in the phrasing via melodically important notes occurring on weaker beats in two or more instruments). It is, however, important to understand where the downbeat occurs in any passage so that when syncopation does occur it may be placed with conviction. An example of overlapping phrasing between 105-111 is shown in the following Figure 114 ; whilst the solo violin is playing two-bar phrases the orchestra overlaps with a three-bar phrase (in red). The quality of sound in high register passages were exercised as shown in Figure 115 . In bars 367-8 a complete character change was needed; a darker tone. The first stroke was initiated at the heel of the bow for power, with only the lower half reserved for subsequent notes. Although the bowing in bars 369-70 is separated rather than legato, if focus is not placed on creating continuous phrasing, the intensity is lost. Therefore, a legato character was applied, supported by a present vibrato in the left-hand. Two consecutive accents were applied in bar 373; to the bottom A and octave A-double-stop.
+
+In the bow arm, this was executed by an immediate release of bow pressure before the crescendo and without lifting the bow off the string. The first eighth of the bow (division D1)
+
+was used for the semiquaver A, with the lower two thirds of the bow (division E12) saved for the octave.
+
+## Adagio
+
+In the second movement of the concerto, engaging the bow with enough grip for the first note and with a fine sound meant preparing the approach to the string from the original resting position many times. An unequal division was experimented with using the upper two thirds of a bow for the first note (division E32) and leaving the first third of the bow (E1) for the Fquaver. After several performances this exaggerated division was deemed unnecessary. If more speed was used to start the first A note stroke, the bow could be saved in the middle to allow adequate length of bow for the second note (F).
+
+## Allegro giocoso, ma non troppo vivace
+
+For the release of the first double-stop, the bow was lifted off the string around the middle third (E2) to upper fourth (C4) of the bow. The stroke was executed via a fast-circular motion, retaking only a small amount of bow length in the rest, so that an equal amount of bow could be used for the last two legato up-bow semiquavers of the bar as was applied in the first stroke. In bar 3, a martelé stroke was applied to the quaver notes. In order for the right-arm to pivot appropriately on the four-note chord, the up-bow was applied 'on-the-string' via a pendulum swing of the arm, accenting especially the lowest two notes before alternating more weight onto the A string to sound the upper two notes. It was a requirement that the arm was kept in constant motion during the up-bow else the shoulder joint easily became static, inhibiting the strength of sound.
+
+A series of looping pattern exercises were used to address the various co-ordination difficulties between bar 20 to bar 26, transferable to all other rapid passages. For execution of Figure 124 , a fast but concise articulation was applied at the second eighth of the bow (division D2); each note initiated with a 'bite' of the string. In bar 21, intervals featuring naturally resonant open strings were observed. Figure 135 illustrates the notes requiring the most pressure in each double-stop (marked red). Bar 138 was placed on the G string for a richer colour. On my own instrument the sixteenth notes were easily blurred so some nuance was applied on the marked tenuto. From bar 143, the appropriate length and depth of the stroke was learnt; nuance added to the ascending scales toward the middle to end of each bow stroke. From the opening of the violin solo, choreography of the right and left-hands were carefully considered for performance. The first D required a fast bow stroke, one which was not completely straight but incorporated a small swinging or pendulum movement before its release. In the ideal performance scenario enough control was achieved in the down bow that the bow could be lifted off the string at the tip of the bow, so to be able to return to the string with similar speed and attack on the up-bow. The vibrato in the left-hand at this position was present but not so wide that it disturbed the sound or pitch of the note. The greater aim was to create a luminescent quality on each D played. Material from bar 46 appears in variation form two bars later. Initially it was thought that the listener would more likely understand the material in bar 46 to be related to bar 48 if it were bowed in the same manner (down-up-down-up as shown in Figure 159 ); however, the desired articulation could not be achieved and was later changed to three up-bows as shown in Figure 160 . In bar 48 it was necessary to consciously avoid a bulge of sound with the bow. At the upbeat to bar 57, two different bowings were trialed for the purpose of phrasing. The first version applied up-bows to downbeats and was found to produce a stop-start effect; not suiting the natural flow and continuation of the desired phrasing. The second and preferred version had a much more organic feel in the right-arm. Often short détaché notes did not receive enough speed and length in the stroke whereas the slurred notes received too much. To reverse this, exaggerated length of the détaché was exercised and a lesser amount of length reserved for the slurred notes. Bar 115 involves a short articulation which was often not matched in the following bar; the right-arm required to adjust immediately between a shorter 'wedge' articulation and legato articulation. In Figure 174 the second beat was easily given as equal weight as the downbeat which must be corrected. From bars 162 the bow speed was altered from slow to fast, aiming towards the middle of each segment. In Bar 164 wrist and finger motion was necessary, supported by the forearm.
+
+An increase in bow speed and length was applied in Bar 169 on each subsequent up-bow, developing a crescendo before deeply nuancing the C-natural in Bar 170.
+
+In passages with extensive chromaticism such as in bars 184-185, more nuance was given at the height of the melodic line. In bar 4 the D and B natural semiquaver required enough weight and speed in the seventheighth of the bow (division D7) that the strings continued to sustain even after the bow was lifted; the lift was timed fractionally early in preparation for the forte entry on an up-bow. To sustain a melodic line within a passage of double-stopped thirds and tenths, it worked best to hold back the tempo rather than accelerate on the descending scale. As shown in Figure 184 , bowing for bar 24 features one separated down-bow followed by two slurred notes on an up-bow. If the reaction time of the up-bow was too slow the legato shape of the bar would suffer as a consequence. The phrase shape was strengthened via an exercise slurring several double-stops at a time (Figure 185 ). At the required performance speed of this caprice there is often not enough time to think of individual notes. Boxing several notes in the score to be trained as a one-motion-response both aided memory in performance and better organised the musical structure. The ideal bow division for bar 34 was found to be around the second fourth of the bow (division C2). In bar 43 the placement of the first and third finger double-stop was moved concurrently with a string-crossing. Co-ordination between bow placement and the various positions of the lefthand were aided by practising with a complete stop between segments. 'legato' and 'rhythmic' material made contrasting characters clearer to the listener than before.
+
+In the slow opening movement of this sonata (Adagio), one of the main outcomes of the training on performance was better management of the bow in slow, sustained lines.
+
+Recorded at the beginning of candidature (February 25, 2017), the equal distribution of the bow in the Adagio was less refined than in the Siciliano, recorded a year and a half later (October 7, 2018).
+
+Prior to systematic study it was difficult to draw a consistent speed of stroke that did not prematurely weaken. One of the techniques applied in the original exercises of the Adagio was the downwards pulsation of the bow on the string (ondulation) and the rolling of the bow stick for deeper penetration of the strings (roulé stroke). From the recordings it is evident these techniques improved passages with large sustained chords; for example, on the first and third beats of bars 1 and 2 the final chord of the movement in bar 22. 51 Unequal distribution in the Adagio occurs on occasion to serve both style and sudden changes in expression. An example of deliberate unequal division of the bow occurs during a stroke on the last beat of bar 5 where a longing expression was desired. Featuring four notes of equal value, more bow length was applied to the first and third semiquavers of the bar; the B and G. On beat three of bar 19, four semiquavers are bowed as three notes slurred and one note separate. Equal division of the bow in this case should have been division E123 for the three slurred notes and division A for the separated note. 56 What appears to be faulty in this case was the initiation of the down-bow stroke (which was too slow causing the second note to be delayed). I tried to compensate for the time lost on the first note (A) by suddenly spending more length of bow on the second note (G) however this meant the legato quality was lost.
+
+In the Adagio a wider spread of the right-hand fingers on the bow grip was used than after my residencies in Paris (April 2018, November 2018 and May 2019). Although too much flexibility of the wrist and fingers can be detrimental to a consistent stroke, in many instances less spread of the fingers would have achieved greater responsiveness in the stroke and even smoother string crossings.
+
+In the second and fourth movements, too little length of bow was spent on separated notes;
+
+particularly in groups of notes combining détaché and slurred articulation. Another technical weakness observed was incorrect leverage of the upper arm in string crossings causing disturbances such as the minute grazing of the bow onto auxiliary strings or a loss of the 'core' of the sound.
+
+In the second movement Fuga, most bowing complexities involved adjustment between singular notes to chords which were either blocked (all notes played simultaneously) or arpeggiated. Interpretive ideas were organised by which voice the subject appeared in. At times in the folio recordings it appeared the bow stroke was too slow in the arpeggio form and as a consequence the continuity of the theme (particularly in the upper voicing) was interrupted. A faster speed of stroke needs to be practised for future performances.
+
+The third movement Siciliano, was performed at a slightly faster tempo than many violinists have chosen; the purpose being to gain a greater flow and sense of continuity in the phrasing.
+
+From the recording what was assumed an exaggerated level of energy and speed in the stroke of the bow proved only just enough in performance.
+
+Although many great violinists from various schools of violin playing recommend the bow to be lifted as little as possible I felt there were many occasions in the solo works of Bach where it was better to lift the bow off the string to maintain sustain. In chapter two I mentioned that if enough speed and weight was initiated at the start of a stroke, the strings would continue to sustain when the bow was lifted. In the folio recording the training of the lift of the bow improved the cleanliness of transition between articulation types, allowed for the strings to continue to ring throughout a chord (rather than muting the sound as a result of the bow remaining on the string) and made it possible to use complete silence for effect.
+
+## Performing Ysaÿe
+
+The folio recording of the Ysaÿe sonata was captured on April 9, 2019. Although the first note requires more depth to the sound than the following pianissimo phrase, for clarity of expression the initial few notes of the piece were performed sul tasto. The consistency of sound on the folio recording however was not ideal, meaning the speed of stroke was probably altered unintentionally. Once the first few notes had passed, the sounding point needed to be altered closer to the bridge than it was, and the bow speed increased to create an open and brilliant sound on the upper strings. Several moments in the performance indicate poor responsiveness of the right-arm. For example too much space exists between the final triplet in bar 4 and the chordal downbeat of bar 5; a one-motion-response would have meant a faster pivot of the bow across strings for a better transition between the triplet and chord. 58 It was interesting that in a space of just one second of the recording, the subtly delayed response between bars 4 and 5 had a significant impact on the inflection of the phrase.
+
+Although a lot of musical ideas were organised for this sonata, technical application could still be improved; particularly in terms of equal bow division.
+
+## Performing Mozart
+
+As in the repertoire of Bach, bowing challenges of Mozart centred around the little transition time between changes in articulation, dynamics and characters. From the recordings of the Sonata in G Major, K301 (293a) it was noted that there were common or favoured divisions of the bow which included the upper third quarter (C3), the lower fourth eighth of the bow (D4) and lower second fourth (C2). These areas of the bow were ideal for a range of articulations; for example, division C2 was reserved for mostly marked, short articulations whereas divisions C3 and D4 (being flexible parts of the bow) were used to produce rich and brilliant timbres.
+
+The first two recordings of the sonata in 2017 were lost due to University equipment failure;
+
+re-recorded on the October 8, 2018. The folio performance presented more equal divisions of the bow than previously seen during candidature. One main fault in technique observed however, was the tendency to relax after a downbeat. Time taken on the first beat would cause the second beat to be placed further along in the bar, destabilising phrasing. An exercise which could remedy this in future training involves applying one metronome beat to a bar (marking a pulse). Rather than placing this beat on a downbeat it would be placed on a weak beat (beat three for example) to improve awareness of space and time within a bar as well as enabling technically challenging segments to be pulled apart where the sense of pulse was often lost. After my first and longest residency in Paris I analysed a lot of staccato notes in Baroque and Classical period repertoire and decided they could be categorised as having two different functions; a staccato of 'lively' character and a staccato marcato of a 'speaking' character. In the folio recording of the second movement of the sonata, a greater range of articulation can be heard.
+
+The collé stroke exercise shown previously in chapter two ensured consistency in the speed of the stroke with the bow-hair remaining on-the string. Why this was important to the repertoire of Mozart in particular is that on occasions after playing a smooth and dolce passage in the middle to upper half of the bow, an immediate change of character (such as one of marked and short articulation) was initiated at the heel of the bow. At other times it was required to be able to move the length of bow rapidly for the sake of expression. In bars 20 and 21 of the first movement where two up-bow strokes for the crotchets on the third and fourth beats were played on two consecutive up-bows, the desired articulation was initiated by a bite of the string allowing for a natural sustain whilst travelling the length of the bow with speed . foot_8 60 Folio recording, track 7. (0:38-0:41)
+
+## Performing Brahms
+
+Overall the legato character in the first movement of the Brahms was developed due to systematic study. In the recording of the first movement, a very basic error was detected of an unintentional crescendo at the frog and diminuendo at the tip of the bow. The second movement required even more on-the-string training. Experimentation of timbre improved the beginning of the violin solo which aimed to match in much the same way the oboe solo which introduces the movement.
+
+The overall energy and strength of bow stroke in the first and third movements would also benefit from more on-the-string training close to the bridge in forte; beginning with small, fast strokes and increasing the length of stroke as learnt. What was surprising was a lot of accented scale practise was initiated in preparation of the third movement which I was concerned may come across in the performance. Observing the folio recording however, the desired legato was in fact improved by the accented training.
+
+In the third movement, although equal distribution was usually observed and the points of the bow selected for different characters was successfully analysed, there was at times too much conservation of the bow as well as inadequate energy in the stroke which meant the orchestra was overpowering. What will be trained in the future, is more one-motion-response training with greater energy in the stroke.
+
+## Performing Paganini
+
+Another technique which had improved since systematic studies was the motion of the rightarm in fast scherzo passages, which also improved the facility of the left-hand. While studying the Paganini I experimented with restricting the movement of the right-hand fingers in fast passages with the aim of a more uniformed bow stroke. Prior to the systematic study, too much wrist movement was used making co-ordination difficult as well as inconsistent speed and length of a stroke which should be rather uniformed. The folio performance showed a more active forearm stroke which improved the scherzo passages however much more detailed study is required for finer performance outcomes.
+
+## Performing Franck Sonata
+
+Unique to this repertoire was the application of variety of accents of dolce character. In the folio performance too much vertical movement of the bow is heard within a single bow; this meant that individual notes were marked so much that as a consequence the phrase lost the desired legato character. Such an example is in bar 75 of the second movement. 61 Other times, the notes blended too much and could have benefited from a heavier nuance such as in bar 14 of the second movement. foot_10
+
+## Performing Chamber works and Chamber Opera with Trio Cavallaro
+
+The audio recordings included in this folio were made for global distribution by Italian classical music label 'Stradivarius Milano Dischi'. Orchestral scores were adapted by Simon Thielke and myself, voiced to suit the classical guitar and violin. The vocal soprano line was kept mostly as it were in the original composition.
+
+Ensemble balance was a major focus when recording and performing repertoire with 'Trio Cavallaro'. There are many variables to bowing which required consideration in this chamber-opera setup as the violin is required to weave between solo, orchestral tutti and accompaniment roles. In particular, the articulation of the bow was required to adjust between the short clarity of stroke heard in the classical guitar as well as the lyrical and sustained capabilities of the vocal line. Included in the recording are three operatic arias from the opera 'Giulio Cesare'. One such aria 'Da Tempeste', was one of the longest chamberopera works on the recording. The bowing required a fast stroke, the length short enough to be stylistically relevant but not short enough that it would be identical to the length of the guitarist's strokes. In the final product, the stroke was at times still too short. The two remaining Handel arias from the same opera were 'Piangero' and 'Venere Bella'.
+
+The Filipo Gragnani duo sonata for violin and guitar is of the classical Italian era and a work where articulation controlled a lot of the musical expression. Although the notes were relatively simple, the cleanliness and frequent alternation between on and off-the-string strokes were the major points of study for the right-arm. Some improvisatory interpretations were applied in the third movement (the 'Polaca') by means of accelerando and an immediate pause in both instruments, supporting a more folk-like interpretation. Figure 201 demonstrates that in just the first bar it was necessary to co-ordinate between equal and unequal distribution of the bow. In the first bar, a whole bow was applied to the second and most of the third beat. Applying the weight of the shoulder to the end of the note rather than accelerating bow speed ensured adequate sustain and more equal distribution of the bow. About a third of the bow was needed for the up-bow on the accented D-flat semiquaver in order to apply the marked accent and sustain the sound. At bar 24, the dolce vibrato required is neither intense nor fast, rather focusing on producing a sweet and gentle expression. From bars 34 to 37 two different characters were achieved by varying the articulation; a legato character for the melodic material, and a short and even articulation for the rhythmic material. A similar concept is found in bar 42 where there is alteration between lyrical and static characters. A fast bow was given to the A and D sff double-stop using the first two thirds of the bow (E12); the first fourth of the bow (C1) applied to the détaché notes in forte. In bar 43, a diminuendo in the middle third of the bow was applied (E2).
+
+The length of bow was increased in bar 54 to complement the crescendo. For bar 55, a slight nuance on the first D was applied as well as a fast up-bow stroke.
+
+The elegance of this sonata really reveals itself in the second movement; its many transparent passages call for cleanliness of technique. In bar 114 a six-bar tremolo is written in forte as well as a diminuendo and rallentando. The first note was elected to be played as a nonharmonic F on the E string for the sake of clarity rather than the marked harmonic. Reducing speed of the bow during the diminuendo created a disturbance to the sound and the vibration of the string was even at risk of suddenly stopping. The diminuendo was instead influenced by variation of the contact point rather than a reduction in bow speed.
+
+## CHAPTER FIVE -CONCLUSION
+
+Prior to this research project, I had studied a number of the folio works from the perspective of primarily improving left-hand technique and developed original exercises to improve the facility and shifting motions of the left-hand. Factors such as timbre, articulation and dynamics however are virtually unaffected by the facility of the left-hand and are rather the responsibility of a fine bowing technique, therefore it was determined that daily analytical prasctise prioritising the right-arm is vital to the advanced stages of violin study.
+
+One of my research questions was that considering common performance practice includes a numbered notation system for left-hand fingerings, would an equivalent system for the rightarm increase proficiency in performance? For the first time in over a century the bow division system of Lucien Capet was adapted in academic research. Capet's system enables notation of bow distribution by its lettered and numbered labelling of up to eight equal divisions of the bow (division 'A' for a whole bow, division 'B' for half bow parts, division 'C' for quarter parts and division 'D' for eight parts). No six-part division was included by Capet, which is why during the course of this research a new bow area designated as 'division F' was included; thus offering an extension to the original system.
+
+Another research question considered whether Capet's rule of equal distribution of the bow might be broken in order to serve the purpose of greater musical expression. In reflecting on the folio, greater outcomes were achieved in performance where the bow was drawn at a consistent speed and the recordings that took place further along in the candidature evidenced more equal distribution of the bow. On observation of the folio recordings increased skills of vertical types of nuance actually meant that sudden fluctuations in the distribution of the bow to achieve musical expression was less necessary; supporting the notion that equal distribution commonly offers the best outcomes. Occasions which did require alteration of bow speed included when travelling from the lower to upper strings on the same bow stroke (the thicker G string requiring less bow speed than the E string), when the weight was not properly maintained at the weaker point of the bow (the tip).
+
+A limitation of the study conducted is the lack of a system to measure the depth of the stroke (the vertical penetration of the string). Greater documentation of this could be applied in future research by illustrating the course of the bow stroke via circular line diagrams as seen by the fore mentioned Percival Hodgson in his 1934 study. 63 The findings of this study were that setting parameters for bow distribution generated a higher level of responsiveness and enhanced musical expression. This research reinforced that daily analytical study of bowing is crucial in advanced violin study because in a matter of milliseconds, the application of technique can impact the musical interpretation beyond measure.
+
+At the culmination of this research I will continue to observe and track the bow distribution of leading violinists as well as myself in daily practise. My plans for extending this research include English translations of Capet's annotated editions of studies by Fiorillo, Gavinies, Kreutzer, Mazas as well as the Bach Solo Sonatas and Partitas which I believe uniquely valuable to advanced violin students. I would also recommend that progressive and graded materials such as the Suzuki Method Inc. and Australian Music Examinations Board leave 63 Percival Hodgson, Motion Study and Violin Bowing (1934; repr., London: Stainer & Bell, 1983).
+
+space for students and teachers to the notate bow divisions under the staves and include general suggestions for bow distribution.
+
+Not being in control of the bow offers less freedom in all aspects of musical expression. The reflections on the performance folio revealed that embedding bow divisions in daily study increased the control of all areas of the bow, and in turn made for a more accessible palette of expression in performance. My ambition for this project was to offer personal suggestions for bow distribution formulated through daily analytical prasctise and documented in exercises for the right-arm that would hopefully inspire future research-led performance projects.
+
+Targeted at advanced level violin study, this research will hopefully lead to the publication of additional systematic studies for core violin repertoire. Considering literature on bowing notation is scarce, new publications of graded examination materials and violin methods with suggestions for the distribution of the bow would considerably improve violin performance outcomes for violin students. The opening section immediately exhibits Ysaÿe's unique harmonic style, maintaining suspense throughout a long improvisatory introduction. In one continuous movement, 'Ballade' explores all sorts of left hand virtuosity and right hand control, and requires the performer to control a range of emotions from the most passive to vigorous. Ysaÿe's solo sonatas are ideal repertoire for the focus on bowing technique due to the dramatic character changes, dynamics and string crossings.
+
+## APPENDIX ONE -LIST OF FOLIO WORKS
+
+Wolfgang Amadeus Mozart (1756-1791) Piano and Violin Sonata in G Major, K.301 Sonatas K.301-306 were written as a set of six sonatas dedicated to the Electoress of Mannheim. All but the last (K.306) consist of a two movement model, following the usual form of instrumental sonatas at the time. Unlike traditional compositions of Johann Christian Bach where the violin was subordinate to the piano, Mozart provided an equal exchange of melodic lines between the two instruments. Mozart was said to be inspired by the composer Joseph Shuster who in a letter to his family in 1777 commented on Shuster's 'new-style' sonatas which shared melodic motives equally between violin and piano.
+
+The first movement of K.301 Allegro con spirito begins immediately with the main theme in the violin and an arpeggio motive in the piano accompaniment. When the piano takes over the theme, the violin similarly plays accompanying arpeggios underneath. This composition demonstrates the young Mozart experimenting with forms. The second movement Allegro remains in the key of G major with its 3/8 timing taking on a fast minuet-like character. A slightly slower G minor section in the middle of the second movement provides a beautiful contrast to the entire movement before concluding once again in G major.
+
+Whilst analysing the use of the bow in a range of Mozart sonatas, I was greatly inspired by the sound and playing of French violinist Guillaume Sutre; his range of colours and character changes were significantly defined by his bow arm; never crushed and always maintaining a deep and resonant core of sound.
+
+Filipo Gragnani (1768-1820)
+
+## Sonata No.2 in G minor for Violin and Guitar
+
+Filippo Gragnani is noted to have been both a guitarist and violinist born into a family of Italian luthiers and musicians, however not much is known of his overall impact as a composer. Gragnani wrote three sonatas for violin and guitar which are not often performed with only a few available recordings. The Danish-Australian Duo first performed Gragnani's second sonata in a series of concerts in 2016 which began in Copenhagen (DK) and continued in Brisbane, Atherton and Cairns (AU).
+
+## APPENDIX ONE -LIST OF FOLIO WORKS
+### Night Rain in a Tropical Garden
+
+An accessible contemporary piece by Australian guitarist and composer Richard Charlton, 'Night Rain in a Tropical Garden' exhibits the classical guitar as both a solo and accompanying instrument. The violin shares some melodic phrases however does not overpower as can often be the case in this setup. The clever application of various guitar techniques such as harmonics and rasqueado carry through the violin's sustained passages.
+
+Commissioned by John Couch and Judith Hickel, this piece was premiered on the 28th of November 2008 at the Villa Meixner, Brühl, Germany. Couch and Hickel also recorded the work on their album 'Tall Poppies'. The Danish-Australian Duo made its Danish debut in 2016 in Copenhagen, most recently performing the piece at the Danish Guitar Society General Assembly in February 2017.
+
+The composer writes "The piece is in two sections representing first, a meditation, and then a reaction to the heavy atmosphere after rain in a tropical garden. This is the fourth of my works that explore rain and its effects. To Australians, rain (or the lack of it) is a very important issue and in this piece I have tried embody my feelings towards this essential life force."
+
+### Amanda Hodder Piano
+
+Described as "magic" by esteemed UK accompanist Malcolm Martineau, Amanda Hodder holds a Masters in Music from the University of Melbourne.
+
+During her earlier undergraduate studies, she won various awards for collaborative pianism, undertook master classes with pianists such as Ian Munro and Geoffrey Lancaster, and was featured on ABC Classic FM's Rising Stars program. As a repetiteur, Amanda has worked for all of the major Melbourne opera companies, as well as Opera Australia. In addition to this, she has also worked for Symphony Australia, Sydney Philarmonia Choir, Sydney Children's Choir and has performed with Gondwana Voices and Sydney Chamber Singers. Amanda has worked for Cameron Macintosh (Oliver!) and The Really Useful Company (The Phantom of the Opera) and Jersey Boys. Op.18 at the age of twenty-four; around the time he was composing his tone poem Don Juan. Also during this period was courtship between the composer and his future wife -the soprano Pauline de Ahna (1894-1949), whom the famous song 'Morgen' was written for.
+
+In three movements, Op.18 features the rich musical texture of Strauss's orchestral compositions and the Wagner inspired frequent modulations keep the listener in a constant state of anticipation. The first movement Allegro, ma non troppo is opened by the piano with a strong but lyrical introduction before being joined by the violin which introduces the rhythmic figure to be heard throughout the whole movement (a semiquaver pick-up note to a triplet pattern). The unusual and almost awkward accent placed on the semi-quaver pick-up is typical of the difficulties faced with performing works of Strauss. The first movement features many more sections of highly complex rhythmic matter however there are sudden changes from such flourished moods to make way for more transparent and expressive lyrical passages. The second movement the Andante Cantabile, is labelled an improvisation and is in ABA form.
+
+Again the composer provides (especially the pianist) with complex rhythmic cells and an unusually large vocabulary of notes for such a slow movement. After another Andante solo introduction by the piano the third movement is finally underway with urgent scalar passages heard in the violin. The coda is reminiscent of the first movement before the sonata comes to a definite close.
+
+Polonaise in A Flat Major, Op. 53 Fréderic Chopin (1858-1931) Chopin's Polonaise in A Flat Major is one the most popular amongst audiences worldwide. Great skill is demanded of the pianist as he displays a range of technical tricks along the entire range of the instrument such as difficult chromatic scales and arpeggios, trills and widely spaced chords.
+
+Adiós a la Alhambra Jesús de Monesterio (1836-1903) The final piece on the program is that of Spanish composer Jesus de Monasterio. This composer is seldom performed in Australia and originates from Cantabria (the same Provence as Hugo is from). Monasterio was influential in instrumental composition and himself was a fine violinist, first taught by his father he continued his studies at the Royal Conservatory of Brussels with the great Belgian violinist Charles Auguste de Bériot. Adios a la Alhambra was often performed as an encore by the composer and was also reworked for violin and orchestra performance as well as for solo piano.
+
+### ARTIST BIOS: Khalida De Ridder Violin
+
+Violinist Khalida De Ridder is Doctoral candidate in Music Performance at the University of Tasmania under Dr. Susan Collins. Khalida holds degrees in music performance from the Royal Danish Academy of Music (Copenhagen) and the Australian Institute of Music (Sydney) and has performed classical recitals in The Netherlands, Denmark and Australia. She has supported various international visiting artists and performed on various radio station broadcasts such as ABC (Sydney), ' Mostly Folk' (Tasmania) and ABC (Cairns).
+
+A prize winner at many classical music eisteddfods, she won her first at just five years of age. Also, a recipient of many national and international folk awards including a Golden Fiddle award ( 2010 As an organiser Khalida took on a role as Program Director and Assistant Festival Director for the 2009 Tablelands Folk Festival (QLD) and since 2015 leads the annual 'International Chamber Music Series' in North Queensland in an effort to bring the highest quality of classical music to regional areas of Australia.
+
+As in many of Brahms' works, the 3/4 meter is often disguised by melodic lines counteracting against the downbeat -the overlapping of phrases also another way in which the violin and orchestra weave against and through one another.
+
+Although this movement in its dramatic power may often be performed with enormous volume in its orchestral setting, it is interesting that Brahms constantly reminds the soloist of the elegance he had in mind with words such as tranquillo and lusingando. Along with his Symphony No.2, it is said that this concerto was of great importance to Brahms, instilling much needed confidence and satisfaction in his work. From the classical era, Gragnani's rarely performed second sonata for violin and guitar is the main instrumental work on this recording. Born into a family of luthiers in Livorno, Gragnani began musical studies first on the violin. As a composer his chamber music works were published by Ricordi and Monzino in Milan at the turn of the 19th century. Gragnani's composition present as simplistic in style with the articulation controlling a lot of the musical expression. Frequent alternation between on and off-the-string strokes in the violin weave between the mostly shorter length of the guitar strokes and the composition ensures that neither instrument overpowers the other. In the first movement the instruments take turn to perform solo passages. Some improvisatory interpretations were applied in the third movement ('Polacca') by means of accelerando and an immediate pause in both instruments. These elements supported their desire to achieve a more folk like interpretation.
+
+The remaining pieces include Weber's Und Ob Die Wolke and Strauss's well known song Morgen. Following its Berlin premiere in 1826, Weber's masterful composition in three acts Der Freischütz, with libretto by Friedrich Kind, was an immediate international success. Weber uses harmony to cleverly expose his character's innermost feelings and desires, overlaying them with a supernatural and foreboding character in this Singspiel. In Agathe's Act III cavatina Und Ob Die Wolke she wakes from a dream in which she was a dove, shot down by her lover the young forester and marksman Max. She prays to heaven for protection from her foreboding and contemplates her own mortality with minor harmonies. Weber skilfully returns to the original key of A flat major by the end of the piece, as Agathe persuades herself to trust in God's protection. Dall'epoca classica, la seconda sonata per violino e chitarra di Gragnani, raramente eseguita, è il pezzo strumentale principale in questa registrazione. Nato in una famiglia di liutai a Livorno, Gragnani iniziò gli studi musicali prima sul violino. Come compositore, le sue opere di musica da camera furono pubblicate da Ricordi e Monzino a Milano all'inizio del XIX secolo. La composizione di Gragnani presenta uno stile semplicistico e l'articolazione controlla gran parte dell'espressione musicale. L'alternanza frequente tra le arcate forti e tenui del violino si intreccia con la lunghezza per lo più breve dei suoni della chitarra e la composizione assicura che nessuno degli strumenti prevalga sull'altro. Nel primo movimento gli strumenti si alternano per eseguire passaggi solistici. Alcune improvvisazioni sono state applicate nel terzo movimento ("Polacca") mediante l'uso di accelerando e pause immediate in entrambi gli strumenti. Questi elementi sono stati introdotti allo scopo di ottenere un'interpretazione più popolare.
+
+I rimanenti brani comprendono la canzone di Weber dalla "Cavatina", Und ob die Wolke e la famosa canzone di Strauss Morgen. Dopo la sua prima di Berlino nel 1826, la magistrale composizione di Weber in tre atti Der Freischütz, con libretto di Friedrich Kind, fu un successo internazionale immediato. Weber usa l'armonia per svelare abilmente i sentimenti e i desideri più intimi del suo personaggio, sovrapponendoli con un personaggio soprannaturale e presuntuoso in questo Singspiel. Nella cavatina di Agathe, Atto III Und ob die Wolke, lei si sveglia da un sogno in cui era una colomba, abbattuta dal suo amante, il giovane forestale e franco tiratore Max. Prega il cielo per proteggersi dal suo presentimento e contempla la propria mortalità con un'armonia in minore. Weber torna abilmente alla tonalità originale di la bemolle maggiore alla fine dell'aria, mentre Agathe si convince a fidarsi della protezione di Dio.
+
+Rimanendo nel mondo dei sogni, Morgen di Strauss è una canzone d'amore estatica che inizia con un'appassionata melodia del violino che si fonde con la linea vocale. Scritto nel 1894, questo pezzo è un brillante esempio di composizione romantica; le dissonanze sul battito forte della battuta non concedono il tempo di riposare, ma mantengono l'ascoltatore desideroso di quell'amore che fa rimanere svegli fino alle tre del mattino guardandosi negli occhi. Il testo di questa canzone è tratto da una poesia di John Henry Mackay. Le righe finali si traducono con: "Senza parole dovremo guardarci negli occhi, e il silenzio senza parole della felicità cadrà su di noi…" PMS 000 PMS 000 0 9 12 This recording features a unique setting for classical music. Not only does it feature chamber works for classical guitar and violin but creates a workable partnership between operatic voice and a smaller number of accompanying instruments than usually heard. Orchestral parts have been reduced by the young musicians themselves into a trio for voice, guitar and violin; something referred to here as 'Chamber Opera'.
+
+The largest portion of works on this recording are drawn from Händel's Giulio Cesare and the incre-dibly rich and complex character of Cleopatra, Queen of Queens. With libretto by Nicola Francesco Haym, based on an earlier libretto by Bussani, the opera is in three acts. The composition dates back to 1724 where its premiere was an immediate success.
+
+Venere bella is one of the more adaptable works, with sparse accompaniment. Julius Caesar and his victorious troops arrive on the banks of the Nile, where Cleopatra and her cruel brother Ptolemy each try to undermine Caesar's power. After seducing Caesar, Cleopatra realises that she herself has fallen for him and begs Venus, the goddess of love, to intervene so that he might return her feelings. The voice and violin share many passages in unison, evoking the elation of new love.
+
+Da tempeste il legno infranto and Piangerò both share emotional intensity with different underlying themes. In Piangerò we hear Cleopatra's sorrow when she believes Caesar to be dead, and all hope of wrestling the throne from her brother Ptolemy lost. In the middle section, the guitar lends an exciting intensity to Cleopatra as she resolves that when she is dead her one victory will be to come back and torment her brother. The da capo returns with unrivalled emotional intensity; she is met with overwhelming grief. The violin weaves around the voice in anguished harmony.
+
+The final chamber opera work, Da tempeste il legno infranto, is a lively cry of victory from Cleopatra as Caesar rescues her from the clutches of Ptolemy. If the feeling of watching an incredible show of fireworks had a musical equivalent, this is it. We hear Cleopatra's excitement building as the piece goes on and she realises their ultimate victory is close at hand. As we reach the end of the da capo, the fireworks increase, with embellishments in the pairing of the voice and violin.
+
+## Da tempeste il legno infranto
+
+Da tempeste il legno infranto, se poi salvo giunge in porto, non sa più che desiar.
+
+Così il cor tra pene e pianto, or che trova il suo conforto, torna l'anima a bear.
+
+## Piangerò la sorte mia
+
+Piangerò la sorte mia sì crudele e tanto ria finché vita in petto avrò.
+
+## Und ob die Wolke
+
+Even when clouds hide it The sun still shines in the vault of heaven One holy will reigns there No blind chance governs the world!
+
+## APPENDIX ONE -LIST OF FOLIO WORKS
+### Ave Maria
+
+Hail Mary full of grace The Lord is with thee Hail the lord The lord is with thee Blessed art thou among women, And blessed is the fruit of thy womb, Jesus Hail Mary full of grace
+
+### Venere Bella
+
+Lovely Venus, just for an instant Please grant me all the graces of the god of love! Then let my graces make a lover Of a royal heart.
+
+CHAPTER ONE .............................................................................................................. ..24 1.1 INTRODUCTION ....................................................................................................... ..24 1.2 LITERATURE REVIEW ............................................................................................ ..27 1.3 METHODOLOGY ...................................................................................................... ..40 CHAPTER TWO -APPLICATION TO REPERTOIRE ............................................... 41 2.1 APPLICATION TO REPERTOIRE ............................................................................. ..41 2.2 WARMING UP ........................................................................................................... ..42 2.3 BACH SOLO SONATA NO.1 IN G MINOR, BWV 1001 ............................................ 50 2.4 MOZART SONATA FOR VIOLIN AND PIANO IN G MAJOR, KV 301 (293A) ........ 65 2.5 SOLO SONATA NO.3 BY EUGENE YSAŸE ............................................................ ..70 2.6 BRAHMS VIOLIN CONCERTO IN D MAJOR, OP.77 ................................................ 85 2.7 MOZART CONCERTO IN D MAJOR, K.218. MOVEMENT I. ALLEGRO .............. 104 2.8 PAGANINI NO.4. OP.1............................................................................................. ..112 CHAPTER THREE -REFLECTIONS ON PERFORMANCES ............................... ..119 3.1 PERFORMING BACH SOLO SONATA NO.1, BWV 1001 ....................................... 119 3.2 PERFORMING YSAŸE ............................................................................................. ..123 vii 3.3 PERFORMING MOZART .......................................................................................... 3.4 PERFORMING BRAHMS .......................................................................................... 3.5 PERFORMING PAGANINI ........................................................................................ 3.6 PERFORMING FRANCK SONATA .......................................................................... 3.7 PERFORMING CHAMBER WORKS AND CHAMBER OPERA WITH TRIO CAVALLARO .................................................................................................................. CHAPTER FOUR -PREPARATION FOR FINAL RECITAL ................................... 4.1 FRANCESCO VERACINI VIOLIN SONATA IN E MINOR, I.A.5.I/6 ...................... 4.2 STRAUSS SONATA OP.18 ........................................................................................ 4.3 DEBUSSY VIOLIN SONATA .................................................................................... CHAPTER FIVE -CONCLUSION ................................................................................ APPENDIX ONE -LIST OF FOLIO WORKS ..................................................................
+
+Figure 1. Variations of expression with the bow ..............................................................
+
+Figure 2. Four main expressions of the bow according to Campagnoli .............................
+
+Figure 3. Three divisions of the bow and their function according to Baillot ....................
+
+Figure 4. Demeneÿ's recommendation of posture with an elevated level of the upper arm.
+
+Figure 5. Bow divisions lettered and numbered by De Beriot ..........................................
+
+Figure 6. Lucien Capet division system ...........................................................................
+
+Figure 7. Capet Fiorillo Etudes. Exercise 1, Etude IV ......................................................
+
+Figure 8. Capet Fiorillo Etudes. Exercise 2, Etude V .......................................................
+
+Figure 9. An extension of Capet's notation system including a six-equal-part division,
+
+Figure 10. Dividing the bow into thirds on open strings .................................................
+
+Figure 11. Pronated .......................................................................................................
+
+Figure 12. Supinated .....................................................................................................
+
+Figure 13.Three equal divisions with contrasting dynamics; pronation on forte and
+
+Figure 14.Three equal divisions with contrasting dynamics; supination in piano and
+
+Figure 15. Collé and legato stroke scale .........................................................................
+
+Figure 16. Collé stroke exercises; moving from one point to the other ...........................
+
+Figure 17. Pivoting and co-ordination exercise in areas E1 and E3. ...............................
+
+Figure18.A legato pivoting exercise on open strings using the whole bow length. ........
+
+Figure 19. Position and string change exercise ...............................................................
+
+Figure 22. Scale with roulé stroke .................................................................................
+
+Figure 23.Pulsating subdivisions to improve rhythmic knowledge and greater resonance.
+
+Figure 24. Spun sound exercises with dynamics ............................................................
+
+Figure 25. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Adagio. Addressing bar 1.
+
+Figure 26. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 1. Spun-
+
+Figure 27. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 1.
+
+Figure 28. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 1.
+
+Figure 29. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 2.
+
+Figure 30. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Fuga. Bar 1. Bow
+
+Figure 31. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Bar 2. Second appearance
+
+Figure 32. Seven open string levels ...............................................................................
+
+Figure 33.Representation of the seven bow to string angles and the continuous circular
+
+Figure 34. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Bar 2. Using open strings
+
+Figure 47. Bach Solo Sonata No.1 in G minor. BWV 1001. III. Siciliano. Bar 1.
+
+Figure 48. Bach Solo Sonata No.1 in G minor, BWV1001. III. Bar 1 Release of bass note
+
+Figure 49. Bach Solo Sonata No.1 in G minor, BWV1001. IV Presto. Bars 1-4.
+
+Figure 50. Bach Solo Sonata No.1 in G minor, BWV 1001. IV. Bars 55-58. Ascending
+
+Figure 51. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 24-28 bow distribution.63
+
+Figure 54. Bach Sonata No.1 in G minor, BWV 1001. IV. Bar 37. Bow distribution......
+
+Figure 55. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 43-46. Melodic line in
+
+Figure 56. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 47-51. Applying adequate
+
+Figure 57. Bach Sonata No.1 in G minor, BWV 1001. IV. Bar 53. Anchorage on the A
+
+Figure 59. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 61-62. Call and response
+
+Figure 61. Mozart Violin Sonata in G Major, K.301. I. Bars 9-12. In one bow for lyrical
+
+Figure 63. Mozart Violin Sonata in G Major, K.301. I. Bars 13-19. Development of
+
+Figure 64. Mozart Violin Sonata in G Major, K.301. I. Bars 20-21. Unequal bow length.
+
+Figure 65. Mozart Violin Sonata in G Major, K.301. I. Bars 22-24. Sustained forte until
+
+Figure 66. Mozart Violin Sonata in G Major, K.301. I. Bars 29-32. Rhythmic and
+
+Figure 67. Mozart Violin Sonata in G Major, K.301. I. Bars 33-37. Timbre mimicking a
+
+Figure 68. Mozart Violin Sonata in G Major, K.301. I. Bar 41. Clarity of stroke for two
+
+Figure 69. Mozart Violin Sonata in G Major, K.301. I. Bar 61-62. Lifting the bow off the
+
+Figure 70. Mozart Violin Sonata in G Major, K.301. I. Bars 72-4. Détaché stroke in
+
+Figure 71. Mozart Violin Sonata in G Major, K.301. I. Bar 85. Nuance .........................
+
+Figure 72. Mozart Violin Sonata in G Major, K.301. I. Bars 98. Nuancing the chromatic
+
+Figure 108. Brahms Violin Concerto in D Major. I. Addressing bars 92-95. Exercise for a
+
+Figure 109. Brahms Violin Concerto in D Major. I. Bars 98-102. All down strokes in an
+
+Figure 110. Brahms Violin Concerto in D Major. I. Bar 98. A 'Sticky' stroke; down and
+
+Figure 111. Brahms Violin Concerto in D Major. I. Bar 98. Lengthen the up-bows with
+
+Figure 112. Brahms Violin Concerto in D Major. I. Bar 102-103. Uneven distribution;
+
+Figure 113. Brahms Violin Concerto in D Major. I. Bars 105-107. Utilising a détaché
+
+Figure 114. Brahms Violin Concerto in D Major. I. Bars 104-111. Overlapping phrase
+
+Figure 117. Brahms Violin Concerto in D Major. I. Bars 367-8. Darker tonal character.
+
+Figure 118. Brahms Violin Concerto in D Major. I. Bars 369-70. Legato character with a
+
+Figure 119. Brahms Violin Concerto in D Major. I. Bar 370. An exercise for legato
+
+Figure 120. Brahms Violin Concerto in D Major. I. Bars 373-374. A narrow but immediate
+
+Figure 121. Brahms Violin Concerto in D Major. I. Training chords located in bars 487-
+
+Figure 122. Brahms Violin Concerto in D Major. I. Training chords located in bars 487-
+
+Figure 123. Brahms Violin Concerto in D Major. III. Allegro giocoso, ma non troppo
+
+Figure 125. Brahms Violin Concerto in D Major. III. Addressing bar 22-26. Exercises for
+
+Figure 126. Brahms Violin Concerto in D Major. III. Addressing bars 23-26. Exercises for
+
+Figure 146. Brahms Violin Concerto in D Major. III. Bars 143-5 exercised in dotted
+
+Figure 159. Mozart Violin Concerto in D Major. I. Bar 46. Material repeated in variation
+
+Figure 160. Mozart Violin Concerto in D Major. I. Bar 45-46. Bowing changed in bar 46.
+
+Figure 162. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Sequence in
+
+Figure 163. Mozart Violin Concerto in D Major I. Addressing bars 52-53. Dropping first
+
+Figure 164. Mozart Violin Concerto in D Major I. Addressing bars 52-53. Drop first two
+
+Figure 165. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Drop first three
+
+Figure 166. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Drop four notes
+
+speed and distribution. 7 Four main expressions of the bow according to Campagnoli are shown in Figure1with explanation provided in Figure2.
+
+Figure 1.Variations of expression with the bow
+
+Figure 3.Three divisions of the bow and their function according to Baillot.
+
+School' however, as late as 1908 did this low body-hugging bow arm posture continue to appear in treatises such as by ArchilleRivarde. 15 Others such as French scientist Georg Demeneÿ (Professor of Physiology at La Ville, Paris), were not in favour of a low arm posture. Published in 1905, Demeneÿ's treatise illustrates an elevated level of the upper arm; a technique adopted by the majority of leading modern violinists.
+
+Figure 4.Demeneÿ's recommendation of posture with an elevated level of the upper arm.16
+
+Figure 5.Bow divisions lettered and numbered by DeBeriot. 18
+
+Figure 6. Lucien Capet division system 26
+
+Figure 7. Capet Fiorillo Etudes. Exercise 1, Etude IV. 28
+
+1873-1944). Flesch authored some of the most widely used violin methods of the twentiethcentury including Urstudien (Basic Studies), The Art of Violin Playing, Problems of Tone Production in Violin Playing and Violin Fingering, emphasising the importance of analytical practise suited to individual weaknesses.32
+
+Application to RepertoireThis chapter documents daily analytical training of the bow in preparation for the folio recordings. Many of my own original exercises were inspired by bowing principles documented by Lucien Capet and his bow division system was used to notate my own ideas throughout this chapter. Apart from the eight equal divisions of the bow systemised by Capet, a six-part division labelled 'F' is offered as an extension; this extra measurement offers the ability to pin-point some of the most flexible points of the bow.
+
+Figure 9.An extension of Capet's notation system including a six-equal-part division, labelled 'F'.
+
+Figure 10. Dividing the bow into thirds on open strings.
+
+Figure 11. Pronated
+
+Figure 13.Three equal divisions with contrasting dynamics; pronation on forte and supination on piano
+
+Figure 15.Collé and legato stroke scale
+
+Figure 17.Pivoting and co-ordination exercise in areas E1 and E3.
+
+Figure18.A legato pivoting exercise on open strings using the whole bow length.
+
+Figure 19. Position and string change exercise.
+
+Figure 20.Chordal outline with each quaver using a third of the bow for each quaver.
+
+Figure 21.Roulé stroke on sustained notes
+
+Figure 22.Scale with roulé stroke.
+
+Figure 23.Pulsating subdivisions to improve rhythmic knowledge and greater resonance.
+
+Figure 24.Spun sound exercises with dynamics.
+
+Figures 25 and 26 address the first chord of bar one, applying spun-sound exercises on open
+
+Figure 25. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Adagio. Addressing bar 1. The first chord in an open string, spun-sound exercise.
+
+Figure 26. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 1. Spun-sound exercise on open strings.
+
+Figure 27. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 1. Sustaining the B-flat note in chord one.
+
+Figure 28. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 1. Sustaining the middle G between two double-stops in chord two.
+
+Figure 29. Bach Solo Sonata No.1 in G minor. BWV 1001. I. Addressing bar 2. Sustaining the middle (C) of chord three.
+
+Figure 30. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Fuga. Bar 1. Bow divisions and articulation.
+
+Figure 31. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Bar 2. Second appearance of subject.
+
+Figure 32.Seven open string levels.
+
+Figure 33.Representation of the seven bow to string angles and the continuous circular motion required to move from the G to E string.
+
+Figure 34. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Bar 2. Using open strings to check the bow to string levels.
+
+Figure 35. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bar 3. Gripping all three strings; muted bow on the string before drawing a fast bow stroke in division C1.
+
+Figure 36. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Fuga. Addressing bars 4-6. Pivoting in divisions C1234.
+
+Figure 37. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bars 4-6. Pivoting exercises with altered rhythm in various bow divisions.
+
+Figure 38. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bars 4-6. Faster transitions between double-stops by using dotted rhythms.
+
+Figure 39. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bars 4-6. Pivoting on the unchanged note in each chord.
+
+Figure 40. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bars 4-6. Sustaining the unchanged note in a slow tempo.
+
+Figure 41. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bars 4-6. Dynamic contrast via spun-sound exercise.
+
+Figure 42.
+
+Figure 42. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bars 11 and 12. Détaché exercise for tonal strength
+
+Figure 43. Bach Solo Sonata No.1 in G Minor, BWV 1001. II. Bars 22-23. Melodic and rhythmic organisation of chords.
+
+Figure 44. Bach Solo Sonata No.1 in G Minor, BWV 1001. II. Bar 28. Extra weight applied to the bass notes.
+
+Figure 46. Bach Solo Sonata No.1 in G minor. BWV 1001. II. Addressing bars 74-78. Exercise in dotted rhythm in division B1.
+
+Figure 47. Bach Solo Sonata No.1 in G minor. BWV 1001. III. Siciliano. Bar 1. Distribution of the bow.
+
+Figure 48. Bach Solo Sonata No.1 in G minor, BWV1001. III. Bar 1 Release of bass note F once adequate weight is applied to the bass note. 48
+
+Figure 49. Bach Solo Sonata No.1 in G minor, BWV1001. IV Presto. Bars 1-4. Descending line, outlining the melodic and triadic sequence.
+
+Figure 50. Bach Solo Sonata No.1 in G minor, BWV 1001. IV. Bars 55-58. Ascending line, outlining the melodic and triadic sequence.
+
+Figure 51. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 24-28 bow distribution.
+
+Figure 52. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 29-32. Melodic line in red.
+
+Figure 53. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 33-34. Each legato segment increasing in dynamic level.
+
+Figure 54. Bach Sonata No.1 in G minor, BWV 1001. IV. Bar 37. Bow distribution.
+
+Figure 55. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 43-46. Melodic line in red.
+
+Figure 56. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 47-51. Applying adequate length of stroke to the melodic line falling on all up-bows.
+
+Figure57shows an anchorage note (in red) for the bowing motion of the last bar of the first
+
+Figure 57. Bach Sonata No.1 in G minor, BWV 1001. IV. Bar 53. Anchorage on the A
+
+Figure 58. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 59-60. Call and response quality. A slight rubato at the height of the scale marked in red.
+
+Figure 59. Bach Sonata No.1 in G minor, BWV 1001. IV. Bars 61-62. Call and response quality. A slight rubato at the height of the scale marked in red.
+
+Figure 60. Mozart Sonata for Violin and Piano in G Major, K.301/293a No.18 I. Allegro con spirito. Bars 1-3. Lyrical opening character.
+
+Figure 61. Mozart Violin Sonata in G Major, K.301. I. Bar 7. In one bow for lyrical character with most emphasis on the D.
+
+Figure 62. Mozart Violin Sonata in G Major, K.301. I. Bars 9-12. Development of reoccurring segment, each using more bow.
+
+Figure 63. Mozart Violin Sonata in G Major, K.301. I. Bars 13-19. Development of reoccurring segment, each using more bow.
+
+Figure 64. Mozart Violin Sonata in G Major, K.301. I. Bars 20-21. Unequal bow length. Moving with energy on-the-string.
+
+Figure 65. Mozart Violin Sonata in G Major, K.301. I. Bars 22-24. Sustained forte until the subito piano.
+
+Figure 66. Mozart Violin Sonata in G Major, K.301. I. Bars 29-32. Rhythmic and melodic contrast.
+
+Figure 67. Mozart Violin Sonata in G Major, K.301. I. Bars 33-37. Timbre mimicking a flute and oboe in the sustained octave before a weighted down beat.
+
+Figure 68. Mozart Violin Sonata in G Major, K.301. I. Bar 41. Clarity of stroke for two up-bow strokes, short but fast bow stroke for a 'speaking' quality of sound.
+
+Figure 69. Mozart Violin Sonata in G Major, K.301. I. Bar 61-62. Lifting the bow off the string after the trill
+
+Figure 70. Mozart Violin Sonata in G Major, K.301. I. Bars 72-4. Détaché stroke in division C2.
+
+Figure 71. Mozart Violin Sonata in G Major, K.301. I. Bar 85. Nuance.
+
+Figure 72. Mozart Violin Sonata in G Major, K.301. I. Bar 98. Nuancing the chromatic scale.
+
+Figure 73. Ysaÿe Solo Sonata No.3. Bar 1. Opening phrase with suggested bow division.
+
+Figure 74. Ysaÿe Solo Sonata No.3. Bar 1. Approximating the angle of the bow to the string.
+
+Figure 75. Ysaÿe Solo Sonata No.3. Bar 1. First segment of quavers, with more bow pressure applied to upper notes.
+
+Figure 76. Ysaÿe Solo Sonata No.3. Bar 1. A trill exercise for the co-ordination of the first eight quavers
+
+Figure 77. Ysaÿe Solo Sonata No.3. Bar 1. Sustained double-stops at half the performance tempo.
+
+Figure 78. Ysaÿe Solo Sonata No.3. Bar 1. Nuanced notes in red. Sing a note in quaver rests marked with arrow.
+
+Figure 79. Ysaÿe Solo Sonata No.3. Bar 1. Glissando from D-natural to A-flat.
+
+Figure 80. Ysaÿe Solo Sonata No.3. Bar 2. Cesura marked for transition of a new colour and phrasing.
+
+addressing bar 8. In performance, Ysaÿe asks whole length of the bow to be distributed to each slurred quintuplet in bar 8, indicated by the symbol ' ' in the original score.
+
+Figure 81. Ysaÿe Solo Sonata No.3. Bar 7. Aiming for the second note of each group.
+
+Figure 82. Ysaÿe Solo Sonata No.3. Bar 8. Aiming for the third note in each quintuplet.
+
+Figure 83. Ysaÿe Solo Sonata No.3. Addressing bar 12. Co-ordination exercises.
+
+Figure 84. Ysaÿe Solo Sonata No.3. Addressing bar 12. Co-ordination exercises.
+
+Figure 85. Ysaÿe Solo Sonata No.3. Bar 23. Full bow length on F.
+
+Figure 86. Ysaÿe Solo Sonata No.3. Bars 29-34. Important connections in phrasing.
+
+Figure 87. Ysaÿe Solo Sonata No.3. Addressing bars 34-35. Looping exercises
+
+Figure 89. Ysaÿe Solo Sonata No.3. Addressing bars 40-42. Placing all notes and playing only the bottom two lines.
+
+Figure 90. Ysaÿe Solo Sonata No.3.Addressing bars 40-41. Timing the push and pull of the bow.
+
+Figure 91. Ysaÿe Solo Sonata No.3. Addressing bar 56. Larger notation for exercising sustain on the sextuplet double-stops.
+
+Figure 92. Ysaÿe Solo Sonata No.3. Addressing bar 56. Spun sound exercise.
+
+Figure 93. Ysaÿe Solo Sonata No.3. Addressing bar 56. Spun sound exercise.
+
+Figure 94. Ysaÿe Solo Sonata No.3. Addressing bar 56. A triplet rhythm isolating the bottom line.
+
+Figure 95. Ysaÿe Solo Sonata No.3. Bars 74-75. Points of expression
+
+Figure 96. Ysaÿe Solo Sonata No.3. Addressing bars 107-112. Looping exercise; groups of three and four notes.
+
+Figure 97. Ysaÿe Solo Sonata No.3. Bars 113-4. Focus on the lower strings.
+
+Figure 98. Ysaÿe Solo Sonata No.3. Addressing material from bars 114-6. Dotted rhythmic pattern.
+
+Figure 99. Ysaÿe Solo Sonata No.3. Bar 118. Accentuation of the final note in each group.
+
+Figure 100. Ysaÿe Solo Sonata No.3. Addressing material from bar 119. Two-note looping exercise with each previous note repeated.
+
+Figure 101. Ysaÿe Solo Sonata No.3. Addressing bar 119. In a triplet pattern;restarting each loop from the second note.
+
+Figure 102. Ysaÿe Solo Sonata No.3. Addressing bars 119-122. Increasing tempo; using fast circular movements.
+
+Figure 103. Ysaÿe Solo Sonata No.3. Addressing 122. Analysing the bow stroke movements on open strings; division C1.
+
+Figure 104. Ysaÿe Solo Sonata No.3. Addressing bars 121-125. Melodic skeleton in an altered time signature.
+
+Figure 105. Ysaÿe Solo Sonata No.3. Addressing bar 122. Doubling each note of bar to train rapid right-arm motions.
+
+Figure 106. Brahms Violin Concerto in D Major. I. Allegro ma non troppo. Bar 90.Pulsating the semi-quaver subdivisions of the first double-stop.
+
+Figure 107. Brahms Violin Concerto in D Major. I. Bar 91-94. Nuancing the Fnaturals for harmonic interest.
+
+Figure 108. Brahms Violin Concerto in D Major. I. Addressing bars 92-95. Exercise for a glissando shift between the octaves; sounding the lower line only.
+
+Figure 109. Brahms Violin Concerto in D Major. I. Bars 98-102. All down strokes in an altered tempo.
+
+Figure 110. Brahms Violin Concerto in D Major. I. Bar 98. A 'Sticky' stroke; down and up-bow as a one-motion-response, in division D2.
+
+Figure 112. Brahms Violin Concerto in D Major. I. Bar 102-103. Uneven distribution; spending more bow on important melodic notes.
+
+Figure 113. Brahms Violin Concerto in D Major. I. Bars 105-107. Utilising a détaché stroke to train rhythmic precision.
+
+Figure 114. Brahms Violin Concerto in D Major. I. Bars 104-111. Overlapping phrase groups; solo violin phrasing in two bars and orchestra phrasing in three bars.
+
+Figure 115. Brahms Violin Concerto in D Major. I. Bars 250-260. Exercise to strengthen melodic material in the higher register.
+
+Figure 116. Brahms Violin Concerto in D Major. I. Bars 230-231. Immediate narrow vibrato and fast bow speed.
+
+Figure 117. Brahms Violin Concerto in D Major. I. Bars 367-8. Darker tonal character.
+
+Figure 118. Brahms Violin Concerto in D Major. I. Bars 369-70. Legato character with a present vibrato, whole bows.
+
+Figure 119. Brahms Violin Concerto in D Major. I. Bar 370. An exercise for legato playing whilst coordinating hand; division C1 spent on the silent note.
+
+Figure 120. Brahms Violin Concerto in D Major. I. Bars 373-374. A narrow but immediate vibrato applied to the octave A.
+
+Figure 121. Brahms Violin Concerto in D Major. I. Training chords located in bars 487-88. In division B2 with a 'sticky' stroke.
+
+Figure 122. Brahms Violin Concerto in D Major. I. Training chords located in bars 487-88. Bow travelling to the frog on marked tenuto notes.
+
+Figure 123. Brahms Violin Concerto in D Major. III. Allegro giocoso, ma non troppo vivace. Bar 1. Fast-circular stroke with only a small retake in the rest.
+
+Figure 124. Brahms Violin Concerto in D Major. III. Addressing bars 20-25. Looping in pattern of two, repeating the previous note.
+
+Figure 125. Brahms Violin Concerto in D Major. III. Addressing bar 22-26. Exercises for co-ordination; difficult shifts boxed in red.
+
+Figure 126. Brahms Violin Concerto in D Major. III. Addressing bars 23-26.Exercises for co-ordination; difficult shifts isolated for faster reaction.
+
+Figure 127. Brahms Violin Concerto in D Major. III. Addressing bars 20-26.Exercises for the co-ordination; loops of 3 + 4 notes.
+
+Figure 128. Brahms Violin Concerto in D Major. III. Addressing bars 20-26.Exercising for co-ordination; loops of 4+1.
+
+Figure 129. Brahms Violin Concerto in D Major. III. Addressing bars 20-27. Looping with repeated up and down strokes; each segment played as a one-motion-response.
+
+Figure 130. Brahms Violin Concerto in D Major. III. Addressing bar 21. Isolated practice.
+
+Figure 132. Brahms Violin Concerto in D Major. III. Addressing bar 21. Training top and bottom line.
+
+Figure 133. Brahms Violin Concerto in D Major. III. Addressing bar 21. Alternating playing between top and bottom lines of the double-stops.
+
+Figure 134. Brahms Violin Concerto in D Major. III. Bar 21. Weighted upper note for intervals of a sixth and for thirds against an open string.
+
+Figure 135. Brahms Violin Concerto in D Major. III. Addressing bar 21. Exercise for co-ordination.
+
+Figure 136. Brahms Violin Concerto in D Major. III. Addressing Bar 23. Accenting first and third double-stops.
+
+Figure 137. Brahms Violin Concerto in D Major. III. Addressing Bar 23. Accenting second and fourth double-stops.
+
+Figure 142. Brahms Violin Concerto in D Major. III. Bar 56 Accentuation of the Fsharp at the end of a scale run.
+
+Figure 143. Brahms Violin Concerto in D Major. III. Addressing bars 55-56. Coordination of higher scales in an altered rhythm pattern.
+
+Figure 144. Brahms Violin Concerto in D Major. III. Addressing bar 108. Dotted rhythm and subdivision exercises for co-ordination of both hands.
+
+Figure 145. Brahms Violin Concerto in D Major. III. Bar 138. Nuance via circular pressure on the marked tenuto.
+
+Figure 146. Brahms Violin Concerto in D Major. III. Bars 143-5 exercised in dotted rhythm for co-ordination.
+
+Figure 147. Brahms Violin Concerto in D Major. III. Bars 143-5. Accents determined for performance.
+
+Figure 148. Brahms Violin Concerto in D Major. III. Addressing bars 251-3. Exercise for bow divisions and accents.
+
+Figure 149. Brahms Violin Concerto in D Major. III. Bars 275-7. Execution of nuance and dynamics
+
+Figure 151. Brahms Violin Concerto in D Major. III. Addressing bars 292-6. Exercise for co-ordination in string crossings; sixths isolated for practise.
+
+Figure 152. Mozart Violin Concerto in D Major. I. Bar 42.
+
+Figure 153. Mozart Violin Concerto in D Major. I. Bar 42. One motion response.
+
+Figure 154. Mozart Violin Concerto in D Major. I. Bar 47. One motion response.
+
+Figure 155. Mozart Violin Concerto in D Major. I. Bar 50. One motion response.
+
+Figure 156. Mozart Violin Concerto in D Major. I. Bar 51. One motion response.
+
+Figure 157. Mozart Violin Concerto in D Major. I. Bar 55. One motion response.
+
+Figure 158. Mozart Violin Concerto in D Major. I. Bar 205. One motion response.
+
+Figure 159. Mozart Violin Concerto in D Major. I. Bar 46. Material repeated in variation form two bars later.
+
+Figure 160. Mozart Violin Concerto in D Major. I. Bar 45-46. Bowing changed in bar 46.
+
+Figure 161. Mozart Violin Concerto in D Major. I. Bar 48. Avoiding a bulge with the bow.
+
+Figure 162. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Sequence in alternated rhythm.
+
+Figure 163. Mozart Violin Concerto in D Major I. Addressing bars 52-53. Dropping first note in sequence.
+
+Figure 164. Mozart Violin Concerto in D Major I. Addressing bars 52-53. Drop first two notes in sequence.
+
+Figure 165. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Drop first three notes in sequence.
+
+Figure 166. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Drop four notes in sequence.
+
+Figure 167. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Drop five notes in the sequence.
+
+Figure 168. Mozart Violin Concerto in D Major. I. Bars 57-9. The effect on phrasing with up-bows on downbeats.
+
+Figure 169. Mozart Violin Concerto in D Major. I. Bars 57-9. The effect on phrasing with down-bows on downbeats.
+
+Figure 170. Mozart Violin Concerto in D Major. I. Bars 59-60. Exaggerating length and speed of bow stroke in the separated notes.
+
+Figure 171. Mozart Violin Concerto in D Major. I. Bar 66. Ensuring the second beat does not stand out as if it were the first beat of the bar.
+
+Figure 172. Mozart Violin Concerto in D Major. I. Bars 86-88.
+
+Figure 173. Mozart Violin Concerto in D Major. I. Bars 115-116. Same short articulation should continue into bar 116 on separated quavers.
+
+Figure 174. Mozart Violin Concerto in D Major. I. Bar 117. Ensuring the second beat not as prominent as the downbeat.
+
+Figure 175. Mozart Violin Concerto in D Major. I. Bar 159. First note with a weighted stroke, growing in dynamic.
+
+Figure 176. Mozart Violin Concerto in D Major. I. Bars 184-185. Nuancing the height of a chromatic line.
+
+Figure 177. Mozart Violin Concerto in D Major. I. Addressing bar 200. Open string exercise.
+
+Figure 178. Mozart Violin Concerto in D Major. I. Bar 200. Accented motion on the first A for finer motion of the right-arm.
+
+Figure 179. Paganini Caprice. Addressing bar 1. Pulsating subdivisions for a tonal study.
+
+Figure 180. Paganini Caprice. Bar 1. Roulé stroke.
+
+Figure 181. Paganini Caprice. Bar 4. Sustaining; applying enough weight before the release of the down bow.
+
+Figure 182. Paganini Caprice. Addressing bars 17-18. Two-note loop pattern exercise repeating the previous note (2+2).
+
+Figure 183. Paganini Caprice. Addressing bars 17-19. Loop pattern of four notes plus three notes (4+3).
+
+Figure 184. Paganini Caprice. Bar 24. Bowing.
+
+Figure 185. Paganini Caprice. Addressing bar 24. Creating a continuous legato phrase.
+
+Figure 186. Paganini Caprice. Addressing bar 33. Pausing between segments for intonation and stroke.
+
+Figure 187. Paganini Caprice. Addressing bar 33. For intonation and stroke.
+
+Figure 188. Paganini Caprice. Addressing bar 34. Boxing segments of a one-motionresponse.
+
+Figure 190. Paganini Caprice. Addressing bar 34. Loops linking 'in-between notes'for co-ordination.
+
+Figure 191. Paganini Caprice. Bar 34. Isolating the upper line for intonation in bar.
+
+Figure 192. Paganini Caprice. Bar 34. Little left-hand pressure and a strong right-arm stroke in divisions B2, F4 and D3.
+
+Figure 193. Paganini Caprice. Addressing bar 34. Two string spiccato stroke exercise in division D4.
+
+Figure 194. Paganini Caprice. Addressing bar 43. Looping exercise to measure the distances of 1 st and 3 rd fingers.
+
+Figure 195. Paganini Caprice. Addressing bar 43. Looping exercise of segments.
+
+Figure 196. Paganini Caprice. Addressing bar 44. Accenting first of each note-group.
+
+Figure 197. Paganini Caprice. Addressing bar 46. Playing open D against fingered bottom line for clarity.
+
+Figure 198. Paganini Caprice. Addressing bar 46. Playing the melodic line with an open string for clarity.
+
+Figure 199. Paganini Caprice. Addressing bar 47. Playing the melodic line against an open string.
+
+52 51 Folio recording, track 1. (3:41-3:48). 52 Folio recording, track 1. (0:53-0:55).
+
+Unique to the repertoire of Ysaÿe was a lot of training of what was labelled in chapter two as 'one-motion-response'. A one-motion-response enabled bowing motions particularly those involved in rapid passages and string crossings to be learnt in chunks rather than thinking of individual bowings. From the folio recording examples of successful one-motion-response training can be seen in bars 23 and 24; the responsiveness greatly improved. 57
+
+Figure 200. Mozart Violin Sonata in G Major, K.301. II. Allegro. Placing a metronome pulse on a weak beat of the bar.
+
+Apart from Weber's 'Cavatina', 'Morgen' by Strauss was one of the most difficult works on the program. The desired clarity and anticipation were mostly achieved however the work would have benefited from more movement and sustain in the phrasing. Even better distribution of the bow would mean that the unintentional fluctuations of dynamics heard would have been less frequent. At times there was inadequate power at weaker areas of the bow. More engagement with the bow stick rather than lifting the bow off the string would have improved the legato phrasing.The violin works of Veracini as in many other Baroque and Classical repertoire can be sectioned into lyrical or rhythmical phrasing and technique. Sudden changes in dynamics as well as various rapid string crossings suggest the need for open string analysis. Although the weighted down-bow does mostly suit the feeling of the downbeat, on occasion there are expressive reasons for the use of the up-bow on downbeats, such as to imitate the 'lifted' feel of dance-like motions.Although the structure of the sonata is quite easy to follow, a lot of shaping and sustain is required. This can be achieved by not only more horizontal activity in the bow, but also the downwards pulsating of the string to sustain long notes. Circular lifted motions ensure the strings ring freely rather than being choked or muted by a solely straight on-the-string technique. Based on my experience performing in 'Historically Informed Performance' ensembles I could draw upon basic stylistic knowledge to add my own ornamentations for repeated sections. Strauss style and its rich chromatic harmony calls for strong strokes of the bow. A challenge encountered with bow distribution in the sonata was the unintentional loss of sound at the tip of the bow. The amount of acceleration and deceleration of bow speed required for each segment of the Strauss sonata was more varied than the other sonatas on the program.
+
+Figure 201. Strauss Violin Sonata, Op.18. I. Allegro ma non troppo. Bars 1-2. Equal and unequal bow division.
+
+Figure 202. Strauss Violin Sonata, Op.18. I. Addressing bar 3. Subdivision via the pulsation of the bow.
+
+Figure 203. Strauss Violin Sonata, Op.18. I. Addressing bar 3. Subdivision via the pulsation of the bow.
+
+Figure 204. Strauss Violin Sonata, Op.18. I. Bar 14. Pivoting to the lower string during a large shift.
+
+Figure 205. Debussy Violin Sonata in G minor. L.140. I. Allegro vivo. Bar 15.Change of colour at the tip of the bow
+
+Figure 206. Debussy Violin Sonata in G minor. L.140. I. Bars 16-18. A dark and present character with crescendo in the scale before an immediate piano in bar 18.
+
+Figure 207. Debussy Violin Sonata in G minor. L.140. I. Bars 24-5. Dolce rather than intense vibrato.
+
+Figure 208. Debussy Violin Sonata in G minor. L.140. I. Bars 34-37. Melodic and rhythmic material.
+
+Figure 209. Debussy Violin Sonata in G minor. L.140. II. Intermède. Bars 114-119. Continuation of bow speed; dynamic via contact point.
+
+In 2003 Amanda won the major ensemble award at the National Liederfest. In 2004 Amanda won the Hugh D. T. Williamson Accompanist's Award at the Mietta Song Recital, enabling Amanda to spend most of 2005 studying in Paris and Southern Germany. In 2007 Amanda was the recipient of the Lady Hamer Award, an award made specifically for pianist who are interested in working collaboratively with other musicians. In May 2008 Amanda was the recipient of the Geoffrey Parsons Award, an award run by the Accompanist Guild of South Australia, supported by the Geoffrey Parsons Trust UK and judged by Mr Martineau. Amanda was also a MacDonald Trust Scholar at the VCA in 2008, and was the only on accompanist employed by the voice department. In 2009, Amanda again won the major ensemble award at National Liederfest, as well as the Margaret Schofield Award for Outstanding Accompanying. On television, Amanda has worked with The Choir of Hard Knocks, and was the recommended vocal coach for the Melbourne finalists of ABC TV's Operatunity Oz. Amanda regularly works with both OzOpera and Opera Queensland, music directing their education programs. She has recently moved to Hobart to undertake her new position as Associate Lecturer in Accompaniment Studies at Conservatorium of Music. the Tasmanian PROGRAMME NOTES This recital is the third in a series of performances supporting my PhD research topic "A Systematic Approach to Right-Hand Technique and its Application in Violin Playing". The theoretical aspect of this research explores both historical and contemporary literature and asses the bowing practices related to present day violin performance. The most significant material on violin bowing was developed in the nineteenth-century with a decline in production of new material from the mid twentieth-century to the present day. A major outcome for this research will be to develop further bowing technique material for advanced violin students by formulating original systematic exercises for right-hand study. A huge thank you to the Spanish pianist Hugo Selles Gonzalez who I am performing alongside in this concert. Hugo and I studied together at the Royal Danish Academy of Music in Copehagen for a few years and I was lucky to finally have him to perform this program whilst he was touring Australia this summer. Sonata for Violin and Piano in E Flat Major, Op.18 Richard Strauss (1864-1949) One of only a few chamber works written by Richard Strauss, the Sonata for Violin and Piano is a virtuosic feat for both instruments from beginning to end. Strauss wrote
+
+), Junior Australasian Fleadh Fiddle Champion (2003), a Junior Cultural Australia Day medal (2003) and both the Chris Wendt award and the Declan Affley award from the National Folk Festival of Australia where she was also a finalist in the Youth Folk Awards (2006-2009). Other awards include the Performers Trust Foundation Award (2013) and Origin Foundation Prize from Creative Partnerships Australia (2014).
+
+Ridder started to play at the age of four. She has performed classical recitals in The Netherlands, Denmark and Australia and has freelanced as an orchestral musician performing with the Arhus Symphony Orchestra, Copenhagen Philharmonic and Tasmanian Symphony Orchestras. A prize winner at many classical music eisteddfods, she won her first at just five years of age. Major awards include the Origin Foundation Prize from Creative Partnerships Australia (2014), Performers Trust Foundation Award (2013) and Junior Cultural Australia Day medal (2003). Other awards include many national and international folk music awards such as the Junior Australasian Fleadh Fiddle Champion (2003), Golden Fiddle award (2010), and both the Chris Wendt award (2006) and the Declan Affley award (2009) from the National Folk Festival of Australia (2009). She has supported various international visiting artists in the states of WA, VIC, TAS, QLD, ACT and VIC, performing on various radio station broadcasts such as ABC (Riverina), ABC (Sydney), ' Mostly Folk' (Tasmania) and ABC (Cairns). Khalida holds a Master's degree from the Royal Danish Academy of Music and a Bachelor degree and Graduate Diploma from the Australian Institute of Music. Khalida relocated back to Australia from Europe in 2017 to study under Dr. Susan Collins and is in her final stages of a Doctoral candidature at the University of Tasmania. She is supported by a Research Training Award from the Australian government. From March to April 2018, Khalida was mentored in Paris by the master French Violinist Guillaume Sutre (Ysaye Quartet/Trio Wanderer). Her former teachers include Michael Malmgreen (DK), Chairman Gadd and Lisa Stewart.
+
+Staying in the world of dreams, Strauss' Morgen is a rapturous love song beginning with a heartfelt melody in the violin that merges into the vocal line. Written in 1894, this piece is a shining example of Romantic composition; dissonances on the strong beat of the bar do not allow time for rest, but keep the listener yearning for the kind of love that causes you to stay up until 3am looking into each other's eyes. The text of this lied is drawn from a poem by John Henry Mackay. The final lines translate to: "Speechless we shall gaze into each other's eyes, And the speechless silence of bliss shall fall on us…"
+
+Und ob die Wolke sie verhülle, Die Sonne bleibt am Himmelszelt; Es waltet dort ein heil'ger Wille, Nicht blindem Zufall dient die Welt!Da tempeste il legno infrantoIf the storm battered vessel Makes it safely into port It has nothing left to desire.Thus the heart in its grief and tears Finds comfort and restores the soul to bliss.Piangerò la sorte miaI shall weep for my fate So cruel and bitterAs long as I have life in my breast.But when I am dead I will be everywhere Haunting the tyrant night and day In my ghostly form.
+
+per un istante, Deh, mi concedi le grazie tutte del dio d'amor! Tu ben prevedi ch'il mio sembiante dee far amante d'un regio cor.
+
+3. Bar 1. Opening phrase with suggested bow division. Ysaÿe Solo Sonata No.3. Bar 1. Approximating the angle of the bow to the string.......... .................................................................................................................. Bar 1. First segment of quavers, with more bow pressure applied to upper notes .................................................................................... Figure 76. Ysaÿe Solo Sonata No.3. Bar 1. A trill exercise for the co-ordination of the first eight quavers ........................................................................................................ Bar 23. Full bow length on F ................................. Ysaÿe Solo Sonata No.3. Addressing bars 40-42. Placing all notes and playing only the bottom two lines ............................................................................................. sextuplet double-stops ............................................................................ Figure 92. Ysaÿe Solo Sonata No.3. Addressing bar 56. Spun sound exercise ................ Figure 93. Ysaÿe Solo Sonata No.3. Addressing bar 56. Spun sound exercise ................ Ysaÿe Solo Sonata No.3. Addressing 122. Analysing the bow stroke movements on open strings; division C1. ..................................................................... Figure 104. Ysaÿe Solo Sonata No.3. Addressing bars 121-125. Melodic skeleton in an altered time signature ................................................................................................... Figure 105. Ysaÿe Solo Sonata No.3. Addressing bar 122. Doubling each note of bar to train rapid right-arm motions ....................................................................................... Figure 106. Brahms Violin Concerto in D Major. I. Allegro ma non troppo. Bar 90. Pulsating the semi-quaver subdivisions of the first double-stop. ................................... ………………………………………………………………………………. Figure 74. Figure 90. | Ysaÿe Solo Sonata No.3.Addressing bars 40-41. Timing the push and pull of the bow. 78 Figure 75. Figure 91. Ysaÿe Solo Sonata No.3. Figure 77. Ysaÿe Solo Sonata No.3. Addressing bar 56. Larger notation for exercising sustain on the Figure 94. Figure 85. Ysaÿe Solo Sonata No.3. Figure 86. Ysaÿe Solo Sonata No.3. Bars 29-34. Important connections in phrasing. ..... Figure 87. | Ysaÿe Solo Sonata No.3. Addressing bars 34-35. Looping exercises ............. Figure 88.
+
+Exercising for co-ordination; loops of 4+1.....................................................................................Figure 129.Brahms Violin Concerto in D Major.III.Addressing bars 20-27.Looping with repeated up and down strokes; each segment played as a one-motion-response ............Figure 130. Brahms Violin Concerto in D Major.III.Addressing bars 21.Isolated practise .................... ................................................................................................................. Brahms Violin Concerto in D Major.III.Bars 49-50.Accents to learn rhythmic groups .........................................................................................................Figure 142.Brahms Violin Concerto in D Major.III.Bar 56 Accentuation of the F-sharp at the end of a scale run..............................................................................................Figure 143.Brahms Violin Concerto in D Major.III.Addressing bars 55-56.Coordination of higher scales in an altered rhythm pattern..............................................Figure 144. Brahms Violin Concerto in D Major. III. Addressing bar 108. Dotted rhythm and subdivision exercises for co-ordination of both hands. …………………………..101 Figure 131. Brahms Violin Concerto in D Major. III. Addressing bars 21-27. Training the
+
+on downbeats ............................................................................................... xx Figure 169.Mozart Violin Concerto in D Major.I.Bars 57-9.The effect on phrasing with down-bows on downbeats .......................................................................................... as if it were the first beat of the bar........................................................Figure 172.Mozart Violin Concerto in D Major.I.Bars 86-88......................................Figure 173.Mozart Violin Concerto in D Major.I.Bars 115-116.Same short articulation should continue into bar 116 on separated quavers .....................................................Figure 174.Mozart Violin Concerto in D Major.I.Bar 117.Ensuring the second beat not as prominent as the downbeat.....................................................................................Figure 175.Mozart Violin Concerto in D Major.I.Bar 159.First note with a weighted stroke, growing in dynamic ........................................................................................ motion of the right-arm ............................................................................. down bow ............................................................................................. 2+2)............................................................................... ..................................................................................................Figure 187.Paganini Caprice.Addressing bar 33.For intonation and stroke ..................Figure 188.Paganini Caprice.Addressing bar 34.Boxing segments of a one-motion response....................................................................................................................Figure 189.Paganini Caprice.Addressing bar 34.One-motion-response ....................... ...............................................................................................................Figure 194.Paganini Caprice.Addressing bar 43.Looping exercise to measure the distances of 1 st and 3 rd fingers .................................................................................... ............................................................................................................ xxii Figure 198.Paganini Caprice.Addressing bar 46.Playing the melodic line with an open string for clarity......................................................................................................... beat of the bar...................................................................................Figure 201.Strauss Violin Sonata, Op.18.I.Allegro ma non troppo.Bars 1-2.Equal and unequal bow division .................................................................................................Figure 202.Strauss Violin Sonata, Op.18.I. Addressing bar 3. Subdivision via the pulsation of the bow ...................................................................................................Figure 203. Strauss Violin Sonata, Op.18. I. Addressing bar 3. Subdivision via the pulsation of the bow ................................................................................................... Dolce rather than intense vibrato. .......................................................................................................... Continuation of bow speed; dynamic via contact point ............................................... Figure 167. Mozart Violin Concerto in D Major. I. Addressing bars 52-53. Drop five notes in the sequence .......................................................................................................... Figure 168. Mozart Violin Concerto in D Major. I. Bars 57-9. The effect on phrasing with up-bows Figure 170. Mozart Violin Concerto in D Major. I. Bars 59-60. Exaggerating length and speed of bow stroke in the separated notes ................................................................. Figure 171. Mozart Violin Concerto in D Major. I. Bar 66. Ensuring the second beat does not stand out Figure 176. Mozart Violin Concerto in D Major. I. Bars 184-185. Nuancing the height of a chromatic line ............................................................................................................ Figure 177. Mozart Violin Concerto in D Major. I. Bar 200. Addressing bar 200. Open string exercise ............................................................................................................ Figure 178. Mozart Violin Concerto in D Major. I. Bar 200. Accented motion on the first A for finer Figure 179. Paganini Caprice. Bar 1. Pulsating subdivisions for a tonal study. ............... Figure 180. Paganini Caprice. Bar 1. Roulé stroke ......................................................... Figure 181. Paganini Caprice. Bar 4. Sustaining; applying enough weight before the Figure 182. Paganini Caprice. Addressing bars 17-18. Two-note loop pattern exercise CHAPTER ONE Handel. Chapter three notes the preparation for the final recital with chapter four reflecting release of the xxi on the outcomes of the folio performances. Finally, chapter five provides suggestions for repeating the previous note (Figure 183. Paganini Caprice. Addressing bars 17-19. Loop pattern of four notes plus three notes (4+3)................................................................................................................. Figure 184. Paganini Caprice. Bar 24. Bowing. ............................................................. Figure 185. Paganini Caprice. Addressing bar 24. Creating a continuous legato phrase. Figure 186. Paganini Caprice. Addressing bar 33. Pausing between segments for intonation and stroke Figure 190. Paganini Caprice. Addressing bar 34. Loops linking 'in-between notes' for co-ordination. ................................................................................................................. Figure 191. Paganini Caprice. Bar 34. Isolating the upper line for intonation in bar. ...... Figure 192. Paganini Caprice. Bar 34. Little left-hand pressure and a strong right-arm stroke in divisions B2, F4 and D3. ............................................................................. Figure 193. Paganini Caprice. Addressing bar 34. Two string spiccato stroke exercise in division D4. Figure 195. Paganini Caprice. Addressing bar 43. Looping exercise of segments........... Figure 196. Paganini Caprice. Addressing bar 44. Accenting first of each note-group. ... Figure 197. Paganini Caprice. Addressing bar 46. Playing open D against fingered bottom string…………………………………………………………………………………..118 Figure 200. Mozart Violin Sonata in G Major, K.301. II. Allegro. Placing a metronome large shift ................................................................................................................... Figure 205. Debussy Violin Sonata in G minor. L.140. I. Allegro vivo. Bar 15. Change of colour at the tip of the bow ......................................................................................... Figure 206. Debussy Violin Sonata in G minor. L.140. I. Bars 16-18. A dark and present character with crescendo in the scale before an immediate piano in bar 18. ................ Figure 207. Debussy Violin Sonata in G minor. L.140. I. Bars 24-5. Figure 208. Debussy Violin Sonata in G minor. L.140. I. Bars 34-37. Melodic and rhythmic material ....................................................................................................... Figure 209. Debussy Violin Sonata in G minor. L.140. II. Intermède. Bars 114-119. 1.1 Introduction The aim of this research is to address the deficiency in academic research on analysis of components, documenting the investigation of whether and by what means the systematic study of violin bowing increased proficiency in performance. The written component (exegesis) contextualises this research project and provides reflections on the adopted process of systematic bowing with the resultant applications to repertoire during the course of candidature contained in the performance folio. This paper is organised in five chapters. In this first chapter, literature most influential to modern violin bowing was reviewed, identifying gaps in the literature and the need for this study. Preparation of the associated performance folio recordings is documented in chapter two, with the provision of original analytical exercises. Recordings comprising the performance folio include various solo, accompanied and chamber works by Eugene Ysaÿe, Johann Sebastian Bach, Nicolo Paganini, Cesar Franck, Richard Strauss, Wolfgang Amadeus further research. A few sources found to specifically address modern violin bowing include the systematic line for clarityFigure 199. Paganini Caprice. Addressing bar 47. Playing the melodic line against an open violin bowing by implementing original systematic study exercises for better application of the bow. One of the key topics of this research is that considering it is standard practice to notate numerical symbols on the score indicating pre-determined 'fingerings' of the left-hand, it is appropriate to question if an equivalent system would be useful for the training of the bow arm. The outcomes of this research are represented by equally weighted written and practical analysis of repertoire in The Modern Technique of Violin Bowing (1941) by Harold Berkley and Motion Study and Violin Bowing (1934) by Percival Hodgson which sought to prove all bow strokes were circular in nature. 1 More recently a doctoral dissertation by Kelley Johnson (2010) evaluated what independent ideas on bowing were developed by contemporary pulse on a weak Figure 204. Strauss Violin Sonata, Op.18. I. Bar 14. Pivoting to the lower string during a pedagogues in comparison to those historically. 2 Mozart, Johannes Brahms, Filippo Gragnani, Carl Maria von Weber and Georg Frederic
+
+1.2 Literature Review Early sources on violin playing between the late seventeenth to mid eighteenth-century include Francesco Geminiani's The Art of Playing the Violin (1751), and Giuseppe Tartini's Trattato Di Musica (1754). 4 These resources established some guidelines for bowing with focus on articulation and rhythmical meter. During the eighteenth century, advanced right-arm techniques were developed in line with the requirements of Classical period expression. Whilst instrumental performances were popular in cities such as Paris, Amsterdam, Leipzig and Stockholm; audiences in eighteenth- century Italy were most popularly entertained at the many theatre and opera houses operating around the country. 5 Qualities and phrasing of the human voice also became incorporated into eighteenth century Italian violin playing; particularly the legato style. 6 Although during eighteenth-century the majority of Italian violin treatise did little to address advanced violin techniques, the Italian violin playing tradition had influential spread throughout Europe. Violinist Bartolomeo Campagnoli published one of the last significant accounts of eighteenth-century Italian violin style documenting in detail the attributes of the bow. Not only were the natural tendencies and flexibilities of the stick considered (such as the power and strength at the middle and frog and the soft qualities of the tip) but the variation of bow 4 Francesco Geminiani, The Art of Playing on the Violin (1751; repr., Oxford University Press, 1952); Giuseppe Tartini, Trattato Di Musica (1754; repr., New York: Broude Bros.,, 1966). 5 Angelo Frascarelli, "Elementi Teorico-Practici Di Musica by Francesco Galeazzi; an Annotated English Translation and Study of Volume I" (University of Rochester, 1968).14-16, accessed 5 November, 2016, https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutionalItemId=7225. 6 Robin Stowell, Violin Technique and Performance Practice in the Late Eighteenth and Early Nineteenth Centuries (New York: Cambridge University Press, 1985). 170.
+
+12
+
+25
+
+Too often was the bow speed altered during the stroke resulting in a lack of sustain. It was observed once again that a decreasing bow stroke created more disturbances than increasing bow speed. 57 | Folio recording track 6. (2:29-2:31) 58 | Folio recording track 7. (1:35-1:36)
+
+Solo violin sonatas became a popular setting of composition in the late seventeenth century and Johann Sebastian Bach's 'Six Solo Sonatas and Partitas' remain to the present day a staple in the body of violin literature.Written while on service for the Duke of Weimer, it likely took Bach a longer time to complete his solo works for violin than was initially thought.Bach began writing his solo pieces for violin in 1703, dating the final manuscript in 1720.The first movement of Bach's Solo Sonata in G minor is often a major discussion point between teacher and student in terms of appropriate stylistic practise.In the current day it is up to the performer to choose to conform to the strict rhythmic values as they appear or perform various motives more freely.My preference is to establish a definite pulse with the larger chords (particularly their bass notes) with a more ornamental treatment of the smaller notes in order to keep a musical flow and enable greater possibilities of voicing.Ysaÿe abandoned much of the playing characteristics of those before him including Joachim and Auer and played a vital role in the development of the 'Belgian School' of violin playing.The 'Belgian School' which began forming already in the early 1840s was influenced greatly by the French way of playing, and is sometimes referred to simply as the 'Franco-Belgian School'.Op.27, No.3 (or commonly known as 'Ballade'), is one of six unaccompanied sonatas for violin composed by Ysaÿe in 1924. The emotional qualities, lyricism and quick changes in both mood and colour make this sonata a favourite amongst violinists. Track Track Composer Composer Richard Charlton (1955-) Night Rain in a Tropical Garden. Title Movement Title Movement i. Allegro Final Recital | Date Date | Place Recorded Place 7. | i. | Wolfgang Adagietto | Sonata No.6 with Karen Smithies (Piano) Allegro con October 7, | UTAS Recorded Amadeus Johannes Brahms (1833-1897) Violin Concerto Op.77. in G Major, spirito 14. Allegro TBA. Approx. March 20, 2020 2018 PROGRAMME NOTES | Conservatorium of Track i. Allegro non troppo Composer Mozart Johann Sebastian Bach (1685-1750) Title Movement K.301 (293a) | Date | Place Recorded Music, Hobart Six Solo Sonatas and Partitas 1. 15. Francesco Veracini Violin Sonata in E minor, I.A.5.I/6 Johann Sonata No.1 Adagio (1751-1791) Ben moderato: Recital Two Solo Sonata No.1 in G minor, BWV 1001 | February UTAS 8. | i. | Sebastian Largo. Allegro Assai in G minor, With Hugo Selles (Piano) Allegro Recitativo- | 25, 2017 Conservatorium of 9. | ii. | Bach (1685-BWV 1001 Violin UTAS Conservatorium of Music, February 1 2018. Allegro Fantasia This recital is the first of a series of performances supporting Music, Hobart Recital Four Moderato my PhD research topic "A Systematic Approach to Right-Hand iii. | 1750) Technique and its Application in Violin Playing". The theoretical Concerto in With Hugo Selles (Piano) Adagio aspect of this research explores both historical and 2. 16. Richard Strauss (1864-1949) Sonata in Eb Major for Violin and Piano Fuga June 30, D Major, Allegretto poco Hobart Town Hall, July 16 2019. iv. Allegro contemporary literature and asses the bowing practices related UTAS i. | K.218. Allegro, ma non troppo 65 to present day violin performance. mosso | 2019 | Conservatorium of Music, Hobart UTAS Stanley The most significant material on violin bowing was developed in Johannes Violin Allegro September Andante cantabile Claude Debussy (1862-1918) Violin Sonata in G minor L.148 (140) 10. ii. Claude Debussy (1862-1918) Violin Sonata in G minor L.148 (140) the nineteenth-century with a decline in production of new 3. 17. iii. i. i. Jesús de Monesterio (1836-1903) Brahms Concerto Manuel de Suite Andante-Allegro Allegro vivo Allegro vivo material from the mid twentieth-century to the present day. A Siciliano October 22, 2019 Burbury Theatre, UTAS 7, 2018 Conservatorium of Music, Hobart (1833-1897) Op.77. Hobart Falla major outcome for this research will be to develop further Populaire (1876-Espagnole ii. Intermède iii. Finale ii. Intermède iii. bowing technique material for advanced violin students by Eugène Ysaÿe (1858 -1931) formulating original systematic exercises for right-hand study. Six Unaccompanied Sonatas, Op.27 Finale Sonata No.3, ('Ballade') 4. 11. 12. 18. Adiós a la Alhambra 1946) Richard A number of styles have been taken into consideration for this Presto April 11, Atherton Uniting 2019 Church, QLD Adagio Allegro (arr.Kriesler) Sonata in Eb Allegro, ma non 1 February, UTAS César Franck (1822-1890) Sonata in A Major for Violin and Piano Richard Strauss (1864-1949) Sonata in Eb Major for Violin and Piano, Op.18. Born in Liege, Eugène Ysaÿe was a pioneer of twentieth-century violin performance. concert including German Baroque, German and Italian Classical, Belgian twentieth-century and contemporary A master of interpretation, 5. | i. i. | Niccolò Strauss Australian. Thank you to the associate artists performing in 24 Solo No.4 in C 31, Home studio, giocoso, ma Major for troppo 2018 Conservatorium Allegretto moderato Allegro, ma non troppo chamber works this evening; pianist Amanda Hodder and ii. ii. | Paganini (1864-Allegro Andante cantabile Caprices Violin and classical guitarist Simon Thielke. non troppo minor Recital Three | December Atherton, QLD of Music iii. iii. | (1782-1840) Op.1. 1949) Piano, Op.18. With Karen Smithies (Piano) 2019 vivace Ben moderato: Recitativo-Fantasia Andante-Allegro iv. | UTAS Conservatorium of Music, May 18 2018. 66 Allegretto poco mosso 1. 13. 19. | Eugene César | Six Solo Sonata in A | No.3,"Ballade" April 11, Allegretto 16 July, Andante | Atherton Uniting Hobart Town Hall Ysaÿe Franck Wolfgang Amadeus Mozart Sonata (1751-1791) Violin Concerto in D Major, K.218. Sonatas 2019 Church, QLD Major for moderato 2019 cantabile Manuel de Falla (1876-1946) Suite Populaire Espagnole (arr.Kriesler) (1858-1931) (1822-1890) | Op.27. Violin and 20. | Piano | Finale
+
+## APPENDIX ONE -LIST OF FOLIO WORKS
+### References
+
+The Modern Technique of Violin Bowing Harold Berkley 1941 G.Schirmer,Inc New York Harold Berkley, The Modern Technique of Violin Bowing (New York: G.Schirmer,Inc., 1941); system was applied to much of the original analysis included in this research project; trialed under the pressure of performance.
+
+Motion Study and Violin Bowing Percival Hodgson 1934. 1983 Stainer & Bell London repr Percival Hodgson, Motion Study and Violin Bowing (1934; repr., London: Stainer & Bell, 1983).
+
+Lucien Capet: Comparisons and Connections to Contemporary Violin Bowing Technique Kelley Johnson 2010. September 13, 2016 University of Iowa PhD diss Kelley Johnson, "Lucien Capet: Comparisons and Connections to Contemporary Violin Bowing Technique" (PhD diss., University of Iowa, 2010), accessed September 13, 2016, https://ir.uiowa.edu/etd/992/.
+
+Lucien Capet Superior Bowing Technique Trans Margaret Stephen Shipps Schmidt Maple City, MI Encore Music Publishers 2007 10 Lucien Capet, ed. Stephen Shipps, trans. Margaret Schmidt., Superior Bowing Technique (Maple City, MI: Encore Music Publishers, 2007), 10.
+
+projects. Hugo is a member of ten different ensembles and projects, including music for piano solo, chamber music groups and other formations, embracing various styles and periods. Several of his projects have an interdisciplinary focus, combining music with other art forms such as poetry, painting and dance, and the fusion of musical genres. Hugo has been the recipient of scholarships from the Botín Foundation of Santander Richard Strauss 'Jesús de Monasterio' (Musical High School), Higher School of Music of the Basque Country 'Musikene' (Bachelor in Music) Morgen Richard Strauss Cantabria (Northern Spain Warner Music Spain and The Royal Danish Academy of Music 1864-1949. 1864. 1949. 1988 27 SAE Institute Spain (Music Business Diploma) and The Royal Danish Academy of Music (Masters Degree and Advanced Post-Graduate Sonata for Violin and Piano in E Flat Major. among other institutions Richard Strauss (1864-1949) Op. 27, 4 Lieder i. Morgen Richard Strauss (1864-1949) Sonata for Violin and Piano in E Flat Major, Op.18 I. Allegro, ma non troppo II. Andante Cantabile (Improvisation) III. Andante-Allegro. Fréderic Chopin (1858 -1931) Polonaise in A Flat Major Op.53 Jesús de Monesterio (1836-1903) Adiós a la Alhambra Hugo Selles Piano (Spain) Soloist Class) Pianist, composer and producer Hugo Selles was born in Santander, Cantabria (Northern Spain) in 1988. Hugo is a graduate of the Conservatory of Music 'Jesús de Monasterio' (Musical High School), Higher School of Music of the Basque Country 'Musikene' (Bachelor in Music), SAE Institute Spain (Music Business Diploma) and The Royal Danish Academy of Music (Masters Degree and Advanced Post-Graduate Diploma - Hugo's diverse musical interests are clearly reflected in the variety of his projects. Hugo is a member of ten different ensembles and projects, including music for piano solo, chamber music groups and other formations, embracing various styles and periods. Several of his projects have an interdisciplinary focus, combining music with other art forms such as poetry, painting and dance, and the fusion of musical genres. Hugo has been the recipient of scholarships from the Botín Foundation of Santander, Warner Music Spain and The Royal Danish Academy of Music, among other institutions.
+
+Hugo has received awards in several competitions in Spain, Italy, Denmark and Sweden, and has performed in concert halls and festivals throughout Europe and Australia ; As A Pianist Kathryn Stott Claudio Martínez Mehner Paul Badura-Skoda Josep Colom Nina Gade Simon Holt Liisa Pohjola Nino Kereselidze Alexander Rössler Moritz Eggert Amalie Malling Jens Elvekjaer Gabriel Loidi Ferenc Rados Ricardo Descalzo Sergei Osokin Niklas Sivelöv Hugo has studied and played in masterclass for maestros including Francisco San Emeterio Santos Boris Berman David Kuyken Marta Zabaleta Jeffrey Swann Gustavo Díaz-Jerez His ongoing crossover project Psychic Equalizer has been well received by critics and public As a pianist, Hugo has received awards in several competitions in Spain, Italy, Denmark and Sweden, and has performed in concert halls and festivals throughout Europe and Australia. Hugo has studied and played in masterclass for maestros including Francisco San Emeterio Santos, Boris Berman, David Kuyken, Marta Zabaleta, Jeffrey Swann, Gustavo Díaz-Jerez, Kathryn Stott, Claudio Martínez Mehner, Paul Badura-Skoda, Josep Colom, Nina Gade, Simon Holt, Liisa Pohjola, Nino Kereselidze, Alexander Rössler, Moritz Eggert, Amalie Malling, Jens Elvekjaer, Gabriel Loidi, Ferenc Rados, Ricardo Descalzo, Sergei Osokin and Niklas Sivelöv. As a composer, Hugo explores diverse styles of music in his work. His ongoing crossover project Psychic Equalizer has been well received by critics and public.
+
+Hugo composed soundtracks for the award-winning documentaries En Los Brazos de la Luz', about the life and work of Cantabrian painter Enrique Gran, and 'Susurros about the pre-historic paintings of the cave 'El Moro Chufín' in Cantabria. Hugo is currently composing several pieces for solo piano and various ensembles. In addition to music, Hugo is passionate about wildlife and the environment Hugo composed soundtracks for the award-winning documentaries 'En Los Brazos de la Luz', about the life and work of Cantabrian painter Enrique Gran, and 'Susurros', about the pre-historic paintings of the cave 'El Moro Chufín' in Cantabria. Hugo is currently composing several pieces for solo piano and various ensembles. In addition to music, Hugo is passionate about wildlife and the environment.
+
+Khalida De Ridder Karen Violin Smithies Piano PhD Recital Series 7 30 Friday 18 May 2018 Khalida De Ridder, Violin Karen Smithies, Piano PhD Recital Series Friday 18 May 2018, 7:30pm Conservatorium Recital Hall 5
+
+Sandy Bay Road Hobart Richard Strauss Morgen 7 4 1864 -1949. 1955 Richard Charlton Sandy Bay Road, Hobart Richard Strauss (1864 -1949) 7. Op. 27, 4 Lieder: Morgen 03'57" Richard Charlton (b. 1955)
+
+Night Rain in a Tropical Garden: Adagetto 03'32 Franz Schubert 839 1797 - Ave Maria, after Ellens Gesang III. arr. Napoleon Coste Night Rain in a Tropical Garden: Adagetto 03'32" Franz Schubert (1797 -1828) 9. Op. 52 No. 6, Ave Maria, after Ellens Gesang III, D. 839 02'35" arr. Napoleon Coste (1805-1883).
+
+The Strad Masterclass: Augustin Hadelich on Tchaikovsky's Violin Concerto Georg Friederich Händel ; Simon Thielke Khalida De Ridder Bibliography Fundación Juan 10. 01/01/2017. March. Accessed. 10/05/2019 The Strad Georg Friederich Händel 10. 'Giulio Cesare' Venere bella. Act II, 05'13" arr. Simon Thielke, Khalida De Ridder BIBLIOGRAPHY "The Strad Masterclass: Augustin Hadelich on Tchaikovsky's Violin Concerto." The Strad. Accessed 01/01/2017. http://www.thestrad.com/strad-masterclass-augustin-hadelich- tchaikovskys-violin-concerto/. "Violinistas Compositores. Ysaÿe Neobarroco. Antje Weithaas." Fundación Juan March. Accessed. 10/05/2019. https://www.march.es/videos/?p0=11376&l=1.
+
+6 Sonatas À Violon Seul Johann Bach Sebastian Lucien Capet 1915 Maurice Senart & Co Paris Bach, Johann Sebastian. 6 Sonatas À Violon Seul. Edited by Lucien Capet. Paris: Maurice Senart & Co., 1915.
+
+Pierre Baillot Du Violon 1834 B. Schott Mainz Baillot, Pierre. L'art Du Violon. Mainz: B. Schott, 1834.
+
+Methodé De Violon Pierre Baillot Pierre Rode Rudolphe Kreutzer 1802 Magasin de Musique du Conservatoire Baillot, Pierre, Pierre Rode, and Rudolphe Kreutzer. Methodé De Violon. Magasin de Musique du Conservatoire, 1802.
+
+The Modern Technique of Violin Bowing Harold Berkley 1941 G.Schirmer, Inc New York Berkley, Harold. The Modern Technique of Violin Bowing. New York: G.Schirmer, Inc., 1941.
+
+Aspects of European Influences on Violin Playing and Teaching in Australia Philippe Borer 1988 University of Tasmania Masters diss Borer, Philippe. "Aspects of European Influences on Violin Playing and Teaching in Australia." Masters diss.,University of Tasmania, 1988.
+
+Clive Louis Brown Spohr 1984 Cambridge University Press New York Brown, Clive. Louis Spohr. New York: Cambridge University Press, 1984.
+
+Clive Brown Classical and Romantic Performing Practice New York Oxford University Press 1999 Brown, Clive. Classical and Romantic Performing Practice. New York: Oxford University Press, 1999.
+
+Bartolomeo Campagnoli Nouvelle Méthode De La Mécanique Progressive Jeu Du Violon. c.1810 Leipzig Breitkopf and Härtel 1824 Campagnoli, Bartolomeo. Nouvelle Méthode De La Mécanique Progressive Jeu Du Violon. c.1810. Reprint, Leipzig: Breitkopf and Härtel, 1824.
+
+La Technique Supérieure De L'archet : Pour Violon Lucien Capet 1916 Éditions Salabert Paris Capet, Lucien. La Technique Supérieure De L'archet : Pour Violon. Édition Nationale De Musique Classique Et Moderne. Paris: Éditions Salabert, 1916.
+
+Superior Bowing Technique Lucien Capet Margaret Schmidt 2007 Encore Music Maple City, MI Capet, Lucien. Superior Bowing Technique. Edited by Stephen Shipps. Translated by Margaret Schmidt. Maple City, MI: Encore Music, 2007.
+
+De Beriot Charles Augusta Méthode. De Violon B Schotz 102 1870 Paris De Beriot, Charles Augusta. Méthode. De Violon, Op.102. Paris: B. Schotz, 1870.
+
+Georges Demenÿ Physiologie Des Professions : Le Violoniste Paris A. Maloine 1905 Demenÿ, Georges. Physiologie Des Professions : Le Violoniste, Art, Mécanisme, Hygiène. Paris: A. Maloine, 1905.
+
+Motion Study of Violin Bow Technique; a Study Comparing the Motor Patterns of Professional and Student Violinists Lauren Deutsch 2011 University of California PhD diss Deutsch, Lauren. "Motion Study of Violin Bow Technique; a Study Comparing the Motor Patterns of Professional and Student Violinists." PhD diss., University of California, 2011.
+
+L Fils Abbe Le Principes Du Violon Genève Editions Minkoff 1761. 2001 Fils, L'Abbe Le. Principes Du Violon. 1761. Reprint. Genève: Editions Minkoff. 2001.
+
+Fiorillo Frederigo Lucien Capet 36 1915 Senart Paris Fiorillo, Frederigo. 36 Études. Edited by Lucien Capet. Paris: Senart, 1915.
+
+Practice Simon Fischer 2004 Peters Edition Limited London Fischer, Simon. Practice. London: Peters Edition Limited, 2004.
+
+The Basics Simon Fischer 2012 Peters Edition Limited London Fischer, Simon. The Basics. London: Peters Edition Limited, 2012.
+
+Problems of Tone Production in Violin Playing Carl Flesch 1934 Carl Fischer New York Flesch, Carl. Problems of Tone Production in Violin Playing. New York: Carl Fischer, 1934.
+
+The Art of Violin Playing Carl Flesch Eric Rosenblith 1939. 2000 Charles Dumont & Son Inc 1 New Jersey Reprint Flesch, Carl. The Art of Violin Playing, Volume 1. Edited by Eric Rosenblith. 1939. Reprint. New Jersey: Charles Dumont & Son Inc,. 2000.
+
+Carl Flesch Yehudi Menuhin Violin Fingering: Its Theory and Practice London Barrie and Rockliff 1966 Flesch, Carl and Yehudi Menuhin. Violin Fingering: Its Theory and Practice. London: Barrie and Rockliff, 1966.
+
+Zakhar Bron at the Verbier Festival Directed by Foundation The Masterclass Media 2012 "Zakhar Bron at the Verbier Festival". Directed by Foundation, The Masterclass Media, 2012.
+
+Elementi Teorico-Practici Di Musica by Francesco Galeazzi; an Annotated English Translation and Study of Volume I Angelo Frascarelli Principles of Violin Playing & Teaching New Jersey Prentice Hall Inc 1968. 5 November, 2016. 1962 University of Rochester PhD diss Frascarelli, Angelo. "Elementi Teorico-Practici Di Musica by Francesco Galeazzi; an Annotated English Translation and Study of Volume I." PhD diss., University of Rochester, 1968. Accessed 5 November, 2016, https://urresearch.rochester.edu/institutionalPublicationPublicView.action?institutiona lItemId=7225 Galamian, Ivan. Principles of Violin Playing & Teaching. New Jersey: Prentice Hall Inc., 1962.
+
+Études Pour Violon Pierre Gaviniés Lucien Capet 1915 Maurice Senart 24 Paris Gaviniés, Pierre. 24 Études Pour Violon. Edited by Lucien Capet. Paris: Maurice Senart, 1915.
+
+The Art of Playing on the Violin Francesco Geminiani 1952 Oxford University Press 1751 Geminiani, Francesco. The Art of Playing on the Violin. 1751. Reprint, Oxford University Press, 1952.
+
+Méthode Théorique Et Pratique De Violon François Habeneck 1842 Cannex Paris Habeneck, François. Méthode Théorique Et Pratique De Violon. Paris: Cannex, 1842.
+
+Motion Study and Violin Bowing Percival Hodgson 1934. 1983 Stainer & Bell London Hodgson, Percival. Motion Study and Violin Bowing. 1934. Reprint, London: Stainer & Bell, 1983.
+
+Violin Technique: A Practical Analysis for Performers Robert Jacoby 1985 Novello & Co, Ltd London Jacoby, Robert. Violin Technique: A Practical Analysis for Performers. London: Novello & Co, Ltd., 1985.
+
+Lucien Capet: Comparisons and Connections to Contemporary Violin Bowing Technique Kelley Johnson 2010. September 13, 2016 University of Iowa PhD diss Johnson, Kelley. "Lucien Capet: Comparisons and Connections to Contemporary Violin Bowing Technique." PhD diss., University of Iowa, 2010. Accessed September 13, 2016. https://ir.uiowa.edu/etd/992/.
+
+Left-Hand Technique Riggero Ricci 1988 G. Schirmer, Inc New York Ricci, Riggero. Left-Hand Technique. New York: G. Schirmer, Inc., 1988.
+
+Nouvelle Méthode De Violon Théorique Achille Rivarde 1908 Paris Rivarde, Achille. Nouvelle Méthode De Violon Théorique. Paris, 1908.
+
+Otakar Sevcik Scherzo-Tarantella: Analytical Studies and Exercises Vienna Universal Edition 1931 Sevcik, Otakar. Scherzo-Tarantella: Analytical Studies and Exercises. Vienna: Universal Edition, 1931.
+
+Spohr's Violin School Louis Spohr Henry Holmes 1832 Boosey & Co 1878 New York Spohr, Louis. Spohr's Violin School. Edited by Henry Holmes. 1832. Reprint, New York: Boosey & Co., 1878.
+
+Robin Stowell Violin Technique and Performance Practice in the Late Eighteenth and Early Nineteenth Centuries New York Cambridge University Press 1985 Stowell, Robin. Violin Technique and Performance Practice in the Late Eighteenth and Early Nineteenth Centuries. New York: Cambridge University Press, 1985.
+
+Robin Stowell The Early Violin and Viola: A Practical Introduction New York Cambridge University Press 2001 Stowell, Robin. The Early Violin and Viola: A Practical Introduction. New York: Cambridge University Press, 2001.
+
+Giuseppe Tartini Trattato Di Musica New York Broude Bros 1966 1754 Tartini, Giuseppe. Trattato Di Musica. 1754. Reprint, New York: Broude Bros., 1966.

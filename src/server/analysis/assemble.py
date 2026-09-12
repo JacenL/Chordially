@@ -98,6 +98,8 @@ def build_score(
     signatures_by_system: dict[int, dict[str, int | None]] | None = None,
     not_attempted: set[tuple[int, int]] | None = None,
     accidental_convention: str = "printed",
+    assumed_tempo_bpm: float | None = None,
+    assumed_tempo_reason: str = "",
 ) -> Score:
     """Build a Score. `transcriptions` is keyed by (system_index, measure_index).
 
@@ -119,9 +121,14 @@ def build_score(
     key-signature sharp or flat is written the same way as no accidental at all,
     so it is read as the key-signature pitch. The wire format cannot express the
     difference, and inventing one would be worse than recording it here.
+
+    `assumed_tempo_bpm` is what to assume when nothing is printed and the page
+    nevertheless says something -- a tempo word. It is still an assumption:
+    every measure it applies to stays retunable, and the disclosure names the
+    word it came from so the reader can disagree with it.
     """
     assumed_tempo = tempo_bpm is None
-    tempo = tempo_bpm or DEFAULT_TEMPO_BPM
+    tempo = tempo_bpm or assumed_tempo_bpm or DEFAULT_TEMPO_BPM
 
     page = Page(
         id=f"{score_id}:p{page_index}",
@@ -259,8 +266,9 @@ def build_score(
     assumptions: list[str] = []
     if assumed_tempo:
         assumptions.append(
-            f"No tempo is printed, so ratings assume {DEFAULT_TEMPO_BPM:.0f} BPM. "
-            "Set a tempo above to recalculate."
+            tempo_assumption_text(
+                assumed_tempo_bpm if assumed_tempo_bpm else None, assumed_tempo_reason
+            )
         )
 
     return Score(
@@ -275,6 +283,28 @@ def build_score(
         notes=notes,
         assumptions=assumptions,
         warnings=warnings,
+        assumed_tempo_bpm=assumed_tempo_bpm if assumed_tempo else None,
+        assumed_tempo_reason=assumed_tempo_reason if assumed_tempo else "",
+    )
+
+
+def tempo_assumption_text(assumed_tempo_bpm: float | None, reason: str) -> str:
+    """The one sentence that discloses an assumed tempo, shared with `retune`.
+
+    Written once so the page at load and the page after a retune cannot
+    describe the same assumption in two different ways.
+    """
+    if assumed_tempo_bpm:
+        return (
+            f"No metronome mark is printed, but the page says {reason}, so ratings "
+            f"assume {assumed_tempo_bpm:.0f} BPM. Set a tempo above to recalculate."
+            if reason
+            else f"No metronome mark is printed, so ratings assume "
+            f"{assumed_tempo_bpm:.0f} BPM. Set a tempo above to recalculate."
+        )
+    return (
+        f"No tempo is printed, so ratings assume {DEFAULT_TEMPO_BPM:.0f} BPM. "
+        "Set a tempo above to recalculate."
     )
 
 

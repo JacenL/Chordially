@@ -1,0 +1,515 @@
+Investigating the Effects of Backward Chaining and Whole Task Practice on Motor
+
+Sequence Learning with the Discrete Sequence Production Task
+
+Vivien Schneider
+
+Bachelor Thesis Department of Cognitive Psychology and Ergonomics
+
+University of Twente, the Netherlands
+
+First supervisor: Prof. dr. Willem Verwey Second supervisor: Dr Simone Borsci
+
+July 19th, 2021
+
+## Abstract
+
+This study investigated the relative effect of backward chaining practice and whole task practice for motor sequence learning. Specifically, it was addressed if backward chaining practice represents a more efficient method for acquiring a complex motor sequence. Previous findings could not find a more beneficial effect of backward chaining practice over whole task practice for complex motor sequences. This paper argues that extensive practice regimes in previous studies overshadowed the beneficial effect of backward chaining practice. Based on the predictions based on the Cognitive framework of Sequential Motor Behavior (C SMB), it was argued that backward chaining practice leads to more rapid sequence learning already with limited sequence practice by facilitating the motor representation development of the sequence. Thus, backward chaining practice was expected to result in a faster sequence execution rate than limited whole task practice and a similar sequence execution rate than extensive whole task practice. Three different experimental groups, receiving either limited backward chaining practice, limited whole task practice and extensive whole task practice, practised a 9-keypress sequence with the Discrete Sequence Production task (DSP). Performance was assessed immediately after practice and one week later with a retention test. Study results did not show the expected learning outcomes and indicated that backward chaining practice did not lead to a faster sequence acquisition than the whole task practice method. The sequence length used in this study and an insufficient segmentation pattern were given as explanations for the study findings. However, both motor learning methods showed long-term skill retention. The study concluded that the 9-keypress sequence appeared to be better learned as a whole.
+
+Keywords: Motor sequence learning, Cognitive Framework of Sequential Motor Behavior (C-SMB), Discrete Sequence Production (DSP) task, backward chaining, whole task practice, amount of practice, long-term skill retention
+
+Investigating the Effects of Backward Chaining and Whole Task Practice on Motor Sequence Learning with the Discrete Sequence Production Task
+
+Sequential movements are the building blocks of a wide range of more complex actions. Nearly all our day-to-day activities and tasks are composed of series of relatively simple individual movement elements, such as playing the piano, video gaming, shifting the gear in a car, knitting, writing or using pin card payment. This ability to accurately perform a series of movements in a specific order has been described as motor sequencing skill (Abrahamse, Ruitenberg, De Kleine, & Verwey, 2013; Ghilardi, Moisello, Silvestri, Ghez, & Krakauer, 2009). Notably, motor (sequence) learning is the broad term used to describe the process of acquiring a motor skill. To be more precise, motor learning entails that the performance of a sequence of movements becomes less attentionally demanding and effortful while becoming more accurate and rapid (Abrahamse et al., 2013; Magill & Anderson, 2010). The behavioural changes that come about while learning a motor skill are preceded by underlying structural and functional cognitive changes when acquiring a motor sequence (Ghilardi et al., 2009; Magill & Anderson, 2010). Notably, different learning strategies for motor skill acquisition can significantly impact the cognitive processes underlying motor sequence learning and thus how well a sequence is learned (Ghilardi et al., 2009; Lee & Hall, 1991; Magill & Anderson, 2010). Therefore, this study will investigate the effect of different learning strategies on motor sequence learning, taking into account the cognitive processes underlying motor sequence acquisition.
+
+1.1. Discrete Sequence Production Task 
+Various motor learning task paradigms have been established to investigate how skilled motor 
+sequence performance is acquired (Ghilardi, Moisello, Silvestri, Ghez, & Krakauer, 2009). A task paradigm 
+that has gained prominence in recent years is the Discrete Sequence Production (DSP) task developed by 
+Verwey (2001). Mainly, the DSP task entails the practice of fixed discrete keying sequences by responding 
+to a successive series of typically three to eight stimuli presented on a screen that correspond to specific 
+keys on a keyboard (Abrahamse et al., 2013; Verwey et al., 2010; Kleine & Verwey, 2007). Using keypress 
+sequences has the benefit that the execution of a single response (single key) is swift, resulting in response 
+times that are a more sensitive measure for the underlying control processes of sequential motor control 
+(Abrahamse et al., 2013; Rhodes et al., 2004; Ruitenberg et al., 2012). Hence, the DSP task allows 
+investigating the acquisition of motor sequencing skills, performance improvements with practise (i.e., 
+practice gains), as well as the underlying control processes of sequential motor performance (Abrahamse 
+et al., 2013; Krakauer et al., 2019; Ruitenberg et al., 2012). 
+
+1.2 Information processing underlying motor sequencing skill 
+Research with the DSP task resulted in the Cognitive Framework for Sequential Motor Behavior 
+(C-SMB) which extended the Dual-Processor Model (DPM; Verwey, Shea, & Wright, 2015; for DPM see 
+Abrahamse et al., 2013). The C-SMB framework postulates the information processing architecture 
+underlying the acquisition and execution of the motor sequencing skill. Specifically, the C-SMB framework 
+denotes the execution of motor sequences to two processing systems. Firstly, a central processor 
+(previously called cognitive processor see Abrahamse et al., 2013) using central-symbolic representations 
+(spatial and verbal) to control sequence execution and, secondly, a motor processor which uses motor 
+representations to control the execution of motor sequences (Verwey, 2015; Verwey et al., 2015). In 
+addition, the model includes a so-called motor buffer (Abrahamse et al., 2013). The motor buffer represents 
+a part of short-term memory and functions as temporary storage for motor representations. A limited 
+number of three to five motor representations of individual movements can be prepared in the motor buffer 
+before execution. Elements in the motor buffer are read and executed rapidly by the dedicated motor 
+processor without requiring the involvement of the central processor (Abrahamse et al., 2013; Verwey, 
+2001; Verwey & Abrahamse, 2012; Verwey et al., 2015). 
+Initially, when learning a novel discrete motor sequence, the central processor is assumed to 
+translate each key-specific stimulus into the appropriate response based on S-R translation which the motor 
+processor executed (Abrahamse et al., 2013; Verwey & Abrahamse, 2012; Verwey, Abrahamse, & De 
+Kleine, 2010). This stimulus-driven execution has been denoted reaction mode and is characterized by a 
+slow execution rate (Abrahamse et al., 2013; Verwey & Abrahamse, 2012). With repeated practice of the 
+sequence, associations between responses develop (Verwey, 2015; Verwey et al., 2015). These growing 
+associations are assumed to facilitate the response selection by the cognitive processor by priming 
+individual responses at all representation levels, verbal spatial, and motor levels, accelerating sequence 
+execution in the associative mode (Verwey & Donkers, 2019; Verwey & Wright, 2014). 
+Through repeatedly preparing together elements in the buffer, associations between the motor 
+representations of individual elements strengthen (i.e., associative learning), resulting in an integrated 
+motor representation called motor chunk in long-term memory (Verwey 1994; Verwey et al., 2015; 
+Krakauer et al., 2019). A motor chunk can be selected and loaded into the motor buffer by the central 
+processor in a single processing step as if comprising a single response (Abrahamse et al., 2013; Krakauer 
+et al., 2019; Verwey & Donkers, 2019). Sequence execution based on motor chunks is called chunking 
+mode. Notably, the chunking mode is characterized by relying on little to no movement-specific stimuli 
+once the first item of a sequence, the initial chunk element, has been executed. Then, the rest of the chunk 
+is executed rapidly without necessitating additional cues (Abrahamse et al., 2013; Krakauer et al., 2019; 
+
+Verwey & Wright, 2014). Mainly, indicative of motor chunks is a slow first response, reflecting the 
+initiation of the motor chunk by the central processor (i.e., selection and preparation in the motor buffer). 
+Following are rapid response rates as low as 50ms-200ms for the rest of the chunk elements (Abrahamse et 
+al., 2013; Verwey, Abrahamse, & De Kleine, 2010; Verwey & Donkers, 2019). 
+Due to the limited capacity of the motor buffer, more complex motor series is segmented into 
+multiple motor chunks (i.e., chunking) (Krakauer et al., 2011; Ruitenberg et al., 2012; Verwey et al., 2015). 
+The numerous motor chunks are concatenated during execution through associative learning (Krakauer et 
+al., 2011; Ruitenberg et al., 2012; Verwey et al., 2015). Importantly, concatenation allows the cognitive 
+processor to select and prepare the next motor chunk in the motor buffer while the motor processor executes 
+a concurrent familiar sequence without influencing ongoing execution, allowing for a smooth transition 
+between chunks (Abrahamse et al., 2013; Verwey et al., 2015). The transition between two successive 
+motor chunks is indicated by a relatively slow response time on a ‘later chunk element’, presumed to reflect 
+chunk initiation by the central processor (Verwey et al., 2015; Verwey, Abrahamse, Ruitenberg, Jiménez, 
+& De Kleine, 2011; Verwey & Dronkers, 2019). Ultimately, an abstract representation of the whole motor 
+sequence in memory develops that allows for the skilled performance of a motor sequence based on motor 
+chunk selection and preparation (Ruitenberg et al., 2013; Krakauer et al., 2011; Verwey et al., 2015). 
+Notably, chunking of a complex motor sequence occurs spontaneously and shows individual 
+differences in chunking patterns between different people (Fonollosa, Netfci, & Rabinovich, 2015; 
+Krakauer et al., 2019; Verwey et al., 2010; Verwey & Eikelbroom, 2003). Nonetheless, chunking patterns 
+of the motor sequence can also be externally specified. For example, Verwey and Donkert (1996) used 
+temporal delays in the sequence execution (keypresses) to impose a chunking pattern by varying the 
+response-stimulus interval (RSI) during practice. Later, Verwey and Eikelboom (2003) showed that 
+regularities in element order could induce a similar chunking pattern across people. 
+Another important factor in motor learning is the long-term retention of the motor skill level 
+acquired during practice, that is, if the skill level achieved during training is maintained after a specific 
+period. Notably, long-term skill retention has been argued to be a better indicator of motor learning as it 
+reflects the durability and permanence of changes in the capability of the practised motor skill. Further, 
+long-term skill retention indicates motor memory (i.e., memory representation of a motor skill/sequence) 
+consolidation processes that occur after practice (Kantak & Winstein, 2012; Krakauer & Shadmehr, 2006). 
+Mainly, motor memory consolidation provides for memory stabilization (Walker et al., 2003). Further, 
+consolidation processes have been shown to enhance motor memory, resulting in practice-independent 
+performance improvements between practice sessions, so-called offline gains (Krakauer et al., 2011; 
+Robertson, Pascual-Leone, & Miall, 2004; Walker et al., 2003). These offline gains have been ascribed to 
+memory consolidation processes occurring immediately after practice and during periods of sleep (Walker, 
+
+& Stickgold, 2004). Nonetheless, it also has been shown that some motor learning methods facilitate 
+immediate performance after skill acquisition but do not always enhance long-term retention of the motor 
+skill or even lead to a loss of performance level (Kantak & Winstein, 2012). Thus, it is crucial to investigate 
+if a motor learning method also supports long-term skill retention. 
+Concluding, to facilitate motor sequence learning, motor learning strategies must support learners 
+to adequately develop a motor chunk representation of the discrete motor sequence, including a 
+concatenation scheme and enable the long-term retention of the motor memory representation acquired 
+during practice (Kantak & Winstein, 2012; Krakauer et al., 2011; Ruitenberg et al., 2012; Verwey et al., 
+2011). 
+1.3 Motor learning methods 
+1.3.1 Whole task method The more traditional learning paradigm for acquiring motor sequences is 
+the so-called whole task practice method. Mainly, whole task practice entails repeating a motor sequence 
+in its entirety (Fontana, Furtado, Mazzardo, & Gallagher, 2009). Practising the entire sequence at once is 
+assumed to have the advantage that it allows participants to practice both the spatial and temporal 
+coordination of the task/sequence components together (Magill & Anderson, 2010; Wightman & Lintern, 
+1985). Further, Wilcox (1974) argues that the whole task practice method closely resembles how we learn 
+series in everyday life, such as phone numbers. Nonetheless, with a higher number of movements, more 
+interference can be caused by other elements in the chain during acquisition (Ash & Holding, 1990). This 
+limitation of the whole task practice method is reflected in motor learning textbooks’ recommendation that 
+whole task practice is less beneficial when the task is high in complexity, having a higher number of 
+individual task components or elements. Instead, whole task practice is advised to be implemented when 
+task complexity is low, and the task is high in organization, having interdependent task components (Magill, 
+2007; Magill & Anderson, 2010; Naylor & Briggs, 1963). Further, Schmidt and Wrisberg (2008), taking 
+into account task classification, advise more specifically the use of whole task practice for serial tasks that 
+are high in organization. 
+
+1.3.2 Backward chaining Notably, for more complex sequences, the strategy of backward chaining, a part practice method, has been described as a more promising method to facilitate motor sequence learning (Woods & Teng, 2002). Similarly, recommendations from learning textbooks advise the use of part-practice methods in serial tasks with higher complexity and low interdependence of elements in a motor sequence (Magill, 2007; Naylor & Briggs, 1962). In particular, backward chaining includes the segmentation of the complex motor series into smaller units. For instance, when practising the sequence ‘N, B, M, C, N, M, B, C, B’, the last segment of the sequence is presented to the learner first, ‘B, C, B’.
+
+Then, after practising the first segment separately, the preceding segment is given, and the learner practices 
+the two parts together ‘C, N, M, B, C, B’. Finally, the first sequence segment is chained to the series to 
+practice the whole sequence (Fontana et al., 2009; Wightman & Lintern, 1985; Wilcox, 1974). 
+In general, by dividing a motor sequence into smaller components, the sequencing task becomes 
+less complicated and attentionally demanding, which is assumed to, enabling participants to focus their 
+attention on individual sequence segments (Hansen et al., 2005; Magill & Anderson, 2010). Further, 
+through the segmentation of the sequence, backward chaining presents the information to be learned in 
+digestible bits that correspond with working memory capacity (Krakauer et al., 2019). Thus, participants 
+are already given chunked information that can be more easily processed (Hansen et al., 2005; Magill & 
+Anderson, 2010). Further, integrating the individual segments through chaining provides the learner with 
+spatial and temporal information of the motor sequence, fostering transitions between individual segments 
+(Magill & Anderson, 2010). 
+Lastly, the ‘retrogressive’ direction of chaining is assumed to have the additional advantage of 
+terminal reinforcement. Specifically, the last segment of backward chaining, acquired first, is proposed to 
+function as the reinforcer every time the learner adds another segment to the chain (Ash & Holding, 1990; 
+Wightman & Lintern, 1985; Woods & Teng, 2002). Accordingly, the concept of terminal reinforcement 
+frames the beneficial effects of the retrogressive chaining in backward chaining as primarily motivational. 
+Despite the proposed beneficial effect of backward chaining for learning a complex sequence of 
+movements, several previous studies could not show a superior effect of backward chaining compared to 
+whole task practice. For example, a review of studies by Spooner and Spooner (1984) found mixed results 
+of the relative effectiveness of backward chaining and whole task practice. Further, a meta-analysis by 
+Fontana et al. (2009) found, in general, no significant differences in effectiveness between whole task and 
+part practice methods for the acquisition and retention of complex motor sequences. Task differences, 
+procedural differences, and different or no clear outcome variables were suggested to explain these mixed 
+and inconclusive results (Fontana et al., 2009; Spooner & Spooner, 1884). 
+
+1.4 Amount of practice and backward chaining A factor that has not yet been considered for explaining the findings of previous studies is the amount of practice used for training. The amount of practice needed to achieve a certain level of motor sequencing performance poses an indicator for the efficiency of a learning method (Frokjaer, Hertzum, & Hornbeak, 2000). Notably, most studies in the meta-reviews included moderate to extensive practice of the complex motor sequence involving a higher volume of sequence repetitions. For example, Park, Wilde, and Shea (2004) included 200 practice repetitions, Stammers (1980) a total of 240 practice repetitions and other studies used a predetermined criterion such as ten successful sequence repetitions (e.g., Ash & Holding,
+
+1990; Weiss, 1978). According to the C-SBM, extensive practice enhances the development of a motor 
+representation of the sequence since motor representations develop primarily through the number of times 
+a sequence is repeated (Verwey et al., 2015). Thus, with extensive practice, performance might be 
+independent of the practice regime used during training. In support, Verwey, Wright, and Immink (2021) 
+found that sequence execution rate reduced more with extensive practice than with limited practice 
+independent of whether participants received random or blocked practice regimes of a seven-keypress 
+sequence. Verwey, Wright, and Immink concluded that motor sequence representations improve with 
+extended practice independent from the regime used during training. 
+Accordingly, extensive practice might overshadow the beneficial effects of backward chaining. 
+Specifically, based on propositions made by the C-SMB framework, backward chaining is proposed to 
+facilitate the processing of a complex sequence, leading to a more rapid acquisition of a complex motor 
+sequence. Backward chaining imposes an external chucking pattern that structures and presents sequence 
+information already in bits digestible for the participants, i.e., equal to the limited motor buffer capacity of 
+3-5 elements. Thus, when a sequence segment is presented, it is assumed that the whole sequence segment 
+can be loaded by the central processor into the motor buffer and repeatedly be prepared as a whole (Verwey, 
+Shea, & Wright, 2015). As a result, backward chaining is proposed to accelerate the integration of segment 
+elements into a motor chunk. 
+Further, when adding the next segment (retrogressively), the rest of the sequence, already practised, 
+can always be prepared in the motor buffer. Thus, sequence segments are successively executed together, 
+which is predicted to strengthen the concatenation between the motor chunks of the sequence, resulting in 
+faster transitions between chunks (Verwey, Shea, & Wright, 2015). Ultimately, backward chaining is 
+assumed to lead to more rapid motor chunks development and concatenation, resulting in a faster sequence 
+acquisition. Accordingly, with backward chaining, a smaller amount of practice might be required to show 
+a skilled performance of the motor sequence, and the beneficial effect of backward chaining might already 
+be observed after limited practice (i.e., fewer repetitions of the motor series). 
+1.6 The present study 
+The present study examines the relative effects of whole task practice and backward chaining on 
+motor sequence learning with the DSP task paradigm. The study aimed to investigate if backward chaining 
+represents a more efficient learning method leading to a motor rapid motor sequence acquisition than whole 
+task practice for a complex motor sequence. To investigate this issue, participants practised a 9-keypress 
+series with the DSP task with either limited backward chaining practice, limited whole task practice or with 
+extended whole task practice. Participant’s performance was assessed immediately after skill acquisition 
+and one week later in a retention test. 
+
+Firstly, it was tested if limited backward chaining practice leads to a better sequence performance than limited whole task practice. Backward chaining is proposed to enable faster sequence acquisition by continuously presenting the sequence in sizable segments that can be prepared as a whole in the motor buffer. In contrast, the number of elements shown at once during whole task practice exceeds motor buffer capacity. Therefore, it is assumed that participants will only be able to load the first 3-5 movement elements into the motor buffer, which can be prepared together as a whole and are rapidly learned. However, participants are assumed to continue to react individually to the presented stimuli based on S-R translation for later responses. Consequently, later responses are not prepared as a whole, thus not adequately learned (yet). Hence it was expected that limited backward chaining practice would result in a faster sequence execution rate than limited whole task practice. Secondly, it was tested if limited backward chaining practice can hold up with extended whole task practice in facilitating motor sequence acquisition. The C-SMB framework predicts extended whole task practice to enhance sequence representation development, enabling the motor sequence’s skilled performance (Verwey, Shea, & Wright, 2015). Similarly, the processing advantage of backward chaining is assumed to lead to a more rapid sequence development representation and thus enable participants more rapidly to execute the sequence on a skilled level after a limited practice of the keypress sequence. Therefore, it is expected that limited backward chaining practice and extended whole task practice will result in a similar sequence execution rate. Lastly, this study investigated if backward chaining practice and whole task practice support long-term skill retention.
+
+## 2. Methods
+
+2.1 Participants The study was conducted with students from the University of Twente. Participants have conveniently been sampled through the website ‘Sona System’ of the University of Twente, and students received course credits for participation. 36 participants took part in the study, including 20 male, 15 female, and 1 non-binary participant(s). The age range of the sample ranged from 18 to 27, with a mage= 21.78 (SD =1.99). All participants were non-heavy smokers and did not consume alcohol 24 hours before the study. All participants signed the informed consent before partaking in the study (see Appendix A). Participants were randomly assigned to either the limited backward chaining practice group (LimBck), limited whole task practice group (LimWT) or the extended whole task practice group (ExWT). Lastly, the ethics committee of the Faculty of Behavioural, Management, and Social Sciences at the University of
+
+Twente approved the study.
+
+2.2 Apparatus 
+The study took place in the BMS lab of the University of Twente. Specifically, the experiment was 
+conducted in a quiet room with ambient light and equipped with only a desk and a chair. The DSP task was 
+programmed using E-prime, which presented the stimuli and registered the participant’s responses. The 
+experiment ran on a standard computer using Windows 10. Unnecessary computer programmes and 
+services were shut off to ensure more valid response time (RT) measures. The DSP task was presented on 
+a 25-inch AOC G2460PF LCD Monitor running at 1920 by 1080-pixel resolution in 24-bit colour and a 
+144 Hz refreshing rate. The viewing distance was around 50 cm. Further, a Logitech Deluxe 250 Keyboard 
+was used. Participant’s performance was monitored by the researcher with the use of a GoPro observation 
+camera. 
+2.3 Materials 
+Participants were given written instructions and verbal instructions, informing them about what 
+they had to do in the study, the structure of the experiment, and important points were emphasized (see 
+Appendix B). Further, the online platform Qualtrics was used to create the questionnaire about 
+demographics and prior experience. The demographics questionnaire asked the participants about their age, 
+gender, and nationality (see Appendix C). 
+2.5 Task 
+2.5.1 Set up and task details During the DSP task, participants rested 4 fingers on a computer 
+keyboard. Specifically, participants put their left-hand index finger on the key ‘C’ and the left middle finger 
+on the key ‘V. The right index finger was placed on the key ‘B’ and the right middle finger on the key ‘N’. 
+Placeholders corresponding to the keypress position on the computer keyboard lit up on the screen, and 
+participants responded by pressing the correct key on the keyboard (see Figure 1; Verwey et al., 2010). 
+Specifically, on the computer display, 4 squares were presented, which were horizontally aligned. The 
+squares functioned as placeholders for the stimuli that spatially corresponded with the 4 key presses. The 
+background of the screen was grey. The squares were drawn in black and were filled with the same grey as 
+the background. The squares lit up in green when participants had to press the corresponding key. After 
+responding to a key, the next stimulus was presented immediately. 
+
+Figure 1 Schematic representation of a keypress event during the DSP task.
+
+Note. The figure shows a participant responding to the stimuli on screen with the corresponding keypress.
+
+A longer DSP sequence was used for the study, comprising 9 keypress stimuli (Abrahamse et al., 2013; Kleine & Verwey, 2009). Four different keypress sequences were used, each composed of a combination of the four keys’ C’, ‘V’, ‘B’, and ‘N’ (see Table 1). Notably, each key was followed by a different key. The four different keypress sequences were counterbalanced across participants to account for finger-specific effects of sequence position.
+
+Table 1 Keypress sequences used in the DSP task
+
+| | vnb nvc bcn | |
+| --- | --- | --- |
+| | nvc bcn cbv | |
+| | bnv cvn vbc | |
+| | cvn bnv ncb | |
+
+Keypress sequences
+
+At the start of the DSP task, the program gave the participants instructions on performing the task. Before presenting a sequence practice block, participants waited for a random interval between 500 ms and 2500 ms. Moreover, participants had a one-minute break between each practice block, during which a countdown was presented on the screen. After the countdown, the program stopped, and the experimenter started the next practice block manually. In the case of a premature response, an error message was presented to the participant giving them feedback, which indicated their early response, and the random time interval started again. Similarly, when participants pressed a false key, an error message occurred on the screen. Then, the practice trial was terminated, followed by a random time interval, after which the subsequent practice block started. Lastly, participants received feedback about their performance, number of errors, and mean response time after each practice block.
+
+2.5.2 Experimental stages The experiment comprised two experimental stages. In the first part of the experiment practice phase, participants first practised the DSP sequence in an acquisition phase for 3 practice blocks. Then, in the 4th practice block, immediate practice effects were assessed followed (test phase). Notably, participants performed the entire motor sequence in each practice block in the limited and extended whole task practice group. The 9-key sequence was divided into 3 segments for backwards chaining practice, comprising three keypress stimuli, such as ‘VNC BCN CVB’. Notably, in Block 1, participants practised the last sequence segment, ‘CVB’. In block 2, the second sequence segment was added, and participants performed the two parts together ‘BCN CVB’. Finally, the first segment was added, and participants performed the entire sequence in Block 3. In the test phase, Block 4, all three Practice Groups performed the complete sequence for 5 practice trials. Ultimately, at the end of the test phase of the experiment, participants in the WT limited practice and BC conditions repeated the sequence 120 times. For the limited backward chaining practice regime, the number of practice trials in each practice block was adjusted so that each element of the sequence was repeated the same number of times as with the whole task practice method. Thus, practice trials were increased for backward chaining practice. Participants in the extended whole task practice group had repeated the sequence 180 times. The second part of the experiment retention phase took place after 6-8 days, in which participants completed a retention test. During the retention test, participants had to perform the full sequence for 15 practice trials. For an overview of the different practice regimes for each Practice Group, see Table 2.
+
+Table 2 Number of practice trials comprising the three different practice regimes
+
+| BACKWARD CHAINING IN | | | | | | MOTOR SEQUENCE LEARNING | | | | | | | | 13 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| | Practice | | Block 1: | | Block 2: | | Block 3: | | Block 4: Test | Block 5: | | Total | | |
+| | Conditions | | Practice | | Practice | | Practice | | | Retention | | | | |
+| | LimBck | | 20 | | 20 | | 20 | | 5 | 15 | | 120 | | |
+| | LimWT | | 13 | | 14 | | 13 | | 5 | 15 | | 120 | | |
+| | ExWT | | 20 | | 20 | | 20 | | 5 | 15 | | 180 | | |
+| 2.6 Procedure | | | | | | | | | | | | | | |
+
+2.6 Procedure 
+2.6.1 Practice phase (Part 1) Upon arrival in the lab, participants were guided to the experiment 
+room and took a seat in front of the computer. Then, the researcher explained the study to the participant, 
+what kind of task it is, what they had to do, and the structure of the experiment. The verbal instruction was 
+complemented with the written instructions which were given to the participant. After that, participants 
+filled out the informed consent form. Lastly, participants were advised to hand over their cell phones to the 
+researcher. Then, participants were instructed to follow the instructions on the computer screen, and 
+participants performed the DSP task. Notably, the researcher entered the room after the one-minute break 
+between each practice block and started the next practice block. After completion of the task, participants 
+were thanked for their participation in Part 1 of the study. Ultimately, the first part of the study took about 
+30 minutes. 
+
+2.6.2 Retention phase (Part 2) Around one week later, participants came for the second part of the study. Participants again received an explanation of the second phase of the experiment. First, participants completed the retention test (Block 5). Then, participants filled out the Qualtrics questionnaire about their demographics. Lastly, participants were thanked for their participation in the study. The second part of the study took about 15 minutes.
+
+3. Results Response time (RT) was defined as the time from the onset of the key-specific stimulus to the pressing of the spatially compatible key. The error rate was defined as the proportion of false key presses in each block. Analyses focused on learning outcomes: sequence performance in Block 4 (test phase) and Block 5 (retention phase).
+
+3.1 Response time 
+3.1.1 Inferential statistics Response times were analyzed using a 3 (Practice Group: LimBck vs 
+LimWT vs ExWT) x 2 (Block: 4 vs 5) x 9 (Keys) mixed ANOVA, with Block and Key as within-subject 
+variables and Practice Group as between-subject variable. The Greenhouse-Geisser correction with 
+corrected degrees of freedom was used when the assumption of sphericity was violated for the repeated 
+measures. 
+The analyses showed no significant difference in mean RT’s between Block 4 and Block 5, F(1,33)= 
+3.69, p= .06, ηp2= .10. Accordingly, participants maintained the practice effects after a one-week break (6- 
+8 days). Contrarily, mean RT’s significantly differed for the 9 sequence positions, F(4.230, 139.603)= 
+10.40, p < .001, ηp 2= 0.24. Specifically, some keys were executed more rapidly than others. Additionally, 
+the RT pattern for the 9 sequence positions significantly differed between Block 4 and Block 5, as indicated 
+by the significant Block*Key interaction, F(3.70, 130.70)= 3.54, p= .01, ηp 2= 0.097. In particular, Key 3, 
+Key 8, and Key 9 were executed more slowly in Block 4 than in Block 5. 
+Importantly, the analyses showed that RT differed significantly across the 3 Practice Groups, 
+F(2,33)= 7.06, p= .003, ηp2= .30. Post hoc comparison with Bonferroni correction showed that participants 
+in the LimBck group (M= 350.40 ms, SE= 17.60 ms) executed the sequence significantly slower than 
+participants in the LimWT group (M= 300.45 ms, SE= 17.60 ms) and in the ExWT group (M= 257.01 ms, 
+SE =17.60 ms). Lastly, The Block*PracticeGroup interaction did not reach significance, F(2,33)= 3.17, p= 
+.06, indicating that the group differences found in RT did not differ significantly for the test phase and 
+retention phase (Block 4 and Block 5). 
+To explore for specific significant differences in RT between the 3 Practice Groups, post hoc 
+comparisons with Bonferroni correction were obtained for each test block separately. Post hoc analysis 
+showed that the advantage of ExWT over LimBck in RT was significant in both Block 4 with a mean 
+difference of 113.5, p < .001 (367 ms vs 253 ms), and Block 5 with a mean difference of 73.3 ms, p= .05 
+(334 ms vs 261 ms; see Figure 1). On the contrary, the advantage of LimWT over LimBck in RT was 
+significant in Block 4 with a mean difference of 60.2 ms, p= .03 (366.77 vs 306.62 ms), but was not 
+significant in Block 5 (334.02 vs 294.27 ms), p= .13. Lastly, participants in the ExWT Group performed 
+the sequence significantly faster than participants in the LimWT Group in Block 4, but this significant 
+difference in response time was not found in Block 5 (see Figure 2). 
+
+Figure 2 Mean response times across the 9 sequence positions for the three Practice Groups per Block
+
+Block 4 Block 5
+
+3.1.2 Description response time patterns The response times for the 9 sequence positions for each Practice Group appear to show some patterns (see Figure 3). Specifically, the LimBck group seems to show two peaks in response time, indicating a slowed response, at Key1 and Key6 in Block 4 and Block 5 followed by the faster responses for succeeding sequence positions (key presses). Similarly, the ExWT group showed peaks in response times at Key1 and Key6 in Block 4 and Block 5. The response time pattern in the LimWT Group seems to display a more diffuse pattern showing a peak in response time at Key1 and Key7 in Block 4 and Key1 and Key 7 in Block 5. However, a smaller peak at Key5 is visible in Block 4 but flattens in Block 5.
+
+Figure 3 Mean response times across the 9 sequence positions in Block 4 and Block 5 per Practice Group
+
+3.2 Error rate The same approach of analysis for the response times was also used to analyze arcsine transformed error proportions. Again, Greenhouse-Geisser correction was used when a violation of the sphericity assumption occurred. The analysis showed no significant effects except the Block*PracticeGroup*Key interaction, which reached significance, F(13.034, 33)=2.359, p=.006, ηp2 =.125.
+
+## 4. Discussion
+
+The study aimed to investigate if the backward chaining represents a more efficient learning method than the whole task practice method for learning a complex motor sequence. An experiment was conducted
+
+in which participants practised a 9-keypress sequence with the DSP task paradigm, either receiving limited 
+backward chaining practice, limited whole task practice, or extended whole task practice. Performance was 
+measured in a test phase immediately after practice acquisition and again one week later with a retention 
+test. Notably, it was expected that backward chaining would result in a faster sequence execution rate than 
+limited whole task practice and a similar sequence execution rate than extended whole task practice. Against 
+expectation, the findings showed that limited backward chaining practice resulted in a slower execution 
+rate than both whole task practice regimes in the test phase. In the retention phase, backward chaining 
+resulted in a similar execution rate than limited whole task practice but a slower execution rate than 
+extended whole task practice. Lastly, all practice groups showed similar motor sequence performances in 
+the test and retention phase. 
+The results indicate that backward chaining did not result in a more rapid sequence representation 
+development than whole task practice as predicted based on the C-SMB framework. Thus, backward 
+chaining does not seem to be a more efficient learning method than the whole task method for learning a 9- 
+key motor sequence. Specifically, the finding seems to suggest that backward chaining was even less 
+efficient than whole task practice in facilitating motor learning, showing a lower performance outcome after 
+limited practice than whole task practice. Accordingly, the study findings go against motor learning 
+textbooks’ expectations, who advocated part practice methods, such as backward chaining, as more 
+beneficial for complex serial tasks. 
+One reason why backward chaining did not show a more beneficial effect on motor learning than 
+whole task practice might have been the sequence length used. Notably, the sequence length used for this 
+study is set just above the cut-off point used by Fontana et al. (2009) to render a task as complex. Thus, a 
+sequence length of 9 movement elements might have been not complex enough for a part practice method 
+(i.e., backward chaining), segmenting the sequence into smaller parts to show a more beneficial effect than 
+whole task practice. This would explain why whole task practice emerged as a more beneficial method for 
+motor sequence learning. 
+In a similar line of thought, the imposed segmentation pattern used for the backward chaining 
+method might not have posed an efficient chucking pattern for the degree of task complexity used in this 
+study. Specifically, the sequence might have been presented in too many small segments, containing only 
+three elements, for the 9-keypress sequence. In support of this suggestion, the response time pattern for the 
+limited backward chaining practice group suggests that instead of adopting the imposed segmentation 
+pattern, participants seemed to have re-organized the sequence into two larger groups (emerging chunks) 
+comprising more elements. Specifically, it appears that 4-5 movement elements were loaded into the motor 
+buffer to be prepared as a whole due to the slow execution rate, probably one by one based on priming 
+effects (Verwey & Abrahamse, 2012; Verwey & Donkers, 2019). 
+
+Accordingly, the imposed segmentation pattern might not have provided a processing advantage of the sequence, not benefitting learning. Instead of three-element segments, four or five element segments might have been more appropriate as an imposed chunking pattern. Still, it seems that the level of task complexity in this study did not require the sequence to be divided into smaller parts as participants learned the sequence better with (limited) whole task practice method. Concluding, the study findings suggest the 9-element sequence could be better learned as a whole. Finally, the findings show that both backward chaining practice and whole task practice supported long-term skill retention, showing durability in practice effect after a one-week break. This result of the study aligns with Fontana et al. (2009), who also found no difference in skill retention between part practice methods and whole task methods. Notably, the persistency of skill level acquired during practice indicates memory consolidation processes that stabilized the motor sequence representation after practice (i.e., memory stabilization; (Krakauer & Shadmehr, 2006; Robertson, & Cohen, 2006; Robertson, Pascual Leone, & Miall, 2004).
+
+4.2 Limitations One limitation of the study is the generalizability of the study findings to other contexts of motor sequence learning. Specifically, the sequencing skill acquired with the DSP task, involving only individual finger movements, represents a fine motor skill. Since a clear distinction is made in motor skill classifications between fine and gross motor behaviour, results are confined to the context of fine motor skills (Magill & Anderson, 2010). Secondly, the task-dependency of different learning methods limits the generalizability of the study findings. Motor learning tasks are classified into continuous tasks with an unspecified beginning and end of the action, discrete motor skills tasks with a clear beginning and end, and serial tasks, such as the DSP task that involve the acquisition of a discrete series of movements (Magill & Anderson, 2010). Importantly, the effectiveness of different learning methods has been shown to depend on the type of task paradigm used. Hence, study findings are limited to the context of serial motor tasks.
+
+4.3 Future research The study findings suggest that the sequence used in this study design might not have rendered the task complex enough to profit from backward chaining practice. Therefore, future research could improve the study design using a longer DSP sequence that more clearly categorizes the task high in complexity. For instance, a keypress series comprising 12 to 24 sequence elements could be used (for example, see Ash & Holding, 1990). Further, future research should aim for a more explicit conceptualization of different practice lengths, defining how many receptions (number of sequence executions) constitute limited, moderate, and extensive practice. A specific conceptualization would provide clear reference points for
+
+designing motor practice in future motor learning studies allowing better comparison and evaluation of 
+learning outcomes. 
+Finally, the study findings suggest that the specific segmentation pattern imposed by part practice 
+methods might play a role in their effectiveness. Generally, external structures of the sequence that present 
+information corresponding with working memory capacity at any point of time are processed more 
+efficiently (Miyapuram, Singh, Bapi, Pammi, 2006). However, the size of the segments imposed by the 
+external sequence-structure might play a factor in sequence learning. For example, Miyapuram, Singh, 
+Bapi, and Pammi (2006) found that a sequence of 24 serial finger movements is processed differently based 
+on the imposed external sequence structure. Specifically, imposing an external structure of 2 segments, 
+including 12 elements, seemed to result in a faster reaction time for finger presses than imposing an external 
+structure of 4 segments, each comprising 6 elements. Accordingly, an emphasis on the imposed 
+segmentation pattern typical to part practice methods might be set by future studies investigating the effect 
+of part practice methods (backward chaining) on motor learning. For example, future research might 
+investigate more thoroughly how the size of the segments presented to the learner affects the efficiency of 
+chunk development which would provide more insights into how to best structure part practice for longer 
+sequences. 
+
+## 5. Conclusion
+
+In conclusion, against expectations, the study showed that backward chaining did not represent a more efficient motor learning method than whole task practice for acquiring a 9-key motor sequence. Instead, whole task practice appeared to show a learning advantage over backward chaining practice after limited practice of the sequence, indicating more efficient sequence learning. A possible explanation might be that the sequence length used in this study resulted in the task being not complex enough to benefit from a part practice method. Indeed, the segmentation structure imposed by the backward chaining method might have failed to provide a more efficient chucking structure of the sequence by presenting too many small segments for the degree of task complexity in this study. The study concluded that the 9-keypress sequences appeared to be best learned as a whole. Notably, the study findings show possible limitations for the use of backward chaining to facilitate motor learning. Lastly, the study findings indicate that both whole task practice and backward chaining support long-term skill retention.
+
+## References
+
+Abrahamse, E. L., Ruitenberg, M. F. L., De Kleine, E., & Verwey, W. B. (2013). Control of 
+automated behaviour: Insights from the discrete sequence production task. Frontiers in Human 
+Neuroscience, 7(82), 1-16. 10.3389/fnhum.2013.00082 
+Adams, J. A. (1968). Response feedback and learning. Psychological Bulletin, 70(6), 486-504. 
+https://doi.org/10.1037/h0026741 
+Ash, D. W., & Holding, D. H. (1990). Backward versus forward chaining in the 
+acquisition of a keyboard skill. Human Factors, 32(2), 139-146. 
+https://doi.org/10.1177/001872089003200202 
+Cahill, L., McGaugh, J. L., & Weinberger, N. M. (2001). The neurobiology of learning and memory: 
+some reminders to remember. Trends in neurosciences, 24(10), 578-581. 
+https://doi.org/10.1016/S0166-2236(00)01885-3 
+Frøkjær, E., Hertzum, M., & Hornbæk, K. (2000, April). Measuring usability: are effectiveness, 
+efficiency, and satisfaction really correlated?. In Proceedings of the SIGCHI conference on 
+Human Factors in Computing Systems (pp. 345-352). https://doi.org/10.1145/332040.332455 
+Fontana, F. E., Furtado Jr, O., Mazzardo, O., & Gallagher, J. D. (2009). Whole and part 
+practice: A meta-analysis. Perceptual and motor skills, 109(2), 517-530. 
+10.2466/PMS.109.2.517-530 
+Ghilardi, M. F., Moisello, C., Silvestri, G., Ghez, C., & Krakauer, J. W. (2009). Learning of a 
+sequential motor skill comprises explicit and implicit components that consolidate 
+differently. Journal of neurophysiology, 101(5), 2218-2229. 
+https://doi.org/10.1152/jn.01138.2007 
+Hansen, S., Tremblay, L., & Elliott, D. (2005). Part and whole practice: Chunking and online 
+control in the acquisition of a serial motor task. Research Quarterly for Exercise and Sport, 76(1), 
+60-66. http://dx.doi.org/10.1080/02701367.2005.10599262 
+Kantak, S. S., & Winstein, C. J. (2012). Learning–performance distinction and memory processes for 
+motor skills: A focused review and perspective. Behavioural brain research, 228(1), 219-231. 
+https://doi.org/10.1016/j.bbr.2011.11.028 
+Krakauer, J. W., Hadjiosif, A. M., Xu, J., Wong, A. L., & Haith, A. M. (2011). Motor 
+learning. Comprehensive Physiology, 9(2), 613-663. 10.1002/cphy.c170043 
+Krakauer, J. W., & Shadmehr, R. (2006). Consolidation of motor memory. Trends in 
+neurosciences, 29(1), 58-64. https://doi.org/10.1016/j.tins.2005.10.003 
+Lee, T. D., Swanson, L. R., & Hall, A. L. (1991). What is repeated in a repetition? Effects of practice 
+
+conditions on motor skill acquisition. Physical therapy, 71(2), 150-156. https://doi.org/10.1093/ptj/71.2.150 Magill, R. (2007) Motor learning: concepts and applications. (8th ed.) Mc-Graw-Hill. Magill, R. A., & Anderson, D. (2010). Motor learning and control (10 th ed.). McGraw-Hill Publishing. Naylor, G., & Briggs, J. (1963) Effects of task complexity and task organization on the relative efficiency of part and whole training methods. Journal of Experimental Psychology, 65, 217-224. https://doi.org/10.1037/h0041060 Park, J. H., Wilde, H., & Shea, C. H. (2004). Part-whole practice of movement sequences. Journal of motor behavior, 36(1), 51-61. http://dx.doi.org/10.3200/JMBR.36.1.51-61 Robertson, E. M., & Cohen, D. A. (2006). Understanding consolidation through the architecture of memories. The Neuroscientist, 12(3), 261-271. https://doi.org/10.1177/1073858406287935 Robertson, E. M., Pascual-Leone, A., & Miall, R. C. (2004). Current concepts in procedural consolidation. Nature Reviews Neuroscience, 5(7), 576-582. https://doi.org/10.1038/nrn1426 Ruitenberg, M. F., Abrahamse, E. L., De Kleine, E., & Verwey, W. B. (2012). Context dependent motor skill: Perceptual processing in memory-based sequence production. Experimental brain research, 222(1-2), 31-40. 10.1007/s00221-012-3193-6 Sakai, K., Kitaguchi, K., & Hikosaka, O. (2003). Chunking during human visuomotor sequence learning. Experimental brain research, 152(2), 229-242. https://doi.org/10.1007/s00221-003-1548-8 Schmidt, R. A., & Bjork, R. A. (1992). New conceptualizations of practice: Common principles in three paradigms suggest new concepts for training. Psychological science, 3(4), 207-218. https://doi.org/10.1111/j.1467-9280.1992.tb00029.x Schmidt, R. A., & Wrisberg, C. A. (2008) Motor learning and performance: A situation based learning approach (4th ed.). Human Kinetics. Smith, G. J. (1999). Teaching a long sequence of behavior using whole task training, forward chaining, and backward chaining. Perceptual and Motor skills, 89(3), 951-965. https://doi.org/10.2466/pms.1999.89.3.951 Stammers, R. B. (1980). Part and whole practice for a tracking task: Effects of task variables and amount of practice. Perceptual and Motor Skills, 50(1), 203-210. https://doi.org/10.2466/pms.1980.50.1.203 Spooner, F., & Spooner, D. (1984). A review of chaining techniques: Implications for future research and practice. Education and Training of the Mentally Retarded, 19, 114–124. Verwey, W. B. (1994). Evidence for the development of concurrent processing in a.
+
+sequential keypressing task. Acta Psychologica, 85(3), 245-262. https://doi.org/10.1016/0001-6918(94)90038-8 Verwey, W. B. (1996). Buffer loading and chunking in sequential keypressing. Journal of Experimental Psychology: Human Perception and Performance, 22(3), 544-562. https://doi.org/10.1037/0096-1523.22.3.544 Verwey, W. B. (2015). Contributions from associative and explicit sequence knowledge to the execution of discrete keying sequences. Acta psychologica, 157, 122-130. https://doi.org/10.1016/j.actpsy.2015.02.013 Verwey, W. B., Abrahamse, E. L., & De Kleine, E. (2010). Cognitive processing in new and practiced discrete keying sequences. Frontiers in psychology, 1, 32. 10.3389/fpsyg.2010.00032 Verwey, W. B., Abrahamse, E. L., Ruitenberg, M. F., Jiménez, L., & de Kleine, E. (2011). Motor skill learning in the middle-aged: Limited development of motor chunks and explicit sequence knowledge. Psychological research, 75(5), 406-422. 10.1007/s00426-011-0320-0 Verwey, W. B., & Dronkers, W. J. (2019). Skill in discrete keying sequences is execution rate-specific. Psychological Research, 83(2), 235-246. https://doi.org/10.1007/s00426-017-0967-2 Verwey, W. B., & Eikelboom, T. (2003). Evidence for lasting sequence segmentation in the discrete sequence-production task. Journal of motor behavior, 35(2), 171-181. 10.1080/00222890309602131 Verwey, W. B., Shea, C. H., & Wright, D. L. (2015). A cognitive framework for explaining serial processing and sequence execution strategies. Psychonomic bulletin & review, 22(1), 54-77. https://doi.org/10.3758/s13423-014-0773-4 Verwey, W. B., & Wright, D. L. (2014). Learning a keying sequence you never executed: Evidence for independent associative and motor chunk learning. Acta Psychologica, 151, 24-31. https://doi.org/10.1016/j.actpsy.2014.05.017 Verwey, W. B., Wright, D. L., & Immink, M. A. (2021). A multi-representation approach to the contextual interference effect: effects of sequence length and practice. Psychological research, 1-22. https://doi.org/10.1007/s00426-021-01543-0 Walker, M. P., & Stickgold, R. (2004). Sleep-dependent learning and memory consolidation. Neuron, 44(1), 121-133. https://doi.org/10.1016/j.neuron.2004.08.031 Walker, M. P., Brakefield, T., Seidman, J., Morgan, A., Hobson, J. A., & Stickgold, R. (2003). Sleep and the time course of motor skill learning. Learning & memory, 10(4), 275-284. http://www.learnmem.org/cgi/doi/10.1101/lm.58503. Wightman, D. C., & Lintern, G. (1985). Part-task training for tracking and manual
+
+control. Human factors, 27(3), 267-283. https://doi.org/10.1177/001872088502700304 
+Wilcox, B. (1974). The teaching of serial tasks using chaining strategies. British Journal of 
+Educational Psychology, 44(2), 175-183. dhttps://doi.org/10.1111/j.2044-8279.1974.tb02284.x 
+Woods, D. W., & Teng, E. J. (2002). Backward chaining. Encyclopaedia of psychotherapy, 1, 149-53. 
+
+Appendix A Informed consent
+
+Consent Form for Motor learning with discrete sequence procedure YOU WILL BE GIVEN A COPY OF THIS INFORMED CONSENT FORM
+
+Please tick the appropriate boxes Yes
+
+Taking part in the study
+
+I have read and understood the study information or it has been read to me. I have been able to ask questions about the study and my questions have been answered to my satisfaction.
+
+□
+
+I consent voluntarily to be a participant in this study and understand that I can refuse to answer questions and I can withdraw from the study at any time, without having to give a reason.
+
+□
+
+I understand that taking part in the study involves me pressing a series of keyboard keys. While doing so, my response time and error rate will be recorded by the computer. There will be four blocks today and one additional in 7 days. The computer screen will give me all further instructions.
+
+□
+
+I agree to hand my phone to the researcher so that I will not be distracted. The researcher will not do anything with it besides keeping it safe.
+
+Risks associated with participating in the study
+
+I understand that taking part in the study is not associated with any risks. However, if any complaints emerge, I can contact the researcher anytime and know how.
+
+□ □
+
+Use of the information in the study
+
+I understand that information I provide will be used for a student’s bachelor thesis. They will be anonymized, and no individual results will be found in the report.
+
+I understand that personal information collected about me that can identify me, such as my name or personal characteristics, will not be shared beyond the study team.
+
+□ □
+
+Future use and reuse of the information by others
+
+I give permission for the deindividualized data that I provide to be archived on safe University of Twente server so it can be used for future research and learning.
+
+□
+
+Signatures
+
+_____________________ _____________________ ________ Name of participant Signature Date
+
+I have accurately read out the information sheet to the potential participant and, to the best of my ability, ensured that the participant understands to what they are freely consenting.
+
+________________ _____________________ ________
+
+Researcher name Signature Date
+
+Study contact details for further information: Vivien Schneider, v.schneider@student.utwente.nl
+
+Contact Information for Questions about Your Rights as a Research Participant
+
+If you have questions about your rights as a research participant, or wish to obtain information, ask questions, or discuss any concerns about this study with someone other than the researcher(s), please contact the Secretary of the Ethics Committee of the Faculty of Behavioural, Management and Social Sciences at the University of Twente by ethicscommittee-bms@utwente.nl
+
+Appendix B Participant instruction
+
+Participant instruction March 23 rd, 2021 
+Name study: Investigating motor sequence learning with a sequential key pressing task 
+Duration: 45 min. 
+Experimenter: Vivien Schneider, Carolin Schneider 
+Project Leader: Prof.dr. W.B. Verwey 
+Ethical approval: 210145 
+
+Dear participant,
+
+You are about to work in an experiment in which you are to perform a reaction time task. The instructions 
+will be given by the experimenter and on the screen. In general, please stay concentrated at all times. For 
+that reason, please give your phone to the experimenter. 
+You will perform blocks of trials of about 10-15 minutes separated by short breaks. Please remain in your 
+cubicle during these breaks. At the end of each block, you will get feedback about how well you just did. 
+Each time wait for the experimenter to start the next block of the experiment. 
+Stay focused at all times. Making more errors will make the experiment last longer. 
+
+At all times you may stop prematurely without giving a reason.
+
+Good luck and thanks for your participation!
+
+Carolin and Vivien Schneider Willem Verwey
+
+Appendix C Demographics questionnaire
+

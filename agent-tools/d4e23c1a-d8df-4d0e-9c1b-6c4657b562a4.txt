@@ -1,0 +1,443 @@
+Backward versus Forward Chaining in the Acquisition of a Keyboard Skill - Daniel W. Ash, Dennis H. Holding, 1990
+[Skip to main content](#skipNavigationTo)
+Intended for healthcare professionals
+[![Sage Journals Home](https://journals.sagepub.com/pb-assets/UX3/Images/logo-new-1685528515400.svg%20)](https://journals.sagepub.com/)
+[Search this journal**](#)
+* [Search this journal](#pane-91a67f5d-48d7-493e-912e-2af5faaaceef0)
+* [Search all journals](#pane-91a67f5d-48d7-493e-912e-2af5faaaceef1)
+Enter search terms...
+SearchSearch**[Advanced search](https://journals.sagepub.com/search/advanced?SeriesKey=hfsa)
+Enter search terms...
+SearchSearch**[Advanced search](https://journals.sagepub.com/search/advanced?SeriesKey=hfsa)
+* [****Search](#)
+* [****Access/ProfileAccess](#)
+* [View access options](https://journals.sagepub.com/action/showLogin?uri=/doi/10.1177/001872089003200202)
+* [View profile](https://journals.sagepub.com/action/showLogin?uri=/doi/10.1177/001872089003200202)
+* [Create profile](https://journals.sagepub.com/action/registration)
+* [
+**Cart0
+](https://journals.sagepub.com/action/showCart?FlowID=1&alt=Empty+cart)
+[Close Drawer MenuOpen Drawer MenuMenu](#main1)
+[Human Factors: The Journal of the Human Factors and Ergonomics Society](https://journals.sagepub.com/home/HFS)
+[![Human Factors and Ergonomics Society](https://journals.sagepub.com/pb-assets/societylogos/hfs_society1_logo-1662986084740.gif)](http://www.hfes.org)
+[Impact Factor:**2.9**/5-Year Impact Factor:**3.8**](https://journals.sagepub.com/metrics/hfs)
+[JOURNAL HOMEPAGE](https://journals.sagepub.com/home/HFS)
+[SUBMIT PAPER](https://journals.sagepub.com/author-instructions/HFS)
+**Close#### Add email alerts
+You are adding the following journal to your email alerts
+||New content|
+Human Factors: The Journal of the Human Factors and Ergonomics Society||
+Create email alert
+**Restricted access
+Research article
+First published April 1990
+# Backward versus Forward Chaining in the Acquisition of a Keyboard Skill
+[Daniel W.Ash](#con1)and[Dennis H.Holding](#con2)[View all authors and affiliations](#tab-contributors)
+[Volume32,Issue2](https://journals.sagepub.com/toc/hfsa/32/2)
+[https://doi.org/10.1177/001872089003200202](https://doi.org/10.1177/001872089003200202)
+* **Contents
+* [Abstract](#abstract)
+* [References](#bibliography)
+* [**Get access](#core-collateral-purchase-access)
+* [**More](#core-collateral-more)
+* * [**Cite article](#core-collateral-self-citation)
+* [**Share options](#core-collateral-share)
+* [**Information, rights and permissions](#core-collateral-info)
+* [**Metrics and citations](#core-collateral-metrics)
+## Abstract
+Although backward chaining has been found superior to whole-task training, the effect might depend on the ordering of difficult and easy segments of the task, and forward chaining requires investigation. The experiment uses a musical keyboard task to test these possibilities, counterbalancing difficulty order with direction of chaining in a comparison with whole training. Performance was scored for melodic errors and for rhythmic accuracy and consistency. Both of the part-task methods proved superior to the whole method during training trials, in criterion trials on the whole task, and during retention after one week. However, forward chaining conferred a greater advantage than backward chaining on most measures. The results weaken several explanations for the superiority of backward chaining but confirm the advantages of segmentation methods in part-task training.
+**## Get full access to this article
+View all access and purchase options for this article.
+[Get Access**](#core-collateral-purchase-access)
+## References
+Bailey, J. S., Hughes, R. G., and Jones, W. E. (1980).*Application of backward chaining to air-to-surface weapons delivery training*(AFHRL-TR-79-63). Williams Air Force Base, AZ: Operations Training Division. Human Resources Laboratory.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Application+of+backward+chaining+to+air-to-surface+weapons+delivery+training&publication_year=1980)
+Holding, D. H. (1987). Concepts of training. In G. Salvendy (Ed.),*Handbook of human factors*. New York: Wiley.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Concepts+of+training&publication_year=1987)
+Knerr, C. M., Morrison, J. E., Mumaw, R. J., Stein, D. J., Sticha, P. J., Hoffman, R. G., Buede, D. M., and Holding, D. H. (1986).*Simulation-based research in part-task training*(AFHRL Technical Report 86-12). Brooks AFB, TX: Air Force Human Resources Laboratory.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Simulation-based+research+in+part-task+training&publication_year=1986)
+Mane, A. M., Adams, J. A., and Donchin, E. (1989). Adaptive and part-whole training in the acquisition of a complex perceptual-motor skill.*Acta Psychologica*, 71, 179–196.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Adaptive+and+part-whole+training+in+the+acquisition+of+a+complex+perceptual-motor+skill&publication_year=1989&journal=Acta+Psychologica&pages=179-196)
+McGeoch, G. O. (1932). A reevaluation of the whole-part problem in learning.*Journal of Educational Research*, 26, 1–5.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=A+reevaluation+of+the+whole-part+problem+in+learning&publication_year=1932&journal=Journal+of+Educational+Research&pages=1-5)
+Naylor, J. C., and Briggs, G. E. (1963). Effects of task complexity and task organization on the relative efficiency of part and whole training methods.*Journal of Experimental Psychology*, 65, 217–224.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Effects+of+task+complexity+and+task+organization+on+the+relative+efficiency+of+part+and+whole+training+methods&publication_year=1963&journal=Journal+of+Experimental+Psychology&pages=217-224)
+Nettlebeck, T., and Kirby, N. H. (1976). A comparison of part and whole training methods with mildly mentally retarded workers.*Journal of Occupational Psychology*, 49, 115–120.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=A+comparison+of+part+and+whole+training+methods+with+mildly+mentally+retarded+workers&publication_year=1976&journal=Journal+of+Occupational+Psychology&pages=115-120)
+O'Brien, C. C. (1943). Part and whole methods in the memorization of music.*Journal of Educational Psychology*, 34, 552–560.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Part+and+whole+methods+in+the+memorization+of+music&publication_year=1943&journal=Journal+of+Educational+Psychology&pages=552-560)
+Rubin-Rabson, G. (1940). Studies in the psychology of memorizing piano music: II. A comparison of the whole and the part approach.*Journal of Educational Psychology*, 31, 460–476.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Studies+in+the+psychology+of+memorizing+piano+music:+II.+A+comparison+of+the+whole+and+the+part+approach&publication_year=1940&journal=Journal+of+Educational+Psychology&pages=460-476)
+Walls, R. T., Zane, T., and Ellis, W. D. (1981). Forward and backward chaining, and whole task methods.*Behavior Modification*, 5, 61–74.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Forward+and+backward+chaining,+and+whole+task+methods&publication_year=1981&journal=Behavior+Modification&pages=61-74)
+Westra, D. P. (1982).*Investigation of simulator design features for carrier landing: II. In-simulator transfer of training*(NAVTRAEQUIPCEN 81-C-0105-1). Orlando, FL: Naval Training Equipment Center.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Investigation+of+simulator+design+features+for+carrier+landing:+II.+In-simulator+transfer+of+training&publication_year=1982)
+Wheaton, G. R., Rose, A. M., Fingerman, P., Korotkin, A. L., and Holding, D. H. (1976).*Evaluation of the effectiveness of training devices: Literature review and preliminary model*(Research Memorandum 76–6). Alexandria, VA: U.S. Army Research Institute for the Behavioral and Social Sciences.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Evaluation+of+the+effectiveness+of+training+devices:+Literature+review+and+preliminary+model&publication_year=1976)
+Wightman, D. C., and Lintern, G. (1985). Part-task training for tracking and manual control.*Human Factors*, 27, 267–283.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Part-task+training+for+tracking+and+manual+control&publication_year=1985&journal=Human+Factors&pages=267-283)
+Wightman, D. C., and Sistrunk, F. (1987). Part-task training strategies in simulated carrier landing final-approach training.*Human Factors*, 29, 245–254.
+[Google Scholar](https://scholar.google.com/scholar_lookup?title=Part-task+training+strategies+in+simulated+carrier+landing+final-approach+training&publication_year=1987&journal=Human+Factors&pages=245-254)
+## **Cite article
+### Cite article
+#### Cite article
+COPY CITATION
+OR
+#### Download to reference manager
+If you have citation software installed, you can download article citation data to the citation manager of your choice
+Select your citation manager software:(select option)RIS (ProCite, Reference Manager)EndNoteBibTexMedlarsRefWorks
+Direct import
+## **Share options
+### Share
+#### Share this article
+##### Share with email
+[EMAIL ARTICLE LINK**](https://journals.sagepub.com/action/showMailPage?doi=10.1177/001872089003200202)##### Share on social media
+[**Facebook](https://journals.sagepub.com/#facebook)[**X (formerly Twitter)](https://journals.sagepub.com/#twitter)[**Linkedin](https://journals.sagepub.com/#linkedin)[**WeChat](https://journals.sagepub.com/#wechat)
+#### Share access to this article
+Sharing links are not relevant where the article is open access and not available if you do not have a subscription.
+For more information view the[Sage Journals article sharing
+page.](https://journals.sagepub.com/page/article-sharing)
+## **Information, rights and permissions
+### Information
+#### Published In
+[Human Factors](https://journals.sagepub.com/home/hfsa)
+[Volume32,Issue2](https://journals.sagepub.com/toc/hfsa/32/2)
+Pages:139-146
+**Article first published**: April 1990
+**Issue published**: April 1990
+#### Rights and permissions
+Request permissions for this article.
+[Request Permissions](https://s100.copyright.com/AppDispatchServlet?publisherName=sage&publication=j632&title=Backward+versus+Forward+Chaining+in+the+Acquisition+of+a+Keyboard+Skill&publicationDate=1990-04-01&author=Daniel+W.+Ash,+Dennis+H.+Holding&contentID=10.1177/001872089003200202&volumeNum=32&issueNum=2&startPage=139&endPage=146&numPages=8&orderBeanReset=true)
+### Authors
+#### Affiliations
+Daniel W.Ash
+University of Louisville, Louisville, Kentucky
+[View all articles by this author](https://journals.sagepub.com/authored-by/Ash/Daniel+W)
+Dennis H.Holding
+University of Louisville, Louisville, Kentucky
+[View all articles by this author](https://journals.sagepub.com/authored-by/Holding/Dennis+H)
+## **Metrics and citations
+### Metrics
+#### Journals metrics
+This article was published in*Human Factors: The Journal of the Human Factors and Ergonomics Society*.
+[VIEW ALL JOURNAL METRICS](https://journals.sagepub.com/metrics/HFS)
+#### Article usage\*
+Total views and downloads:
+251
+*\*Article usage tracking started in December 2016*
+#### Altmetric
+See the impact this article is making through the number of times it’s been read, and the Altmetric Score.
+[Learn more about the Altmetric Scores](https://www.altmetric.com/)
+[](https://www.altmetric.com/details.php?domain=journals.sagepub.com&doi=10.1177/001872089003200202)
+#### Articles citing this one
+Receive email alerts when this article is cited
+[SIGN UP TO CITATION ALERTS](https://journals.sagepub.com/action/addCitationAlert?doi=10.1177/001872089003200202)
+Web of Science: 15[view articlesOpens in new tab**](http://gateway.webofknowledge.com/gateway/Gateway.cgi?GWVersion=2&DestApp=WOS_CPL&UsrCustomerID=5e3815c904498985e796fc91436abd9a&SrcAuth=atyponcel&SrcApp=literatum&DestLinkType=CitingArticles&KeyUT=A1990DY03500002)
+Crossref: 0
+1. Measuring Human Performance in the Field
+[Go to citation](http://dx.doi.org/10.1201/9781315587370-5)[Crossref](https://doi.org/10.1201/9781315587370-5)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1201/9781315587370-5)
+2. Measuring Human Performance in the Field
+[Go to citation](http://dx.doi.org/10.4324/9781315587370-4)[Crossref](https://doi.org/10.4324/9781315587370-4)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.4324/9781315587370-4)
+3. Learn Piano with BACh
+[Go to citation](http://dx.doi.org/10.1145/2858036.2858388)[Crossref](https://doi.org/10.1145/2858036.2858388)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1145/2858036.2858388)
+4. Transfer of Learning between Hemifields in Multiple Object Tracking: M...
+[Go to citation](http://dx.doi.org/10.1371/journal.pone.0083872)[Crossref](https://doi.org/10.1371/journal.pone.0083872)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1371/journal.pone.0083872)
+5. The Anatomy of Motivation: An Evolutionary-Ecological Approach
+[Go to citation](http://dx.doi.org/10.1007/s13752-013-0101-7)[Crossref](https://doi.org/10.1007/s13752-013-0101-7)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1007/s13752-013-0101-7)
+6. AN ASSESSMENT OF THE EFFICIENCY OF AND CHILD PREFERENCE FOR FORWARD AN...
+[Go to citation](http://dx.doi.org/10.1901/jaba.2011.44-793)[Crossref](https://doi.org/10.1901/jaba.2011.44-793)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1901/jaba.2011.44-793)
+7. The evaluation of virtual environment training for a building clearing...
+[Go to citation](https://journals.sagepub.com/doi/10.1177/154193120905301809?icid=int.sj-abstract.citing-articles.7)[Crossref](https://doi.org/10.1177/154193120905301809)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1177/154193120905301809)
+8. Whole and Part Practice: A Meta-Analysis
+[Go to citation](https://journals.sagepub.com/doi/10.2466/pms.109.2.517-530?icid=int.sj-abstract.citing-articles.8)[Crossref](https://doi.org/10.2466/pms.109.2.517-530)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.2466/pms.109.2.517-530)[Pub Med](https://pubmed.ncbi.nlm.nih.gov/20038005)
+9. Optimizing Worked‐Example Instruction in Electrical Engineering: The R...
+[Go to citation](http://dx.doi.org/10.1002/j.2168-9830.2009.tb01007.x)[Crossref](https://doi.org/10.1002/j.2168-9830.2009.tb01007.x)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1002/j.2168-9830.2009.tb01007.x)
+10. Human Performance
+[Go to citation](http://dx.doi.org/10.1201/9781420064506.ch2)[Crossref](https://doi.org/10.1201/9781420064506.ch2)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1201/9781420064506.ch2)
+11. Performance degradation under pressure in music: an examination of ...
+[Go to citation](https://journals.sagepub.com/doi/10.1177/0305735605050649?icid=int.sj-abstract.citing-articles.11)[Crossref](https://doi.org/10.1177/0305735605050649)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1177/0305735605050649)
+12. Part-Whole Practice of Movement Sequences
+[Go to citation](http://dx.doi.org/10.3200/JMBR.36.1.51-61)[Crossref](https://doi.org/10.3200/JMBR.36.1.51-61)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.3200/JMBR.36.1.51-61)
+13. Easy First Steps and Their Implication to the Use of a Mouse-Based and...
+[Go to citation](http://dx.doi.org/10.1037/1076-898X.10.2.89)[Crossref](https://doi.org/10.1037/1076-898X.10.2.89)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1037/1076-898X.10.2.89)
+14. Backward Chaining
+[Go to citation](http://dx.doi.org/10.1016/B0-12-343010-0/00020-9)[Crossref](https://doi.org/10.1016/B0-12-343010-0/00020-9)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1016/B0-12-343010-0/00020-9)
+15. Training Concurrent Multistep Procedural Tasks
+[Go to citation](https://journals.sagepub.com/doi/10.1518/001872000779698150?icid=int.sj-abstract.citing-articles.15)[Crossref](https://doi.org/10.1518/001872000779698150)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1518/001872000779698150)[Pub Med](https://pubmed.ncbi.nlm.nih.gov/11132799)
+16. Influence de la diversité des méthodes sur l'apprentissage de la nage ...
+[Go to citation](http://dx.doi.org/10.1016/S0765-1597(00)87999-X)[Crossref](https://doi.org/10.1016/S0765-1597(00)87999-X)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1016/S0765-1597(00)87999-X)
+17. Teaching a Long Sequence of Behavior Using Whole Task Training, Forwar...
+[Go to citation](https://journals.sagepub.com/doi/10.2466/pms.1999.89.3.951?icid=int.sj-abstract.citing-articles.17)[Crossref](https://doi.org/10.2466/pms.1999.89.3.951)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.2466/pms.1999.89.3.951)[Pub Med](https://pubmed.ncbi.nlm.nih.gov/10665030)
+18. The Role of Target Task Pre-Exposure in Resource Training
+[Go to citation](https://journals.sagepub.com/doi/10.1177/154193129904302111?icid=int.sj-abstract.citing-articles.18)[Crossref](https://doi.org/10.1177/154193129904302111)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1177/154193129904302111)
+19. Multiple Resource Contributions to Training
+[Go to citation](https://journals.sagepub.com/doi/10.1177/1071181397041002101?icid=int.sj-abstract.citing-articles.19)[Crossref](https://doi.org/10.1177/1071181397041002101)[Google Scholar](https://journals.sagepub.com/servlet/linkout?type=google-cite&doi=10.1177/1071181397041002101)
+## **Figures and tables
+### Figures & Media
+### Tables
+## **View Options
+### Get access
+#### Access options
+If you have access to journal content via a personal subscription, university, library, employer or society, select from the options below:
+**Sage Journals profile
+**
+I am signed in as:
+**
+[View my profile](https://journals.sagepub.com/action/showPreferences)[Sign out](https://journals.sagepub.com/action/doLogout?redirectUri=https://journals.sagepub.com/doi/10.1177/001872089003200202)
+I can access personal subscriptions, purchases, paired institutional access and free tools such as favourite journals, email alerts and saved searches.
+Login failed. Please check you entered the correct user name and password.
+### Sign in
+Access personal subscriptions, purchases, paired institutional or society access and free tools such as email alerts and saved searches.
+*Required fields*
+The email address and/or password entered does not match our records, please check and try again.
+Email:
+Password:
+Remember me
+[Forgotten your password?](https://journals.sagepub.com/action/requestResetPassword)
+Sign in
+OR
+[Create profile](https://journals.sagepub.com/action/registration)
+**Institution
+**
+*loading institutional access options*
+Click the button below for the full-text content
+请点击以下获取该全文[Click here to view / 点击获取全文](http://sage.cnpereading.com/paragraph/article/?doi=10.1177/001872089003200202)
+**SocietyChinese Institutions / 中国用户**
+HFES memberscan access this journal content using society membership credentials.
+[MEMBERSHIP LOGIN**](https://journals.sagepub.com/action/clickThrough?id=1348&url=https://my.hfes.org/account/login.aspx?redirectUri=https%3A%2F%2Fjournals.sagepub.com%2Fdoi%2F10.1177%2F001872089003200202&loc=/doi/10.1177/001872089003200202&pubId=45038107&placeholderId=1018&productId=1215)
+HFES memberscan access this journal content using society membership credentials.
+[MEMBERSHIP LOGIN**](https://journals.sagepub.com/action/clickThrough?id=1348&url=https://my.hfes.org/account/login.aspx?redirectUri=https%3A%2F%2Fjournals.sagepub.com%2Fdoi%2F10.1177%2F001872089003200202&loc=/doi/10.1177/001872089003200202&pubId=45038107&placeholderId=1018&productId=1215)
+Alternatively, view purchase options below:
+**Purchase access
+**
+[Item saved, go to cart](https://journals.sagepub.com/action/showCart?FlowID=2)
+Purchase 24 hour online access to view and download content.
+Article -$37.50Add to cart
+ADD TO CART
+**Added to cart
+[Checkout](https://journals.sagepub.com/action/showCart?FlowID=2)
+[Subscribe to this journal](http://www.sagepub.com/journals/Journal201912/#subscribe)
+************Read with DeepDyve
+**
+Access journal content via a DeepDyve subscription or find out more about this option.
+[Start 2 week free trial**](#)
+[Need help?](https://journalssolutions.sagepub.com/support/home)
+### View options
+#### PDF/ePub
+[View PDF/ePub](https://journals.sagepub.com/doi/reader/10.1177/001872089003200202)
+## Similar articles:
+* Restricted access
+[Part-Task Training Strategies in Simulated Carrier Landing Final-Approach Training](https://journals.sagepub.com/doi/10.1177/001872088702900301?icid=int.sj-abstract.similar-articles.1)
+Show detailsHide details**
+[Dennis C. Wightman](https://journals.sagepub.com/authored-by/Wightman/Dennis%20C.)and more ...
+Human Factors
+Jun 1987
+* Restricted access
+[Part-Task Training for Tracking and Manual Control](https://journals.sagepub.com/doi/10.1177/001872088502700304?icid=int.sj-abstract.similar-articles.2)
+Show detailsHide details**
+[Dennis C. Wightman](https://journals.sagepub.com/authored-by/Wightman/Dennis%20C.)and more ...
+Human Factors
+Jun 1985
+* Restricted access
+[Training Concurrent Multistep Procedural Tasks](https://journals.sagepub.com/doi/10.1518/001872000779698150?icid=int.sj-abstract.similar-articles.3)
+Show detailsHide details**
+[Andrew C. Peck](https://journals.sagepub.com/authored-by/Peck/Andrew%20C.)and more ...
+Human Factors
+Sep 2000
+* Restricted access
+[The Effects of Manipulating Task Difficulty and Feedback Frequency on Children’s Dart Throwing Accuracy and Consistency](https://journals.sagepub.com/doi/10.1177/00315125211039341?icid=int.sj-abstract.similar-articles.4)
+Show detailsHide details**
+[Fatma Bahri](https://journals.sagepub.com/authored-by/Bahri/Fatma)and more ...
+Perceptual and Motor Skills
+Aug 2021
+* Restricted access
+[The Discrimination, Acquisition, and Retention of Aiming Movements Made with and without Elastic Resistance](https://journals.sagepub.com/doi/10.1518/001872099779577291?icid=int.sj-abstract.similar-articles.5)
+Show detailsHide details**
+[David I. Anderson](https://journals.sagepub.com/authored-by/Anderson/David%20I.)
+Human Factors
+Mar 1999
+* Restricted access
+[The Role of Stimulus-to-Rule Consistency in Learning Rapid Application of Spatial Rules](https://journals.sagepub.com/doi/10.1177/001872088803000104?icid=int.sj-abstract.similar-articles.6)
+Show detailsHide details**
+[Arthur D. Fisk](https://journals.sagepub.com/authored-by/Fisk/Arthur%20D.)and more ...
+Human Factors
+Feb 1988
+* Restricted access
+[Intention in motor learning through observation](https://journals.sagepub.com/doi/10.1080/02724980443000773?icid=int.sj-abstract.similar-articles.7)
+Show detailsHide details**
+[Arnaud Badets](https://journals.sagepub.com/authored-by/Badets/Arnaud)and more ...
+Quarterly Journal of Experimental Psychology
+Feb 2006
+* Restricted access
+[Effects of a neutral warning signal on spatial two-choice reactions](https://journals.sagepub.com/doi/10.1177/17470218211037604?icid=int.sj-abstract.similar-articles.8)
+Show detailsHide details**
+[Tianfang Han](https://journals.sagepub.com/authored-by/Han/Tianfang)and more ...
+Quarterly Journal of Experimental Psychology
+Aug 2021
+* Restricted access
+[Procedural Learning of a Visual Sequence in Individuals With Autism](https://journals.sagepub.com/doi/10.1177/10883576070220010201?icid=int.sj-abstract.similar-articles.9)
+Show detailsHide details**
+[Barry Gordon](https://journals.sagepub.com/authored-by/Gordon/Barry)and more ...
+Focus on Autism and Other Developmental Disabilities
+Feb 2007
+View more
+## Sage recommends:
+* **SAGE Knowledge**
+Whole book
+[Learning and Memory of Knowledge and Skills: Durability and Specificity](http://dx.doi.org/10.4135/9781483326887)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[The Effects of Contextual Interference on the Acquisition and Retention of Logical Rules](http://dx.doi.org/10.4135/9781483326887.n4)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[The Long-Term Retention of a Complex Skill](http://dx.doi.org/10.4135/9781483326887.n2)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[A Long-Term Retention Advantage for Spatial Information Learned Naturally and in the Laboratory](http://dx.doi.org/10.4135/9781483326887.n6)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[Basic Operations](http://dx.doi.org/10.4135/9781473914797.n5)
+Show detailsHide details**
+Laurie A. Rudman
+Implicit Measures for Social and Personality Psychology
+2011
+* **SAGE Knowledge**
+Book chapter
+[Information Processing and the Study of Attention](http://dx.doi.org/10.4135/9781483328768.n2)
+Show detailsHide details**
+Addie Johnson and more...
+Attention: Theory and Practice
+2004
+* **SAGE Knowledge**
+Book chapter
+[The Contribution of Procedural Reinstatement to Implicit and Explicit Memory Effects in a Motor Task](http://dx.doi.org/10.4135/9781483326887.n3)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[An Identical-Elements Model of Basic Arithmetic Skills](http://dx.doi.org/10.4135/9781483326887.n9)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[A Generation Advantage for Multiplication Skill Training and Nonword Vocabulary Acquisition](http://dx.doi.org/10.4135/9781483326887.n5)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+View more
+## Sage recommends:
+* **SAGE Knowledge**
+Whole book
+[Learning and Memory of Knowledge and Skills: Durability and Specificity](http://dx.doi.org/10.4135/9781483326887)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[The Effects of Contextual Interference on the Acquisition and Retention of Logical Rules](http://dx.doi.org/10.4135/9781483326887.n4)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[The Long-Term Retention of a Complex Skill](http://dx.doi.org/10.4135/9781483326887.n2)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[A Long-Term Retention Advantage for Spatial Information Learned Naturally and in the Laboratory](http://dx.doi.org/10.4135/9781483326887.n6)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[Basic Operations](http://dx.doi.org/10.4135/9781473914797.n5)
+Show detailsHide details**
+Laurie A. Rudman
+Implicit Measures for Social and Personality Psychology
+2011
+* **SAGE Knowledge**
+Book chapter
+[Information Processing and the Study of Attention](http://dx.doi.org/10.4135/9781483328768.n2)
+Show detailsHide details**
+Addie Johnson and more...
+Attention: Theory and Practice
+2004
+* **SAGE Knowledge**
+Book chapter
+[The Contribution of Procedural Reinstatement to Implicit and Explicit Memory Effects in a Motor Task](http://dx.doi.org/10.4135/9781483326887.n3)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[An Identical-Elements Model of Basic Arithmetic Skills](http://dx.doi.org/10.4135/9781483326887.n9)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+* **SAGE Knowledge**
+Book chapter
+[A Generation Advantage for Multiplication Skill Training and Nonword Vocabulary Acquisition](http://dx.doi.org/10.4135/9781483326887.n5)
+Show detailsHide details**
+Alice F. Healy and more...
+Learning and Memory of Knowledge and Skills: Durability and Specificity
+1995
+View more
+You currently have no access to this content. Visit the[access options](https://journals.sagepub.com/action/showLogin?uri=/doi/10.1177/001872089003200202)page to authenticate.
+[Download PDF](https://journals.sagepub.com/doi/pdf/10.1177/001872089003200202?download=true)
+[**Open in viewer](#)
+[**](#)
+Go to
+Go to
+**
+* **
+Show all references
+Request permissions****Show all
+**Collapse
+**Expand Table
+**Show all[View all authors and affiliations](#tab-contributors)
+## Also from Sage
+* [CQ LibraryElevating debateopens in new tab](https://library.cqpress.com/index.php?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Sage DataUncovering insightopens in new tab](https://www.data-planet.com?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Sage Business CasesShaping futuresopens in new tab](https://sk.sagepub.com/cases?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Sage CampusUnleashing potentialopens in new tab](https://classroom.sagepub.com/?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Sage KnowledgeMultimedia learning resourcesopens in new tab](https://sk.sagepub.com?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Sage Research MethodsSupercharging researchopens in new tab](https://methods.sagepub.com?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Sage VideoStreaming knowledgeopens in new tab](https://sk.sagepub.com/video?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Technology from SageLibrary digital servicesopens in new tab](https://www.technologyfromsage.com?utm_source=cross-product-footer&utm_medium=cross-product)
+* [Facebook](https://journals.sagepub.com/#facebook)
+* [Twitter](https://journals.sagepub.com/#twitter)
+* [LinkedIn](https://journals.sagepub.com/#linkedin)
+* [Reddit](https://journals.sagepub.com/#reddit)
+* [Email](https://journals.sagepub.com/#email)
+✓Thanks for sharing!
+[AddToAny](https://www.addtoany.com)
+[More…](#addtoany)

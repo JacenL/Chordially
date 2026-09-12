@@ -1,0 +1,382 @@
+## Violin Fingering Estimation According to Skill Level based on Hidden Markov Model
+
+Wakana Nagata Nagoya Institute of Technology nagata@mmsp.nitech.ac.jp
+
+Shinji Sako Nagoya Institute of Technology sako@mmsp.nitech.ac.jp
+
+Tadashi Kitamura Nagoya Institute of Technology kitamura@nitech.ac.jp
+
+ABSTRACT This paper describes a method that estimates the appropri ate violin fingering pattern according to the player’s skill level. A violin can produce the same pitch for different fingering patterns, which generally vary depending on skill level. Our proposed method translates musical scores into suitable fingering patterns for the desired skill level by mod eling a violin player’s left hand based on a hidden Markov model. In this model, fingering is regarded as the hid den state and the output is the musical note in the score. We consider that differences in fingering patterns depend on skill level, which determines the prioritization between ease of playing and performance expression, and this prior ity is related to the output probability. Transition probabil ity is defined by the appropriateness and ease of the transi tions between states in the musical composition. Manually setting optimal model parameters for these probabilities is difficult because they are too numerous. Therefore, we de cide on the parameters by training with textbook fingering. Experimental results show that fingering can be estimated for a skill level using the proposed method. The results of evaluations conducted of the method’s fingering patterns for beginners indicate that they are as good as or better than textbook fingering patterns.
+
+1. INTRODUCTION In a violin, the same pitch can be produced by several fin gering patterns, and violin players decide which fingering pattern to use. Fingering decision is difficult for begin ners because they lack experience. However, even if the player has considerable experience, fingering decisions of ten require trial and error, because the optimum fingering pattern for a specific transition is not easy to determine af ter only one try. Thus, automatic fingering estimation can help players at various skill levels. The optimum fingering differs according to a player’s skill level. For low-skill players, fingering that is easily played is optimum, whereas for high-skill players, finger ing that allows the best performance expression is opti mum. Thus, violin fingering estimation must be based on skill level. Some studies have focused on fingering estimation for a plucked or bowed string instrument [1–5] or for the pi ano [6–8]. The methods proposed in these studies estimate the easiest fingering and cannot recommend fingering pat terns for various skill levels. Other studies have transcribed
+
+Copyright: ⃝ c 2014 Wakana Nagata et al. This is an open-access article distributed under the terms of the Creative Commons Attribution 3.0 Unported License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.
+
+fingering from audio [9, 10] or video [11]. In these tran scriptions, performance expression is considered because of differences in human performances. However, these methods transcribe the fingering only from a recording of the performance. Our objective is to estimate the fingering patterns for mu sical compositions according to the skill level of the violin player. The violin player decides whether playing needs to be easy or whether performance expression is appropriate. We also realize that this priority is influenced by the note length. If the note is short, ease of play becomes a higher priority because playing a succession of short notes is more difficult. When the note is long, expression has a higher priority because playing longer notes is easier. Expres sion also has a higher priority when the skill level is high. From this point of view, we previously proposed a finger ing estimation method [12]. However, in that method, the model parameters are set manually, which, in addition to the highly complex model structure, result in difficulty tun ing the parameters of the model. In this paper, we model violin fingering using the concept underlying the hidden Markov model (HMM). The differ ence between our proposed model and HMM lies in the fact that the transition probability depends on the obser vation sequence. We regard fingering as the hidden state and the notes in the musical composition as the output. We define the priority of performance expression based on note length and skill level, and this priority is used to de termine the output probability. Because note length also influences ease of transition from one fingering pattern to another, we define the degree of change between fingering patterns based on note length, and this degree of change is related to transition probability. Empirical determination of the numerous parameters required by output and tran sition probabilities is extremely difficult; therefore, most parameters are estimated from textbook fingering patterns. Our new method eliminates the need for manually setting the model parameters.
+
+#### 2. VIOLIN FINGERING
+
+2.1 Strings A violin has four strings, each of which has a different tone color and pitch range because of differences in thickness and material. The four strings are normally tuned to G3, D4, A4, and E5 in descending order of thickness. Because the pitch ranges of different strings overlap, the same pitch can be produced by pressing different strings at different positions.
+
+- 1233 -
+
+2.2 Fingers The strings are pressed using all fingers except the thumb. The four fingers are numbered from one (index finger) to four (little finger). A string that is played without being pressed is called an open string and is numbered zero. An open string has a different tone color because none of its vibration is absorbed by a finger.
+
+2.3 Difference by Skill Level As skills develop, the player can choose many strings and use vibrato, a pulsating change in pitch by slightly shaking the left hand while a left finger presses the string. Choos ing string and using vibrato are important in performance expression. Easy fingering and fingering considering performance ex pression are often different. For example, open string is easy because no pressing is done; however, the player can not use vibrato because it cannot be produced with an open string. Thus, players use different fingerings depending on skill level.
+
+3. VIOLIN FINGERING MODEL ACCORDING TO SKILL LEVEL In this paper, we model violin fingering patterns similar to HMM, as shown in Figure 1. The model is somewhat different from HMM; the difference is that state transition depends on output sequence. The hidden state sequence s is the left hand state sequence, and output sequence o is the note and rest sequence in the score. We assume that the state changes for every note and that the state sequence is a Markov process. To simplify problem, the model has the following restric tions: the score is monophonic, and only the factors pitch, note length, and rest length are considered by this model.
+
+3.1 Hidden State In order to ensure a unique correspondence between a sin gle pitch and a state, we define the HMM’s hidden state as the position of the left hand. The position of the left hand is described by the hand position and finger interval, as well as the string number and the finger number, which typi cally describe a fingering pattern. The hand position and finger interval should be steady; these elements are impor tant when the appropriateness of the hand state in long span is being considered. These four elements are represented by the following vari ables: the string number is x SN, the finger number is x FN, the hand position is x HP, and the finger interval is x FI. The hidden state is expressed as follows:
+
+sn = { x SN n , x FN n , x HP n , x FI n } . (1)
+
+o s s 0 s 1 s N-1 o 0 o 1 oN-1
+
+0 1 ... N-1
+
+...
+
+... Music score
+
+Left hand
+
+...
+
+Figure 1. Model of a violin fingering pattern
+
+3.1.1 String Number We numbered the E string, A string, D string, and G string as 1, 2, 3, and 4, respectively. 3.1.2 Finger Number We numbered the index finger, middle finger, ring finger, little finger, and open string as 1, 2, 3, 4, and 0, respec tively. 3.1.3 Hand Position The general position differs from the actual position de pending on whether the note is natural, sharp, or flat. In this paper, we use the fret number of the index finger po sition under the assumption that a violin has frets. We as sume that each string has 24 frets. 3.1.4 Finger Interval We use the combination of the intervals between each fin ger. A finger not pressing a string does not have to be de fined if only one note is played; however, we define all four fingers because even if a finger is not currently press ing a string, it is positioned according to the next note or on the basis of the previous note. We assume that the inter val between each finger is a whole tone or a half tone. The number of combinations is 2 3.
+
+3.2 Output Sequence One hidden state corresponds to pitch p, note length l, and rest length r. In terms of fingering, note length l and rest length r define the priority of the performance expression (expressiveness e) and the ease of transition from the cur rent fingering pattern to the next (changeableness c), as fol lows:
+
+on = { pn, ln, rn} = { pn, cn, en} . (2)
+
+3.2.1 Expressiveness High-skill players can play with greater ease and expres siveness than low-skill players. However, even if skill level is high, expressiveness is relatively low when the note length is short. Conversely, even if skill level is low, expressive ness is high when the note length is long. Consequently, the same expressiveness can be achieved, even if the skill level is different, by changing the note length. Therefore, we determine expressiveness from both note length and skill level, as shown in Figure 2. Using this relation, we can estimate the appropriate fingering for any skill level in the unified framework.
+
+short
+
+0
+
+∞ long
+
+Note length
+
+Prioritizing ease of play
+
+Prioritizing performance expression
+
+l l
+
+Expressiveness e high {low
+
+Figure 2. Relation among expressiveness, note length, and skill level
+
+- 1234 -
+
+Based only on note length, the longer the note, the greater the ease and expressiveness it can be played with. We con sider that variation of expressiveness is small when note length is overly long. Therefore, we use logarithms to de scribe the relation between note length and expressiveness. On the other hand, based only on skill level, the higher the skill level, the greater is the expressiveness. The rela tion between expressiveness and skill level is assumed to be linear. Thus, considering both note length l and skill level wl, expressiveness e is determined as follows:
+
+en = wllog(1 + ln). (3)
+
+When wl is zero, which is the level for the least skilled players, expressiveness is always zero, regardless of note length.
+
+3.2.2 Changeableness We consider that changeableness is high when note length or rest length is high. First, the hand can easily change to the fingering pattern of the next note when the current note or rest is long. Second, the possibility that the current mu sical phrase is ending is high when the current note or rest is long. A musical phrase needs a similar tone throughout and smooth transitions of the fingers; therefore, it does not often require a significant transition of the finger positions. Thus, changeableness cn is decided by the current note length ln and rest length rn. Because the degree of influ ence of ln and rn on cn are not equal, c is defined with weight wr, as follows:
+
+cn = ln + wrrn, (4)
+
+where wr > 1.
+
+3.3 Estimation of Optimum Fingering Assuming that the optimal fingering has the highest likeli hood among all the state sequences considered from a note sequence, the optimal fingering is given as follows:
+
+qˆ = arg max q πq0
+
+N ∏ − 1 n=1
+
+aqn− 1,qn(on)
+
+N ∏ − 1 n=0
+
+bqn(on), (5)
+
+where q is the state number sequence corresponding to the note sequence, π is initial probability, a is transition prob ability, and b is output probability. Because the number of state sequences increases exponentially with the number of notes, calculating the likelihood of all state sequences is re alistically difficult. However, searching for the maximum likelihood state sequence is solved based on the Viterbi al gorithm.
+
+4. HMM’S PARAMETERS HMM requires the following parameters: initial probabil ity, transition probability, and output probability. These are usually estimated using the Baum-Welch algorithm; however, our study includes many states, which makes the Baum-Welch algorithm inappropriate. Therefore, we con sider the probability of each element individually, and pos tulate the distribution of the transition probability, which has many state combinations.
+
+4.1 Initial Probability Initial probability πi is the probability of being in state si when note number n is zero. We define initial probabil ity by assuming that the elements are independent of each other. Each probability of string number, finger number, hand position, and finger interval is defined as PSN(x SN i ),
+
+PFN(x FN i ), PHP(x HP i ), and PFI(x FI i ), respectively. Initial probability πiis formulated as follows: πi = PSN(x SN i )PFN(x FN i )PHP(x HP i )PFI(x FI i ). (6)
+
+4.1.1 String Number We consider that initial probability does not depend on the string. Therefore, PSN(x SN i ) is uniformly distributed among the four strings; that is, 1/4. 4.1.2 Finger Number We define PFN(x FN i ) as the appearance probability of xFN in the training data under the condition that x FN = 0 is weighted by the reciprocal of the appearance probability of the pitch that an open string makes. This is because x FN = 0 can only produce the pitch of an open string; therefore, the appearance probability of x FN = 0 is low. 4.1.3 Hand Position and Finger Interval We define PHP(x HP i ) and PFI(x FI i ) as the appearance prob ability of xHP and xFI in the training data, respectively.
+
+4.2 Transition Probability Transition probability ai,j (on)is the probability of the state changing from sito sj when the note number changes from n to n + 1. Transition probability must consider the ap pearance probability of the destination state and the prob ability of state change. The appearance probability of the destination state is calculated in the same way as the ini tial probability. The probability of state change is defined by the postulate of the probability distribution of variation. The relation between output o and the state transition is influenced only by changeableness c. When changeable ness is high, the transition probability cannot be based on variation. Therefore, we assume that the dispersion of the probability distribution of variation depends on change ableness. When the relation among elements is considered, the prob ability of the finger intervals depends on the hand position. Other elements are independent of each other. Therefore, the probabilities of the elements x SN, x FN, x HP, and x FI are defined as PSN(x SN j | si, cn), PFN(x FN j | si, cn),
+
+PHP(x HP j | si, cn), and PFI(x FI j | si, cn, x HP j ), respectively. Transition probability ai,j (on) is formulated as follows:
+
+ai,j (on) ∼ PSN(x SN j | si, cn) × PFN(x FN j | si, cn) × PHP(x HP j | si, cn) × PFI(x FI j | si, cn, x HP j ). (7)
+
+The probability of each element is described as follows. 4.2.1 String Number We consider that the probability of a string number de pends only on movement range. In general, the string of ten remains the same for some notes. Therefore, distri bution of transition of a string number is concentrated at
+
+- 1235 -
+
+x SN i = x SN j , and we postulate that PSN(x SN j | si, cn) is the following Laplace distribution: PSN(x SN j | si, cn) ∼ fLap(x SN j ; x SN i , k1cn), (8)
+
+where fLap is the probability density function of the Laplace distribution as follows:
+
+fLap(x; µ, ϕ) =
+
+1 
+2ϕ 
+
+exp (−| x − µ| ϕ ) . (9)
+
+Because the dispersion of the Laplace distribution σ 2 is 2ϕ 2, we define k1 to satisfy the following equation:
+
+s 2 = 2(k1c¯) 2, (10) where s 2is the dispersion of the training data’s x SN n − x SN n− 1 and c¯ is the average of the training data’s c.
+
+4.2.2 Finger Number We consider that the probability of a finger number de pends only on the finger number of the target fingering pattern. Thus, PFN(x FN j | si, cn) is defined as follows:
+
+PFN(x FN j | si, cn) = PFN(x FN j ). (11)
+
+4.2.3 Hand Position We consider that the probability of a hand position depends on both the hand position of the target fingering pattern and the movement range. We postulate that the probability of the movement range is a Laplace distribution for the same reason as that of the string number. Considering both the hand position of the target fingering pattern and the move ment range, PHP(x HP j | si, cn) is defined as follows with
+
+weight wHP :
+
+PHP(x HP j | si, cn) ∼ fLap(x HP j ; x HP i , k2cn) wHP PHP(x HP j ) 1− wHP . (12)
+
+Because the hand position change is easy when the current finger number is the open string (x FN i = 0), k2 is defined
+
+as follows:
+
+k2 ={ k2,1 (x FN i = 0) k2,2 (x FN i ̸ = 0) . (13)
+
+k2,1 and k2,2 are defined in the same way as k1.
+
+4.2.4 Finger Interval The probability of the finger interval does not depend on the finger interval of the target fingering pattern if the hand position changes. Therefore, if x HP i ̸ = x HP j ,
+
+PFI(x FI j | si, cn, x HP j )is a uniform distribution; that is, 1/2 3. If x HP i = x HP j , we consider that PFI(x FI j | si, cn, x HP j ) de pends on both the finger interval of the target fingering pat tern and the movement range. We define the movement range of a finger interval M(x FI i , x FI j ) as the sum of the distance between the previous fret number and the current fret number for each finger, and postulate that the prob ability of the movement range is an exponential distribu tion because the distribution of transition of M(x FI i , x FI j )
+
+is concentrated at zero. Thus, PFI(x FI j | si, cn, x HP j ) is de
+
+fined as follows:
+
+PFI(x FI j | si, cn, x HP j )
+
+∼{
+
+1/2 3 (x HP i ̸ = x HP j )
+
+P wFI ExpPFI(x FI j ) 1− wFI (x HP i = x HP j )
+
+, (14)
+
+PExp ∼
+
+1 k3cn exp (−
+
+M(x FI i , x FI j ) k3cn ) , (15)
+
+where k3 is defined as follows for the same reason as that for the hand position:
+
+k3 ={ k3,1 (x FN i = 0) k3,2 (x FN i ̸ = 0) . (16)
+
+k3,1 and k3,2 are defined similar to k1 for exponential dis tribution.
+
+#### 4.3 Output Probability
+
+Output probability bi(on) is the probability that note on is outputted from state si. Pitch p and expressiveness e are independent of each other, and their probabilities are defined as Pp(pn| si) and Pe(en| si), respectively. Output probability bi(on) is formulated as follows:
+
+### bi(on) = Pp(pn| si)Pe(en| si). (17)
+
+4.3.1 Pitch Pp(pn| si) is one if the output pitch from state si equals pn and zero otherwise. Only one pitch results from a state.
+
+4.3.2 Expressiveness We consider that expressiveness relates only to the string number and the finger number. Because the string number x SN and the finger number x FN are independent of each other, Pe(en| si) is defined as follows:
+
+### Pe(en| si) = P(en| x SN i )P(en| x FN i )
+
+P(en)
+
+. (18)
+
+The distributions of P(en| x SN i ) and P(en| x FN i ) are shown in Figure 3. Based on these distributions, we postulate that the distribution of expressiveness is a log-normal distribu tion as follows:
+
+P(en| x X i ) ∼ fND(en; µX,x X i , σ 2 X,x X i ), (19)
+
+where X is SN or FN, and fND is the probability density function of the log-normal distribution as follows:
+
+fND(x; µ, σ 2) =
+
+1 √2πσ 2x exp {− (log x − µ) 2
+
+2σ 2 } . (20)
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+0 0.2 0.4 0.6 0.8
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+Histogram Log-normal distribution
+
+Expressiveness e
+
+(a) x SN = 0
+
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+0 0.2 0.4 0.6 0.8
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+Histogram Log-normal distribution
+
+Expressiveness e
+
+(b) x FN = 0
+
+Figure 3. Examples of histogram and estimated log normal distribution of expressiveness e
+
+- 1236 -
+
+µ and σ 2 are defined by using maximum likelihood esti mation as follows:
+
+µX,k =
+
+1 | EX,k| ∑ ei∈ EX,k log ei, (21)
+
+σ 2 X,k =
+
+1 | EX,k| ∑ ei∈ EX,k (µX,k − log ei) 2, (22)
+
+where EX,k = { en| x X n = k} , and | EX,k| is the number of elements in set EX,k. P(en) depends only on output sequence o and does not influence the resulting state sequence s. Therefore, we as sume that P(en) is an arbitrary positive fixed number, and disregard this number in the calculations.
+
+5. EXPERIMENTS We evaluated the proposed method based on two factors: the concordance rate between textbook fingering and esti mated fingering, and subjective evaluation by violin play ers. 5.1 Experiment 1: Concordance Rate with Textbook We observed how the concordance rate changes when wl changes. 5.1.1 Conditions The training data comprised 17 musical pieces (4,852 notes) from four textbooks for intermediate violin students. The test data contained two datasets: The beginner test dataset comprised 14 musical pieces (2,265 notes) from two text books for beginners. The intermediate test dataset com prised 14 musical pieces (5,086 notes) from four textbooks for intermediates. The test data did not overlap with the training data. The concordance rate is the number of notes where the estimated fingering patterns match the textbook fingering pattern in both string number and finger number. We set wl as 1.0 when training, and set wr as 4.0. wHP and wFI were decided by using a grid search. The maximum con cordance rate combination was searched from 121 combi nations where each parameter was set to 0, 0.1, 0.2, ..., 1.0. As a result, wHP = 0.6 and wFI = 0.1. 5.1.2 Results Figure 4 shows the concordance rate of each test dataset. In the beginner test dataset, the concordance rate is at max imum when wl = 0.2. In the intermediate test dataset, the concordance rate is at maximum when wl = 1.5. Thus, we conclude that wl corresponds to the skill level. In the McNemar test between concordance rates of wl = 0.2 and wl = 1.5, we observed differences at a significance level of 5% in the beginner test dataset, but found no significant differences in the intermediate test dataset. In the beginner test dataset, good fingering patterns can be estimated because the concordance rate is high, even when the training data used is at the intermediate level. Therefore, fingering can be estimated for a level that is dif ferent from the training data level by changing wl. On the other hand, the concordance rate using the inter mediate test dataset was lower than that using the begin ner test dataset. Furthermore, no significant differences were found between concordance rates of wl = 0.2 and
+
+80
+
+85
+
+0 0.5 1 1.5 2 2.5 wl
+
+Skill level
+
+(a) Beginner test dataset
+
+Skill level
+
+73
+
+74
+
+0 0.5 1 1.5 2 2.5
+
+wl
+
+(b) Intermediate test dataset
+
+Figure 4. Rate of concordance with textbook fingering patterns
+
+wl = 1.5. This is because the fingering decisions con sidered performance expression, which has a high degree of freedom, thereby producing many optimum fingering patterns. Estimated fingering patterns of wl = 0.2 and wl = 1.5 using the intermediate test dataset are different in 720 notes (about 14%), although without significant dif ferences in the concordance rate. 5.2 Experiment 2: Subjective Evaluation We also verified whether wl reflects the skill levels of the players. 5.2.1 Conditions We performed a subjective evaluation experiment using the results of Experiment 1. Fingering patterns from wl = 0.2, wl = 1.5, and textbook in the first eight measures of each musical piece were evaluated. The first 10 measures of the musical score were shown to allow the subjects to evalu ate the sequence of fingering patterns. The subjects were seven violin players (6–21 years of experience, average 15.0 years). The order of showing the musical piece and three fingering patterns was random, and they were not told which of the three fingering patterns the textbook pattern was. The following questions were asked: Ease of transition (A) Whether the note on the musical score is played easily using the evaluated fingering pattern without considering performance expression. (difficult 1 – easy 5) Expression (B) Whether performance expression using the evaluated fingering pattern is suitable. (unsuitable 1 – suitable 5) Naturalness (C) Whether it is possible for a person to play the violin with the evaluated fingering pattern. (not possible 1 – possible 5) Skill level (D) The skill level that the evaluated fingering pattern accords with. (low 1 – high 5) 5.2.2 Results Figure 5 shows the average, standard deviation, and t-test results obtained from the subjective evaluation. When we compared ease of transition and expression, ease of tran sition was better in the beginner test dataset, whereas ex pression was greater in the intermediate test dataset. When we compared wl = 0.2 and wl = 1.5, ease of transi tion was better with wl = 0.2, and expression was greater
+
+- 1237 -
+
+w = 0.2 = 1.5 Textbook l wl
+
+1
+
+2
+
+3
+
+4
+
+A B C D
+
+* * *
+
+(a) Beginner test dataset
+
+1
+
+2
+
+3
+
+4
+
+A B C D
+
+*
+
+* *
+
+*
+
+* *
+
+* *
+
+(b) Intermediate test dataset
+
+Figure 5. Average of the subjectivity evaluation (The error bar represents the standard deviation and the asterisk (*) represents the significance difference (p < 0.05) between the two evaluations).
+
+w = l 0.2 
+w = l 1.5 
+
+Figure 6. Examples of estimated fingering patterns (fin ger number and string) for wl = 0.2 and wl = 1.5 in the intermediate test dataset
+
+with wl = 1.5. In the example shown in Figure 6, al though the fingering pattern of wl = 0.2 uses open string, the fingering pattern wl = 1.5 avoids using open string when the note length is long; therefore, the fingering pat tern of wl = 1.5 accords with higher skill levels than that of wl = 0.2. The answers obtained to the skill level ques tion also show the same relation between wl and skill level. Thus, we verified that the assumption of relation between skill level and priority of performance expression is cor rect and that differences in wl reflect the differences in skill level. Based on comparisons of our estimation and the textbook patterns, in terms of ease and expression using beginner test dataset, the evaluation of wl = 0.2 was equal to or better than that of the textbook patterns. Therefore, our proposed method can suitably estimate fingering for begin ners. On the other hand, in terms of expression and nature, using the intermediate test dataset, the evaluation of our estimation was worse than that of the textbook. The per formance expression depends on slur, volume, and other factors; however, we consider only the note length in this paper, thereby reducing the estimation accuracy for expres sion. The main reason for the low evaluation in the nature question is that the same finger is continuously used, even when the pitches are different. This problem can be solved by introducing the relation between the pitch and the finger in transition probability.
+
+#### 6. CONCLUSION
+
+In this paper, we proposed an HMM-based estimation method of violin fingering according to skill level. By prioritizing performance expression from note length and skill level, fingering patterns based on skill level can be estimated using only one model. We tested the proposed method in two experiments based on its concordance with textbook fingering and based on subjective evaluation by violin players. However, perfor mance expression, which depends on slur, volume, and other factors, could not be sufficiently tested. Therefore, we will consider these factors in future work.
+
+#### Acknowledgments
+
+This research was supported in part by JSPS KAKENHI (Grant-in-Aid for Scientific Research) Grant Number 26730182, and the Telecommunications Advancement Foun dation (TAF).
+
+7. REFERENCES [1] A. Radisavljevic and P. Driessen, “Path difference learning for guitar fingering problem,” in Proc. the International Com puter Music Conference. International Computer Music As sociation, Miami, USA, 2004. [2] M. Miura, I. Hirota, N. Hama, and M. Yanagida, “Con structing a system for finger-position determination and tabla ture generation for playing melodies on guitars,” System and Computers in Japan, vol. 35, no. 6, pp. 10–19, 2004. [3] D. R. Tuohy and W. D. Potter, “A genetic algorithm for the automatic generation of playable guitar tablature,” in Proc. the International Computer Music Conference, Barcelona, Spain, 2005, pp. 499–502. [4] D. Radicioni, C. D. Scienza, and V. Lombardo, “Guitar fin gering for music performance,” in Proc. the International Computer Music Conference, Barcelona, Spain, 2005, pp. 527–530. [5] H. Gen, K. Hirokazu, and S. Shigeki, “Input-Output HMM Applied to Automatic Arrangement for Guitars,” Journal of information processing, vol. 21, no. 2, pp. 264–271, 2013. [6] M. Hart, R. Bosch, and E. Tsai, “Finding optimal piano fin gerings,” The UMAP Journal, vol. 21, no. 2, pp. 167–177, 2000. [7] Y. Yonebayashi, H. Kameoka, and S. Sagayama, “Automatic decision of piano fingering based on hidden markov models,” in Proc. the 20th International Joint Conference on Artificial Intelligence, San Francisco, CA, USA, 2007, pp. 2915–2921. [8] A. A. Kasimi, E. Nichols, and C. Raphael, “A simple algo rithm for automatic generation of polyphonic piano finger ings,” in Proc. the 8th International Conference on Music In formation Retrieval, Vienna, Austria, 2007, pp. 355–356. [9] A. M. Barbancho, A. Klapuri, L. J. Tardon, and I. Barbancho, “Automatic transcription of guitar chords and fingering from audio,” IEEE Transactions on Audio, Speech, and Language Processing, vol. 20, no. 3, pp. 915–921, 2012. [10] A. Maezawa, K. Itoyama, K. Komatani, T. Ogata, and H. G. Okuno, “Automated violin fingering transcription through analysis of an audio recording,” Computer Music Journal, vol. 36, no. 3, pp. 57–72, 2012. [11] A. M. Burns and M. M. Wanderley, “Visual methods for the retrieval of guitarist fingering,” in Proc. the 2006 Conference on New Interfaces for Musical Expression, Paris, France, 2006, pp. 196–199. [12] N. Wakana, S. Shinji, and K. Tadashi, “Violin Fingering Es timation Depending on Skill Level by Consideration of Note Length,” IEEJ Transactions on Electronics, Information and Systems, vol. 134, no. 4, pp. 581–586, 2014. (In Japanese.)
+
+- 1238 -
+
