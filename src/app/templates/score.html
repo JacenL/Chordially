@@ -239,28 +239,41 @@
           <p class="panel-note" id="practice-nofit" hidden></p>
         </section>
 
-        <section class="panel" id="why-panel" hidden>
-          <h3 class="panel-heading">What makes this tricky</h3>
-          <ul class="factor-list" id="sel-factors"></ul>
-          <p class="panel-note" id="sel-factors-note"></p>
-          <details class="sources rubric-details" id="rubric-details">
-            <summary>How this number was worked out</summary>
-            <div id="rubric-body"></div>
+        <section class="panel panel--collapsible" id="why-panel" hidden>
+          <details>
+            <summary class="panel-heading panel-heading--summary">
+              What makes this tricky
+              <span class="summary-hint" id="why-hint"></span>
+            </summary>
+            <ul class="factor-list" id="sel-factors"></ul>
+            <p class="panel-note" id="sel-factors-note"></p>
+            <details class="sources rubric-details" id="rubric-details">
+              <summary>How this number was worked out</summary>
+              <div id="rubric-body"></div>
+            </details>
           </details>
         </section>
 
-        <section class="panel" id="inside-panel" hidden>
-          <h3 class="panel-heading">Inside this passage</h3>
+        <section class="panel panel--collapsible" id="inside-panel" hidden>
+          <details>
+            <summary class="panel-heading panel-heading--summary">
+              Inside this passage
+              <span class="summary-hint" id="inside-hint"></span>
+            </summary>
           <p class="panel-note" id="inside-note">
             The phrases this passage is made of, and any spot inside it that is
             locally harder than its neighbours. These are detail, not a different
             answer: the guidance above is for the whole passage.
           </p>
           <ul class="phrase-list" id="inside-list"></ul>
+          </details>
         </section>
 
-        <section class="panel" id="boundary-panel" hidden>
-          <h3 class="panel-heading">Where this passage starts and ends</h3>
+        <section class="panel panel--collapsible" id="boundary-panel" hidden>
+          <details>
+            <summary class="panel-heading panel-heading--summary">
+              Where this passage starts and ends
+            </summary>
           <dl class="boundary-list">
             <dt>Starts</dt><dd id="sel-start"></dd>
             <dt>Ends</dt><dd id="sel-end"></dd>
@@ -270,6 +283,7 @@
             Boundaries are inferred from the notation and can be wrong — the
             confidence above says how thin the evidence was. Adjust one below.
           </p>
+          </details>
         </section>
 
         {# Editing lives here, collapsed, rather than above the guidance. These
@@ -283,24 +297,43 @@
               <span class="edit-pill" id="edited-pill" hidden>edited</span>
             </summary>
             <p class="panel-note">
-              If a passage covers too much or too little, move its boundary.
+              A passage is a stretch you practise as one thing. If this one
+              covers too much or too little, move where it begins or ends.
             </p>
+            <p class="panel-note panel-note--now" id="edit-current"></p>
+
             <div class="edit-row" id="edit-row" hidden>
-              <label class="visually-hidden" for="split-at">Split this passage before measure</label>
-              <select class="edit-select" id="split-at"></select>
-              <button type="button" class="button button--quiet" id="split-btn">Split here</button>
-              <button type="button" class="button button--quiet" id="merge-btn">Merge with next</button>
+              <div class="edit-field">
+                <label class="edit-label" for="split-at">Begin a new passage at</label>
+                <select class="edit-select" id="split-at"></select>
+              </div>
+              <button type="button" class="button button--quiet" id="split-btn">
+                Split into two here
+              </button>
+              <button type="button" class="button button--quiet" id="merge-btn">
+                Join to the next passage
+              </button>
             </div>
+
             <p class="panel-note" id="edit-note" hidden></p>
             <p class="panel-note">
-              <a href="#" id="reset-edits">Undo all passage edits</a> — edits last
-              until the server restarts and are not saved.
+              <a class="text-action" href="#" id="reset-edits">Undo all passage edits</a>
+              — edits last until the server restarts and are not saved.
             </p>
           </details>
         </section>
 
-        <section class="panel">
-          <h3 class="panel-heading">Passages <span class="count">{{ view.sections | length }}</span></h3>
+        {# Open by default, unlike the explanatory panels. This list is the
+           keyboard and screen-reader route to every passage -- collapsing it
+           would take navigation away from exactly the people who depend on it
+           most, in the name of tidiness. The disclosure is still there for
+           anyone who wants the space back. #}
+        <section class="panel panel--collapsible">
+          <details open>
+            <summary class="panel-heading panel-heading--summary">
+              All passages
+              <span class="summary-hint">{{ view.sections | length }}</span>
+            </summary>
           <p class="panel-note">A keyboard- and screen-reader-friendly route to every passage on the page.</p>
           <ul class="phrase-list" id="phrase-list">
             {% for section in view.sections %}
@@ -341,10 +374,15 @@
               {% endfor %}
             {% endfor %}
           </ul>
+          </details>
         </section>
 
-        <section class="panel panel--recognition">
-          <h3 class="panel-heading">Recognition on this page</h3>
+        <section class="panel panel--collapsible panel--recognition">
+          <details>
+            <summary class="panel-heading panel-heading--summary">
+              Recognition on this page
+              <span class="summary-hint">{{ view.rated_total }} of {{ view.measure_total }} rated</span>
+            </summary>
           <ul class="recognition-list">
             <li><b>{{ view.rated_total }}</b> of {{ view.measure_total }} measures rated</li>
             {% for quality, count in view.quality_counts.items() %}
@@ -356,6 +394,7 @@
             they fall inside a rated passage. They are not easy passages and they
             are not hard ones — they are unknown.
           </p>
+          </details>
         </section>
       </div>
     </aside>

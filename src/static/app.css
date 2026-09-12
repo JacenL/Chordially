@@ -1240,3 +1240,70 @@ details.exercise-card {
   font-size: 11.5px;
   color: var(--ink-faint);
 }
+
+/* ------------------------------------- readable sidebar copy + collapsing */
+
+/* The sidebar was overriding the 15px base down to 12-13px almost everywhere,
+   which is fine for a label and too small for the prose a player is meant to
+   read and act on. These are the panels that carry sentences. */
+.factor-list li { font-size: 15px; line-height: 1.55; }
+.exercise-list li { font-size: 14.5px; line-height: 1.6; margin-bottom: 7px; }
+.panel-note { font-size: 14px; line-height: 1.6; }
+.note { font-size: 13.5px; line-height: 1.6; }
+.legend-text { font-size: 13px; }
+.legend-range { font-size: 12px; }
+.exercise-why { font-size: 13.5px; line-height: 1.6; }
+.boundary-list { font-size: 14px; line-height: 1.55; }
+.variant-description { font-size: 13px; line-height: 1.55; }
+
+/* Long prose should not run the full width of a wide sidebar. */
+.panel-note, .exercise-why, .detail-body { max-width: 62ch; }
+
+/* Every panel that is not the answer collapses, so finding one thing does not
+   mean scrolling past six. `details` is used rather than a custom control
+   because it brings keyboard operation, focus and screen-reader state with it. */
+.panel--collapsible > details > summary { margin-bottom: 0; }
+.panel--collapsible > details[open] > summary { margin-bottom: 10px; }
+
+/* A collapsed panel should still say whether it is worth opening. */
+.summary-hint {
+  margin-left: auto;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+/* Bare text links sat in a 16px strip. Padding gives them a usable target
+   without changing the type size. */
+.text-action {
+  display: inline-block;
+  padding: 5px 2px;
+}
+.sources a, .source a { display: inline-block; padding: 3px 0; }
+
+/* ------------------------------------------------- adjust this passage */
+
+.edit-field { display: flex; flex-direction: column; gap: 4px; }
+
+.edit-label {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.edit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.panel-note--now {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* The hint exists to say whether a shut panel is worth opening. Once it is
+   open the panel says it better, and on "What makes this tricky" the hint is
+   literally the first line of the list underneath. */
+.panel--collapsible > details[open] > summary .summary-hint { display: none; }

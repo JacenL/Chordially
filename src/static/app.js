@@ -251,6 +251,10 @@ function init(data) {
       const hasFactors = entry.factors.length > 0;
       show(el("why-panel"), hasFactors);
       if (hasFactors) {
+        // A collapsed panel should say whether it is worth opening. The top
+        // demand, in the player's words, is the most useful thing that fits.
+        const hint = el("why-hint");
+        if (hint) hint.textContent = entry.factors[0].plain || "";
         renderFactors(entry.factors);
         el("sel-factors-note").textContent = entry.peakMeasureLabel
           ? `Measured on measure ${entry.peakMeasureLabel}, the most demanding measure in this passage.`
@@ -317,6 +321,14 @@ function init(data) {
       list.append(insideRow(phraseId, "phrase-item--nested"));
       const spotId = spotsByPhrase.get(phraseId);
       if (spotId) list.append(insideRow(spotId, "phrase-item--spot"));
+    }
+    const hint = el("inside-hint");
+    if (hint) {
+      const parts = [`${children.length} phrase${children.length === 1 ? "" : "s"}`];
+      if (spots.length) {
+        parts.push(`${spots.length} hard spot${spots.length === 1 ? "" : "s"}`);
+      }
+      hint.textContent = parts.join(", ");
     }
     panel.hidden = false;
   }
