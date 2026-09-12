@@ -152,6 +152,31 @@ LABELS = {
     "rhythm_complexity": "Rhythmic complexity",
 }
 
+# The same nine demands said the way a player would say them.
+#
+# LABELS above name the feature; these say what it means for the person holding
+# the instrument. Both exist because they answer different questions: a reader
+# comparing two passages wants the noun, and a beginner opening a passage for
+# the first time wants to be told what to look out for. The numbers are not
+# replaced by this -- they move one disclosure deeper, where someone who wants
+# to argue with the rubric can still reach them.
+PLAIN = {
+    "note_rate": "the notes come quickly",
+    "subdivision": "the beat is split very finely",
+    "syncopation": "the accents land off the beat",
+    "chromatic": "there are accidentals to watch for",
+    "register": "it climbs above first position",
+    "leaps": "the line jumps a long way",
+    "double_stops": "two strings sound at once",
+    "bow_demand": "the bowing asks for care",
+    "rhythm_complexity": "the rhythm needs counting out",
+}
+
+
+def plain_reason(key: str) -> str:
+    """The player-facing phrase for a rubric feature, or the raw key if unknown."""
+    return PLAIN.get(key, key.replace("_", " "))
+
 # The curve. `raw` is the weighted sum of normalized features; KNEE and SHAPE
 # turn it into a 0-10 rating.
 #
