@@ -161,20 +161,27 @@ def test_highlights_preserve_notation_and_match_measure_regions(page):
         page.set_viewport_size({"width": width, "height": 900})
         checks = page.evaluate("""() => {
             const layer = getComputedStyle(document.querySelector('.layer--difficulty'));
+            const first = document.querySelector('.difficulty-highlight');
+            const style = getComputedStyle(first);
             return {
                 blend: layer.mixBlendMode,
                 opacity: Number(layer.opacity),
+                // The tint fades out top and bottom instead of being trimmed to
+                // a fixed fraction. A trim is blind to what it cuts, and on this
+                // page it cut beam tops, ledger notes and fingering digits.
+                fades: (style.maskImage || style.webkitMaskImage || 'none') !== 'none',
                 aligned: [...document.querySelectorAll('.difficulty-highlight')].every(el => {
                     const target = document.getElementById('hit-' + el.dataset.measureId);
                     const a = el.getBoundingClientRect(), b = target.getBoundingClientRect();
                     return Math.abs(a.x - b.x) < 1 && Math.abs(a.width - b.width) < 1
-                        && Math.abs(a.height - b.height * 0.84) < 1
+                        && Math.abs(a.height - b.height) < 1
                         && Math.abs((a.y + a.height / 2) - (b.y + b.height / 2)) < 1;
                 }),
             };
         }""")
         assert checks['blend'] == 'multiply'
         assert 0 < checks['opacity'] <= 0.2
+        assert checks['fades'], "the tint must fade at its edges, not stop on a line"
         assert checks['aligned']
     assert page.locator('.ribbon-segment').count() == 0
     assert page.locator('.section-chip:visible').count() == 0
