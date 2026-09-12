@@ -25,7 +25,7 @@ the server.
 from __future__ import annotations
 
 from src.features.difficulty.rubric import DEFAULT_TEMPO_BPM
-from src.features.segmentation.phrases import find_trouble_spots
+from src.features.segmentation.phrases import find_sections, find_trouble_spots
 from src.schemas.analysis import AnalysisBundle
 from src.server.analysis.assemble import rate_phrases, rate_score
 
@@ -83,9 +83,12 @@ def retune(bundle: AnalysisBundle, tempo_bpm: float | None) -> AnalysisBundle:
     # neighbours" is a question about ratings, and ratings move with tempo -- a
     # spot saved at 90 BPM would be wrong the moment someone types 160. Rebuild
     # them from whatever the ratings just became.
-    phrases = [p for p in fresh.phrases if p.level != "trouble_spot"]
+    phrases = [p for p in fresh.phrases if p.level == "phrase"]
+    # Sections are re-derived too, and for the same reason: an edit can move a
+    # phrase boundary, and a section snaps to phrase starts so it nests.
+    sections = find_sections(score, phrases)
     spots = find_trouble_spots(score, phrases, fresh.measure_difficulty)
-    fresh.phrases = phrases + spots
+    fresh.phrases = sections + phrases + spots
     fresh.phrase_difficulty = rate_phrases(fresh.phrases, fresh.measure_difficulty)
     score.assumptions = _assumptions(tempo_bpm, applied, printed)
     return fresh

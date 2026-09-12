@@ -1,6 +1,7 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C14 delivered. C7's persistence half and
+Status: demo-ready. C1–C6 and C8–C15 delivered. All three segmentation
+levels the spec requires are now implemented. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
@@ -635,6 +636,43 @@ margin, page-relative floor, standard-deviation gate, top-quartile gate,
 category-crossing — and every one still left Mozart between 69% and 80%. What
 the rule picks is defensible on inspection, so the detection stands and the
 overstated claim in C9 above was corrected instead.
+
+## C15 — Structural sections: the third and last level
+- [x] Complete
+- Dependencies: C9, C14.
+- Discharges the product spec's three-level requirement. `level="section"` has
+  been declared in `src/schemas/score.py` since C2 and nothing had ever emitted
+  one; with phrases (C2) and trouble spots (C9) this completes the set.
+- Evidence: **263 tests pass**, 9 new.
+  - On the Wohlfahrt scan: **exactly 2 sections**, split at measure 29 — the
+    real key and meter change where Etude 2 (4/4, no sharps or flats) becomes
+    Etude 3 (2/4, 1 sharp). The same boundary `test_calibration.py` uses.
+  - On the Mozart MusicXML page: **0 sections**, correctly. One meter and one key
+    throughout means no evidence, and wrapping the piece in an invented
+    "Section 1" is exactly the fabricated formal label the spec forbids. A test
+    pins this.
+  - Labels report printed evidence only — "2/4, 1 sharp", never "G major", since
+    a key signature does not establish a mode. A test asserts no section label
+    or reason contains "exposition", "chorus", "theme", "major" or "minor".
+
+### Two decisions worth recording
+
+**Sections are not another outline layer.** A section spans five systems, and
+five more rectangles over the notation would undo C13's decluttering. A section
+is a grouping header in the sidebar plus one double rule on the score at the
+point where its evidence sits.
+
+**Sections snap to phrase starts, so they cannot be finer than a phrase.** The
+consequence, found by a test that initially failed: on a page short enough to be
+a single phrase, a signature change inside it yields no sections rather than a
+boundary cutting the phrase in half. The three levels nest or they are not
+levels. That constraint is now asserted explicitly.
+
+The selection chain is three deep (section ← phrase ← trouble spot), so
+`parentOf` in `src/static/app.js` walks to the nearest ancestor-or-self that is
+a *phrase* rather than up exactly one level — going up one from a phrase would
+have outlined twenty-eight measures as "context". The breadcrumb shows whatever
+levels exist: "Measures 1–28 › Phrase 1 ›".
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

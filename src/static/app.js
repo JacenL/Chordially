@@ -99,10 +99,26 @@ function init(data) {
   // A trouble spot lives inside a phrase, and selecting it must not throw the
   // phrase away -- "explore a local trouble spot without losing the parent
   // phrase context" is the requirement. So selection carries both: the thing
-  // selected, and the phrase it belongs to. For a plain phrase they are equal.
+  // selected, and the phrase it belongs to.
+  //
+  // The chain is three deep now (section <- phrase <- trouble spot), so this
+  // walks to the nearest ancestor-or-self that is a phrase rather than up
+  // exactly one level. Going up one from a phrase would land on its section and
+  // outline twenty-eight measures as "context".
   function parentOf(id) {
-    const entry = id ? data.phrases[id] : null;
-    return entry && entry.parentId ? entry.parentId : id;
+    let entry = id ? data.phrases[id] : null;
+    while (entry && entry.level !== "phrase") {
+      entry = entry.parentId ? data.phrases[entry.parentId] : null;
+    }
+    return entry ? entry.id : null;
+  }
+
+  function sectionOf(id) {
+    let entry = id ? data.phrases[id] : null;
+    while (entry && entry.level !== "section") {
+      entry = entry.parentId ? data.phrases[entry.parentId] : null;
+    }
+    return entry;
   }
 
   function paint() {
@@ -177,12 +193,20 @@ function init(data) {
     if (!measure && !phrase) return;
 
     if (phrase) {
-      const parentId = phrase.parentId;
-      const parent = parentId ? data.phrases[parentId] : null;
-      show(el("sel-breadcrumb"), Boolean(parent));
-      if (parent) el("sel-breadcrumb").textContent = `${parent.label} ›`;
+      const isSpot = phrase.level === "trouble_spot";
+      const parent = isSpot && phrase.parentId ? data.phrases[phrase.parentId] : null;
+      const section = sectionOf(selectedPhraseId);
 
-      el("sel-title").textContent = parent ? "Hard spot" : phrase.label;
+      // "Measures 1-28 > Phrase 3 >" -- only the levels that actually exist.
+      const trail = [];
+      if (section) trail.push(section.label);
+      if (parent) trail.push(parent.label);
+      show(el("sel-breadcrumb"), trail.length > 0);
+      if (trail.length) {
+        el("sel-breadcrumb").textContent = trail.join(" › ") + " ›";
+      }
+
+      el("sel-title").textContent = isSpot ? "Hard spot" : phrase.label;
       // Only name the selected measure when it adds something. On a one-measure
       // trouble spot "measure 2 · measure 2 selected" is just noise.
       const alreadyNamed = phrase.rangeText === `measure ${measure ? measure.label : ""}`;

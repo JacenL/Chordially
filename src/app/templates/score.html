@@ -115,6 +115,14 @@
                 {% endfor %}
               {% endfor %}
 
+              {% for section in view.sections %}
+                {% if not loop.first %}
+                  <div class="section-marker" style="{{ section.region_styles[0] }}"
+                       data-section-id="{{ section.id }}"
+                       title="{{ section.label }} — {{ section.end_reason }}"></div>
+                {% endif %}
+              {% endfor %}
+
               {% for spot in view.trouble_spots %}
                 {% for style in spot.region_styles %}
                   <div class="trouble-outline" style="{{ style }}"
@@ -241,6 +249,12 @@
           <p class="panel-note">A keyboard- and screen-reader-friendly route to every passage.</p>
           <ul class="phrase-list" id="phrase-list">
             {% for phrase in view.phrases %}
+              {% for section in view.sections if section.measure_ids and phrase.measure_ids and section.measure_ids[0] == phrase.measure_ids[0] %}
+                <li class="section-header">
+                  <span class="section-header-label">{{ section.label }}</span>
+                  <span class="section-header-meta">{{ section.end_reason }}</span>
+                </li>
+              {% endfor %}
               <li>
                 <button type="button" class="phrase-item" data-phrase-id="{{ phrase.id }}"
                         aria-label="{{ phrase.label }}, {{ phrase.range_text }}, rated {{ phrase.score_text }}{% if phrase.is_rated %} out of 10, {{ phrase.category }}{% endif %}">

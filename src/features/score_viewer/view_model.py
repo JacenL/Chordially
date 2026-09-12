@@ -169,6 +169,7 @@ class ScoreView:
     pages: list[PageView]
     phrases: list[PhraseView]
     trouble_spots: list[PhraseView]
+    sections: list[PhraseView]
     legend: list[dict]
     assumptions: list[str]
     warnings: list[str]
@@ -319,6 +320,7 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
     score = bundle.score
     phrases = [p for p in bundle.phrases if p.level == "phrase"]
     spots = [p for p in bundle.phrases if p.level == "trouble_spot"]
+    sections = [p for p in bundle.phrases if p.level == "section"]
     owner_by_measure: dict[str, str] = {}
     for measure in score.measures:
         owner = owning_phrase(score, phrases, measure)
@@ -450,6 +452,7 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
     # the reader would have to interpret.
     known = {p.id for p in phrases}
     spot_views = [view_for(s) for s in spots if s.parent_id in known]
+    section_views = [view_for(s) for s in sections]
 
     quality_counts: dict[str, int] = {}
     for measure in score.measures:
@@ -477,6 +480,7 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
         pages=pages,
         phrases=phrase_views,
         trouble_spots=spot_views,
+        sections=section_views,
         legend=legend(),
         assumptions=list(score.assumptions),
         warnings=list(score.warnings),
@@ -515,7 +519,7 @@ def client_payload(view: ScoreView) -> dict:
     # Phrases and trouble spots share one map: selection, the sidebar and the
     # practice lookup treat them identically, and `level` is what distinguishes
     # them where it matters.
-    selectable = list(view.phrases) + list(view.trouble_spots)
+    selectable = list(view.sections) + list(view.phrases) + list(view.trouble_spots)
     # Which trouble spot, if any, covers each measure. Selection resolves to the
     # most specific thing that owns a measure: clicking the measure a hard spot
     # is marked on should select the hard spot, not the whole phrase around it.

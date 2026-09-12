@@ -70,6 +70,17 @@ Worth saying: the ratings measure demand per second, so tempo is not a display
 preference. Any measure that prints its own tempo keeps it, and the notice says
 how many did.
 
+### 3c. The structure it found (15 seconds)
+The phrase list is grouped under two headers: **Measures 1–28, 4/4 no sharps or
+flats** and **Measures 29–61, 2/4 1 sharp**. That is a real structural boundary —
+the page carries two different etudes and the app found the seam from the printed
+key and meter change, marked on the score with a double rule.
+
+Worth saying: the labels report what is printed, not what it means. "1 sharp",
+not "G major", because a key signature does not establish a mode. And the Mozart
+file gets no sections at all, because it has one key and one meter throughout —
+inventing a "Section 1" would be a formal claim the notation does not support.
+
 ### 4. Select a passage (30 seconds)
 Click the first phrase in the sidebar list, or click straight on the score.
 Selection syncs the outline, the phrase list and the sidebar.

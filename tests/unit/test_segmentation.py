@@ -299,3 +299,141 @@ def test_a_score_of_pure_silence_is_left_as_one_phrase():
     phrases = segment_score(score)
     assert len(phrases) == 1
     assert len(phrases[0].measure_ids) == len(score.measures)
+
+
+# --------------------------------------------------------------------------
+# Structural sections: the level above a phrase
+# --------------------------------------------------------------------------
+
+
+def _sectioned_score(meters: list[tuple[int, int, int]], per_state: int = 10):
+    """A score whose printed signature changes between the given states."""
+    from src.features.segmentation.phrases import find_sections
+    from src.schemas.geometry import Region
+    from src.schemas.music import NoteEvent
+    from src.schemas.score import Measure, Note, Page, Score, System
+
+    measures, notes = [], []
+    ordinal = 0
+    for beats, beat_value, fifths in meters:
+        for _ in range(per_state):
+            mid = f"t:m{ordinal}"
+            note_ids = []
+            for j in range(2):
+                nid = f"{mid}:n{j}"
+                notes.append(
+                    Note(
+                        id=nid,
+                        measure_id=mid,
+                        index_in_measure=j,
+                        event=NoteEvent(is_rest=False, step="G", octave=4, value="quarter"),
+                    )
+                )
+                note_ids.append(nid)
+            measures.append(
+                Measure(
+                    id=mid,
+                    label=str(ordinal + 1),
+                    ordinal=ordinal,
+                    system_id="t:s0",
+                    region=Region(x=0.05 + 0.02 * ordinal, y=0.1, w=0.02, h=0.08),
+                    note_ids=note_ids,
+                    beats=beats,
+                    beat_value=beat_value,
+                    key_fifths=fifths,
+                )
+            )
+            ordinal += 1
+
+    score = Score(
+        id="t",
+        fingerprint="f",
+        input_kind="example",
+        pages=[Page(id="t:p0", index=0, width_px=1000, height_px=1400, render_dpi=200)],
+        systems=[
+            System(
+                id="t:s0",
+                page_index=0,
+                index=0,
+                region=Region(x=0.05, y=0.1, w=0.9, h=0.08),
+                measure_ids=[m.id for m in measures],
+            )
+        ],
+        measures=measures,
+        notes=notes,
+    )
+    phrases = segment_score(score)
+    return score, phrases, find_sections(score, phrases)
+
+
+def test_a_page_with_no_signature_change_gets_no_sections():
+    """The failure this guards: wrapping a piece in an invented "Section 1".
+
+    docs/product-spec.md forbids asserting formal labels the notation does not
+    support, and one unlabelled span over the whole page is exactly that.
+    """
+    _, _, sections = _sectioned_score([(4, 4, 0)], per_state=12)
+    assert sections == []
+
+
+def test_a_meter_change_creates_a_section_boundary():
+    _, _, sections = _sectioned_score([(4, 4, 0), (2, 4, 0)])
+    assert len(sections) == 2
+
+
+def test_a_key_change_creates_a_section_boundary():
+    _, _, sections = _sectioned_score([(4, 4, 0), (4, 4, 3)])
+    assert len(sections) == 2
+
+
+def test_sections_are_labelled_by_printed_evidence_only():
+    """"1 sharp", not "G major" -- a key signature does not establish a mode."""
+    _, _, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)])
+    assert "no sharps or flats" in sections[0].end_boundary.reason
+    assert "2/4, 1 sharp" in sections[1].end_boundary.reason
+    for section in sections:
+        for invented in ("exposition", "chorus", "major", "minor", "theme"):
+            assert invented not in section.label.lower()
+            assert invented not in section.end_boundary.reason.lower()
+
+
+def test_sections_tile_the_measures_without_gaps():
+    score, _, sections = _sectioned_score([(4, 4, 0), (2, 4, 1), (3, 4, 1)])
+    covered = sorted(score.measure(mid).ordinal for s in sections for mid in s.measure_ids)
+    assert covered == list(range(len(score.measures)))
+    assert len(covered) == len(set(covered))
+
+
+def test_sections_never_split_a_phrase():
+    """The three levels nest; a section boundary snaps to a phrase start."""
+    score, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)], per_state=12)
+    starts = {score.measure(s.measure_ids[0]).ordinal for s in sections}
+    phrase_starts = {score.measure(p.measure_ids[0]).ordinal for p in phrases}
+    assert starts <= phrase_starts
+
+
+def test_every_phrase_points_at_the_section_containing_it():
+    score, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)])
+    by_id = {s.id: s for s in sections}
+    for phrase in phrases:
+        assert phrase.parent_id in by_id
+        section = by_id[phrase.parent_id]
+        assert set(phrase.measure_ids) <= set(section.measure_ids)
+
+
+def test_phrases_have_no_parent_when_there_are_no_sections():
+    _, phrases, sections = _sectioned_score([(4, 4, 0)], per_state=12)
+    assert sections == []
+    assert all(p.parent_id is None for p in phrases)
+
+
+def test_a_section_cannot_be_finer_than_a_phrase():
+    """Sections snap to phrase starts, so they cannot cut one in half.
+
+    The consequence, worth knowing: if the whole page is a single phrase, a
+    signature change inside it yields no sections at all rather than a boundary
+    that splits the phrase. The three levels nest or they are not levels.
+    """
+    _, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)], per_state=4)
+    assert len(phrases) == 1
+    assert sections == []

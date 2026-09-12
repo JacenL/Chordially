@@ -896,3 +896,34 @@ details.exercise-card {
 .notices-count { font-variant-numeric: tabular-nums; color: var(--ink-faint); }
 .notices.is-collapsed { display: none; }
 
+
+/* ----------------------------------------------------- structural sections */
+
+/* A section spans several systems. Outlining it would mean five more rectangles
+   over the notation, undoing the decluttering above, so a section is marked by
+   a single rule at the point where the evidence for it sits -- the printed key
+   or meter change -- and is otherwise a grouping in the sidebar. */
+.section-marker {
+  position: absolute;
+  border-left: 3px double var(--ink);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  margin: 14px 0 4px;
+  padding: 0 0 4px 2px;
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+.section-header:first-child { margin-top: 2px; }
+
+.section-header-label {
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.section-header-meta { font-size: 11px; color: var(--ink-faint); }
