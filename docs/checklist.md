@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C13 delivered. C7's persistence half and
+Status: demo-ready. C1–C6 and C8–C14 delivered. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
@@ -398,9 +398,14 @@ C1's 87% on its smaller sample.
   instruction applies to it; distinct from the phrase outline and from the
   difficulty colours.
 - Evidence: **190 tests pass**, 26 new on this checkpoint.
-  - On the example at the assumed tempo: 3 trouble spots across 15 phrases.
-    Restraint is the point — a spot in every phrase would be noise, and a test
-    asserts there are fewer spots than phrases.
+  - On the example at the assumed tempo: 3 trouble spots across 15 phrases (20%).
+    **Correction, made in C14:** this entry originally claimed restraint as
+    though it were a guarantee about all repertoire. It is not. On the Mozart
+    MusicXML page the same rule fires on 77% of phrases — and inspection shows
+    it is right to: a 7.4 measure inside a 3.5 phrase is exactly what a trouble
+    spot is for. Density tracks how uneven the music is. The test that asserted
+    `len(spots) < len(phrases)` was replaced, because it passed at 30 of 35
+    while proving nothing.
   - Negative cases pinned: a uniformly hard phrase, a uniformly easy one, a rise
     below the 0.8 margin, a phrase too short to have an inside, and a phrase
     whose peak measure is unrated all yield no spot.
@@ -592,6 +597,44 @@ ordered within each system — the same property the ribbon depends on.
 5. **Stale copy contradicting a shipped feature.** The boundary panel still read
    "Editing them arrives with phrase editing" — directly above the Split and
    Merge controls delivered in C5. It now points at them.
+
+## C14 — Two defects in shipped work, and one corrected claim
+- [x] Complete
+- Dependencies: C12.
+- Evidence: **254 tests pass**, 10 new.
+
+### Defect — a phrase of silence, rated green
+
+On the Mozart page, Phrase 15 (measures 60–61) and Phrase 18 (measures 72–74)
+contained nothing but rests. Both rated **0.0, "Beginner-friendly"**, drew green
+ribbon over the silence, and offered practice instruction for a passage with
+nothing to play. 14 of 145 measures on that page are rest-only, so this was not
+an edge case.
+
+Fixed in `segment_score`: a range with no sounded note is absorbed into the
+phrase before it, or the one after it when it starts the piece. The bars keep
+their place, their 0.0 rating and their ribbon segment — a rest bar genuinely is
+easy to play — they simply stop being an idea of their own. Mozart goes from 35
+phrases to 33, both silent phrases gone, coverage still gapless and
+non-overlapping.
+
+Tested against four patterns (silence in the middle, leading, trailing,
+alternating) plus the degenerate case of a score that is *entirely* rests, which
+must not loop or return nothing.
+
+### Defect — dead code
+
+`musicxml_source.py` ended with `_exact_duration`, which no test called and
+which carried a `del NOTE_VALUE_FRACTIONS` line whose only purpose was to stop
+an unused import looking unused. Both removed.
+
+### Not a defect — trouble-spot density
+
+Investigated and **left alone**. Six tighter rules were measured — higher
+margin, page-relative floor, standard-deviation gate, top-quartile gate,
+category-crossing — and every one still left Mozart between 69% and 80%. What
+the rule picks is defensible on inspection, so the detection stands and the
+overstated claim in C9 above was corrected instead.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

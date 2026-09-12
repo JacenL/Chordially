@@ -335,6 +335,54 @@ def make_phrase(
     )
 
 
+def _absorb_silent_ranges(
+    ordered: list[Measure],
+    notes_by_measure: dict[str, list],
+    starts: list[int],
+    ends: list[int],
+) -> tuple[list[int], list[int]]:
+    """Merge away any phrase range that contains no sounded note.
+
+    A phrase is one musical idea, and silence is not one. Left alone, a run of
+    rest bars becomes its own phrase, rates 0.0, draws green ribbon over the
+    silence and offers practice instruction for a passage with nothing to play.
+    On the Mozart fixture that happened twice, at measures 60-61 and 72-74.
+
+    The bars themselves are untouched: they keep their place in the score, their
+    0.0 rating and their ribbon segment, because a rest bar genuinely is easy to
+    play. They simply stop being an idea of their own and become the tail of the
+    phrase they follow -- which is what a player counting them would call them.
+    A silent run at the very start has nothing to follow, so it joins the phrase
+    after it instead.
+    """
+
+    def is_silent(start: int, end: int) -> bool:
+        events = [
+            event
+            for measure in ordered[start : end + 1]
+            for event in notes_by_measure.get(measure.id, [])
+        ]
+        return not any(not event.is_rest for event in events)
+
+    ranges = list(zip(starts, ends))
+    changed = True
+    while changed and len(ranges) > 1:
+        changed = False
+        for index, (start, end) in enumerate(ranges):
+            if not is_silent(start, end):
+                continue
+            if index > 0:
+                previous_start, _ = ranges[index - 1]
+                ranges[index - 1 : index + 1] = [(previous_start, end)]
+            else:
+                _, next_end = ranges[1]
+                ranges[0:2] = [(start, next_end)]
+            changed = True
+            break
+
+    return [r[0] for r in ranges], [r[1] for r in ranges]
+
+
 def segment_score(score: Score) -> list[Phrase]:
     """Divide the score into phrases, then extend each into a practice range."""
     ordered = score.measures_in_order()
@@ -360,6 +408,7 @@ def segment_score(score: Score) -> list[Phrase]:
 
     starts = [0] + [c + 1 for c in cut_after]
     ends = cut_after + [len(ordered) - 1]
+    starts, ends = _absorb_silent_ranges(ordered, notes_by_measure, starts, ends)
 
     phrases: list[Phrase] = []
     for n, (s, e) in enumerate(zip(starts, ends)):

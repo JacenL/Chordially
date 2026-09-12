@@ -185,12 +185,51 @@ def bundle() -> AnalysisBundle:
     return AnalysisBundle.load_path(EXAMPLE_PATH)
 
 
-def test_the_example_yields_some_spots_but_not_one_per_phrase(bundle):
+def test_the_example_yields_spots(bundle):
     retuned = retune(bundle, None)
-    phrases = [p for p in retuned.phrases if p.level == "phrase"]
-    spots = [p for p in retuned.phrases if p.level == "trouble_spot"]
-    assert spots, "the example should contain at least one local obstacle"
-    assert len(spots) < len(phrases), "a spot in every phrase would be noise"
+    assert [p for p in retuned.phrases if p.level == "trouble_spot"], (
+        "the example should contain at least one local obstacle"
+    )
+
+
+def test_at_most_one_spot_per_phrase_on_the_real_score(bundle):
+    """Density is not the property worth asserting; one-per-phrase is.
+
+    An earlier version of this test asserted `len(spots) < len(phrases)`, which
+    passed at 30 of 35 on varied repertoire while proving nothing. How often a
+    spot fires tracks how uneven the music is -- 20% on the etude, 77% on a
+    Mozart Presto whose phrases really do each contain one hard bar -- so a
+    density bound would encode the etude's character as a rule. What must hold
+    regardless is that a phrase never produces two.
+    """
+    retuned = retune(bundle, None)
+    parents = [p.parent_id for p in retuned.phrases if p.level == "trouble_spot"]
+    assert len(parents) == len(set(parents))
+
+
+def test_every_spot_is_genuinely_the_peak_of_its_phrase(bundle):
+    """The claim a spot makes: this measure, not the phrase, is the problem."""
+    retuned = retune(bundle, None)
+    by_id = {p.id: p for p in retuned.phrases}
+
+    for spot in (p for p in retuned.phrases if p.level == "trouble_spot"):
+        parent = by_id[spot.parent_id]
+        parent_scores = [
+            retuned.measure_difficulty[mid].score
+            for mid in parent.measure_ids
+            if mid in retuned.measure_difficulty
+            and retuned.measure_difficulty[mid].score is not None
+        ]
+        spot_scores = [
+            retuned.measure_difficulty[mid].score
+            for mid in spot.measure_ids
+            if mid in retuned.measure_difficulty
+            and retuned.measure_difficulty[mid].score is not None
+        ]
+        assert spot_scores, spot.id
+        assert max(spot_scores) == max(parent_scores), "a spot must contain the peak"
+        mean = sum(parent_scores) / len(parent_scores)
+        assert max(spot_scores) - mean >= LOCAL_PEAK_MARGIN
 
 
 def test_every_spot_sits_inside_its_parent(bundle):

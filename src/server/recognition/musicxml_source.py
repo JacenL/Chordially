@@ -38,7 +38,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 from fractions import Fraction
 
-from src.schemas.music import NOTE_VALUE_FRACTIONS, MeasureTranscription, NoteEvent
+from src.schemas.music import MeasureTranscription, NoteEvent
 from src.server.recognition.cv_geometry import (
     BOX_MARGIN_STAVESPACE,
     Box,
@@ -519,19 +519,3 @@ def load_musicxml(data: bytes) -> MusicXmlPage:
         measures_on_page=on_page,
         signatures_by_system=signatures,
     )
-
-
-def _exact_duration(event: NoteEvent) -> Fraction:
-    """Exposed for tests: the duration the schema computes for an event."""
-    del NOTE_VALUE_FRACTIONS  # the schema owns the table; this is just a handle
-    return event.duration
-
-
-# Construct the toolkit at import so the font initialisation happens here, on
-# the importing thread, rather than lazily inside a worker where it would fail.
-try:  # pragma: no cover - depends on the environment's verovio install
-    _toolkit()
-except Exception:  # noqa: BLE001
-    # Leave it to the first engrave call to report a usable error rather than
-    # breaking import of the whole application.
-    _TOOLKIT = None

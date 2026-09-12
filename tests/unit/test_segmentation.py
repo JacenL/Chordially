@@ -9,6 +9,8 @@ ones a naive implementation gets wrong:
 
 from __future__ import annotations
 
+import pytest
+
 from src.features.segmentation.phrases import (
     MAX_MEASURES,
     MIN_MEASURES,
@@ -176,3 +178,124 @@ def test_unreadable_measures_are_unrated_not_zero():
     ratings = rate_score(score)
     assert ratings[score.measures[1].id].score is None
     assert ratings[score.measures[0].id].score is not None
+
+
+# --------------------------------------------------------------------------
+# Silence is not a musical idea
+# --------------------------------------------------------------------------
+
+
+def _silence_score(pattern: str) -> "Score":
+    """A one-system score where 'x' is a sounded measure and '.' is rests."""
+    from src.schemas.geometry import Region
+    from src.schemas.music import NoteEvent
+    from src.schemas.score import Measure, Note, Page, Score, System
+
+    measures, notes = [], []
+    x = 0.05
+    for i, mark in enumerate(pattern):
+        mid = f"t:m{i}"
+        event = (
+            NoteEvent(is_rest=True, value="quarter")
+            if mark == "."
+            else NoteEvent(is_rest=False, step="G", octave=4, value="quarter")
+        )
+        note_ids = []
+        for j in range(4):
+            nid = f"{mid}:n{j}"
+            notes.append(Note(id=nid, measure_id=mid, index_in_measure=j, event=event))
+            note_ids.append(nid)
+        measures.append(
+            Measure(
+                id=mid,
+                label=str(i + 1),
+                ordinal=i,
+                system_id="t:s0",
+                region=Region(x=x, y=0.1, w=0.08, h=0.08),
+                note_ids=note_ids,
+                beats=4,
+                beat_value=4,
+            )
+        )
+        x += 0.08
+
+    return Score(
+        id="t",
+        fingerprint="f",
+        input_kind="example",
+        pages=[Page(id="t:p0", index=0, width_px=1000, height_px=1400, render_dpi=200)],
+        systems=[
+            System(
+                id="t:s0",
+                page_index=0,
+                index=0,
+                region=Region(x=0.05, y=0.1, w=0.9, h=0.08),
+                measure_ids=[m.id for m in measures],
+            )
+        ],
+        measures=measures,
+        notes=notes,
+    )
+
+
+def _sounded(score, phrase) -> bool:
+    events = [n.event for mid in phrase.measure_ids for n in score.notes_of(score.measure(mid))]
+    return any(not e.is_rest for e in events)
+
+
+@pytest.mark.parametrize(
+    "pattern",
+    [
+        "xxxx....xxxx",   # silence in the middle
+        "....xxxxxxxx",   # silence at the start, with nothing before to join
+        "xxxxxxxx....",   # silence at the end
+        "xx..xx..xx..",   # alternating
+    ],
+)
+def test_no_phrase_is_made_entirely_of_rests(pattern):
+    """A phrase is one musical idea, and silence is not one.
+
+    Left alone these became their own phrases, rated 0.0 "Beginner-friendly",
+    drawing green ribbon over the silence and offering practice instruction for
+    a passage with nothing to play.
+    """
+    score = _silence_score(pattern)
+    phrases = segment_score(score)
+    assert phrases
+    for phrase in phrases:
+        assert _sounded(score, phrase), f"{phrase.label} contains no sounded note"
+
+
+def test_absorbed_silence_keeps_the_measures_in_the_score():
+    """The rest bars stay: they lose their own phrase, not their place."""
+    score = _silence_score("xxxx....xxxx")
+    phrases = segment_score(score)
+    covered = sorted(
+        score.measure(mid).ordinal for p in phrases for mid in p.measure_ids
+    )
+    assert covered == list(range(len(score.measures)))
+    assert len(covered) == len(set(covered)), "a measure is owned twice"
+
+
+def test_silence_joins_the_phrase_before_it_when_there_is_one():
+    score = _silence_score("xxxx....xxxx")
+    phrases = segment_score(score)
+    owner = next(p for p in phrases if "t:m4" in p.measure_ids)
+    # The rests follow sounded music, so they belong to what came before.
+    assert "t:m3" in owner.measure_ids
+
+
+def test_leading_silence_joins_the_phrase_after_it():
+    """Nothing precedes it, so it attaches forward rather than being dropped."""
+    score = _silence_score("....xxxxxxxx")
+    phrases = segment_score(score)
+    owner = next(p for p in phrases if "t:m0" in p.measure_ids)
+    assert _sounded(score, owner)
+
+
+def test_a_score_of_pure_silence_is_left_as_one_phrase():
+    """Nothing to absorb into. It must not loop or return nothing."""
+    score = _silence_score("........")
+    phrases = segment_score(score)
+    assert len(phrases) == 1
+    assert len(phrases[0].measure_ids) == len(score.measures)
