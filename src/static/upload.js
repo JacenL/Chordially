@@ -13,6 +13,42 @@ if (form) {
   const label = document.querySelector(".file-field-label");
   const progress = document.getElementById("upload-progress");
   const stage = document.getElementById("upload-stage");
+  const bar = document.getElementById("upload-progress-bar");
+  const progressDetail = document.getElementById("upload-progress-detail");
+  let busy = false;
+
+  // Percentages describe only the named phase. Stages with no measurable
+  // total stay indeterminate; no timer advances the bar.
+  function status(title, detail, percent = null) {
+    stage.textContent = title;
+    progressDetail.textContent = detail;
+    if (percent === null) bar.removeAttribute("value");
+    else bar.value = Math.max(0, Math.min(100, percent));
+  }
+
+  function sendUpload(body) {
+    return new Promise((resolve, reject) => {
+      const request = new XMLHttpRequest();
+      request.open("POST", "/upload");
+      request.responseType = "json";
+      request.timeout = 120000;
+      request.upload.onprogress = (event) => {
+        if (!event.lengthComputable || event.total <= 0) return;
+        const percent = Math.floor(event.loaded / event.total * 100);
+        status("Uploading your sheet music", `${percent}% of upload transferred`, percent);
+      };
+      request.upload.onload = () => status(
+        "Upload sent — waiting for the server",
+        "The file has been transferred. Analysis starts after the server accepts it."
+      );
+      request.onload = () => resolve({
+        ok: request.status >= 200 && request.status < 300,
+        payload: request.response,
+      });
+      request.onerror = request.ontimeout = request.onabort = () => reject(new Error("Upload interrupted"));
+      request.send(body);
+    });
+  }
   const errorBox = document.getElementById("upload-error");
   const errorMessage = document.getElementById("upload-error-message");
   const errorRecovery = document.getElementById("upload-error-recovery");
@@ -58,6 +94,7 @@ if (form) {
       stop(event);
       depth = 0;
       form.classList.remove("is-dragging");
+      if (busy) return;
       const dropped = event.dataTransfer && event.dataTransfer.files;
       if (!dropped || !dropped.length) return;
       // One page per upload, so a multi-file drop takes the first rather than
@@ -80,26 +117,29 @@ if (form) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const file = input.files && input.files[0];
-    if (!file) return;
+    if (!file || busy) return;
 
+    busy = true;
+    form.setAttribute("aria-busy", "true");
     submit.disabled = true;
     input.disabled = true;
     errorBox.hidden = true;
     progress.hidden = false;
-    stage.textContent = "Uploading the file";
+    status("Uploading your sheet music", "Starting the file transfer…", 0);
 
     const body = new FormData();
     body.append("file", file);
 
     let job;
     try {
-      const response = await fetch("/upload", { method: "POST", body });
-      const payload = await response.json();
+      const response = await sendUpload(body);
+      const payload = response.payload || {};
       if (!response.ok) {
         const detail = payload.detail || {};
         fail(detail.error || "That upload was rejected.", detail.recovery || "");
         return;
       }
+      if (!payload.id) throw new Error("Missing job ID");
       job = payload;
     } catch (err) {
       fail("The upload did not reach the server.", "Check that PracticeMap is still running, then try again.");
@@ -117,10 +157,16 @@ if (form) {
         return;
       }
       const job = await response.json();
-      if (job.stage) stage.textContent = job.stage;
+      const count = /^read (\d+) of (\d+) sections$/i.exec(job.stage || "");
+      if (count && Number(count[2]) > 0 && Number(count[1]) <= Number(count[2])) {
+        const completed = Number(count[1]), total = Number(count[2]);
+        status("Reading the notation", `${completed} of ${total} recognition requests completed · ${Math.floor(completed / total * 100)}% of this stage. Some results may need review.`, completed / total * 100);
+      } else {
+        status(job.stage || "Analyzing your score", "This stage has no measurable percentage yet. Status updates automatically.");
+      }
 
       if (job.state === "done") {
-        stage.textContent = "Ready — opening your score";
+        status("Ready — opening your score", "Processing complete. Any unread measures will be marked on the score.", 100);
         window.location.href = `/score/${job.scoreId}`;
         return;
       }
@@ -135,6 +181,9 @@ if (form) {
   }
 
   function fail(message, recovery) {
+    busy = false;
+    form.removeAttribute("aria-busy");
+    bar.removeAttribute("value");
     progress.hidden = true;
     errorBox.hidden = false;
     errorMessage.textContent = message || "Something went wrong.";

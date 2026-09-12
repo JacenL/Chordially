@@ -159,11 +159,13 @@ def test_a_rejected_upload_reports_itself_and_stays_on_this_screen(page, tmp_pat
     assert page.locator("#upload-submit").is_enabled()
 
 
-def test_the_progress_area_exists_and_names_a_stage_not_a_percentage(page):
+def test_the_progress_area_has_an_accessible_indeterminate_bar(page):
     progress = page.locator("#upload-progress")
     assert progress.count() == 1
     assert page.locator("#upload-stage").count() == 1
-    assert "No progress bar" in progress.inner_text()
+    bar = page.locator("#upload-progress-bar")
+    assert bar.get_attribute("aria-labelledby") == "upload-stage"
+    assert bar.get_attribute("value") is None
 
 
 def test_the_page_works_at_phone_width(page):
@@ -181,3 +183,47 @@ def test_the_page_works_at_phone_width(page):
 def test_the_credential_status_is_stated(page):
     status = page.locator(".status").inner_text()
     assert "credentials" in status.lower()
+
+
+def test_progress_tracks_reported_counts_and_recovers_from_failure(page):
+    expect = playwright_api.expect
+    job = {"id": "progress-test", "state": "running", "stage": "Rendering the page"}
+    page.route("**/upload", lambda route: route.fulfill(json={"id": "progress-test"}))
+    page.route("**/api/jobs/progress-test", lambda route: route.fulfill(json=job))
+    page.set_input_files("#file-input", {
+        "name": "score.pdf", "mimeType": "application/pdf", "buffer": b"test fixture",
+    })
+    page.click("#upload-submit")
+    bar = page.locator("#upload-progress-bar")
+    expect(page.locator("#upload-stage")).to_have_text("Rendering the page")
+    assert bar.get_attribute("value") is None
+    job["stage"] = "read 3 of 12 sections"
+    expect(bar).to_have_attribute("value", "25")
+    expect(page.locator("#upload-progress-detail")).to_contain_text("3 of 12 recognition requests completed")
+    # A phase percentage must not pretend to be total job completion.
+    job["stage"] = "Rating measures and grouping phrases"
+    expect(page.locator("#upload-stage")).to_have_text(job["stage"])
+    assert bar.get_attribute("value") is None
+    page.set_viewport_size({"width": 390, "height": 844})
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+    job.update(state="failed", error="Recognition unavailable", recovery="Please retry.")
+    expect(page.locator("#upload-error")).to_be_visible()
+    expect(page.locator("#upload-progress")).to_be_hidden()
+    expect(page.locator("#upload-submit")).to_be_enabled()
+    assert page.errors == []
+
+
+def test_progress_redirects_only_after_job_done(page):
+    expect = playwright_api.expect
+    job = {"id": "done-test", "state": "running", "stage": "read 12 of 12 sections"}
+    page.route("**/upload", lambda route: route.fulfill(json={"id": "done-test"}))
+    page.route("**/api/jobs/done-test", lambda route: route.fulfill(json=job))
+    page.set_input_files("#file-input", {
+        "name": "score.pdf", "mimeType": "application/pdf", "buffer": b"test fixture",
+    })
+    page.click("#upload-submit")
+    expect(page.locator("#upload-progress-bar")).to_have_attribute("value", "100")
+    assert "/score/" not in page.url
+    job.update(state="done", scoreId="example")
+    page.wait_for_url("**/score/example")
+    assert page.errors == []

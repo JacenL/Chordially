@@ -1100,3 +1100,16 @@ None. C1 and C2 are confirmed on origin/practice-map-build.
   the measure (8% inset per edge). Hit targets and analysis geometry stay intact.
 - Validation: all 11 viewer browser tests passed; diff whitespace check passed.
 - Delivery: local frontend branch; previous GitHub authentication blocker remains.
+
+
+## Frontend — measured upload and recognition progress
+- Replaced the text-only loading area with a labelled native progress bar.
+- Upload uses browser byte-transfer events; recognition uses the backend's
+  existing “read N of M sections” reports, labelled completed requests (not
+  successfully recognized measures). Percentages are per phase, never an ETA.
+- Stages without counts remain indeterminate; only a done job opens the score.
+- Prevented file replacement by drag/drop during an active upload.
+- Backend job contracts and recognition code unchanged. All 11 landing-page
+  browser tests passed, including count updates, indeterminate stages, mobile
+  width, failure recovery, and done-only navigation. Diff check passed.
+- Delivery: local frontend branch; GitHub push remains blocked by authentication.

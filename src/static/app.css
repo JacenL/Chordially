@@ -1167,3 +1167,19 @@ details.exercise-card {
 .section-outline.is-selected { box-shadow: none; }
 .measure:hover, .measure.is-selected { background: transparent; box-shadow: none; }
 .measure--unrated::after { display: none; }
+
+/* Native progress stays indeterminate until actual byte or request counts
+   arrive. The label explains which phase the numeric fraction belongs to. */
+.upload-progress-bar {
+  display: block;
+  width: 100%;
+  height: 10px;
+  margin: 12px 0 0;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  accent-color: var(--select);
+}
+.upload-progress-bar::-webkit-progress-bar { background: var(--rule); border-radius: 999px; }
+.upload-progress-bar::-webkit-progress-value { background: var(--select); border-radius: 999px; }
+.upload-progress-bar::-moz-progress-bar { background: var(--select); border-radius: 999px; }

@@ -47,10 +47,9 @@
 
       <div class="upload-progress" id="upload-progress" hidden aria-live="polite">
         <p class="upload-stage" id="upload-stage">Starting</p>
-        <p class="note">
-          No progress bar: the stages take very different amounts of time and a
-          sweeping bar would be a guess. This is the stage actually running.
-        </p>
+        <progress class="upload-progress-bar" id="upload-progress-bar" max="100"
+                  aria-labelledby="upload-stage" aria-describedby="upload-progress-detail"></progress>
+        <p class="note" id="upload-progress-detail">Waiting for progress from the server.</p>
       </div>
 
       <div class="upload-error" id="upload-error" hidden role="alert">

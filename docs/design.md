@@ -127,3 +127,10 @@ Empty, uploading, recognizing, analyzing, ready, partial recognition, unsupporte
 
 ## Interaction quality
 Keyboard-operable selection, visible focus, adequate contrast, accessible labels, and a phrase list alternative to small score targets. Zoom and resize must not shift annotation positions. Keep the sidebar usable while navigating a long page.
+
+
+## Upload progress (frontend follow-up)
+Show actual upload-transfer progress, then recognition request completion when
+counts are available. Other phases show an indeterminate bar and the reported
+stage. Label percentages as phase-specific; never imply that completed requests
+mean accurate transcription, or estimate remaining time from elapsed time.
