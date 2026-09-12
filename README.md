@@ -2,7 +2,7 @@
 
 Upload a page of printed violin sheet music. PracticeMap divides it into
 practice passages, rates each one from 0.0 to 10.0, colours the page passage by
-passage from light green to maroon, and tells you how to practise the one you
+passage from light green to near-black, and tells you how to practise the one you
 select — including complementary rhythm variations built from that passage's
 own notes.
 
@@ -32,7 +32,7 @@ limitations. `docs/checklist.md` is the delivery status.
   vision model reads only the notation content. All geometry is exact code, so
   overlays sit on the real measures and survive zoom and resize.
 - A continuous per-system difficulty ribbon banded by practice passage rather
-  than by measure, whose widths follow the real engraved barlines, with the six
+  than by measure, whose widths follow the real engraved barlines, with the five
   colour anchors from `docs/design.md`. One passage carries one rating and one
   colour everywhere it appears, including across a line break.
 - Clicking anywhere inside a passage — a measure, its outline, or its ribbon

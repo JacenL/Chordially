@@ -29,9 +29,12 @@ once on the machine you will demo from.
 ## The script
 
 ### 1. The start screen (15 seconds)
-Point out that there are two honest routes in: your own scan, and a clearly
-labelled example. Read the limits aloud — one page, 20 MB, printed notation, and
-the page image is sent to Anthropic for reading. Nothing is hidden in a tooltip.
+There is one primary action — a large upload target that also accepts a dropped
+file — and one quiet secondary route beneath it, the clearly labelled example.
+Read the limits aloud; they are on the screen without opening anything: one
+page, 20 MB, printed notation. Then open **What happens to your file** to show
+that a scan goes to Anthropic to be read, MusicXML never leaves the machine, and
+nothing is stored. The detail is folded away, not deleted.
 
 ### 2. Upload the real score (30 seconds warm, ~65 seconds cold)
 Choose `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf` and press **Analyze this
@@ -51,7 +54,7 @@ What lands is the uploaded scan with three layers over it:
   it is what a click selects, and it keeps one rating and one colour across
   every staff system it touches.
 - **The difficulty ribbon**, one unbroken run under each system, banded by
-  passage, light green through maroon. Band widths follow the real engraved
+  passage, light green through near-black. Band widths follow the real engraved
   barlines. Worth saying out loud: this is deliberately *not* a colour per
   measure — that was a picture of the rubric's rounding rather than of the
   music.
@@ -223,8 +226,8 @@ does no coordinate arithmetic at all.
   No source here validates them and no violinist has reviewed them;
   `fixtures/expected/review-phrases.md` is the packet waiting for that review.
 - **One external check exists, and it is weak.** Wohlfahrt printed these studies
-  in increasing order of difficulty and the app agrees — Etude 2 averages 4.0,
-  Etude 3 averages 5.7, and the ordering holds at 60, 90 and 160 BPM. That is
+  in increasing order of difficulty and the app agrees — Etude 2 averages 1.2,
+  Etude 3 averages 3.0, and the ordering holds at 60, 90 and 160 BPM. That is
   ordinal agreement with one editor on one pair of studies, from 25 and 7 rated
   measures. Worth saying out loud; not worth overclaiming.
 - **Tempo is assumed at 90 BPM** when none is printed, which the page states.

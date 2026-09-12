@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C18 delivered. All three segmentation
+Status: demo-ready. C1–C6 and C8–C19 delivered. All three segmentation
 levels the spec requires are now implemented. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
@@ -852,6 +852,35 @@ No framework and no new dependency. The existing custom properties, serif
 display face and warm paper ground are unchanged; the landing rules replace the
 old `.empty-state` block in `src/static/app.css`.
 
+## C19 — copy that described superseded behaviour
+- [x] Complete
+- Dependencies: C16, C17, C18.
+- Why: C16 re-based the ratings and C17 replaced the six-anchor ramp, but four
+  reader-facing places still described the old behaviour. One of them was a
+  measured claim in the demo script that a test now contradicts, so following
+  the script would have meant saying something false out loud.
+- Changed:
+  - `docs/demo.md` known limitations quoted Etude 2 averaging 4.0 and Etude 3
+    5.7 — rubric 1.0 numbers. Measured again through `study_means`: **1.19 and
+    2.99** at the assumed 90 BPM, from 25 and 7 rated measures.
+    `test_calibration.py` asserts the first is below 2.0, so the doc and the
+    suite disagreed.
+  - "light green through maroon" in `docs/demo.md`, `README.md`,
+    `fixtures/README.md` and `src/app/templates/index.html` — the last of these
+    on the landing page C18 had just rewritten. The shipped ramp ends near-black
+    at 10.0. README also still said six colour anchors; there are five.
+  - `docs/demo.md`'s start-screen beat described the two equally weighted cards
+    C18 replaced. It now describes the single primary target, the drop zone, the
+    limits visible without opening anything, and the disclosure under "What
+    happens to your file".
+- Evidence: `python -m pytest -q` → 303 passed, 20 skipped, 5 deselected. The
+  20 skips are the Playwright suite on a machine without Chromium; no test pins
+  any of the changed strings, and the calibration numbers were re-measured
+  rather than copied from an earlier report.
+- Not changed: `CLAUDE.md` and `prompts/01-plan.md` also say "maroon".
+  `docs/design.md` is the authoritative colour document by CLAUDE.md's own
+  instruction, and the prompt file is a historical record of what was asked.
+
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same
 checkpoint and are recorded above. A lack of recorded bugs does not mean the
@@ -865,9 +894,11 @@ None. C1 and C2 are confirmed on origin/practice-map-build.
   boundary editing.
 - Outstanding external setup: none. The Anthropic credit blocker is cleared and
   live recognition is verified working.
-- Last meaningful validation: `python -m pytest -q` → **324 passed**, 5
-  deselected (the `live` demo-flow set). Browser tests skip themselves if
-  Chromium is absent; install it with `python -m playwright install chromium`.
+- Last meaningful validation: `python -m pytest -q` → **303 passed, 20 skipped,
+  5 deselected** on a machine without Chromium. The 20 skips are the Playwright
+  suite and the 5 deselected are the `live` demo-flow set; with Chromium
+  installed the offline total is 323. Install it with
+  `python -m playwright install chromium`.
 - Not yet obtained: a Mendelssohn Violin Concerto excerpt. The rubric's high end
   is currently evidenced by constructed notation in `test_rubric_20.py` and by
   the real Mozart K.156 import, not by a demanding concerto page. Dropping a

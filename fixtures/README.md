@@ -35,7 +35,7 @@ for segmentation to find, rather than one invented for the demo.
 Book 1 is beginner repertoire, and that is what the ratings say. Under rubric
 2.0 the measures on this page span **0.2–3.5** at the assumed 90 BPM, and the
 five practice passages rate 1.6, 2.9 and 3.2 with two left unrated. A real page
-of this score will **not** produce an 8.0+ maroon band, and nothing is inflated
+of this score will **not** produce an 8.0+ near-black band, and nothing is inflated
 to make the ribbon look richer. The legend renders the full 0–10 scale with all
 five category labels regardless of what the loaded score actually spans.
 
