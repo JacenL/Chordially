@@ -96,6 +96,11 @@
         </div>
       {% endif %}
 
+      <h1 class="score-name">
+        {{ view.title }}
+        {% if view.is_example %}<span class="score-name-tag">example score</span>{% endif %}
+      </h1>
+
       <div class="score-pane" id="score-pane" tabindex="-1">
         {% for page in view.pages %}
           <div class="page" id="{{ page.id }}" style="aspect-ratio:{{ page.aspect_ratio }}">
@@ -227,16 +232,24 @@
         {# Guidance comes before the machinery. A player opening a passage wants
            to be told what to do; the rating breakdown and the editing controls
            are both answers to questions they have not asked yet. #}
-        <section class="panel panel--practice" id="practice-panel">
-          <h3 class="panel-heading">How to practice this</h3>
-          <p class="panel-note" id="practice-loading">Select a passage.</p>
+        {# Open by default, because it is the answer -- but collapsible like
+           everything else, so someone who has read it can fold it away and see
+           the rest of the sidebar. #}
+        <section class="panel panel--collapsible panel--practice" id="practice-panel">
+          <details open>
+            <summary class="panel-heading panel-heading--summary">
+              How to practice this
+            </summary>
+            <p class="panel-note" id="practice-loading">Select a passage.</p>
 
-          <div id="practice-body" hidden>
-            <div class="exercise" id="practice-primary"></div>
-            <div id="practice-alternatives"></div>
-          </div>
+            <div id="practice-body" hidden>
+              <p class="panel-note panel-note--play" id="sel-practice"></p>
+              <div class="exercise" id="practice-primary"></div>
+              <div id="practice-alternatives"></div>
+            </div>
 
-          <p class="panel-note" id="practice-nofit" hidden></p>
+            <p class="panel-note" id="practice-nofit" hidden></p>
+          </details>
         </section>
 
         <section class="panel panel--collapsible" id="why-panel" hidden>
@@ -266,23 +279,6 @@
             answer: the guidance above is for the whole passage.
           </p>
           <ul class="phrase-list" id="inside-list"></ul>
-          </details>
-        </section>
-
-        <section class="panel panel--collapsible" id="boundary-panel" hidden>
-          <details>
-            <summary class="panel-heading panel-heading--summary">
-              Where this passage starts and ends
-            </summary>
-          <dl class="boundary-list">
-            <dt>Starts</dt><dd id="sel-start"></dd>
-            <dt>Ends</dt><dd id="sel-end"></dd>
-            <dt>Practice range</dt><dd id="sel-practice"></dd>
-          </dl>
-          <p class="panel-note">
-            Boundaries are inferred from the notation and can be wrong — the
-            confidence above says how thin the evidence was. Adjust one below.
-          </p>
           </details>
         </section>
 
@@ -316,6 +312,26 @@
             </div>
 
             <p class="panel-note" id="edit-note" hidden></p>
+
+            {# Why the boundary is where it is. This used to be a panel of its
+               own; it belongs next to the controls that change it, because a
+               reason to doubt a boundary is only useful where you can act on
+               it. The confidence is kept, not dropped -- these boundaries are
+               inferred and the page has always said so. #}
+            <details class="sources" id="boundary-evidence">
+              <summary>Why this passage begins and ends where it does</summary>
+              <dl class="boundary-list">
+                <dt>Starts</dt><dd id="sel-start"></dd>
+                <span id="sel-end-row" hidden>
+                  <dt>Ends</dt><dd id="sel-end"></dd>
+                </span>
+              </dl>
+              <p class="panel-note">
+                Boundaries are inferred from the notation and can be wrong — the
+                confidence above says how thin the evidence was.
+              </p>
+            </details>
+
             <p class="panel-note">
               <a class="text-action" href="#" id="reset-edits">Undo all passage edits</a>
               — edits last until the server restarts and are not saved.
