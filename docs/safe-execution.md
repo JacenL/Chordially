@@ -8,6 +8,33 @@ After plan approval, every completed task/checkpoint must be committed and pushe
 
 These instructions guide the agent; they do not override tool permissions or GitHub protections. Keep normal permission controls enabled. Do not request blanket bypass mode to make a long run easier.
 
+## Two-developer workflow
+From C20 the work runs as two tracks, backend and frontend. `practice-map-build`
+stays the integration branch and the only branch that must always run.
+
+1. Each track works on its own branch off `practice-map-build`, named
+   `backend/<task-id>-<slug>` or `frontend/<task-id>-<slug>` — for example
+   `backend/b2-audiveris-adapter`, `frontend/f1-ribbon-legibility`. One branch per
+   task, not one per developer for the whole hackathon: a week-long branch is how
+   two people end up resolving the same conflict twice.
+2. Push your own branch as often as you like. A task branch is allowed to be
+   broken; `practice-map-build` is not.
+3. Integrate by merging your branch into `practice-map-build` only when that
+   task's acceptance conditions pass and `python -m pytest -q` passes on the
+   merge result, not merely on the branch. Fast-forward or a merge commit, never
+   a force-push.
+4. Pull `practice-map-build` into your branch before integrating. Do not merge
+   the other track's branch directly into yours to pick up a fix; take it through
+   `practice-map-build` so there is one integration point and one history to read.
+5. Merging into `practice-map-build` needs the user's go-ahead, which CLAUDE.md
+   requires for any merge. Record it here once it is granted rather than assuming
+   it per merge.
+6. `main` stays untouched at 95f7ceb. Nothing is pushed to it and no branch
+   protection is bypassed.
+7. Because the two tracks own disjoint directories (see C20), a conflict is a
+   signal that a task strayed outside its track. Resolve it by moving the change
+   to the owning track, not by editing the other track's files.
+
 ## Preflight before implementation
 1. Identify the actual Git root, current branch, status, existing staged changes, and fetch/push remote URLs. Inspect the intended remote's default branch and working branch when access permits.
 2. Work in the intended repository. If it is not checked out, clone it into an appropriate new project directory rather than initializing Git in a parent folder. Transfer the prompt kit without overwriting existing instructions blindly.

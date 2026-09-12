@@ -1,6 +1,7 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C19 delivered. All three segmentation
+Status: demo-ready. C1–C6 and C8–C19 delivered. C20 splits the remaining work
+into a backend track (B1–B6) and a frontend track (F1–F5); both are unstarted. All three segmentation
 levels the spec requires are now implemented. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
@@ -881,6 +882,179 @@ old `.empty-state` block in `src/static/app.css`.
   `docs/design.md` is the authoritative colour document by CLAUDE.md's own
   instruction, and the prompt file is a historical record of what was asked.
 
+## C20 — Split the remaining work into a backend and a frontend track
+- [x] Planning complete. The tracks below are unchecked and unstarted.
+- Why: two developers now. The split follows the seam the architecture already
+  has — recognition and analysis are Python behind a contract, presentation is
+  four absolutely-positioned layers over a page image — so the two tracks touch
+  almost disjoint file sets.
+- File ownership, to keep the two out of each other's commits:
+  - Backend: `src/schemas/`, `src/features/`, `src/server/`, `src/config.py`,
+    `scripts/`, `tests/unit/`, `tests/integration/`.
+  - Frontend: `src/static/`, `src/app/templates/`, `tests/e2e/`.
+  - `src/app/main.py` is shared. Route additions only; keep them small.
+- What each developer needs:
+  - Frontend needs **no API key**. `fixtures/pages/wohlfahrt-p3.png`,
+    `fixtures/expected/wohlfahrt-p3-analysis.json` and
+    `fixtures/scores/mozart-k156-mvt1.mxl` are committed, so `/score/example`
+    and the MusicXML import both run from the checkout. They do need
+    `python -m playwright install chromium`; without it 20 e2e tests skip and
+    prove nothing.
+  - Backend needs `.env` with `PRACTICEMAP_ANTHROPIC_API_KEY` for B3/B4, and an
+    Audiveris install for B2.
+
+### Backend track
+
+#### B1 — Where the ribbon may be drawn (do first; the frontend track waits on it)
+- [ ] Not started. Dependencies: none. Small.
+- Problem, measured on `fixtures/pages/wohlfahrt-p3.png`: `view_model.py` places
+  the ribbon in the bottom 13% of each system band and its comment claims that
+  sliver is whitespace. It is not. All 11 systems carry ink inside that band —
+  8,422 dark pixels on system 6, ink in every row of the band on systems 4 and 6.
+  The staff's bottom line sits ~60px above the band, but stems, beams, fingering
+  digits and the treble clef descender reach 92–123px below it.
+- Deliver: a per-system `ribbon_region` (page-relative, percentages only) plus a
+  boolean `ribbon_overlaps_ink`, computed from the ink profile `cv_geometry`
+  already builds. Place the band below the lowest ink row inside the system
+  region where that fits; where it does not — which is the case on this page —
+  keep a documented minimum height and set the flag rather than silently
+  overlapping.
+- Acceptance: for every system of both fixtures, the emitted band either
+  contains zero ink pixels or has the flag set, asserted by a test that counts
+  ink in the emitted rectangle rather than trusting the constant; bands stay
+  flush and gapless horizontally; no style string carries a unit other than `%`
+  (the existing test); the false comment in `view_model.py` is corrected.
+- Do **not** decide the visual treatment here. That is F1.
+
+#### B2 — Audiveris as a third recognition adapter
+- [ ] Not started. Dependencies: none.
+- Why: the scan path is the weak one, and Audiveris emits MusicXML — the format
+  the importer already reads exactly. It runs locally, needs no key, has no
+  credit balance to exhaust, and is deterministic. Two documented blind spots
+  disappear with it: MusicXML expresses chords, so `double_stops` stops being
+  permanently 0.0, and a natural cancelling a key-signature accidental becomes
+  expressible.
+- Cost, stated before starting: Audiveris 5.6 needs Java 21 (newer builds 24/25)
+  and is not pip-installable. The installers bundle a JRE, so a demo machine is
+  fine, but `pip install -r requirements-dev.txt` stops being the whole setup —
+  the constraint that made C1 choose a pure-Python stack. Published accuracy is
+  ~88% note-level strict F1 on clean engraved pages, ~58% mean on real scanned
+  systems with usable output on 50 of 60, ~50% on photographs. Better than
+  nothing on a clean 300dpi scan; not a guarantee.
+- **B2a — spike, no code path switched.** Install it, run
+  `Audiveris -batch -export -output <dir> -- fixtures/scores/wohlfahrt-op45-bk1-p3.pdf`,
+  and record: measures found against geometry's 61, how many pass
+  `validate_measure` against the meter, and a by-eye pitch spot-check of two
+  systems against the scan. Acceptance: a measured comparison against the
+  current vision path on the same page, and a written go/no-go in the style of
+  C1. A spike that reports worse numbers and stops is a successful spike.
+- **B2b — the adapter**, only if B2a says go. `audiveris_source.py` behind the
+  same contract as `claude_adapter.py`, joined to `cv_geometry` measures by
+  index through the existing count cross-check, selected by config with the
+  vision model still available. Acceptance: the fixture PDF reaches at least the
+  43 of 61 rated measures the live vision run achieved; the provenance line says
+  the notes were read locally and nothing was sent to any service; zero provider
+  calls; and with Audiveris absent the upload fails with a named recovery action
+  rather than a traceback.
+
+#### B3 — Stop implying pitch was verified
+- [ ] Not started. Dependencies: none; strengthened by B2b.
+- Problem: `validate_measure` checks two things — every note inside the violin's
+  range, and durations summing exactly to the meter. **Nothing checks pitch.** A
+  measure read with the right rhythm and the wrong notes is marked `confident`
+  and rated. "87% validated" means arithmetically consistent, not correct.
+- Deliver either a cross-check (two adapters reading the same measure, with
+  disagreement marked) or, at minimum, wording that distinguishes rhythm
+  validated from pitch unverified, carried into the sidebar text and the docs.
+- Acceptance: no surface claims a pitch was verified when it was not; if the
+  cross-check is built, a measure where the adapters disagree is not presented
+  as confident; `docs/demo.md` and `README.md` updated to match.
+
+#### B4 — Rebuild the example fixture from a complete reading
+- [ ] Not started. Dependencies: B2b or a funded key.
+- Problem: the committed example has 14 confident, 18 uncertain, 8 unreadable
+  and **21 measures never read** — scar tissue from the C2 credit outage. Only
+  32 of 61 are rated in what the demo shows, while the C4 live run reached 43.
+  The demo is showing the app at its worst for a reason that no longer exists.
+- Acceptance: zero `not_attempted`; at least 43 of 61 rated; regenerated by the
+  documented script rather than hand-edited; the calibration test still holds
+  (Etude 2 below 2.0, Wohlfahrt's ordering preserved at 60/90/160 BPM); every
+  fixture-pinned number in `docs/`, `README.md` and `fixtures/README.md`
+  re-measured, not adjusted by eye.
+
+#### B5 — Persistence and self-reported progress storage (C7's remaining half)
+- [ ] Not started. Dependencies: none.
+- SQLite under `work/` (gitignored), versioned schema, keyed by the existing
+  content `fingerprint`. Stores boundary and passage decisions, the supplied
+  tempo, and self-reported progress. The uploaded bundle itself stays in memory:
+  the transcription cache re-derives a page in about two seconds, while a stored
+  bundle would go stale the moment the rubric version changes.
+- Acceptance: an edit, a tempo and a progress report survive a real server
+  restart; two scores cannot read each other's rows; a decision stored under a
+  superseded rubric version is discarded rather than replayed; progress never
+  changes a rating, a colour or a category, asserted by a test; a documented
+  delete path, and the storage location written into `README.md`.
+
+#### B6 — double_stops, for real
+- [ ] Not started. Dependencies: B2b.
+- The feature is wired, weighted and always 0.0 because the transcription format
+  has no simultaneities. MusicXML has chords. Acceptance: a real double-stop
+  passage rates above zero; the blind-spot entry is removed from the rubric
+  disclosure only when the feature actually reads them.
+
+### Frontend track
+
+#### F1 — Notation legible under the ribbon
+- [ ] Not started. Dependencies: B1 for the exact geometry, but not blocked by
+  it — `mix-blend-mode: multiply` on `.ribbon-segment` lets the ink read through
+  the colour today and can ship first.
+- Acceptance: on both fixtures at 1440, 820 and 390px, beams, clef descenders
+  and fingering digits inside the band stay readable in an inspected screenshot;
+  the ribbon still reads as one continuous band per system with the documented
+  five-anchor colours; unrated hatching stays distinguishable from both ends of
+  the scale; zero horizontal overflow and no JS errors.
+
+#### F2 — The rest of the layer legibility pass
+- [ ] Not started. Dependencies: none.
+- `.measure--unrated::after` hatches a whole measure at `inset: 0`, the passage
+  hover tint fills 9%, and chips sit over the staff. C13 and C17 each removed one
+  wash; this finishes the job.
+- Acceptance: nothing puts a full-bleed fill over notation; hover and selected
+  states state themselves at the edges or in the margin; the existing e2e suite
+  still passes with Chromium installed.
+
+#### F3 — Progress reporting UI
+- [ ] Not started. Dependencies: B5's endpoint contract (agree it on day one,
+  build against a stub).
+- Three self-reported states per passage with a timestamp, plus the later
+  original-rhythm revisit the spec asks for.
+- Acceptance: keyboard reachable and screen-reader labelled; survives reload;
+  the wording says self-reported and never implies mastery or certification; the
+  panel never displays progress as changing a difficulty number.
+
+#### F4 — Boundaries inside a measure
+- [ ] Not started. Dependencies: a backend edit op if the existing one is
+  measure-keyed only.
+- The last partially-met product acceptance criterion. Anchors already carry
+  `(measure_id, note_index)`; only the interface is missing.
+- Acceptance: a boundary can be placed between two notes inside a measure and
+  the phrase re-rates; existing refusals stay honest; the limitation line in
+  `docs/demo.md` is deleted only once this is true.
+
+#### F5 — Install Chromium and re-verify the browser claims
+- [ ] Not started. Dependencies: none. Do this first, it is five minutes.
+- `python -m playwright install chromium`. Until then 20 e2e tests skip, which
+  means C17's and C18's browser evidence cannot be reproduced on this machine.
+
+### Contracts to agree before either track starts
+1. `ribbon_region` and `ribbon_overlaps_ink` per system in the view model
+   (B1 produces, F1 consumes).
+2. The progress endpoint's path and body shape (B5 produces, F3 consumes),
+   measure-keyed so it survives re-derivation at a new tempo.
+3. No commit touches both `src/features/score_viewer/view_model.py` and
+   `src/static/app.css`. If a change needs both, it is two commits on two
+   branches meeting at `practice-map-build`.
+
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same
 checkpoint and are recorded above. A lack of recorded bugs does not mean the
@@ -890,8 +1064,9 @@ application has been tested.
 None. C1 and C2 are confirmed on origin/practice-map-build.
 
 ## Handoff
-- Next action: persistence (C7's remaining half), then within-measure
-  boundary editing.
+- Next action: the C20 tracks. Backend starts at B1 (small, and F1 wants its
+  output) then B2a's Audiveris spike; frontend starts at F5 (install Chromium)
+  then F1. C7's remaining half is now B5.
 - Outstanding external setup: none. The Anthropic credit blocker is cleared and
   live recognition is verified working.
 - Last meaningful validation: `python -m pytest -q` → **303 passed, 20 skipped,
