@@ -192,3 +192,57 @@ covered music it was never computed from. The sidebar now names the specific
 unrated measure and says which kind of failure it was -- unreadable notation
 versus a request that never completed -- alongside the phrase rating and the
 statement that the rating comes from the measures around it.
+
+### 2026-09-12 — Rubric 2.0: the rating was inflated by counting, not by calibration
+Straightforward first-position eighth-note studies on the Wohlfahrt fixture were
+rating **3.2-5.1** — "Advanced Beginner" through "Competent level" for the second
+study in a beginner's method book. The cause was not a mis-set scale that a
+constant could correct. Seven features were counting the wrong thing, and each is
+fixed where it was wrong:
+
+1. **Syncopation counted ordinary off-beat notes.** Any onset not on a
+   `1/beat_value` grid scored, so straight eighths in 4/4 read 0.50 and straight
+   sixteenths 0.75. It now requires an accent actually displaced: an off-beat
+   attack that sustains through the next beat, is tied across it, or follows a
+   beat the composer left silent.
+2. **Key-signature notes counted as accidentals.** `alter` meant two different
+   things in the two adapters — sounding pitch from MusicXML, printed accidental
+   from the vision model — so every F# in a G-major import was charged as
+   chromatic work. Both are now normalized to sounding alteration at
+   `build_score`, where the authoritative key signature is known, and an
+   accidental is what differs from the signature.
+3. **First position counted as high register.** The ceiling for "no register
+   demand" was E5, the *open* E string. First position reaches B5 with the
+   fourth finger; the threshold is now B5 and the ramp above it is continuous to
+   E7 instead of three steps.
+4. **Every slurred note counted as bow demand.** An ordinary two-note slur
+   pattern scored 1.0, the feature's maximum. It is now long slurs (bow
+   distribution), changes between slurred and separate, and wall-to-wall
+   articulation marks. Slur groups are split at each printed `start`, which is
+   what separates four two-note slurs from one eight-note slur.
+5. **Speed was counted three times.** `note_rate`, `subdivision` and
+   `irregular_rhythm` all rose together with tempo and note value. Note rate is
+   now the only speed term; subdivision registers only divisions finer than
+   sixteenths of the beat; and the third became `rhythm_complexity` — tuplets,
+   dots, ties across beats — instead of "more than one note value is present",
+   which is true of most music ever written.
+6. **Tempo ignored the beat unit.** BPM was read as a quarter-note pulse in every
+   meter, so cut time was rated at half its real speed and 6/8 as though its
+   pulse were the eighth. `beat_unit` now derives the notated beat, and
+   MusicXML's printed metronome mark is read and converted into it.
+7. **The curve was steepest at zero.** `10(1 - e^(-raw/4.2))` moved a rating
+   furthest for the very first fraction of a point of demand. The curve is now
+   `10(1 - e^(-(raw/3.2)^1.22))`, which leaves the bottom flat, rises through the
+   middle, and still compresses near 10.
+
+Measured consequence on the same scan, at the same assumed tempo: Etude 2 moves
+from a mean of **4.00 to 1.19**, Etude 3 from **5.71 to 2.99**, and the ordering
+Wohlfahrt printed them in is preserved with a slightly wider gap than before
+(1.71 to 1.80). The page's hardest measure moves from 6.8 to 3.5. No constant was
+subtracted and no label was renamed to get there.
+
+Two further consequences worth recording. Slurs are now read from MusicXML at
+all — `_note_event` never set the field, so bow demand was silently zero for
+every import. And a limitation the wire format cannot express is written down
+rather than papered over: a natural sign cancelling a key-signature sharp is
+written identically to no accidental, so it reads as the key-signature pitch.

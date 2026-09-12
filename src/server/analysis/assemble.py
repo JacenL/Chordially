@@ -20,6 +20,7 @@ from src.features.difficulty.rubric import (
     DEFAULT_TEMPO_BPM,
     RUBRIC_VERSION,
     aggregate_phrase,
+    key_alteration,
     rate_measure,
 )
 from src.features.segmentation.phrases import (
@@ -31,6 +32,7 @@ from src.features.segmentation.phrases import (
 from src.schemas.geometry import Region
 from src.schemas.music import (
     MeasureTranscription,
+    NoteEvent,
     repair_uniform_scale,
     validate_measure,
 )
@@ -61,6 +63,26 @@ def _mid(score_id: str, ordinal: int) -> str:
     return f"{score_id}:m{ordinal:04d}"
 
 
+def apply_key_signature(event: NoteEvent, key_fifths: int | None) -> NoteEvent:
+    """Turn a printed-accidental `alter` into a sounding one.
+
+    A transcription that reports "F" in a one-sharp key means F#, because the
+    key signature says so. Leaving that unapplied made `NoteEvent.midi` a
+    semitone wrong for every key-signature note, which quietly distorted the
+    register and leap features, and it made "does this note carry an accidental"
+    unanswerable downstream.
+
+    A note that already carries an accidental keeps it: a printed accidental
+    overrides the signature, which is what a printed accidental is for.
+    """
+    if event.is_rest or event.step is None or event.alter != 0:
+        return event
+    implied = key_alteration(event.step, key_fifths)
+    if implied == 0:
+        return event
+    return event.model_copy(update={"alter": implied})
+
+
 def build_score(
     *,
     score_id: str,
@@ -75,6 +97,7 @@ def build_score(
     page_index: int = 0,
     signatures_by_system: dict[int, dict[str, int | None]] | None = None,
     not_attempted: set[tuple[int, int]] | None = None,
+    accidental_convention: str = "printed",
 ) -> Score:
     """Build a Score. `transcriptions` is keyed by (system_index, measure_index).
 
@@ -82,6 +105,20 @@ def build_score(
     taken from where they are actually printed -- a system start -- rather than
     from each measure's own transcription, because a crop from mid-staff shows
     no signature and anything it reports about one is inference.
+
+    `accidental_convention` says what the source means by `alter`, and this is
+    the one place that difference is reconciled. A vision transcription reports
+    only accidentals *printed* in the measure, leaving the key signature
+    implied; MusicXML reports the sounding alteration with the key signature
+    already applied. Downstream, `alter` means sounding alteration in both
+    cases, because that is the only reading under which `NoteEvent.midi` is
+    correct -- and because the question "is this an accidental" is then answered
+    by comparing against the key signature rather than by trusting a convention.
+
+    Known limitation of the printed convention: a natural sign cancelling a
+    key-signature sharp or flat is written the same way as no accidental at all,
+    so it is read as the key-signature pitch. The wire format cannot express the
+    difference, and inventing one would be worse than recording it here.
     """
     assumed_tempo = tempo_bpm is None
     tempo = tempo_bpm or DEFAULT_TEMPO_BPM
@@ -159,6 +196,8 @@ def build_score(
                     quality = "uncertain" if verdict.low_confidence else "confident"
                     quality_note = verdict.reason
                     for i, ev in enumerate(t.notes):
+                        if accidental_convention == "printed":
+                            ev = apply_key_signature(ev, key_fifths)
                         nid = f"{mid}:n{i:02d}"
                         notes.append(
                             Note(id=nid, measure_id=mid, index_in_measure=i, event=ev)

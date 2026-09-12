@@ -326,7 +326,17 @@ def test_example_client_payload_covers_the_rendered_score(example_view):
         m.id for system in example_view.pages[0].systems for m in system.measures
     }
     assert set(payload["measures"]) == rendered_measures
-    assert set(payload["phrases"]) == {p.id for p in example_view.phrases}
+    # The payload carries every selectable level, not only phrases: sections are
+    # what a click resolves to and trouble spots are reachable inside them.
+    assert set(payload["phrases"]) == {
+        p.id
+        for group in (
+            example_view.sections,
+            example_view.phrases,
+            example_view.trouble_spots,
+        )
+        for p in group
+    }
     assert payload["measureOrder"] == sorted(
         payload["measureOrder"],
         key=lambda mid: [m.ordinal for s in example_view.pages[0].systems for m in s.measures if m.id == mid][0],

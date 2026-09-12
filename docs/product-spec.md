@@ -37,12 +37,18 @@ Keep each phrase's structural range separate from its practice range. Extend pra
 ## Difficulty ratings
 Every analyzed phrase receives a number from 0.0 to 10.0 inclusive, displayed with exactly one decimal digit, for example 6.7. Each analyzed measure also receives a rating to drive the ribbon. Missing/unreadable data remains unrated; do not use 0.0 as a missing value.
 
-Initial category mapping, an app heuristic rather than a validated grading system:
-- 0.0 ≤ score < 2.0: Beginner-friendly, green.
-- 2.0 ≤ score < 4.0: Advanced Beginner, yellow.
-- 4.0 ≤ score < 6.0: Competent level, orange.
-- 6.0 ≤ score < 8.0: Expert level, red.
-- 8.0 ≤ score ≤ 10.0: Extremely, extremely hard, maroon.
+Category mapping, an app heuristic rather than a validated grading system. Each
+category spans one interval of the color progression in design.md:
+- 0.0 ≤ score < 2.0: Beginner-friendly, light green into green.
+- 2.0 ≤ score < 4.0: Advanced Beginner, green into yellow.
+- 4.0 ≤ score < 6.0: Competent level, yellow into orange.
+- 6.0 ≤ score < 8.0: Expert level, orange into red.
+- 8.0 ≤ score ≤ 10.0: Extremely, extremely hard, red into maroon.
+
+The scale is absolute and shared across pieces. Never normalize one upload to
+fill the range. An easy passage inside a difficult work keeps its own low
+rating, and a beginner method page is expected to occupy only the bottom of the
+scale.
 
 Evaluate supported features: rhythmic density at the stated tempo, subdivision and syncopation, accidentals and tonal context, range, interval patterns, double stops/chords, articulation and bow-control demands, endurance, and interactions among challenges. Written leaps alone do not prove position shifts; pitches alone do not always determine strings. Use conditional explanations when needed.
 

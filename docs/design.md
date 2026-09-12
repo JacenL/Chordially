@@ -19,15 +19,23 @@ Build a focused music-study workspace: warm off-white background, dark readable 
 
 Difficulty is measure-based, not a single flat color per phrase. Use documented interpolation between color anchors for numeric values. Each measure has a stable representative color; keep adjoining ribbon segments flush. Do not blur local changes so much that a difficult measure disappears. 'Continuous' means a connected score-aligned ribbon, not a gradient stretched arbitrarily across an entire page.
 
-Starting color anchors:
-| Score | Color | Hex |
-|---|---|---|
-| 0.0 | Green | #238B45 |
-| 2.0 | Yellow | #E5C229 |
-| 4.0 | Orange | #EF8A24 |
-| 6.0 | Red | #D73A3A |
-| 8.0 | Maroon | #800020 |
-| 10.0 | Deep maroon | #470013 |
+Color anchors. The progression is light green -> green -> yellow -> orange ->
+red -> maroon, one anchor every two points, so each category spans exactly one
+interval between anchors:
+
+| Score | Color | Hex | Category reached at this anchor |
+|---|---|---|---|
+| 0.0 | Light green | #A5D6A0 | Beginner-friendly |
+| 2.0 | Green | #238B45 | Advanced Beginner |
+| 4.0 | Yellow | #E5C229 | Competent level |
+| 6.0 | Orange | #EF8A24 | Expert level |
+| 8.0 | Red | #D73A3A | Extremely, extremely hard |
+| 10.0 | Maroon | #800020 | — |
+
+The scale is absolute and identical for every score. Do not rescale a piece so
+its ribbon uses the whole range: a beginner method page is supposed to stay at
+the light-green end, and stretching it would destroy the only property that lets
+two different uploads be compared.
 
 Category text follows the intervals in product-spec.md. Always provide numeric values and labels in addition to color. Place text on a contrasting surface rather than directly on a potentially low-contrast ribbon color.
 

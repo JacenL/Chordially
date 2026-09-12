@@ -38,6 +38,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 from fractions import Fraction
 
+from src.features.difficulty.rubric import beat_unit
 from src.schemas.music import MeasureTranscription, NoteEvent
 from src.server.recognition.cv_geometry import (
     BOX_MARGIN_STAVESPACE,
@@ -99,6 +100,10 @@ class MusicXmlPage:
     signatures_by_system: dict[int, dict[str, int | None]] = dataclasses.field(
         default_factory=dict
     )
+    # The tempo the file actually prints, converted to the notated beat the
+    # rubric counts in. None when the export carries no metronome mark, in which
+    # case the assumed tempo applies and is disclosed as an assumption.
+    printed_tempo_bpm: float | None = None
 
 
 # --------------------------------------------------------------------------
@@ -259,6 +264,61 @@ def read_part(data: bytes):
     return part, title, (part.partName or "Part 1"), len(parts)
 
 
+def slur_positions(part) -> dict[int, str]:
+    """Where each note sits in a slur, keyed by object identity.
+
+    Printed slurs are the only bowing evidence a file actually carries, and the
+    rubric's bow-demand feature reads them: a long slur is a bow-distribution
+    problem, and frequent changes between slurred and separate are a bowing
+    problem. Without this the feature was silently zero for every MusicXML
+    import, which understated exactly the repertoire where bowing is hard.
+    """
+    positions: dict[int, str] = {}
+    bundle = getattr(part, "spannerBundle", None)
+    if bundle is None:
+        return positions
+    try:
+        slurs = list(bundle.getByClass("Slur"))
+    except Exception:  # noqa: BLE001 - an export without spanners is not an error
+        return positions
+    for slur in slurs:
+        spanned = list(slur.getSpannedElements())
+        for index, element in enumerate(spanned):
+            if index == 0:
+                positions[id(element)] = "start"
+            elif index == len(spanned) - 1:
+                positions[id(element)] = "stop"
+            else:
+                positions[id(element)] = "continue"
+    return positions
+
+
+def printed_tempo(part, beats: int | None, beat_value: int | None) -> float | None:
+    """The file's first metronome mark, expressed in notated beats per minute.
+
+    A mark is written against a beat unit of its own choosing -- half note in cut
+    time, dotted quarter in 6/8 -- and the rubric counts the notated beat, so the
+    two have to be reconciled with exact arithmetic rather than assumed equal.
+    """
+    from music21 import tempo as m21tempo
+
+    marks = list(part.recurse().getElementsByClass(m21tempo.MetronomeMark))
+    for mark in marks:
+        number = getattr(mark, "number", None)
+        referent = getattr(mark, "referent", None)
+        if not number or referent is None or not referent.quarterLength:
+            continue
+        printed_beat = Fraction(referent.quarterLength).limit_denominator(64) / 4
+        if beats and beat_value:
+            notated_beat = beat_unit(beats, beat_value)
+        else:
+            notated_beat = printed_beat
+        if notated_beat <= 0:
+            continue
+        return round(float(number) * float(printed_beat / notated_beat), 2)
+    return None
+
+
 def transcribe_part(part, measure_limit: int) -> list[MeasureTranscription]:
     """Every measure of the part as a MeasureTranscription, in playing order."""
     from music21 import key as m21key
@@ -267,6 +327,7 @@ def transcribe_part(part, measure_limit: int) -> list[MeasureTranscription]:
     out: list[MeasureTranscription] = []
     beats = beat_value = None
     fifths = None
+    slurs = slur_positions(part)
 
     for measure in list(part.getElementsByClass("Measure"))[:measure_limit]:
         for signature in measure.getElementsByClass(m21meter.TimeSignature):
@@ -278,6 +339,9 @@ def transcribe_part(part, measure_limit: int) -> list[MeasureTranscription]:
         for element in measure.recurse().notesAndRests:
             event = _note_event(element)
             if event is not None:
+                slur = slurs.get(id(element))
+                if slur is not None:
+                    event = event.model_copy(update={"slur": slur})
                 events.append(event)
 
         out.append(
@@ -507,6 +571,13 @@ def load_musicxml(data: bytes) -> MusicXmlPage:
                 }
             cursor += 1
 
+    first = next(iter(transcriptions_list), None)
+    tempo_bpm = printed_tempo(
+        part,
+        first.beats_in_measure if first else None,
+        first.beat_value if first else None,
+    )
+
     return MusicXmlPage(
         geometry=geometry,
         transcriptions=transcriptions,
@@ -518,4 +589,5 @@ def load_musicxml(data: bytes) -> MusicXmlPage:
         measures_in_part=total_measures,
         measures_on_page=on_page,
         signatures_by_system=signatures,
+        printed_tempo_bpm=tempo_bpm,
     )

@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C15 delivered. All three segmentation
+Status: demo-ready. C1–C6 and C8–C16 delivered. All three segmentation
 levels the spec requires are now implemented. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
@@ -673,6 +673,59 @@ The selection chain is three deep (section ← phrase ← trouble spot), so
 a *phrase* rather than up exactly one level — going up one from a phrase would
 have outlined twenty-eight measures as "context". The breadcrumb shows whatever
 levels exist: "Measures 1–28 › Phrase 1 ›".
+
+## C16 — The rating was inflated by counting, not by calibration
+- [x] Complete
+- Dependencies: C15.
+- Scope: the difficulty rubric only. No interface change beyond the colour
+  anchors the rating maps onto.
+- Evidence: **293 tests pass**, 39 new (26 in `tests/unit/test_rubric_20.py`,
+  one per cause plus the counter-cases; 4 calibration; the rest colour/payload).
+
+Straightforward first-position eighth-note studies were rating **3.2-5.1** on a
+0-10 scale — "Advanced Beginner" through "Competent level" for the second study
+in a beginner's method book. Seven features were counting the wrong thing. Each
+is fixed at its source; nothing was subtracted from the total and no category
+label was moved. `docs/architecture.md` records all seven with their
+before/after.
+
+Measured on the same scan at the same assumed tempo:
+
+| | Etude 2 (4/4, C, eighths) | Etude 3 (2/4, G, sixteenths) | Page peak |
+|---|---|---|---|
+| Rubric 1.0 | 4.00 mean | 5.71 mean | 6.8 |
+| Rubric 2.0 | **1.19** mean | **2.99** mean | **3.5** |
+
+The ordering Wohlfahrt printed the studies in survives, with the gap slightly
+wider than before (1.71 to 1.80), and it survives at 60, 90 and 160 BPM.
+
+The single largest contributor was syncopation: every second eighth note in 4/4
+sits off the quarter-note beat, so straight eighths scored 0.50 and straight
+sixteenths 0.75 on a feature meant to find displaced accents. The second was
+register, whose "no demand" ceiling was the *open* E string rather than the top
+of first position, charging ordinary first-position writing up to 1.54 points —
+measure 14 of the fixture, which reaches A5 and never leaves first position, was
+the visible symptom.
+
+Two defects found on the way and fixed in the same checkpoint:
+
+- **Slurs were never read from MusicXML.** `_note_event` did not set the field,
+  so the bow-demand feature was silently zero for every import. It now reads the
+  part's slur spanners; the Mozart fixture has 100 slurred notes of 381.
+- **`alter` meant two different things in the two adapters.** MusicXML reported
+  sounding pitch, the vision model reported printed accidentals, and
+  `NoteEvent.midi` was correct for only one of them. Both are normalized to
+  sounding alteration at `build_score`, where the authoritative key signature is
+  known. The committed example was migrated by
+  `scripts/refresh_example_analysis.py`, which needs no API key because it works
+  from notes already in the fixture.
+
+### Not fixed, recorded instead
+A natural sign cancelling a key-signature sharp or flat is written the same way
+as no accidental at all in the provider wire format, so it reads as the
+key-signature pitch. Expressing the difference would mean changing the
+transcription contract and invalidating the cache; the limitation is documented
+in `build_score` instead.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

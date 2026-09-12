@@ -1,9 +1,14 @@
 """Difficulty-to-colour mapping, exactly as specified in docs/design.md.
 
-Anchors are given; values between them are interpolated linearly in sRGB. Linear
-sRGB interpolation is chosen over a perceptual space deliberately: the spec
-pins six exact hex values, and any perceptual blend would fail to reproduce them
-between anchors. The anchors themselves are reproduced exactly.
+The progression is light green -> green -> yellow -> orange -> red -> maroon,
+one anchor every two points. Values between anchors are interpolated linearly in
+sRGB. Linear sRGB interpolation is chosen over a perceptual space deliberately:
+the spec pins six exact hex values, and any perceptual blend would fail to
+reproduce them between anchors. The anchors themselves are reproduced exactly.
+
+The scale is absolute and identical for every score. A beginner etude occupies
+the light-green end and stays there; nothing is stretched to make one piece use
+the whole ribbon.
 
 Category labels come from docs/product-spec.md and use half-open intervals, so
 a score of exactly 2.0 is "Advanced Beginner", not "Beginner-friendly". The
@@ -17,12 +22,12 @@ difficult content.
 from __future__ import annotations
 
 ANCHORS: list[tuple[float, str]] = [
-    (0.0, "#238B45"),
-    (2.0, "#E5C229"),
-    (4.0, "#EF8A24"),
-    (6.0, "#D73A3A"),
-    (8.0, "#800020"),
-    (10.0, "#470013"),
+    (0.0, "#A5D6A0"),  # light green
+    (2.0, "#238B45"),  # green
+    (4.0, "#E5C229"),  # yellow
+    (6.0, "#EF8A24"),  # orange
+    (8.0, "#D73A3A"),  # red
+    (10.0, "#800020"),  # maroon
 ]
 
 CATEGORIES: list[tuple[float, float, str]] = [

@@ -165,7 +165,20 @@ def test_ribbon_segments_touch_in_the_rendered_page(page):
 
 
 def test_clicking_a_measure_selects_its_phrase(page):
-    target = page.locator(".measure").nth(7)
+    # A measure that no trouble spot covers, chosen from the page's own data
+    # rather than by index: a spot is the more specific owner and selecting it
+    # is correct behaviour, so hard-coding an index makes this test depend on
+    # where the ratings happen to put a spot today.
+    plain = page.evaluate(
+        """() => {
+            const data = JSON.parse(document.getElementById('score-data').textContent);
+            return Object.entries(data.measures)
+                .filter(([, m]) => m.phraseId && !m.spotId)
+                .map(([id]) => id)[0];
+        }"""
+    )
+    assert plain, "the example should contain a rated measure outside any trouble spot"
+    target = page.locator(f'.measure[data-measure-id="{plain}"]')
     measure_id = target.get_attribute("data-measure-id")
     phrase_id = target.get_attribute("data-phrase-id")
     target.click()

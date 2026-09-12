@@ -268,6 +268,9 @@ def _analyze_musicxml(
         title=page.title or filename or "Uploaded score",
         is_example=False,
         image_url=f"/uploads/pages/{score_id}.svg",
+        # MusicXML states the sounding pitch, key signature already applied.
+        accidental_convention="sounding",
+        tempo_bpm=page.printed_tempo_bpm,
     )
 
     if page.part_count > 1:
