@@ -6830,7 +6830,7 @@
   },
   "wohlfahrt-p3:m0007": {
    "target_id": "wohlfahrt-p3:m0007",
-   "score": 2.1,
+   "score": 1.8,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6843,7 +6843,7 @@
     {
      "key": "chromatic",
      "label": "Accidentals outside the key",
-     "contribution": 0.44,
+     "contribution": 0.3,
      "detail": "1 printed accidental"
     }
    ],
@@ -6911,7 +6911,7 @@
   },
   "wohlfahrt-p3:m0011": {
    "target_id": "wohlfahrt-p3:m0011",
-   "score": 2.1,
+   "score": 1.8,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6924,7 +6924,7 @@
     {
      "key": "chromatic",
      "label": "Accidentals outside the key",
-     "contribution": 0.44,
+     "contribution": 0.3,
      "detail": "1 printed accidental"
     }
    ],
@@ -6955,7 +6955,7 @@
   },
   "wohlfahrt-p3:m0013": {
    "target_id": "wohlfahrt-p3:m0013",
-   "score": 2.1,
+   "score": 1.8,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -6968,7 +6968,7 @@
     {
      "key": "chromatic",
      "label": "Accidentals outside the key",
-     "contribution": 0.44,
+     "contribution": 0.3,
      "detail": "1 printed accidental"
     }
    ],
@@ -7153,7 +7153,7 @@
   },
   "wohlfahrt-p3:m0024": {
    "target_id": "wohlfahrt-p3:m0024",
-   "score": 1.3,
+   "score": 1.2,
    "peak": null,
    "peak_target_id": null,
    "factors": [
@@ -7166,7 +7166,7 @@
     {
      "key": "leaps",
      "label": "Wide leaps",
-     "contribution": 0.09,
+     "contribution": 0.06,
      "detail": "largest interval 5 semitones"
     }
    ],
@@ -8858,59 +8858,13 @@
     "wohlfahrt-p3:m0059",
     "wohlfahrt-p3:m0060"
    ]
-  },
-  {
-   "id": "wohlfahrt-p3:ph001:ts0",
-   "label": "Hard spot in Phrase 2",
-   "level": "trouble_spot",
-   "parent_id": "wohlfahrt-p3:ph001",
-   "structural_start": {
-    "measure_id": "wohlfahrt-p3:m0007",
-    "note_index": 0
-   },
-   "structural_end": {
-    "measure_id": "wohlfahrt-p3:m0007",
-    "note_index": 7
-   },
-   "practice_start": {
-    "measure_id": "wohlfahrt-p3:m0007",
-    "note_index": 0
-   },
-   "practice_end": {
-    "measure_id": "wohlfahrt-p3:m0007",
-    "note_index": 7
-   },
-   "has_practice_overlap": false,
-   "regions": [
-    {
-     "page_index": 0,
-     "x": 0.42764705882352944,
-     "y": 0.13568181818181818,
-     "w": 0.1664705882352941,
-     "h": 0.08250000000000002
-    }
-   ],
-   "start_boundary": {
-    "evidence": [],
-    "reason": "rated 2.1 against 1.3 across the phrase",
-    "confidence": 0.5
-   },
-   "end_boundary": {
-    "evidence": [],
-    "reason": "rated 2.1 against 1.3 across the phrase",
-    "confidence": 0.5
-   },
-   "user_edited": false,
-   "measure_ids": [
-    "wohlfahrt-p3:m0007"
-   ]
   }
  ],
  "phrase_difficulty": {
   "wohlfahrt-p3:sec00": {
    "target_id": "wohlfahrt-p3:sec00",
-   "score": 1.6,
-   "peak": 2.1,
+   "score": 1.4,
+   "peak": 1.8,
    "peak_target_id": "wohlfahrt-p3:m0007",
    "factors": [],
    "assumptions": [],
@@ -8963,8 +8917,8 @@
   },
   "wohlfahrt-p3:ph001": {
    "target_id": "wohlfahrt-p3:ph001",
-   "score": 1.6,
-   "peak": 2.1,
+   "score": 1.5,
+   "peak": 1.8,
    "peak_target_id": "wohlfahrt-p3:m0007",
    "factors": [],
    "assumptions": [],
@@ -8972,8 +8926,8 @@
   },
   "wohlfahrt-p3:ph002": {
    "target_id": "wohlfahrt-p3:ph002",
-   "score": 1.7,
-   "peak": 2.1,
+   "score": 1.5,
+   "peak": 1.8,
    "peak_target_id": "wohlfahrt-p3:m0011",
    "factors": [],
    "assumptions": [],
@@ -9009,7 +8963,7 @@
   "wohlfahrt-p3:ph006": {
    "target_id": "wohlfahrt-p3:ph006",
    "score": 1.0,
-   "peak": 1.3,
+   "peak": 1.2,
    "peak_target_id": "wohlfahrt-p3:m0024",
    "factors": [],
    "assumptions": [],
@@ -9083,15 +9037,6 @@
    "score": 2.9,
    "peak": 2.9,
    "peak_target_id": "wohlfahrt-p3:m0056",
-   "factors": [],
-   "assumptions": [],
-   "rubric_version": "2.0"
-  },
-  "wohlfahrt-p3:ph001:ts0": {
-   "target_id": "wohlfahrt-p3:ph001:ts0",
-   "score": 2.1,
-   "peak": 2.1,
-   "peak_target_id": "wohlfahrt-p3:m0007",
    "factors": [],
    "assumptions": [],
    "rubric_version": "2.0"

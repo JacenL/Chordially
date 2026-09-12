@@ -264,3 +264,94 @@ def test_an_easy_measure_inside_hard_writing_still_rates_low():
     """
     held = [n("E", 5, "half"), n("E", 5, "half")]
     assert rate_measure(held, 2, 2, tempo_bpm=88, key_fifths=1)[0] < 1.0
+
+
+# --------------------------------------------------------------------------
+# B7: a demand costs what the clock lets it cost
+#
+# The complaint that prompted this: a single sustained high note rated 4.7 while
+# sixteen sixteenths in the same register rated 4.3. Rubric 2.0 was purely
+# additive, so only `note_rate` knew anything about time and every other demand
+# cost the same whether there were two seconds to place it or eighty
+# milliseconds.
+# --------------------------------------------------------------------------
+
+
+def test_pressure_is_bounded_and_rises_with_the_note_rate():
+    from src.features.difficulty.rubric import (
+        PRESSURE_CEILING,
+        PRESSURE_FLOOR,
+        execution_pressure,
+    )
+
+    assert execution_pressure(0.0) == PRESSURE_FLOOR
+    assert execution_pressure(10_000.0) == PRESSURE_CEILING
+    values = [execution_pressure(r) for r in (0.5, 2, 4, 6, 8, 10)]
+    assert values == sorted(values)
+    # A demand is never free just because the passage is slow.
+    assert PRESSURE_FLOOR > 0.0
+
+
+def test_a_sustained_high_note_is_not_a_fast_run():
+    """The exact inversion that prompted B7, pinned as an ordering."""
+    held = rate_measure([n("E", 7, "whole")], 4, 4)[0]
+    run = rate_measure([n("E", 6, "16th") for _ in range(16)], 4, 4)[0]
+    assert held < run, (held, run)
+    assert held < 2.5, held
+
+
+@pytest.mark.parametrize(
+    "label,slow,fast",
+    [
+        (
+            "octave leaps",
+            [n("G", 4, "half"), n("G", 5, "half")],
+            [n("G", 4 if i % 2 else 5, "16th") for i in range(16)],
+        ),
+        (
+            "accidentals",
+            [n("G", 4, "half", alter=1), n("A", 4, "half", alter=1)],
+            [n("G", 4, "16th", alter=1) for _ in range(16)],
+        ),
+    ],
+)
+def test_the_same_printed_demand_costs_more_when_there_is_less_time(label, slow, fast):
+    assert rate_measure(slow, 4, 4)[0] < rate_measure(fast, 4, 4)[0], label
+
+
+def test_the_speed_term_itself_is_not_scaled_by_speed():
+    """Scaling the note rate by a function of the note rate would count speed
+    twice, which is the error rubric 2.0 was written to remove."""
+    from src.features.difficulty.rubric import RATE_KEY, WEIGHTS
+
+    notes = [n("G", 4, "16th") for _ in range(16)]
+    contribution = factors_of(notes, 4, 4)[RATE_KEY]
+    assert contribution <= WEIGHTS[RATE_KEY] + 1e-9
+    # Unscaled means it matches the raw feature exactly.
+    from src.features.difficulty.rubric import measure_features
+
+    expected = measure_features(notes, 4, 4, 90.0) [RATE_KEY] * WEIGHTS[RATE_KEY]
+    assert contribution == pytest.approx(expected, abs=0.01)
+
+
+def test_reported_contributions_still_sum_to_the_rating():
+    """The sidebar prints these and a reader can add them up, so they have to be
+    the numbers the score was actually computed from -- not pre-scaling ones."""
+    from src.features.difficulty.rubric import _saturate
+
+    notes = [n("E", 6, "16th", alter=1) for _ in range(16)]
+    score, factors = rate_measure(notes, 4, 4)
+    assert round(_saturate(sum(f.contribution for f in factors)), 1) == pytest.approx(
+        score, abs=0.15
+    )
+
+
+def test_a_weight_is_still_the_honest_ceiling_for_its_feature():
+    """Pressure scales the feature value, not the weight, so "of 2.2" stays a
+    reachable maximum rather than becoming unreachable on every slow page."""
+    from src.features.difficulty.rubric import WEIGHTS
+
+    # Fast, high and chromatic: pressure is at its ceiling here.
+    notes = [n("E", 7, "32nd", alter=1) for _ in range(32)]
+    for factor in rate_measure(notes, 4, 4)[1]:
+        assert factor.contribution <= WEIGHTS[factor.key] + 1e-9

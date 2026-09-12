@@ -95,6 +95,35 @@ VIOLIN_TOP = 100  # E7, about as high as standard repertoire goes
 RATE_FLOOR = 1.0
 RATE_CEILING = 13.0
 
+# How much the clock amplifies every demand other than the note rate itself.
+#
+# This is the answer to a complaint that was obviously right: a single sustained
+# high note rated 4.7 while sixteen sixteenth notes in the same register rated
+# 4.3. The rubric was purely additive, so only `note_rate` knew anything about
+# time -- an octave leap, a high position or a printed accidental cost exactly
+# the same whether there were two seconds to place it or eighty milliseconds.
+#
+# That is not how any of those demands work. What makes a leap hard is arriving
+# in tune *in the time available*; given a half note you can hear the note, feel
+# the frame and adjust, and given a sixteenth you cannot. So every execution
+# demand is scaled by the rate at which notes are arriving.
+#
+# The scale crosses 1.0 at around six notes a second -- a sixteenth-note run at
+# a walking tempo, which is where the old weights were implicitly calibrated --
+# so this redistributes rather than merely deflating: slow demands fall a long
+# way, and demands under real time pressure rise.
+#
+# The floor is not zero. A high position played slowly is still a high position;
+# time makes it easier, never free.
+PRESSURE_FLOOR = 0.35
+PRESSURE_CEILING = 1.5
+PRESSURE_PER_NOTE_PER_SECOND = 0.11
+
+# The one feature the pressure is computed *from*, and so the one it must not be
+# applied to. Scaling the speed term by a function of speed would count speed
+# twice -- the exact error rubric 2.0 was written to remove.
+RATE_KEY = "note_rate"
+
 # Weights, in points on the 0-10 scale, applied to normalized feature values.
 # They sum to more than 10 on purpose: the saturating curve at the end is what
 # bounds the result, so several moderate demands can accumulate the way they do
@@ -413,6 +442,31 @@ def _pitch_name(midi: int) -> str:
     return f"{_PITCH_LETTERS[midi % 12]}{midi // 12 - 1}"
 
 
+def notes_per_second(
+    notes: list[NoteEvent], beats: int, beat_value: int, tempo_bpm: float
+) -> float:
+    """Sounded notes per second, the measure's one speed fact.
+
+    Shared by the note-rate feature and by `execution_pressure` so the two can
+    never disagree about how fast the music is going.
+    """
+    unit = beat_unit(beats, beat_value)
+    beats_in_measure = float(Fraction(beats, beat_value) / unit)
+    seconds = beats_in_measure * (60.0 / max(tempo_bpm, 1.0))
+    sounded = sum(1 for n in notes if not n.is_rest)
+    return (sounded / seconds) if seconds > 0 else 0.0
+
+
+def execution_pressure(rate: float) -> float:
+    """How much the clock amplifies an execution demand, given the note rate.
+
+    Below 1.0 the passage gives you time to place things; above it, it does not.
+    See the constants above for why this exists and where it is anchored.
+    """
+    raw = PRESSURE_FLOOR + rate * PRESSURE_PER_NOTE_PER_SECOND
+    return max(PRESSURE_FLOOR, min(PRESSURE_CEILING, raw))
+
+
 def rate_measure(
     notes: list[NoteEvent],
     beats: int,
@@ -420,9 +474,28 @@ def rate_measure(
     tempo_bpm: float = DEFAULT_TEMPO_BPM,
     key_fifths: int = 0,
 ) -> tuple[float, list[DifficultyFactor]]:
-    """Rate one measure and explain the rating. Returns (score, factors)."""
+    """Rate one measure and explain the rating. Returns (score, factors).
+
+    The pressure scaling is applied to the *feature values*, not to the weights,
+    which keeps two things true that the sidebar depends on: the reported
+    contributions still sum to the number they explain, and each weight is still
+    the honest ceiling for its feature -- approached only when the music is going
+    fast enough for that demand to cost everything it can, and never exceeded.
+    """
     features = measure_features(notes, beats, beat_value, tempo_bpm, key_fifths)
-    raw = sum(WEIGHTS[k] * v for k, v in features.items())
+    pressure = execution_pressure(
+        notes_per_second(notes, beats, beat_value, tempo_bpm)
+    )
+    # Clamped back to 1.0 on the way out. Pressure can carry a feature *toward*
+    # its weight and never past it, so "+1.4 of 1.4" in the sidebar stays a true
+    # statement about a ceiling rather than a number a reader can catch
+    # exceeding its own maximum.
+    scaled = {
+        key: value if key == RATE_KEY else _clamp01(value * pressure)
+        for key, value in features.items()
+    }
+
+    raw = sum(WEIGHTS[k] * v for k, v in scaled.items())
     score = round(_saturate(raw), 1)
 
     factors = [
@@ -430,9 +503,9 @@ def rate_measure(
             key=k,
             label=LABELS[k],
             contribution=round(WEIGHTS[k] * v, 2),
-            detail=_detail(k, v, notes, key_fifths),
+            detail=_detail(k, features[k], notes, key_fifths),
         )
-        for k, v in sorted(features.items(), key=lambda kv: -WEIGHTS[kv[0]] * kv[1])
+        for k, v in sorted(scaled.items(), key=lambda kv: -WEIGHTS[kv[0]] * kv[1])
         if v > 0.02
     ]
     return score, factors
@@ -508,6 +581,15 @@ def rubric_explanation(tempo_bpm: float, tempo_is_assumed: bool) -> dict:
             "do in reality, while a single modest one stays near the bottom of "
             "the scale where it belongs. The scale is the same for every piece: "
             "nothing is stretched to fill it."
+        ),
+        "pressure": (
+            "Every demand except the note rate is scaled by how fast the notes "
+            "are arriving. A wide leap, a high position or an accidental is hard "
+            "because it has to be executed in the time available — given a half "
+            "note you can hear it, feel the frame and adjust; given a sixteenth "
+            "you cannot. So the same printed interval costs more in a fast "
+            "passage than in a slow one, and a sustained note is never rated as "
+            "though it were a run."
         ),
         "weights": [
             {"key": key, "label": LABELS[key], "weight": f"{weight:.1f}"}
