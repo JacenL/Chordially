@@ -24,6 +24,9 @@ limitations. `docs/checklist.md` is the delivery status.
 - Upload a PDF, PNG or JPEG of one printed page and analyze that actual file.
   Measured on the demo page: 11 systems, 61 measures, 15 phrases, 43 of 61
   measures rated.
+- Or import MusicXML (`.musicxml`, `.xml`, `.mxl`), which is read exactly from
+  the file — engraved with Verovio, no transcription service, and no measure left
+  unrated. Measured on Mozart K.156: 145 of 145 measures rated.
 - OpenCV finds the staves, barlines and measures in the uploaded pixels; a
   vision model reads only the notation content. All geometry is exact code, so
   overlays sit on the real measures and survive zoom and resize.
@@ -37,8 +40,8 @@ limitations. `docs/checklist.md` is the delivery status.
 
 ## What is not built
 
-Phrase boundary editing, persistence of progress or settings, MusicXML import,
-multi-page analysis, and tempo-driven recalculation. See the limitations section
+Persistence of progress and settings, structural sections, phrase boundaries
+inside a measure, and multi-page analysis. See the limitations section
 of `docs/demo.md`.
 
 ---

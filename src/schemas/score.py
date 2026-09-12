@@ -33,7 +33,7 @@ from src.schemas.music import NoteEvent
 RecognitionQuality = Literal[
     "confident", "uncertain", "unreadable", "non_musical", "not_attempted"
 ]
-InputKind = Literal["pdf_scan", "image_scan", "example"]
+InputKind = Literal["pdf_scan", "image_scan", "musicxml", "example"]
 
 
 class Anchor(BaseModel):

@@ -42,11 +42,13 @@ def test_empty_file_is_rejected_with_a_recovery(client):
 
 
 def test_unsupported_format_is_rejected_by_name(client):
-    response = post(client, "score.musicxml", b"<score/>", "application/xml")
+    """A format outside the disclosed set. MusicXML is no longer one of them."""
+    response = post(client, "score.sib", b"not a supported format", "application/octet-stream")
     assert response.status_code == 415
     detail = response.json()["detail"]
-    assert "score.musicxml" in detail["error"]
+    assert "score.sib" in detail["error"]
     assert "PDF, PNG and JPEG" in detail["recovery"]
+    assert "MusicXML" in detail["recovery"]
 
 
 def test_a_file_lying_about_being_a_pdf_is_caught(client):
@@ -145,3 +147,94 @@ def test_uploading_the_real_page_produces_a_real_analysis(client):
     assert page.status_code == 200
     assert 'class="ribbon-segment' in page.text
     assert "Source" in page.text  # provenance disclosure is always present
+
+
+# --------------------------------------------------------------------------
+# MusicXML: the path with no recognition risk
+# --------------------------------------------------------------------------
+
+MUSICXML = PROJECT_ROOT / "fixtures" / "scores" / "mozart-k156-mvt1.mxl"
+
+
+def test_musicxml_is_accepted_by_validation():
+    assert MUSICXML.exists()
+    assert up.validate(MUSICXML.read_bytes(), MUSICXML.name, None) == "musicxml"
+    assert up.validate(b"<score-partwise/>", "a.musicxml", None) == "musicxml"
+
+
+def test_xml_that_is_not_a_score_is_rejected_by_name(client):
+    response = post(client, "notes.xml", b"<html><body>hello</body></html>", "text/xml")
+    assert response.status_code == 415
+    detail = response.json()["detail"]
+    assert "does not" in detail["error"] and "score" in detail["error"]
+    assert "MusicXML" in detail["recovery"]
+
+
+def test_the_unsupported_message_now_mentions_musicxml(client):
+    response = post(client, "score.txt", b"plain text", "text/plain")
+    assert "MusicXML" in response.json()["detail"]["recovery"]
+
+
+@pytest.mark.skipif(not MUSICXML.exists(), reason="MusicXML fixture absent")
+def test_musicxml_analysis_leaves_nothing_for_review():
+    """The headline claim: exact notes mean no measure is ever unrated.
+
+    Asserted against the real fixture rather than a contrived one, because the
+    claim is about real repertoire -- 145 measures of Mozart with ties, chords
+    and mixed values, all of which a scan would have had to guess at.
+    """
+    bundle, provenance = up.analyze_upload(
+        MUSICXML.read_bytes(), MUSICXML.name, None
+    )
+
+    measures = bundle.score.measures
+    assert len(measures) > 100
+    assert all(m.quality == "confident" for m in measures), "nothing should be uncertain"
+    assert all(
+        d.score is not None for d in bundle.measure_difficulty.values()
+    ), "every measure must carry a rating"
+
+    scores = [d.score for d in bundle.measure_difficulty.values()]
+    assert max(scores) > min(scores), "a real score should vary in difficulty"
+
+    # No provider was involved, and the disclosure says that rather than
+    # reporting a recognition run that never happened.
+    assert provenance.from_file is True
+    assert provenance.used_provider is False
+    assert "MusicXML" in provenance.sentence()
+    assert "read live" not in provenance.sentence()
+
+
+@pytest.mark.skipif(not MUSICXML.exists(), reason="MusicXML fixture absent")
+def test_musicxml_discloses_what_it_did_not_analyse():
+    bundle, _ = up.analyze_upload(MUSICXML.read_bytes(), MUSICXML.name, None)
+    warnings = " ".join(bundle.score.warnings)
+    assert "4 parts" in warnings and "Violin I" in warnings
+    assert "180 measures" in warnings and "page 1" in warnings
+
+
+@pytest.mark.skipif(not MUSICXML.exists(), reason="MusicXML fixture absent")
+def test_musicxml_reaches_a_rendered_score_through_http(client):
+    response = post(
+        client, MUSICXML.name, MUSICXML.read_bytes(),
+        "application/vnd.recordare.musicxml+xml",
+    )
+    assert response.status_code == 200
+    job_id = response.json()["id"]
+
+    import time
+
+    deadline = time.time() + 300
+    job = None
+    while time.time() < deadline:
+        job = client.get(f"/api/jobs/{job_id}").json()
+        if job["state"] in ("done", "failed"):
+            break
+        time.sleep(0.5)
+    assert job and job["state"] == "done", job
+
+    page = client.get(f"/score/{job['scoreId']}")
+    assert page.status_code == 200
+    assert ".svg" in page.text, "the engraved page should be served as SVG"
+    assert 'class="ribbon-segment' in page.text
+    assert "ribbon-segment--unrated" not in page.text, "nothing should be hatched"

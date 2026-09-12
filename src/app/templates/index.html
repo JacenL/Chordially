@@ -22,12 +22,13 @@
     <div class="start-options">
       <section class="start-card start-card--upload" aria-labelledby="upload-heading">
         <h2 id="upload-heading">Your own scan</h2>
-        <p>A clear printed page of solo violin notation, as PDF, PNG or JPEG.</p>
+        <p>A scan of printed violin notation (PDF, PNG, JPEG), or a MusicXML file
+           (.musicxml, .xml, .mxl) from your notation software.</p>
 
         <form id="upload-form">
           <label class="file-field">
             <input type="file" id="file-input" name="file"
-                   accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg">
+                   accept=".pdf,.png,.jpg,.jpeg,.musicxml,.xml,.mxl,application/pdf,image/png,image/jpeg">
             <span class="file-field-label">Choose a file</span>
           </label>
           <button type="submit" class="button button--primary" id="upload-submit" disabled>
@@ -36,10 +37,16 @@
         </form>
 
         <p class="note">
-          One page, up to 20&nbsp;MB. A multi-page PDF is accepted but only its
+          One page, up to 20&nbsp;MB. A multi-page file is accepted but only its
           first page is analyzed. Printed notation only — handwriting is out of
-          scope. The page image is sent to Anthropic for notation reading and is
-          not stored beyond this session.
+          scope.
+        </p>
+        <p class="note">
+          <b>A scan</b> is read by a transcription service, so the page image is
+          sent to Anthropic and is not stored beyond this session. Some measures
+          will come back unreadable, and they are marked rather than guessed.
+          <b>MusicXML</b> is read from the file itself: exact notes, nothing sent
+          anywhere, and no measure left for review.
         </p>
 
         <div class="upload-progress" id="upload-progress" hidden aria-live="polite">

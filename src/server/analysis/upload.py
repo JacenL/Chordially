@@ -32,6 +32,7 @@ from src.server.analysis.assemble import (
     segment_score,
 )
 from src.server.recognition import cv_geometry as cg
+from src.server.recognition import musicxml_source as mx
 
 # Disclosed limits. Stated in the upload UI, enforced here.
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
@@ -40,8 +41,10 @@ SUPPORTED = {
     "image/png": "image_scan",
     "image/jpeg": "image_scan",
     "image/jpg": "image_scan",
+    "application/vnd.recordare.musicxml+xml": "musicxml",
+    "application/vnd.recordare.musicxml": "musicxml",
 }
-SUPPORTED_EXTENSIONS = (".pdf", ".png", ".jpg", ".jpeg")
+SUPPORTED_EXTENSIONS = (".pdf", ".png", ".jpg", ".jpeg", ".musicxml", ".xml", ".mxl")
 
 # One page is analyzed. A multi-page PDF is accepted, and the page chosen is the
 # first one that actually contains staff notation -- page 1 of a real etude book
@@ -85,12 +88,21 @@ class Provenance:
     chunks_from_provider: int = 0
     chunks_failed: int = 0
     provider_unavailable: str = ""
+    # A MusicXML import reads notes from the file itself. Reporting that as
+    # "0 sections read live" would describe a recognition run that never
+    # happened, and would understate the result: these notes are exact.
+    from_file: bool = False
 
     @property
     def used_provider(self) -> bool:
         return self.chunks_from_provider > 0
 
     def sentence(self) -> str:
+        if self.from_file:
+            return (
+                "Notes read directly from the MusicXML file — exact, with no "
+                "recognition step and no transcription service involved."
+            )
         if self.chunks_total == 0:
             return "No notation was transcribed for this page."
         parts = []
@@ -122,12 +134,25 @@ def validate(data: bytes, filename: str, content_type: str | None) -> str:
         kind = "pdf_scan"
     elif kind is None and lowered.endswith((".png", ".jpg", ".jpeg")):
         kind = "image_scan"
+    elif kind is None and lowered.endswith(mx.SUPPORTED_EXTENSIONS):
+        kind = "musicxml"
+
+    # A .xml or .mxl extension is not proof. Sniff before committing, so a
+    # misnamed file fails with a sentence instead of a stack trace from music21.
+    if kind == "musicxml" and not mx.looks_like_musicxml(data):
+        raise UploadRejected(
+            f"{filename or 'That file'} is named like MusicXML but does not "
+            "contain a score.",
+            "Export it again from your notation software as MusicXML, "
+            "compressed (.mxl) or not (.musicxml).",
+        )
 
     if kind is None:
         raise UploadRejected(
             f"{filename or 'That file'} is not a supported format.",
-            "PracticeMap reads PDF, PNG and JPEG scans of printed notation. "
-            "Export your score to one of those and try again.",
+            "PracticeMap reads PDF, PNG and JPEG scans of printed notation, and "
+            "MusicXML files (.musicxml, .xml, .mxl). Export your score to one of "
+            "those and try again.",
         )
 
     # Sniff the actual bytes. A .png extension on a PDF, or the reverse, would
@@ -214,6 +239,62 @@ def render_upload(data: bytes, kind: str) -> RenderedPage:
     return RenderedPage(gray=gray, hires=hires, page_count=1, page_index=0)
 
 
+def _analyze_musicxml(
+    data: bytes, filename: str, score_id: str, started: float, say
+) -> tuple[AnalysisBundle, Provenance]:
+    """The MusicXML path: exact notes, exact geometry, no provider.
+
+    Deliberately short, because it reuses everything. Verovio engraves the part
+    and the measure boxes are read out of that engraving; music21 supplies the
+    notes; `build_score` assembles them with the same function a scan uses.
+    """
+    say("Reading the score")
+    page = mx.load_musicxml(data)
+
+    say("Engraving the page and measuring it")
+    PAGE_DIR.mkdir(parents=True, exist_ok=True)
+    svg_path = PAGE_DIR / f"{score_id}.svg"
+    svg_path.write_bytes(page.svg)
+
+    say("Rating measures and grouping phrases")
+    score = build_score(
+        score_id=score_id,
+        content_fingerprint=fingerprint(data),
+        geometry=page.geometry,
+        transcriptions=page.transcriptions,
+        signatures_by_system=page.signatures_by_system,
+        not_attempted=None,
+        input_kind="musicxml",
+        title=page.title or filename or "Uploaded score",
+        is_example=False,
+        image_url=f"/uploads/pages/{score_id}.svg",
+    )
+
+    if page.part_count > 1:
+        score.warnings.append(
+            f"This file has {page.part_count} parts. "
+            f"{page.part_name} was analyzed; the others were not read."
+        )
+    if page.measures_on_page < page.measures_in_part:
+        score.warnings.append(
+            f"The part has {page.measures_in_part} measures and engraves to "
+            f"{page.page_count} pages. The {page.measures_on_page} measures on "
+            "page 1 were analyzed; the rest were not."
+        )
+
+    measure_ratings = rate_score(score)
+    phrases = segment_score(score)
+
+    bundle = AnalysisBundle(
+        score=score,
+        measure_difficulty=measure_ratings,
+        phrases=phrases,
+        phrase_difficulty=rate_phrases(phrases, measure_ratings),
+        recognition=RecognitionReport(latency_s=round(time.monotonic() - started, 1)),
+    )
+    return bundle, Provenance(from_file=True)
+
+
 def analyze_upload(
     data: bytes,
     filename: str,
@@ -231,6 +312,9 @@ def analyze_upload(
     started = time.monotonic()
     kind = validate(data, filename, content_type)
     score_id = f"upload-{fingerprint(data)[:12]}"
+
+    if kind == "musicxml":
+        return _analyze_musicxml(data, filename, score_id, started, say)
 
     say("Rendering the page")
     rendered = render_upload(data, kind)

@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C11 delivered. C7's persistence half and
+Status: demo-ready. C1–C6 and C8–C12 delivered. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
@@ -511,6 +511,59 @@ at a violin teacher — and those errors were stale, describing a credit blocker
 resolved in C4. Recognition shortfalls are now summarised in plain language
 (8 read and rejected, 21 never read, 2 sections that disagreed with the page),
 with the raw errors left in the analysis JSON where they belong.
+
+## C12 — MusicXML import
+- [x] Complete
+- Dependencies: C4.
+- Discharges T04's remaining acceptance clause: MusicXML as a reliable
+  alternative import path.
+- Evidence: **244 tests pass**, 25 new.
+  - Measured on `fixtures/scores/mozart-k156-mvt1.mxl` (Mozart K.156 mvt 1,
+    Violin I): 12 systems, **145 of 145 measures confident and rated**, ratings
+    spanning 0.0–7.6, 35 phrases. **No measure is "Needs review" and none is
+    hatched** — there is nothing to misread, so nothing is left unknown. Next to
+    the scan, where 18 of 61 measures are unrated, this is the honest evidence
+    that the difficulty analysis is not downstream of OCR quality.
+  - Zero provider calls. The provenance line says notes were read from the file
+    rather than reporting "0 sections read live", which would describe a
+    recognition run that never happened.
+  - What was not analysed is disclosed: the file has 4 parts and Violin I was
+    taken; the part has 180 measures engraving to 2 pages and page 1 was used.
+
+### Why the page is an SVG
+
+The viewer positions every overlay against a page image, and MusicXML has none.
+Three routes were tried:
+
+1. **Rasterise Verovio's SVG with PyMuPDF, reuse the OpenCV pipeline** — fails.
+   PyMuPDF opens the SVG and renders a blank page (`min == max == 255`); its SVG
+   support does not handle Verovio's `<use>`/defs output.
+2. **Rasterise through headless Chromium** — works, but would make a browser a
+   runtime dependency for the sake of throwing away vector output.
+3. **Read the geometry out of the SVG and serve the SVG as the page** — chosen.
+   Verovio draws staff lines and barlines as two-point paths, so a measure box is
+   arithmetic rather than detection: left edge from the previous barline, right
+   from its own, vertical extent following the same staff-plus-margin rule
+   `cv_geometry` uses on scans. The browser renders SVG natively at any zoom.
+
+Geometry from this path is exact, and a test asserts measure boxes are flush and
+ordered within each system — the same property the ribbon depends on.
+
+### Two defects found while building it
+
+1. **Verovio cannot initialise its fonts off the main thread.** A toolkit
+   constructed inside the analysis worker reported "Bravura font could not be
+   loaded" and every subsequent load returned False, so uploads engraved
+   nothing while the same code worked in a script. Fixed with one shared
+   toolkit constructed at import — which happens on the main thread — behind a
+   lock the toolkit needs anyway, since it holds the loaded score as mutable
+   state and two concurrent uploads would interleave inside it.
+2. **Every measure came back unrated on the first working run.** `build_score`
+   takes meter from `signatures_by_system`, deliberately not from per-measure
+   transcriptions, because on a scan a mid-staff crop cannot see a signature.
+   Passing `None` there left every measure without a meter and therefore without
+   a rating. The importer now supplies the signature in force at each system's
+   first measure, and a test asserts every system carries one.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

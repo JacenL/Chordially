@@ -141,6 +141,17 @@ boundary" — your assertion, not the app's guess.
 Try merging the last phrase: it refuses, and says there is nothing after it to
 merge with. "Undo all boundary edits" returns to the inferred segmentation.
 
+### 5d. The other input path (30 seconds — the strongest contrast)
+Go back, and upload `fixtures/scores/mozart-k156-mvt1.mxl` — Mozart's String
+Quartet K.156, Violin I. The page is engraved by Verovio rather than scanned,
+and the difference is the whole point: **145 of 145 measures rated, nothing
+hatched, nothing sent to any service.** The source line says the notes were read
+from the file.
+
+Say what this shows: the difficulty analysis is not downstream of OCR quality.
+The scan path has recognition risk and reports it honestly; the MusicXML path has
+none. The same ribbon, phrases and exercises come out of both.
+
 ### 6. A contrasting passage (20 seconds)
 Select Phrase 8. It gets a different technique, because its measures could not
 all be read and there is no even run to pair. Nothing generic is substituted.
@@ -171,6 +182,10 @@ does no coordinate arithmetic at all.
 - **One page per upload.** A multi-page PDF is accepted; the first page carrying
   staves is analyzed and the rest is not read. The page says which page it used.
 - **Printed notation only.** Handwriting is out of scope and untested.
+- **MusicXML is the exact path.** A `.musicxml`, `.xml` or `.mxl` file is read
+  directly: no transcription service, nothing sent anywhere, and no measure left
+  unrated. Only the first part and the first engraved page are analysed, and the
+  page says so.
 - **Recognition is imperfect and says so.** On the demo page, 43 of 61 measures
   validated. The other 18 failed an arithmetic check — their durations did not
   sum to the meter — and are left unrated rather than shown as a guess.
