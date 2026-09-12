@@ -1,0 +1,50 @@
+/* PracticeMap — a score-centred practice workspace, not a dashboard.
+   Warm off-white ground, dark readable type, colour reserved for difficulty
+   and selection (docs/design.md). */
+
+:root {
+  --paper: #faf7f2;
+  --ink: #1f1c18;
+  --ink-soft: #5c554c;
+  --rule: #e2dbd0;
+  --focus: #2b6cb0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.55 "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+
+.app-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.9rem 1.4rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.wordmark { font-weight: 600; letter-spacing: 0.01em; }
+.tagline { color: var(--ink-soft); font-size: 0.9rem; }
+
+.empty-state {
+  max-width: 36rem;
+  margin: 4rem auto;
+  padding: 0 1.4rem;
+}
+
+.empty-state h1 { font-size: 1.55rem; font-weight: 600; margin-bottom: 0.6rem; }
+.empty-state p { color: var(--ink-soft); }
+.status { font-size: 0.9rem; }
+
+.app-footer {
+  border-top: 1px solid var(--rule);
+  padding: 0.8rem 1.4rem;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }

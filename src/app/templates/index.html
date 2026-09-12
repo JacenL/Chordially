@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PracticeMap — violin practice guide</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <header class="app-header">
+    <span class="wordmark">PracticeMap</span>
+    <span class="tagline">See where a piece gets hard, and what to do about it.</span>
+  </header>
+
+  <main class="empty-state">
+    <h1>Upload a page of violin sheet music</h1>
+    <p>
+      PracticeMap finds the phrases, estimates how demanding each measure is on a
+      0.0–10.0 scale, and shows you how to practise the passage you pick.
+    </p>
+    <p class="status">
+      {% if live_recognition %}
+        Recognition is configured.
+      {% else %}
+        Recognition is not configured, so only the prepared example is available.
+      {% endif %}
+    </p>
+  </main>
+
+  <footer class="app-footer">
+    Ratings are heuristic estimates, not measured proficiency or examination grades.
+  </footer>
+</body>
+</html>
