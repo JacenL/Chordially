@@ -175,9 +175,14 @@ does no coordinate arithmetic at all.
   validated. The other 18 failed an arithmetic check — their durations did not
   sum to the meter — and are left unrated rather than shown as a guess.
 - **Ratings are heuristic.** The 0.0–10.0 scale and its five categories are
-  PracticeMap's own, documented in the rubric. No source here validates them,
-  and no violinist has reviewed them; `fixtures/expected/review-phrases.md` is
-  waiting for exactly that review.
+  PracticeMap's own, documented in the rubric and inspectable from the sidebar.
+  No source here validates them and no violinist has reviewed them;
+  `fixtures/expected/review-phrases.md` is the packet waiting for that review.
+- **One external check exists, and it is weak.** Wohlfahrt printed these studies
+  in increasing order of difficulty and the app agrees — Etude 2 averages 4.0,
+  Etude 3 averages 5.7, and the ordering holds at 60, 90 and 160 BPM. That is
+  ordinal agreement with one editor on one pair of studies, from 25 and 7 rated
+  measures. Worth saying out loud; not worth overclaiming.
 - **Tempo is assumed at 90 BPM** when none is printed, which the page states.
   The toolbar's tempo field recalculates every rating from a supplied tempo;
   measures that print their own tempo keep it.

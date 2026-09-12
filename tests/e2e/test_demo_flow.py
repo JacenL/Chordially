@@ -185,18 +185,19 @@ def test_correcting_a_phrase_boundary(server, browser_page):
     def phrase_rows() -> int:
         return page.locator(".phrase-item:not(.phrase-item--spot)").count()
 
-    def wait_for_rows(expected: int) -> None:
-        """Wait for the reload an edit triggers.
+    def click_and_reload(selector: str) -> None:
+        """Click something that edits, and wait for the reload it triggers.
 
-        `networkidle` is no good here: the click starts an async fetch and the
-        page is already idle when it returns, so the assertion would race the
-        navigation. Waiting on the row count waits for the thing that matters.
+        Waiting on a row count is not enough and was actively wrong for the
+        reset button: the count after an undo equals the count before it, so the
+        wait returned instantly and left a navigation in flight, which then
+        aborted the *next* test's `goto`. Stamping the document and waiting for
+        the stamp to disappear waits for the reload itself, whatever it changes.
         """
-        page.wait_for_function(
-            "n => document.querySelectorAll('.phrase-item:not(.phrase-item--spot)').length === n",
-            arg=expected,
-            timeout=15_000,
-        )
+        page.evaluate("window.__beforeReload = true")
+        page.click(selector)
+        page.wait_for_function("() => window.__beforeReload === undefined", timeout=15_000)
+        page.wait_for_load_state("networkidle")
 
     before = phrase_rows()
     assert before > 3
@@ -206,8 +207,8 @@ def test_correcting_a_phrase_boundary(server, browser_page):
     page.wait_for_selector("#edit-row:not([hidden])")
     assert page.locator("#split-at option").count() > 0
     page.select_option("#split-at", index=0)
-    page.click("#split-btn")
-    wait_for_rows(before + 1)
+    click_and_reload("#split-btn")
+    assert phrase_rows() == before + 1
 
     # The corrected boundary is marked as the user's, not as inference.
     page.locator(".phrase-item:not(.phrase-item--spot)").nth(1).click()
@@ -215,8 +216,8 @@ def test_correcting_a_phrase_boundary(server, browser_page):
     assert page.locator("#edited-pill").is_visible()
 
     # Merging puts it back.
-    page.click("#merge-btn")
-    wait_for_rows(before)
+    click_and_reload("#merge-btn")
+    assert phrase_rows() == before
 
     # The last phrase has nothing to merge with, and says so.
     page.locator(".phrase-item:not(.phrase-item--spot)").last.click()
@@ -226,8 +227,8 @@ def test_correcting_a_phrase_boundary(server, browser_page):
     assert "last phrase" in page.locator("#edit-note").inner_text()
 
     # Undo returns to the inferred segmentation.
-    page.click("#reset-edits")
-    wait_for_rows(before)
+    click_and_reload("#reset-edits")
+    assert phrase_rows() == before
 
 
 @pytest.mark.skipif(not DEMO_PDF.exists(), reason="demo PDF not present")

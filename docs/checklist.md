@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C10 delivered. C7's persistence half and
+Status: demo-ready. C1–C6 and C8–C11 delivered. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
@@ -455,6 +455,62 @@ cannot create a dead zone. Found by a browser test, not by reading the code.
 user supplies one. Reusing it for the disclosure reported a user's own 160 BPM
 back to them as an assumption. Supplied-ness is now passed explicitly through
 `build_view(..., supplied_tempo=...)`, and a test pins the distinction.
+
+## C11 — Evidence for the ratings: a calibration check and a usable review packet
+- [x] Complete
+- Dependencies: C10.
+- Why: C10 made the rubric inspectable. This asks whether it is any good. The
+  answer cannot come from inside the repository, but one external reference is
+  available and one document has to exist before a violinist can be asked.
+- Evidence: **219 tests pass**, 7 new.
+
+### The calibration check
+
+Wohlfahrt printed the Op. 45 studies in increasing order of difficulty, and the
+fixture page carries Etude 2 and Etude 3 — so the editor's own ordering is a
+reference the rubric can be measured against. `tests/unit/test_calibration.py`
+locates the boundary from the printed key and meter change (4/4 in C to 2/4 in
+G) rather than a hard-coded measure number, so the test keeps meaning what it
+says if recognition or segmentation changes.
+
+| Tempo | Etude 2 | Etude 3 | Gap |
+|---|---|---|---|
+| 60 BPM | 3.58 | 5.07 | +1.49 |
+| 90 BPM (assumed) | 4.00 | 5.71 | +1.71 |
+| 160 BPM | 4.83 | 6.86 | +2.03 |
+
+**The app agrees with Wohlfahrt at every tempo.** The ordering is not an artifact
+of the assumed 90.
+
+**What this establishes:** ordinal agreement with one editor, on one pair of
+adjacent studies, from one page. **Etude 3 contributes 7 rated measures against
+Etude 2's 25**, because much of the second half of the page could not be read. A
+real signal and a weak one. It does not establish that 4.0 and 5.7 are the right
+numbers, that the gap is the right size, or that any of it transfers beyond a
+beginner's etude book. A test asserts the sample imbalance explicitly, so if the
+second study ever gains enough rated measures the test fails and the caveat gets
+revised upward rather than silently going stale.
+
+### The review packet
+
+`fixtures/expected/review-phrases.md` is now a document a teacher can mark up in
+about twenty minutes: what the app claims and does not, blank fields per phrase
+for the reviewer's own 0–10 and what the app missed, three questions where
+disagreement would change something, and a table mapping each possible answer to
+the exact constant it would move — `WEIGHTS`, `CATEGORIES`, `_saturate`, or the
+segmentation evidence weights.
+
+Regenerable with `python scripts/build_example_fixture.py --review-only`, which
+reads the committed analysis and touches no provider — rewording a document
+should not risk perturbing a fixture 200-odd tests are pinned to.
+
+### One thing fixed while writing it
+
+The packet was dumping twelve lines of raw HTTP 400 JSON, request IDs included,
+at a violin teacher — and those errors were stale, describing a credit blocker
+resolved in C4. Recognition shortfalls are now summarised in plain language
+(8 read and rejected, 21 never read, 2 sections that disagreed with the page),
+with the raw errors left in the analysis JSON where they belong.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same
