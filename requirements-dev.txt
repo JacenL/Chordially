@@ -1,0 +1,6 @@
+# Test-only dependencies. Install these as well to run the suite.
+-r requirements.txt
+
+pytest==9.1.1
+httpx2==2.12.0            # transport behind starlette 1.6's TestClient
+playwright==1.62.0        # browser tests; also run: python -m playwright install chromium

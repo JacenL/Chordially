@@ -1,0 +1,232 @@
+"""The viewer in a real browser.
+
+Two of C3's acceptance conditions cannot honestly be checked without laying out
+a page: that annotations stay on their measures through zoom and resize, and
+that clicking a measure selects the right phrase. Percentage positioning makes
+the first one true by construction, but "by construction" is a claim, and this
+is where it gets tested rather than asserted.
+
+Skipped, not failed, when Chromium is not installed -- a missing browser is a
+missing tool, not a broken product. Install it with:
+
+    python -m playwright install chromium
+"""
+
+from __future__ import annotations
+
+import socket
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.request
+
+import pytest
+
+from src.config import PROJECT_ROOT
+
+playwright_api = pytest.importorskip("playwright.sync_api")
+
+# How closely an overlay must track its page across layouts. 0.002 of page width
+# on this fixture is under two pixels at 100% zoom -- far tighter than the
+# margin between adjacent measures, so a drifting overlay cannot pass.
+ALIGNMENT_TOLERANCE = 0.002
+
+
+def free_port() -> int:
+    with socket.socket() as sock:
+        sock.bind(("127.0.0.1", 0))
+        return sock.getsockname()[1]
+
+
+@pytest.fixture(scope="module")
+def server() -> str:
+    port = free_port()
+    process = subprocess.Popen(
+        [sys.executable, "-m", "uvicorn", "src.app.main:app", "--port", str(port), "--log-level", "warning"],
+        cwd=str(PROJECT_ROOT),
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    base = f"http://127.0.0.1:{port}"
+    try:
+        deadline = time.time() + 30
+        while time.time() < deadline:
+            if process.poll() is not None:
+                raise RuntimeError("the application exited before serving")
+            try:
+                with urllib.request.urlopen(f"{base}/health", timeout=1):
+                    break
+            except (urllib.error.URLError, ConnectionError, TimeoutError):
+                time.sleep(0.2)
+        else:
+            raise RuntimeError("the application did not start within 30s")
+        yield base
+    finally:
+        process.terminate()
+        try:
+            process.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            process.kill()
+
+
+@pytest.fixture(scope="module")
+def page(server):
+    with playwright_api.sync_playwright() as play:
+        try:
+            browser = play.chromium.launch()
+        except Exception as exc:  # noqa: BLE001
+            pytest.skip(f"Chromium is not installed: {exc}")
+        context = browser.new_context(viewport={"width": 1400, "height": 900})
+        page = context.new_page()
+        page.goto(f"{server}/score/example", wait_until="networkidle")
+        yield page
+        context.close()
+        browser.close()
+
+
+def relative_boxes(page) -> dict[str, tuple[float, float, float]]:
+    """Each measure overlay expressed as a fraction of the page image."""
+    return page.evaluate(
+        """() => {
+            const image = document.querySelector('.page-image').getBoundingClientRect();
+            const out = {};
+            for (const el of document.querySelectorAll('.measure')) {
+                const box = el.getBoundingClientRect();
+                out[el.dataset.measureId] = [
+                    (box.left - image.left) / image.width,
+                    (box.top - image.top) / image.height,
+                    box.width / image.width,
+                ];
+            }
+            return out;
+        }"""
+    )
+
+
+def test_page_and_overlays_render(page):
+    assert page.locator(".page-image").count() == 1
+    assert page.locator(".measure").count() > 50
+    assert page.locator(".ribbon-segment").count() == page.locator(".measure").count()
+
+
+def test_overlays_hold_their_place_through_resize(page):
+    before = relative_boxes(page)
+    page.set_viewport_size({"width": 820, "height": 900})
+    page.wait_for_timeout(120)
+    after = relative_boxes(page)
+
+    assert set(before) == set(after)
+    for measure_id, (x, y, w) in before.items():
+        ax, ay, aw = after[measure_id]
+        assert abs(ax - x) < ALIGNMENT_TOLERANCE, measure_id
+        assert abs(ay - y) < ALIGNMENT_TOLERANCE, measure_id
+        assert abs(aw - w) < ALIGNMENT_TOLERANCE, measure_id
+
+    page.set_viewport_size({"width": 1400, "height": 900})
+    page.wait_for_timeout(120)
+
+
+def test_overlays_hold_their_place_through_zoom(page):
+    before = relative_boxes(page)
+    page.click('[data-zoom="in"]')
+    page.click('[data-zoom="in"]')
+    page.wait_for_timeout(120)
+    assert page.locator("#zoom-value").inner_text() == "150%"
+
+    after = relative_boxes(page)
+    for measure_id, (x, y, w) in before.items():
+        ax, ay, aw = after[measure_id]
+        assert abs(ax - x) < ALIGNMENT_TOLERANCE, measure_id
+        assert abs(ay - y) < ALIGNMENT_TOLERANCE, measure_id
+        assert abs(aw - w) < ALIGNMENT_TOLERANCE, measure_id
+
+    page.click('[data-zoom="reset"]')
+    page.wait_for_timeout(120)
+
+
+def test_ribbon_segments_touch_in_the_rendered_page(page):
+    """Continuity as the browser actually lays it out, not just as computed."""
+    rows = page.evaluate(
+        """() => {
+            const bySystem = {};
+            for (const el of document.querySelectorAll('.ribbon-segment')) {
+                const box = el.getBoundingClientRect();
+                const key = Math.round(box.top);
+                (bySystem[key] ||= []).push([box.left, box.right]);
+            }
+            return Object.values(bySystem).map((row) => row.sort((a, b) => a[0] - b[0]));
+        }"""
+    )
+    assert len(rows) >= 10
+    for row in rows:
+        for (_, right), (left, _) in zip(row, row[1:]):
+            assert abs(left - right) < 1.0
+
+
+def test_clicking_a_measure_selects_its_phrase(page):
+    target = page.locator(".measure").nth(7)
+    measure_id = target.get_attribute("data-measure-id")
+    phrase_id = target.get_attribute("data-phrase-id")
+    target.click()
+
+    assert "is-selected" in (target.get_attribute("class") or "")
+    assert page.locator(f'.phrase-item[data-phrase-id="{phrase_id}"].is-selected').count() == 1
+    label = page.locator(f'.phrase-item[data-phrase-id="{phrase_id}"] .phrase-item-label').inner_text()
+    assert page.locator("#sel-title").inner_text() == label
+
+    measure_label = target.locator(".measure-number").inner_text()
+    assert f"measure {measure_label} selected" in page.locator("#sel-range").inner_text()
+    assert measure_id in page.eval_on_selector_all(
+        ".measure.is-selected", "els => els.map(e => e.dataset.measureId)"
+    )
+
+
+def test_keyboard_moves_and_selects_along_the_score(page):
+    first = page.locator(".measure").first
+    first.click()
+    ids = page.eval_on_selector_all(".measure", "els => els.map(e => e.dataset.measureId)")
+
+    page.keyboard.press("ArrowRight")
+    assert page.locator(".measure.is-selected").get_attribute("data-measure-id") == ids[1]
+
+    page.keyboard.press("ArrowDown")
+    moved = page.locator(".measure.is-selected").get_attribute("data-measure-id")
+    assert moved not in (ids[0], ids[1])
+
+    page.keyboard.press("Home")
+    assert page.locator(".measure.is-selected").get_attribute("data-measure-id") == ids[0]
+
+
+def test_selecting_a_phrase_from_the_list_brings_it_into_view(page):
+    item = page.locator(".phrase-item").last
+    phrase_id = item.get_attribute("data-phrase-id")
+    item.click()
+
+    assert page.locator(f'.phrase-outline[data-phrase-id="{phrase_id}"].is-selected').count() >= 1
+    selected = page.locator(".measure.is-selected")
+    assert selected.get_attribute("data-phrase-id") == phrase_id
+    assert selected.is_visible()
+
+
+def test_unrated_measure_reports_that_it_is_unknown(page):
+    """A measure nobody could read must say so, even inside a rated phrase."""
+    unrated = page.locator(".measure--unrated").first
+    label = unrated.locator(".measure-number").inner_text()
+    unrated.click()
+
+    notes = " ".join(
+        page.eval_on_selector_all(
+            "#sel-unrated, #sel-measure-note",
+            "els => els.filter(e => !e.hidden).map(e => e.textContent)",
+        )
+    )
+    assert f"Measure {label}" in notes or "Needs review" in notes
+    assert "could not be read" in notes or "never read" in notes or "unrated" in notes
+
+
+def test_phrase_outlines_can_be_hidden(page):
+    page.uncheck("#toggle-phrases")
+    assert page.locator(".layer--phrases.is-hidden").count() >= 1
+    page.check("#toggle-phrases")
+    assert page.locator(".layer--phrases.is-hidden").count() == 0

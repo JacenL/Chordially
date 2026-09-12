@@ -1,0 +1,15 @@
+# PracticeMap runtime dependencies, pinned to the versions this was built and
+# tested against on CPython 3.14.6 (Windows). Everything here is imported by
+# src/ or scripts/; nothing is listed speculatively.
+
+fastapi==0.141.1          # HTTP app and templating glue
+uvicorn==0.52.4           # ASGI server
+jinja2==3.1.6             # page templates
+markupsafe==3.0.3         # script-tag-safe JSON embedding
+pydantic==2.13.4          # validated domain contracts
+
+numpy==2.5.1              # geometry arithmetic
+opencv-python-headless==5.0.0.93  # staff, barline and measure detection
+pymupdf==1.28.2           # PDF page rendering
+
+anthropic==1.5.0          # notation transcription (needs PRACTICEMAP_ANTHROPIC_API_KEY)

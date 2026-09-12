@@ -23,3 +23,6 @@ tmp/
 work/
 *.log
 .DS_Store
+
+# Test and tooling caches
+.pytest_cache/

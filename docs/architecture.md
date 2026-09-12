@@ -145,3 +145,50 @@ Python. Also: `max_length` on a string field is stripped from the schema sent to
 the API but still enforced client-side, so an over-long remark became a hard
 ValidationError that discarded an otherwise good transcription. Length is
 constrained by the prompt instead.
+
+### 2026-09-12 — The browser does no coordinate arithmetic
+Every overlay leaves Python as a percentage string and the browser positions it
+inside a `position:relative` page element. Zoom is implemented as one CSS
+custom property changing the page's width; nothing recalculates, because there
+is nothing to recalculate. A unit test rejects any style string carrying a unit
+other than `%`, and a Playwright test measures every measure overlay as a
+fraction of the page image at two viewport widths and two zoom levels and
+requires agreement to within 0.002 of page width -- under two pixels, far less
+than the gap between adjacent measures.
+
+Consequence: "annotations survive zoom and resize" is a property of the
+coordinate system rather than a behaviour to maintain, and adding a new overlay
+type cannot reintroduce drift.
+
+### 2026-09-12 — Ribbon geometry: flush by construction, inside the system band
+A ribbon segment starts at its own measure's left edge and ends at the *next*
+measure's left edge, not at its own right edge. Adjoining segments therefore
+share an edge exactly and no rounding gap can open between them; the run is
+stretched to the system's own extent at both ends. Widths still come from the
+engraved barlines, so nothing is distributed equally.
+
+Vertically the ribbon sits in the lowest sliver of the system band. That band is
+the staff plus margin, clamped by `cv_geometry` to halfway toward the
+neighbouring staff, so bands tile the page with no gap between them -- there is
+no gutter to draw in. The bottom 13% of the band, inset by 2%, is the whitespace
+between staves: "directly below each system" without covering notation.
+
+### 2026-09-12 — A measure click selects the phrase owning its first note
+Structural phrase ranges are `(measure ordinal, note index)` pairs and tile the
+analyzable music, so a boundary can fall inside a measure and two phrases can
+appear in one. The click rule is stated once, in `owning_phrase`: the phrase
+containing that measure's first note wins. The other phrase stays reachable from
+its outline and from the phrase list, and the measure is marked as both ending
+one phrase and starting the next so the split is visible rather than silently
+resolved.
+
+A measure recognition could not read belongs to no phrase and returns None. It
+is never attached to a neighbour to keep the coverage tidy.
+
+### 2026-09-12 — Unrated is rendered as unknown in three places, not one
+Hatching on the ribbon was not enough. A rated phrase can contain a measure
+nobody could read, and showing only the phrase's number implied the rating
+covered music it was never computed from. The sidebar now names the specific
+unrated measure and says which kind of failure it was -- unreadable notation
+versus a request that never completed -- alongside the phrase rating and the
+statement that the rating comes from the measures around it.

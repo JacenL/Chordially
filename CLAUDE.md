@@ -83,4 +83,10 @@ The essential experience is score → musical idea → specific challenge → co
 - Do not add verbose roleplay, repeated self-review instructions, or decorative documentation.
 
 ## Commands
-No application commands exist in this starter kit. Once the stack is chosen, replace this paragraph with the actual install, dev, build, lint/type-check, and test commands. Do not invent successful command results.
+Python 3.14, no build step. Install: `pip install -r requirements-dev.txt` and
+once `python -m playwright install chromium`. Run: `python -m uvicorn
+src.app.main:app --reload`. Test: `python -m pytest -q` for everything, or
+`python -m pytest tests/unit tests/integration -q` to skip the browser suite.
+Rebuild the example fixture: `python scripts/build_example_fixture.py` (requires
+PRACTICEMAP_ANTHROPIC_API_KEY). No lint or type-check command is configured. Do
+not invent successful command results.

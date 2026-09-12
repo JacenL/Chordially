@@ -6,7 +6,7 @@
   <title>PracticeMap — violin practice guide</title>
   <link rel="stylesheet" href="/static/app.css">
 </head>
-<body>
+<body class="page-empty">
   <header class="app-header">
     <span class="wordmark">PracticeMap</span>
     <span class="tagline">See where a piece gets hard, and what to do about it.</span>
@@ -14,15 +14,44 @@
 
   <main class="empty-state">
     <h1>Upload a page of violin sheet music</h1>
-    <p>
+    <p class="lede">
       PracticeMap finds the phrases, estimates how demanding each measure is on a
       0.0–10.0 scale, and shows you how to practise the passage you pick.
     </p>
+
+    <div class="start-options">
+      <section class="start-card start-card--upload" aria-labelledby="upload-heading">
+        <h2 id="upload-heading">Your own scan</h2>
+        <p>A clear printed page of solo violin notation, as PDF, PNG or JPEG.</p>
+        <button type="button" class="button button--primary" disabled>
+          Choose a file
+        </button>
+        <p class="note">
+          Not wired up yet — upload and live recognition arrive in the next build
+          step. Until then the example below is the honest demonstration.
+        </p>
+      </section>
+
+      <section class="start-card" aria-labelledby="example-heading">
+        <h2 id="example-heading">Example score</h2>
+        <p>
+          Wohlfahrt, Op. 45 Book 1 — a real scan, analyzed by the same pipeline an
+          upload will use. Needs no API credentials.
+        </p>
+        <a class="button button--primary" href="/score/example">Try example score</a>
+        <p class="note">
+          Clearly labelled as the example wherever it appears. It is never
+          substituted for an upload that failed.
+        </p>
+      </section>
+    </div>
+
     <p class="status">
       {% if live_recognition %}
-        Recognition is configured.
+        Recognition credentials are configured on this instance.
       {% else %}
-        Recognition is not configured, so only the prepared example is available.
+        Recognition credentials are not configured on this instance, so only the
+        prepared example is available.
       {% endif %}
     </p>
   </main>

@@ -68,7 +68,27 @@ fixtures/
 Do not create fake example scores, expected data, dependency files, or CI commands merely to fill these paths. Create real assets/configuration during their checklist tasks. Keep the chosen package lockfile in Git.
 
 ## Development commands
-Not available yet. During T02 replace this section with actual installation, local development, build, and test commands and document required environment variables.
+Python 3.14 (built and tested on CPython 3.14.6). No Node, Java or Docker needed.
+
+```bash
+pip install -r requirements-dev.txt      # runtime + test dependencies
+python -m playwright install chromium    # once, for the browser tests
+
+python -m uvicorn src.app.main:app --reload   # run the app: http://127.0.0.1:8000
+python -m pytest -q                            # whole suite
+python -m pytest tests/unit tests/integration -q   # fast: no browser needed
+python scripts/build_example_fixture.py        # rebuild the example (needs credentials)
+```
+
+There is no build step, no bundler and no type-checker configured: the client is
+plain ES modules served as-is.
+
+### Environment variables
+Copy `.env.example` to `.env` and fill in `PRACTICEMAP_ANTHROPIC_API_KEY`. The
+app reads only that variable and deliberately ignores an ambient
+`ANTHROPIC_API_KEY`, so example mode cannot appear credentialed when the
+application's own key is unset. The example score at `/score/example` needs no
+credentials at all.
 
 ## Why CLAUDE.md is focused
 It contains substantial persistent instructions while detailed specifications live in dedicated documents. Even in a single long session, instructions compete with source files, tool results, and conversation context. Claude Code guidance recommends concise project memory; referenced files are read when relevant, whereas imports load their content at startup.
