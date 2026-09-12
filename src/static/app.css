@@ -505,3 +505,52 @@ html, body {
 @media (prefers-reduced-motion: reduce) {
   .measure { transition: none; }
 }
+
+/* -------------------------------------------------------------- upload */
+
+#upload-form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+.file-field { display: inline-flex; }
+.file-field input[type="file"] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+
+.file-field-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--radius);
+  background: var(--paper);
+  font-size: 14px;
+  cursor: pointer;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-field input:focus-visible + .file-field-label { outline: 3px solid var(--focus); outline-offset: 2px; }
+.file-field-label:hover { background: #F2EDE3; }
+
+.upload-progress {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.upload-stage { margin: 0; font-size: 14px; color: var(--ink); }
+.upload-progress .note { margin-top: 6px; }
+
+.upload-error {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid #E0BDB0;
+  border-radius: var(--radius);
+  background: #FDF1EC;
+}
+
+.upload-error-message { margin: 0 0 4px; font-size: 14px; color: #7A3418; font-weight: 600; }
+.upload-error-recovery { margin: 0; font-size: 13px; color: var(--ink-soft); }
+
+.notice--provenance { border-color: #C9D7E8; background: #F2F6FC; }

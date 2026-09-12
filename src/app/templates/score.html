@@ -45,8 +45,16 @@
         </div>
       </div>
 
-      {% if view.assumptions or view.warnings %}
+      {% if view.assumptions or view.warnings or provenance %}
         <div class="notices">
+          {% if provenance %}
+            <p class="notice notice--provenance">
+              <span class="notice-tag">Source</span>{{ provenance.sentence() }}
+              {% if provenance.provider_unavailable %}
+                Live reading was unavailable: {{ provenance.provider_unavailable }}.
+              {% endif %}
+            </p>
+          {% endif %}
           {% for item in view.assumptions %}
             <p class="notice notice--assumption"><span class="notice-tag">Assumption</span>{{ item }}</p>
           {% endfor %}

@@ -80,6 +80,9 @@ class PageAnalysis:
     mismatched_chunks: int = 0
     chunks_attempted: int = 0
     cache_hits: int = 0
+    # Chunks whose request produced no transcription. Counted here rather than
+    # inferred from the error list, because one outage emits several messages.
+    chunks_failed: int = 0
     latency_s: float = 0.0
     input_tokens: int = 0
     output_tokens: int = 0
@@ -121,7 +124,23 @@ def analyze_page(
         chunks = chunks[:MAX_CHUNKS_PER_UPLOAD]
 
     if client is None:
-        client = ca.build_client()
+        try:
+            client = ca.build_client()
+        except ca.MissingCredentials as exc:
+            # No credentials is a degraded run, not a crash. Geometry already
+            # succeeded and costs nothing, so the page map -- systems, measures,
+            # regions -- is real and usable. Every measure is marked
+            # not_attempted, which renders as unknown rather than as easy or as
+            # unreadable notation. Losing that work to an exception would throw
+            # away the half of the analysis that never needed a provider.
+            result.provider_unavailable = str(exc)
+            result.errors.append(f"no credentials: {exc}")
+            for system in geometry.systems:
+                for measure in system.measures:
+                    result.not_attempted.add((system.index, measure.index_in_system))
+            result.chunks_failed = len(chunks)
+            result.chunks_attempted = 0
+            return result
 
     payloads = [(ch, cg.encode_png(cg.crop(gray_for_crops, ch.box, pad_frac=0.004))) for ch in chunks]
     result.chunks_attempted = len(payloads)
@@ -176,6 +195,7 @@ def analyze_page(
         result.cache_read_tokens += res.cache_read_tokens
 
         if res.error or res.transcription is None:
+            result.chunks_failed += 1
             result.errors.append(f"system {ch.system_index} measures {ch.start_measure}+: {res.error}")
             for i in range(ch.count):
                 result.not_attempted.add((ch.system_index, ch.start_measure + i))

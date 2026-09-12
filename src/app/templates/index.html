@@ -23,13 +23,37 @@
       <section class="start-card start-card--upload" aria-labelledby="upload-heading">
         <h2 id="upload-heading">Your own scan</h2>
         <p>A clear printed page of solo violin notation, as PDF, PNG or JPEG.</p>
-        <button type="button" class="button button--primary" disabled>
-          Choose a file
-        </button>
+
+        <form id="upload-form">
+          <label class="file-field">
+            <input type="file" id="file-input" name="file"
+                   accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg">
+            <span class="file-field-label">Choose a file</span>
+          </label>
+          <button type="submit" class="button button--primary" id="upload-submit" disabled>
+            Analyze this page
+          </button>
+        </form>
+
         <p class="note">
-          Not wired up yet — upload and live recognition arrive in the next build
-          step. Until then the example below is the honest demonstration.
+          One page, up to 20&nbsp;MB. A multi-page PDF is accepted but only its
+          first page is analyzed. Printed notation only — handwriting is out of
+          scope. The page image is sent to Anthropic for notation reading and is
+          not stored beyond this session.
         </p>
+
+        <div class="upload-progress" id="upload-progress" hidden aria-live="polite">
+          <p class="upload-stage" id="upload-stage">Starting</p>
+          <p class="note">
+            No progress bar: the stages take very different amounts of time and a
+            sweeping bar would be a guess. This is the stage actually running.
+          </p>
+        </div>
+
+        <div class="upload-error" id="upload-error" hidden role="alert">
+          <p class="upload-error-message" id="upload-error-message"></p>
+          <p class="upload-error-recovery" id="upload-error-recovery"></p>
+        </div>
       </section>
 
       <section class="start-card" aria-labelledby="example-heading">
@@ -59,5 +83,6 @@
   <footer class="app-footer">
     Ratings are heuristic estimates, not measured proficiency or examination grades.
   </footer>
+  <script type="module" src="/static/upload.js"></script>
 </body>
 </html>

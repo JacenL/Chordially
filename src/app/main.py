@@ -13,7 +13,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -21,6 +21,8 @@ from markupsafe import Markup
 
 from src.config import PROJECT_ROOT, has_app_credentials, load_env
 from src.features.score_viewer.view_model import build_view, client_payload
+from src.server.analysis import jobs
+from src.server.analysis import upload as upload_mod
 from src.server.analysis.example import ExampleUnavailable, load_example
 
 load_env()
@@ -40,6 +42,13 @@ if PAGE_IMAGE_DIR.exists():
     app.mount(
         "/fixtures/pages", StaticFiles(directory=str(PAGE_IMAGE_DIR)), name="page-images"
     )
+
+# Rendered pages from uploads. Under work/, which git ignores: an uploaded score
+# belongs to the user and is never committed.
+upload_mod.PAGE_DIR.mkdir(parents=True, exist_ok=True)
+app.mount(
+    "/uploads/pages", StaticFiles(directory=str(upload_mod.PAGE_DIR)), name="upload-pages"
+)
 
 def _script_json(value: object) -> Markup:
     """JSON for embedding inside a <script> element.
@@ -86,6 +95,37 @@ def index(request: Request) -> HTMLResponse:
     )
 
 
+@app.post("/upload")
+async def upload(file: UploadFile) -> dict:
+    """Accept a scan and start analyzing that actual file.
+
+    Returns a job id immediately. The analysis runs in the background and the
+    page polls for its stage, because a warm cache finishes in seconds and a
+    cold one takes minutes, and holding the request open for either is wrong.
+    """
+    data = await file.read()
+    try:
+        upload_mod.validate(data, file.filename or "", file.content_type)
+    except upload_mod.UploadRejected as exc:
+        # 415 rather than 400: the file was received intact and understood, it
+        # is simply not something this build can read. The recovery action
+        # matters more than the code.
+        raise HTTPException(
+            status_code=415, detail={"error": exc.message, "recovery": exc.recovery}
+        ) from exc
+
+    job = jobs.start(data, file.filename or "upload", file.content_type)
+    return job.as_dict()
+
+
+@app.get("/api/jobs/{job_id}")
+def job_status(job_id: str) -> dict:
+    job = jobs.get_job(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="No such analysis job.")
+    return job.as_dict()
+
+
 @app.get("/score/example", response_class=HTMLResponse)
 def example_score(request: Request) -> HTMLResponse:
     """The prepared example, annotated over its original scan.
@@ -106,5 +146,29 @@ def example_score(request: Request) -> HTMLResponse:
             "view": view,
             "payload": client_payload(view),
             "live_recognition": has_app_credentials(),
+            "provenance": None,
+        },
+    )
+
+
+@app.get("/score/{score_id}", response_class=HTMLResponse)
+def uploaded_score(request: Request, score_id: str) -> HTMLResponse:
+    """An analyzed upload. Held in memory for the life of the process."""
+    bundle = jobs.get_bundle(score_id)
+    if bundle is None:
+        raise HTTPException(
+            status_code=404,
+            detail="That analysis is no longer available. Upload the file again.",
+        )
+    view = build_view(bundle)
+    provenance = jobs.get_provenance(score_id)
+    return TEMPLATES.TemplateResponse(
+        request=request,
+        name="score.html",
+        context={
+            "view": view,
+            "payload": client_payload(view),
+            "live_recognition": has_app_credentials(),
+            "provenance": provenance,
         },
     )

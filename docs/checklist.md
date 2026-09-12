@@ -1,12 +1,12 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: in progress. Plan approved; C1, C2 and C3 delivered.
+Status: in progress. C1–C4 delivered.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
 assumed.
 Working branch: practice-map-build, created from main at 95f7ceb.
-Current task: C4 (real upload path).
+Current task: C6 (passage-specific practice instruction).
 
 ## How this document is organized
 
@@ -139,9 +139,13 @@ architecture.md's decision log with its rationale.
 **32 of the 40 measures actually attempted validated (80%)**, consistent with
 C1's 87% on its smaller sample.
 
-## BLOCKER — application API credit exhausted
-- Status: **blocking live recognition. Not blocking anything else.**
-- Symptom: HTTP 400 `invalid_request_error` on 12 of 34 chunks.
+## RESOLVED BLOCKER — application API credit was exhausted
+- Status: **cleared 2026-09-12 during C4.** Re-probed at the start of the C4
+  session and still failing; re-probed ~45 minutes later and returning 200.
+  Credit was added to the account in between. Verified twice: a direct
+  `messages.create` call, and 12 chunks read live inside a real upload with
+  zero failures.
+- Original symptom: HTTP 400 `invalid_request_error` on 12 of 34 chunks.
 - Actual message: *"Your credit balance is too low to access the Anthropic API."*
 - This is the **application's** account, funding `PRACTICEMAP_ANTHROPIC_API_KEY`.
   It is separate from the Claude Code session's own usage.
@@ -151,10 +155,11 @@ C1's 87% on its smaller sample.
   by image bytes + model + prompt, gitignored) holds the 22 chunks that did
   succeed. Re-running rebuilt the fixture in **3 seconds instead of 685**, and
   when credit is restored only the 12 failed chunks will cost anything.
-- Consequence for C4: the upload path can be built and tested end to end against
-  the cache, but the "real supported uploaded score" acceptance condition cannot
-  be signed off until credit exists. C4 records that distinction rather than
-  claiming the condition passed.
+- Consequence, now moot: C4's "real supported uploaded score" condition was
+  going to be unsignable. It is signed off with a live run instead. The
+  provenance disclosure built while the blocker was active is kept, because a
+  cached run and a live run are still different facts and the interface should
+  keep saying which one happened.
 
 ## C3 — Score viewer, difficulty ribbon, and selection
 - [x] Complete
@@ -225,7 +230,7 @@ C1's 87% on its smaller sample.
   unachievable.
 
 ## C4 — Real upload path
-- [ ] Complete
+- [x] Complete
 - Dependencies: C3.
 - Discharges T04.
 - Acceptance: supported PDF/image upload flows through actual recognition to
@@ -236,10 +241,22 @@ C1's 87% on its smaller sample.
   MusicXML import available as a stated alternative; example mode never
   substitutes for a failed upload silently; upload size/page limits enforced and
   disclosed; transmission to the provider disclosed in the flow.
-- Evidence: pending.
-- Blocker: the credit blocker above gates the live-provider half of this
-  condition. Build and test the path; do not mark the live condition passed
-  without a real run.
+- Evidence: **124 tests pass**, including a live end-to-end upload test
+  (`-m live`) that posts the real PDF, polls the job to completion, and asserts
+  the resulting page carries a ribbon and a provenance line.
+  - Measured on `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf` (page 4 of the book,
+    extracted as a one-page file and verified to render pixel-identical to the
+    fixture source, so the cache keys match):
+    11 systems, 61 measures, 15 phrases, **43 of 61 measures rated (70%)**,
+    ratings spanning 1.0–7.0, 14 of 15 phrases rated.
+  - First run: 65s, 22 sections from cache and **12 read live with zero
+    failures**. Second run: 1.7s, fully cached.
+  - Quality split afterwards: 20 confident, 23 uncertain, 18 unreadable,
+    **0 not_attempted** — the 21 measures previously never read are now read.
+  - Scope enforcement tested for empty files, unsupported formats, a file lying
+    about being a PDF, oversize uploads and images too small to find staves.
+    Every rejection carries a named recovery action.
+- Blocker: none. The credit blocker above is cleared.
 
 ## C5 — Editable phrases and trouble spots
 - [ ] Complete
@@ -294,7 +311,7 @@ application has been tested.
 None. C1 and C2 are confirmed on origin/practice-map-build.
 
 ## Handoff
-- Next action: implement C4.
+- Next action: implement C6.
 - Outstanding external setup: credit on the Anthropic account funding
   `PRACTICEMAP_ANTHROPIC_API_KEY`. Nothing else is blocked on the user.
 - Last meaningful validation: 114 tests pass — `python -m pytest -q`,
