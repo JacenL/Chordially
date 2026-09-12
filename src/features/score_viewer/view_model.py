@@ -121,6 +121,7 @@ class PhraseView:
     label: str
     level: str
     parent_id: str | None
+    user_edited: bool
     score_text: str
     category: str
     color: str
@@ -403,6 +404,7 @@ def build_view(bundle: AnalysisBundle) -> ScoreView:
                 label=phrase.label,
                 level=phrase.level,
                 parent_id=phrase.parent_id,
+                user_edited=phrase.user_edited,
                 score_text=format_score(rating),
                 category=category_for(rating),
                 color=color_for(rating),
@@ -500,11 +502,14 @@ def client_payload(view: ScoreView) -> dict:
             for m in measures
         },
         "measureOrder": [m.id for m in sorted(measures, key=lambda m: m.ordinal)],
+        "measureLabels": {m.id: m.label for m in measures},
         "phrases": {
             p.id: {
+                "id": p.id,
                 "label": p.label,
                 "level": p.level,
                 "parentId": p.parent_id,
+                "userEdited": p.user_edited,
                 "scoreText": p.score_text,
                 "category": p.category,
                 "color": p.color,

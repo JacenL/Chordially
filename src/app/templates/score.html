@@ -177,6 +177,19 @@
 
           <p class="panel-note" id="sel-unrated" hidden></p>
           <p class="panel-note panel-note--flag" id="sel-measure-note" hidden></p>
+
+          <div class="edit-row" id="edit-row" hidden>
+            <label class="visually-hidden" for="split-at">Split this phrase before measure</label>
+            <select class="edit-select" id="split-at"></select>
+            <button type="button" class="button button--quiet" id="split-btn">Split here</button>
+            <button type="button" class="button button--quiet" id="merge-btn">Merge with next</button>
+            <span class="edit-pill" id="edited-pill" hidden>edited</span>
+          </div>
+          <p class="panel-note" id="edit-note" hidden></p>
+          <p class="panel-note">
+            <a href="#" id="reset-edits">Undo all boundary edits</a> — edits last
+            until the server restarts and are not saved.
+          </p>
         </section>
 
         <section class="panel" id="why-panel" hidden>

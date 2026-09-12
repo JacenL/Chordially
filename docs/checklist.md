@@ -1,13 +1,13 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C4, C6, C8 and C9 delivered; C5 and C7's persistence
-half recorded as deferred below.
+Status: demo-ready. C1–C6, C8 and C9 delivered. C7's persistence half and
+within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
 assumed.
 Working branch: practice-map-build, created from main at 95f7ceb.
-Current task: C5 (phrase boundary editing).
+Current task: none in flight.
 
 ## How this document is organized
 
@@ -260,17 +260,40 @@ C1's 87% on its smaller sample.
 - Blocker: none. The credit blocker above is cleared.
 
 ## C5 — Editable phrases and trouble spots
-- [ ] **Not built. Deliberately deferred, not forgotten.**
-- Dependencies: C4.
-- Why deferred: none of the five required demo behaviours needs it, and the
-  time it would have taken went to C6, which two of them do need. It remains a
-  genuine gap against the product spec's journey step 7 ("adjust a mistaken
-  phrase boundary") and is the first thing to build next.
-- What exists already: the data model supports it. Structural and practice
-  ranges are separate, boundaries are `(measure, note index)` anchors so a
-  boundary can fall inside a measure, phrases carry a `user_edited` flag, and
-  every boundary already records its evidence and confidence. The work is the
-  editing interface and re-segmentation, not the contracts.
+- [x] Complete for measure-boundary edits. **Within-measure boundaries remain
+  unbuilt** — see the limitation below.
+- Dependencies: C4, C9.
+- Discharges T05: split and merge work, structural/phrase/trouble-spot levels
+  are distinct, boundaries cross systems, practice overlap is recomputed
+  without changing structural ownership, and the final phrase is handled.
+- Evidence: **212 tests pass** (207 offline, 5 live), 22 new on this checkpoint.
+  - The load-bearing invariant is asserted after every edit: structural coverage
+    tiles the measures with **no gaps and no duplicate ownership**, and every
+    phrase stays contiguous. This is why an edit rebuilds the list from a
+    partition of measure indices rather than patching two phrases in place —
+    patching is how a gap gets introduced, and the user would only find it by
+    clicking the orphaned measure.
+  - Split then merge returns the exact original member sets.
+  - Practice overlap is recomputed, and the "first *playable* note" rule is
+    tested against a real case: the split in the fixture borrows past measure
+    15, which has no readable notes, to measure 16. Borrowing an empty measure
+    would hand the player a rest and call it the join.
+  - A merged phrase's rating equals a fresh aggregation over the union of its
+    members; a split separates a hard half from an easy one instead of averaging
+    them.
+  - A boundary the user placed records confidence 1.0 and the reason "you placed
+    this boundary" — it is an assertion, not an inference, and is not dressed up
+    as one. Untouched neighbours keep their original inferred reasons.
+  - Four refusals tested by name: splitting where a phrase already begins,
+    splitting at a measure outside the phrase, merging the last phrase, and
+    editing a phrase id belonging to another score.
+  - Driven end to end in Chromium: split, merge, refusal message, and undo.
+- **Limitation, stated rather than implied:** boundaries can only be placed at
+  measure lines. The product spec asks for a boundary inside a measure, and the
+  data model supports it — anchors carry a note index — but the interface does
+  not. Product acceptance criterion 3 is therefore partially met.
+- **Limitation:** edits live in memory and are lost when the server restarts.
+  `docs/demo.md` says so.
 - Discharges T05.
 - Acceptance: one-idea phrase groups with defensible reasons; structural,
   phrase and micro-range levels distinct; boundaries within a measure and across
@@ -412,8 +435,8 @@ application has been tested.
 None. C1 and C2 are confirmed on origin/practice-map-build.
 
 ## Handoff
-- Next action: C5, phrase boundary editing — the largest remaining gap
-  against the product spec.
+- Next action: persistence (C7's remaining half), then within-measure
+  boundary editing, then structural sections.
 - Outstanding external setup: none. The Anthropic credit blocker is cleared and
   live recognition is verified working.
 - Last meaningful validation: `python -m pytest -q` → 151 passed;

@@ -41,6 +41,7 @@ from src.schemas.score import (
     Note,
     Page,
     Phrase,
+    PhraseBoundary,
     Score,
     System,
 )
@@ -283,6 +284,57 @@ def region_fragments(measures: list[Measure]) -> list[Region]:
     return out
 
 
+def make_phrase(
+    ordered: list[Measure],
+    start_index: int,
+    end_index: int,
+    *,
+    phrase_id: str,
+    label: str,
+    start_boundary: PhraseBoundary,
+    end_boundary: PhraseBoundary,
+    user_edited: bool = False,
+) -> Phrase:
+    """Build one phrase over `ordered[start_index:end_index + 1]`.
+
+    Shared by segmentation and by user edits so the practice-overlap rule has
+    exactly one implementation. A phrase built two ways would eventually drift,
+    and the rule it would drift on -- extend through the first playable note of
+    the next phrase, fabricate nothing at the end of the piece -- is one the
+    spec states explicitly.
+    """
+    members = ordered[start_index : end_index + 1]
+    first, last = members[0], members[-1]
+
+    # Practice range: extend through the first playable note of the next
+    # phrase, so the join is rehearsed rather than the phrase stopping dead.
+    # The final phrase has no next note, and nothing is fabricated for it.
+    practice_end = Anchor(measure_id=last.id, note_index=max(0, len(last.note_ids) - 1))
+    has_overlap = False
+    for later in ordered[end_index + 1 :]:
+        if later.note_ids:
+            practice_end = Anchor(measure_id=later.id, note_index=0)
+            has_overlap = True
+            break
+
+    return Phrase(
+        id=phrase_id,
+        label=label,
+        structural_start=Anchor(measure_id=first.id, note_index=0),
+        structural_end=Anchor(
+            measure_id=last.id, note_index=max(0, len(last.note_ids) - 1)
+        ),
+        practice_start=Anchor(measure_id=first.id, note_index=0),
+        practice_end=practice_end,
+        has_practice_overlap=has_overlap,
+        regions=region_fragments(members),
+        start_boundary=start_boundary,
+        end_boundary=end_boundary,
+        measure_ids=[m.id for m in members],
+        user_edited=user_edited,
+    )
+
+
 def segment_score(score: Score) -> list[Phrase]:
     """Divide the score into phrases, then extend each into a practice range."""
     ordered = score.measures_in_order()
@@ -311,46 +363,21 @@ def segment_score(score: Score) -> list[Phrase]:
 
     phrases: list[Phrase] = []
     for n, (s, e) in enumerate(zip(starts, ends)):
-        members = ordered[s : e + 1]
-        first, last = members[0], members[-1]
-
         start_cand = by_index.get(s - 1) if s > 0 else None
         end_cand = by_index.get(e)
-
-        # Practice range: extend through the first playable note of the next
-        # phrase, so the join is rehearsed rather than the phrase stopping dead.
-        # The final phrase has no next note, and nothing is fabricated for it.
-        practice_end = Anchor(
-            measure_id=last.id, note_index=max(0, len(last.note_ids) - 1)
-        )
-        has_overlap = False
-        for later in ordered[e + 1 :]:
-            if later.note_ids:
-                practice_end = Anchor(measure_id=later.id, note_index=0)
-                has_overlap = True
-                break
-
-        regions = region_fragments(members)
-
         phrases.append(
-            Phrase(
-                id=f"{score.id}:ph{n:03d}",
+            make_phrase(
+                ordered,
+                s,
+                e,
+                phrase_id=f"{score.id}:ph{n:03d}",
                 label=f"Phrase {n + 1}",
-                structural_start=Anchor(measure_id=first.id, note_index=0),
-                structural_end=Anchor(
-                    measure_id=last.id, note_index=max(0, len(last.note_ids) - 1)
-                ),
-                practice_start=Anchor(measure_id=first.id, note_index=0),
-                practice_end=practice_end,
-                has_practice_overlap=has_overlap,
-                regions=regions,
                 start_boundary=boundary_from_candidate(
                     start_cand, "the piece begins here"
                 ),
                 end_boundary=boundary_from_candidate(
                     end_cand if e < len(ordered) - 1 else None, "the piece ends here"
                 ),
-                measure_ids=[m.id for m in members],
             )
         )
     return phrases

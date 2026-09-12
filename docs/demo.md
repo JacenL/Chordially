@@ -120,6 +120,17 @@ spot marked on every phrase would say nothing. They are also derived rather than
 stored, so they move with the tempo: set 160 BPM and one of them disappears,
 because once the whole phrase is demanding, that measure no longer stands out.
 
+### 5c. Correct a boundary you disagree with (25 seconds)
+Segmentation is inference and says so — several boundaries on this page carry
+"moderate evidence (0.37)". Pick one you think is wrong, choose a measure from
+the dropdown and press **Split here**; or **Merge with next** to join two ideas
+the app separated. The phrase re-rates immediately, and the corrected boundary is
+marked "edited" and records confidence 1.0 with the reason "you placed this
+boundary" — your assertion, not the app's guess.
+
+Try merging the last phrase: it refuses, and says there is nothing after it to
+merge with. "Undo all boundary edits" returns to the inferred segmentation.
+
 ### 6. A contrasting passage (20 seconds)
 Select Phrase 8. It gets a different technique, because its measures could not
 all be read and there is no even run to pair. Nothing generic is substituted.
@@ -160,8 +171,11 @@ does no coordinate arithmetic at all.
 - **Tempo is assumed at 90 BPM** when none is printed, which the page states.
   The toolbar's tempo field recalculates every rating from a supplied tempo;
   measures that print their own tempo keep it.
-- **Phrase boundaries cannot be edited yet.** The spec calls for split/merge and
-  boundary adjustment; it is not in this build.
+- **Phrase boundaries can be split and merged, but only at measure lines.** The
+  spec also asks for a boundary inside a measure. The data model supports it —
+  boundaries are note-level anchors — but the interface does not.
+- **Edits are not saved.** They survive navigation and reload; they do not
+  survive restarting the server.
 - **Nothing persists.** Analyses live in memory for the life of the process, and
   self-reported practice progress is not stored. Restarting the server loses
   uploaded analyses; the example is always available.

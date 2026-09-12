@@ -12,6 +12,7 @@
  */
 
 import { createPractice } from "./practice.js";
+import { createEditor } from "./edits.js";
 
 const metaEl = document.getElementById("score-meta");
 const SCORE_KEY = metaEl ? JSON.parse(metaEl.textContent).scoreId : null;
@@ -23,7 +24,9 @@ if (dataEl) {
 }
 
 function init(data) {
-  const practice = createPractice(SCORE_KEY, metaEl ? JSON.parse(metaEl.textContent).tempo : null);
+  const TEMPO = metaEl ? JSON.parse(metaEl.textContent).tempo : null;
+  const practice = createPractice(SCORE_KEY, TEMPO);
+  const editor = createEditor(SCORE_KEY, TEMPO);
   const pane = document.getElementById("score-pane");
   const hoverCard = document.getElementById("hover-card");
   const measureEls = Array.from(document.querySelectorAll(".measure"));
@@ -207,6 +210,8 @@ function init(data) {
       el("sel-practice").textContent = phrase.practiceText;
 
       practice.load(selectedPhraseId);
+      // Editing acts on the phrase, even when a spot inside it is selected.
+      editor.show(data.phrases[parentOf(selectedPhraseId)], data.measureLabels || {});
     } else if (measure) {
       // An unreadable or never-attempted measure. It belongs to no phrase, and
       // saying which of those it is matters: one is a judgement about the
@@ -223,6 +228,7 @@ function init(data) {
       practice.clear(
         "This measure is not part of an analyzed phrase, so there is no passage to build an exercise from."
       );
+      editor.hide();
     }
   }
 

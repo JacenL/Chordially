@@ -26,6 +26,8 @@ from src.features.score_viewer.view_model import build_view, client_payload
 from src.server.analysis import jobs
 from src.server.analysis import upload as upload_mod
 from src.server.analysis.example import ExampleUnavailable, load_example
+from src.features.segmentation.edit import EditRefused, merge_phrase, split_phrase
+from src.server.analysis import store
 from src.server.analysis.recompute import parse_tempo, retune
 
 load_env()
@@ -130,7 +132,15 @@ def job_status(job_id: str) -> dict:
 
 
 def _bundle_for(score_id: str):
-    """Resolve a score id to its analysis, example or upload."""
+    """Resolve a score id to its analysis: an edited copy if one exists.
+
+    Edits win over the inferred segmentation, which is the point of making
+    them. Everything downstream -- the viewer, the practice endpoint -- reads
+    through here, so there is no path that renders the original after an edit.
+    """
+    edited = store.get(score_id)
+    if edited is not None:
+        return edited
     if score_id == "example":
         return load_example()
     bundle = jobs.get_bundle(score_id)
@@ -140,6 +150,51 @@ def _bundle_for(score_id: str):
             detail="That analysis is no longer available. Upload the file again.",
         )
     return bundle
+
+
+def _apply_edit(score_id: str, operation) -> dict:
+    """Run one phrase edit and keep the result for later requests."""
+    try:
+        source = _bundle_for(score_id)
+    except ExampleUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+    working = store.seed(score_id, source)
+    phrases = [p for p in working.phrases if p.level == "phrase"]
+    try:
+        edited = operation(working.score, phrases)
+    except EditRefused as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+    # Trouble spots are derived from ratings and phrase membership, so the old
+    # ones are dropped here and rebuilt by the next retune rather than left
+    # pointing at phrases that no longer exist.
+    working.phrases = edited
+    store.put(score_id, working)
+    return {"ok": True, "phrases": len(edited)}
+
+
+@app.post("/api/phrases/{score_id}/split")
+def split(score_id: str, phrase_id: str, at_measure_id: str) -> dict:
+    """Begin a new phrase at the given measure."""
+    return _apply_edit(
+        score_id,
+        lambda score, phrases: split_phrase(score, phrases, phrase_id, at_measure_id),
+    )
+
+
+@app.post("/api/phrases/{score_id}/merge")
+def merge(score_id: str, phrase_id: str) -> dict:
+    """Join this phrase to the one after it."""
+    return _apply_edit(
+        score_id, lambda score, phrases: merge_phrase(score, phrases, phrase_id)
+    )
+
+
+@app.post("/api/phrases/{score_id}/reset")
+def reset_edits(score_id: str) -> dict:
+    """Discard edits and go back to the inferred segmentation."""
+    return {"ok": True, "had_edits": store.clear(score_id)}
 
 
 @app.get("/api/practice/{score_id}/{phrase_id}")
@@ -208,7 +263,7 @@ def example_score(request: Request, tempo: str | None = None) -> HTMLResponse:
     of a failed upload: an upload that fails reports its own failure.
     """
     try:
-        bundle = load_example()
+        bundle = _bundle_for("example")
     except ExampleUnavailable as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
@@ -218,14 +273,12 @@ def example_score(request: Request, tempo: str | None = None) -> HTMLResponse:
 @app.get("/score/{score_id}", response_class=HTMLResponse)
 def uploaded_score(request: Request, score_id: str, tempo: str | None = None) -> HTMLResponse:
     """An analyzed upload. Held in memory for the life of the process."""
-    bundle = jobs.get_bundle(score_id)
-    if bundle is None:
-        raise HTTPException(
-            status_code=404,
-            detail="That analysis is no longer available. Upload the file again.",
-        )
     return _render_score(
-        request, bundle, score_id, tempo, provenance=jobs.get_provenance(score_id)
+        request,
+        _bundle_for(score_id),
+        score_id,
+        tempo,
+        provenance=jobs.get_provenance(score_id),
     )
 
 
