@@ -12,6 +12,7 @@
     <span class="score-title">
       {{ view.title }}
       {% if view.is_example %}<span class="badge badge--example">Example score</span>{% endif %}
+      {% if provenance and provenance.from_local_omr %}<span class="badge">Recognized scan · redrawn notation</span>{% elif provenance and provenance.from_file %}<span class="badge">MusicXML · engraved notation</span>{% endif %}
     </span>
     <a class="button button--quiet" href="/">New score</a>
   </header>
@@ -331,7 +332,7 @@
             {% endfor %}
           </ul>
           <p class="panel-note">
-            Unread measures have neutral hatching and left unrated, even where
+            Unread measures have neutral hatching and are left unrated, even where
             they fall inside a rated passage. They are not easy passages and they
             are not hard ones — they are unknown.
           </p>

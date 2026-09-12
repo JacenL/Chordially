@@ -161,6 +161,8 @@ if (form) {
       if (count && Number(count[2]) > 0 && Number(count[1]) <= Number(count[2])) {
         const completed = Number(count[1]), total = Number(count[2]);
         status("Reading the notation", `${completed} of ${total} recognition requests completed · ${Math.floor(completed / total * 100)}% of this stage. Some results may need review.`, completed / total * 100);
+      } else if ((job.stage || "").includes("Audiveris")) {
+        status("Reading your sheet music", "Audiveris is recognizing the notation on the server. It reports completion when ready, so there is no percentage for this stage.");
       } else {
         status(job.stage || "Analyzing your score", "This stage has no measurable percentage yet. Status updates automatically.");
       }

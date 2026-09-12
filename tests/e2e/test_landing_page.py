@@ -124,9 +124,9 @@ def test_the_data_handling_disclosure_is_still_reachable(page):
     index = next(i for i, text in enumerate(summaries) if "your file" in text.lower())
     page.locator(".detail summary").nth(index).click()
     body = page.locator(".detail").nth(index).locator(".detail-body").inner_text()
-    assert "leaves this machine" in body
-    assert "sent to any service" in body
-    assert "not stored" in body or "discards everything" in body
+    assert "server hosting PracticeMap" in body
+    assert "external AI" in body
+    assert "Generated score pages remain" in body
 
 
 def test_supported_formats_are_visible_without_opening_anything(page):
@@ -233,4 +233,31 @@ def test_progress_redirects_only_after_job_done(page):
     assert "/score/" not in page.url
     job.update(state="done", scoreId="example")
     page.wait_for_url("**/score/example")
+    assert page.errors == []
+
+
+def test_musicxml_upload_works_with_the_integrated_viewer(page):
+    page.set_input_files("#file-input", str(PROJECT_ROOT / "fixtures/scores/mozart-k156-mvt1.mxl"))
+    page.click("#upload-submit")
+    page.wait_for_url("**/score/upload-**", timeout=30000)
+    page.wait_for_load_state("networkidle")
+    assert page.locator(".badge").filter(has_text="MusicXML").is_visible()
+    assert page.locator(".difficulty-highlight").count() > 0
+    assert page.locator(".ribbon-segment").count() == 0
+    page.locator(".measure").nth(3).click()
+    assert page.locator("#sel-title").inner_text().strip()
+    assert page.errors == []
+
+
+def test_missing_scan_engine_gives_recovery_without_provider_fallback(page):
+    from src.server.recognition.audiveris_source import is_available
+    if is_available():
+        pytest.skip("This instance has Audiveris; the missing-engine scenario does not apply")
+    assert "not installed" in page.locator(".status").inner_text()
+    page.set_input_files("#file-input", str(DEMO_PDF))
+    page.click("#upload-submit")
+    playwright_api.expect(page.locator("#upload-error")).to_be_visible(timeout=15000)
+    assert "Audiveris" in page.locator("#upload-error-message").inner_text()
+    assert "MusicXML" in page.locator("#upload-error-recovery").inner_text()
+    assert page.locator("#upload-submit").is_enabled()
     assert page.errors == []

@@ -23,6 +23,7 @@ from src.config import PROJECT_ROOT, has_app_credentials, load_env
 from src.features.difficulty.rubric import DEFAULT_TEMPO_BPM
 from src.features.practice.coach import PassageNotFound, build_guidance
 from src.features.score_viewer.view_model import build_view, client_payload
+from src.server.recognition.audiveris_source import is_available as audiveris_available
 from src.server.analysis import jobs
 from src.server.analysis import upload as upload_mod
 from src.server.analysis.example import ExampleUnavailable, load_example
@@ -101,7 +102,7 @@ def index(request: Request) -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
         request=request,
         name="index.html",
-        context={"live_recognition": has_app_credentials()},
+        context={"audiveris_available": audiveris_available()},
     )
 
 

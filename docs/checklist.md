@@ -1348,3 +1348,26 @@ outage; a live run reached 43 of 61), **B5** (persistence + progress, was C7),
 - Validation: 12 viewer browser tests passed, including a regression check after
   selection and asynchronous guidance loading; diff check passed.
 - Delivery: local frontend branch; GitHub authentication remains unresolved.
+
+
+## Final local integration — 2026-09-12
+- User authorized merging the completed backend with our frontend locally as
+  `final`, excluding any Grok wrapper. All remote backend task tips are ancestors
+  of the merged integration tip `bcc68e8`; no separate task branch was omitted.
+- Merge commit `381c33f` preserves our highlights, reduced height, American
+  English copy, measured progress, and sidebar scroll fix. Conflicts in the
+  template, landing-page tests and this checklist were resolved without dropping
+  backend analysis changes.
+- Frontend now reports actual Audiveris installation availability, labels scan
+  re-engraving, uses indeterminate recognition progress for Audiveris, and states
+  server-side processing and generated-page retention accurately.
+- Fresh-install fixes: added the MusicXML runtime dependencies and replaced the
+  obsolete API-key example with the Audiveris executable setting.
+- Validation: final full suite 344 passed, 3 skipped, 5 live tests deselected,
+  including 25 browser tests. Real MusicXML upload and missing-engine recovery
+  passed; home and engraved-score screenshots inspected. Dependency check and
+  diff check passed. No external recognition API was called.
+- Local limitation: Audiveris is not installed; the 3 skipped integration tests
+  require an uncommitted Audiveris export. Full scan recognition was not verified
+  on this Mac. B5/F3 persistence and F4 note-level edit contracts remain absent.
+- This final branch is local only, as requested. No remote merge or push.
