@@ -246,3 +246,39 @@ all — `_note_event` never set the field, so bow demand was silently zero for
 every import. And a limitation the wire format cannot express is written down
 rather than papered over: a natural sign cancelling a key-signature sharp is
 written identically to no accidental, so it reads as the key-signature pitch.
+
+### 2026-09-12 — The coloured unit is a practice section, not a measure
+A colour band per measure turned the fixture page into sixty-one slices whose
+boundaries fell wherever a rating happened to tick by a tenth. That is a picture
+of the rubric's rounding, not of the music, and it made the sidebar answer a
+question nobody asked: a player does not practise measure 14 because it is 0.2
+harder than measure 13.
+
+`src/features/segmentation/sections.py` groups adjacent phrases into practice
+sections while they ask for the same kind of work, and splits where a printed
+key or meter change, a real step in difficulty, or a change in the dominant
+demand says the work has changed. A user's own split or merge always wins.
+
+Consequences worth recording:
+
+* **The C15 rule is superseded.** A page with no printed signature change used
+  to get no sections at all, on the grounds that wrapping it in "Section 1" would
+  be a formal claim the notation does not support. The protection is kept — a
+  section is labelled by the measures it spans and by demands measured inside it,
+  never by a formal name — but refusing to group meant refusing the page a
+  primary unit. The Wohlfahrt page now yields five sections where it yielded two.
+* **Sections cannot be stored.** They group phrases by difficulty and by demand,
+  and both move with tempo, so a section saved at 90 BPM is the wrong grouping at
+  160. They are re-derived on every request, exactly like trouble spots. A user's
+  edit therefore stores the *decision* — this measure begins a section, that one
+  does not — keyed by measure id, which survives re-derivation.
+* **Splitting a section can split a phrase.** A section boundary lands on a
+  phrase start or it does not land, so asking for a boundary mid-phrase is asking
+  for that idea to be two ideas, and `split_section` does exactly that first.
+* **Unknown is not a difficulty.** A stretch nobody could read forms its own
+  section rather than inheriting a neighbour's colour, and a single unreadable
+  measure inside a rated section cuts its band and keeps neutral hatching. That
+  is the only thing that interrupts a band.
+* **The ribbon still cannot drift.** Bands are flush by the same construction as
+  before — a band ends where the next band's first measure starts — so grouping
+  changed what a band means without changing the geometry guarantee.

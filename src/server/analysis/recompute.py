@@ -25,7 +25,8 @@ the server.
 from __future__ import annotations
 
 from src.features.difficulty.rubric import DEFAULT_TEMPO_BPM
-from src.features.segmentation.phrases import find_sections, find_trouble_spots
+from src.features.segmentation.phrases import find_trouble_spots
+from src.features.segmentation.sections import find_sections
 from src.schemas.analysis import AnalysisBundle
 from src.server.analysis.assemble import rate_phrases, rate_score
 
@@ -84,9 +85,19 @@ def retune(bundle: AnalysisBundle, tempo_bpm: float | None) -> AnalysisBundle:
     # spot saved at 90 BPM would be wrong the moment someone types 160. Rebuild
     # them from whatever the ratings just became.
     phrases = [p for p in fresh.phrases if p.level == "phrase"]
-    # Sections are re-derived too, and for the same reason: an edit can move a
-    # phrase boundary, and a section snaps to phrase starts so it nests.
-    sections = find_sections(score, phrases)
+    # Sections are re-derived too, and for a stronger reason: a section groups
+    # phrases by how hard they are and by what they demand, both of which move
+    # with tempo. A section stored at 90 BPM would be the wrong grouping the
+    # moment someone types 160. The user's own splits and merges survive,
+    # because they are stored as measure-keyed decisions rather than as
+    # sections -- see `SectionEdits`.
+    sections = find_sections(
+        score,
+        phrases,
+        fresh.measure_difficulty,
+        starts=set(fresh.section_edits.starts),
+        joins=set(fresh.section_edits.joins),
+    )
     spots = find_trouble_spots(score, phrases, fresh.measure_difficulty)
     fresh.phrases = sections + phrases + spots
     fresh.phrase_difficulty = rate_phrases(fresh.phrases, fresh.measure_difficulty)

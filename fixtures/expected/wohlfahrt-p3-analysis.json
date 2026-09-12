@@ -7621,12 +7621,12 @@
      "piece_start"
     ],
     "reason": "the piece begins here",
-    "confidence": 0.5
+    "confidence": 0.95
    },
    "end_boundary": {
     "evidence": [],
-    "reason": "4/4, no sharps or flats",
-    "confidence": 0.95
+    "reason": "nothing here rises far above a modest demand",
+    "confidence": 0.6
    },
    "user_edited": false,
    "measure_ids": [
@@ -7662,7 +7662,7 @@
   },
   {
    "id": "wohlfahrt-p3:sec01",
-   "label": "Measures 29\u201361",
+   "label": "Measures 29\u201332",
    "level": "section",
    "parent_id": null,
    "structural_start": {
@@ -7670,7 +7670,7 @@
     "note_index": 0
    },
    "structural_end": {
-    "measure_id": "wohlfahrt-p3:m0060",
+    "measure_id": "wohlfahrt-p3:m0031",
     "note_index": 0
    },
    "practice_start": {
@@ -7678,7 +7678,7 @@
     "note_index": 0
    },
    "practice_end": {
-    "measure_id": "wohlfahrt-p3:m0060",
+    "measure_id": "wohlfahrt-p3:m0031",
     "note_index": 0
    },
    "has_practice_overlap": false,
@@ -7687,7 +7687,59 @@
      "page_index": 0,
      "x": 0.05352941176470588,
      "y": 0.4744318181818182,
-     "w": 0.8941176470588235,
+     "w": 0.5676470588235294,
+     "h": 0.08397727272727268
+    }
+   ],
+   "start_boundary": {
+    "evidence": [
+     "key_change",
+     "meter_change"
+    ],
+    "reason": "the printed key or time signature changes to 2/4, 1 sharp",
+    "confidence": 0.95
+   },
+   "end_boundary": {
+    "evidence": [],
+    "reason": "nothing here rises far above a modest demand",
+    "confidence": 0.6
+   },
+   "user_edited": false,
+   "measure_ids": [
+    "wohlfahrt-p3:m0028",
+    "wohlfahrt-p3:m0029",
+    "wohlfahrt-p3:m0030",
+    "wohlfahrt-p3:m0031"
+   ]
+  },
+  {
+   "id": "wohlfahrt-p3:sec02",
+   "label": "Measures 33\u201344",
+   "level": "section",
+   "parent_id": null,
+   "structural_start": {
+    "measure_id": "wohlfahrt-p3:m0032",
+    "note_index": 0
+   },
+   "structural_end": {
+    "measure_id": "wohlfahrt-p3:m0043",
+    "note_index": 0
+   },
+   "practice_start": {
+    "measure_id": "wohlfahrt-p3:m0032",
+    "note_index": 0
+   },
+   "practice_end": {
+    "measure_id": "wohlfahrt-p3:m0043",
+    "note_index": 0
+   },
+   "has_practice_overlap": false,
+   "regions": [
+    {
+     "page_index": 0,
+     "x": 0.6211764705882353,
+     "y": 0.4744318181818182,
+     "w": 0.32647058823529407,
      "h": 0.08397727272727268
     },
     {
@@ -7701,14 +7753,120 @@
      "page_index": 0,
      "x": 0.052941176470588235,
      "y": 0.639090909090909,
-     "w": 0.8947058823529411,
+     "w": 0.7329411764705882,
+     "h": 0.08090909090909093
+    }
+   ],
+   "start_boundary": {
+    "evidence": [],
+    "reason": "readable music resumes here, so this is where rating starts again",
+    "confidence": 0.6
+   },
+   "end_boundary": {
+    "evidence": [],
+    "reason": "the demand here is mostly note rate",
+    "confidence": 0.6
+   },
+   "user_edited": false,
+   "measure_ids": [
+    "wohlfahrt-p3:m0032",
+    "wohlfahrt-p3:m0033",
+    "wohlfahrt-p3:m0034",
+    "wohlfahrt-p3:m0035",
+    "wohlfahrt-p3:m0036",
+    "wohlfahrt-p3:m0037",
+    "wohlfahrt-p3:m0038",
+    "wohlfahrt-p3:m0039",
+    "wohlfahrt-p3:m0040",
+    "wohlfahrt-p3:m0041",
+    "wohlfahrt-p3:m0042",
+    "wohlfahrt-p3:m0043"
+   ]
+  },
+  {
+   "id": "wohlfahrt-p3:sec03",
+   "label": "Measures 45\u201348",
+   "level": "section",
+   "parent_id": null,
+   "structural_start": {
+    "measure_id": "wohlfahrt-p3:m0044",
+    "note_index": 0
+   },
+   "structural_end": {
+    "measure_id": "wohlfahrt-p3:m0047",
+    "note_index": 0
+   },
+   "practice_start": {
+    "measure_id": "wohlfahrt-p3:m0044",
+    "note_index": 0
+   },
+   "practice_end": {
+    "measure_id": "wohlfahrt-p3:m0047",
+    "note_index": 0
+   },
+   "has_practice_overlap": false,
+   "regions": [
+    {
+     "page_index": 0,
+     "x": 0.7858823529411765,
+     "y": 0.639090909090909,
+     "w": 0.16176470588235292,
      "h": 0.08090909090909093
     },
     {
      "page_index": 0,
      "x": 0.054705882352941174,
      "y": 0.72,
-     "w": 0.8929411764705883,
+     "w": 0.39235294117647057,
+     "h": 0.0813636363636363
+    }
+   ],
+   "start_boundary": {
+    "evidence": [],
+    "reason": "recognition could not read this stretch, so it is kept separate",
+    "confidence": 0.6
+   },
+   "end_boundary": {
+    "evidence": [],
+    "reason": "nothing here rises far above a modest demand",
+    "confidence": 0.6
+   },
+   "user_edited": false,
+   "measure_ids": [
+    "wohlfahrt-p3:m0044",
+    "wohlfahrt-p3:m0045",
+    "wohlfahrt-p3:m0046",
+    "wohlfahrt-p3:m0047"
+   ]
+  },
+  {
+   "id": "wohlfahrt-p3:sec04",
+   "label": "Measures 49\u201361",
+   "level": "section",
+   "parent_id": null,
+   "structural_start": {
+    "measure_id": "wohlfahrt-p3:m0048",
+    "note_index": 0
+   },
+   "structural_end": {
+    "measure_id": "wohlfahrt-p3:m0060",
+    "note_index": 0
+   },
+   "practice_start": {
+    "measure_id": "wohlfahrt-p3:m0048",
+    "note_index": 0
+   },
+   "practice_end": {
+    "measure_id": "wohlfahrt-p3:m0060",
+    "note_index": 0
+   },
+   "has_practice_overlap": false,
+   "regions": [
+    {
+     "page_index": 0,
+     "x": 0.4470588235294118,
+     "y": 0.72,
+     "w": 0.5005882352941178,
      "h": 0.0813636363636363
     },
     {
@@ -7727,40 +7885,17 @@
     }
    ],
    "start_boundary": {
-    "evidence": [
-     "key_change",
-     "meter_change"
-    ],
-    "reason": "the printed key or time signature changes to 2/4, 1 sharp",
-    "confidence": 0.95
+    "evidence": [],
+    "reason": "readable music resumes here, so this is where rating starts again",
+    "confidence": 0.6
    },
    "end_boundary": {
     "evidence": [],
-    "reason": "2/4, 1 sharp",
-    "confidence": 0.95
+    "reason": "the demand here is mostly note rate",
+    "confidence": 0.6
    },
    "user_edited": false,
    "measure_ids": [
-    "wohlfahrt-p3:m0028",
-    "wohlfahrt-p3:m0029",
-    "wohlfahrt-p3:m0030",
-    "wohlfahrt-p3:m0031",
-    "wohlfahrt-p3:m0032",
-    "wohlfahrt-p3:m0033",
-    "wohlfahrt-p3:m0034",
-    "wohlfahrt-p3:m0035",
-    "wohlfahrt-p3:m0036",
-    "wohlfahrt-p3:m0037",
-    "wohlfahrt-p3:m0038",
-    "wohlfahrt-p3:m0039",
-    "wohlfahrt-p3:m0040",
-    "wohlfahrt-p3:m0041",
-    "wohlfahrt-p3:m0042",
-    "wohlfahrt-p3:m0043",
-    "wohlfahrt-p3:m0044",
-    "wohlfahrt-p3:m0045",
-    "wohlfahrt-p3:m0046",
-    "wohlfahrt-p3:m0047",
     "wohlfahrt-p3:m0048",
     "wohlfahrt-p3:m0049",
     "wohlfahrt-p3:m0050",
@@ -8242,7 +8377,7 @@
    "id": "wohlfahrt-p3:ph008",
    "label": "Phrase 9",
    "level": "phrase",
-   "parent_id": "wohlfahrt-p3:sec01",
+   "parent_id": "wohlfahrt-p3:sec02",
    "structural_start": {
     "measure_id": "wohlfahrt-p3:m0032",
     "note_index": 0
@@ -8302,7 +8437,7 @@
    "id": "wohlfahrt-p3:ph009",
    "label": "Phrase 10",
    "level": "phrase",
-   "parent_id": "wohlfahrt-p3:sec01",
+   "parent_id": "wohlfahrt-p3:sec02",
    "structural_start": {
     "measure_id": "wohlfahrt-p3:m0036",
     "note_index": 0
@@ -8362,7 +8497,7 @@
    "id": "wohlfahrt-p3:ph010",
    "label": "Phrase 11",
    "level": "phrase",
-   "parent_id": "wohlfahrt-p3:sec01",
+   "parent_id": "wohlfahrt-p3:sec02",
    "structural_start": {
     "measure_id": "wohlfahrt-p3:m0040",
     "note_index": 0
@@ -8415,7 +8550,7 @@
    "id": "wohlfahrt-p3:ph011",
    "label": "Phrase 12",
    "level": "phrase",
-   "parent_id": "wohlfahrt-p3:sec01",
+   "parent_id": "wohlfahrt-p3:sec03",
    "structural_start": {
     "measure_id": "wohlfahrt-p3:m0044",
     "note_index": 0
@@ -8475,7 +8610,7 @@
    "id": "wohlfahrt-p3:ph012",
    "label": "Phrase 13",
    "level": "phrase",
-   "parent_id": "wohlfahrt-p3:sec01",
+   "parent_id": "wohlfahrt-p3:sec04",
    "structural_start": {
     "measure_id": "wohlfahrt-p3:m0048",
     "note_index": 0
@@ -8535,7 +8670,7 @@
    "id": "wohlfahrt-p3:ph013",
    "label": "Phrase 14",
    "level": "phrase",
-   "parent_id": "wohlfahrt-p3:sec01",
+   "parent_id": "wohlfahrt-p3:sec04",
    "structural_start": {
     "measure_id": "wohlfahrt-p3:m0052",
     "note_index": 0
@@ -8588,7 +8723,7 @@
    "id": "wohlfahrt-p3:ph014",
    "label": "Phrase 15",
    "level": "phrase",
-   "parent_id": "wohlfahrt-p3:sec01",
+   "parent_id": "wohlfahrt-p3:sec04",
    "structural_start": {
     "measure_id": "wohlfahrt-p3:m0056",
     "note_index": 0
@@ -8695,6 +8830,33 @@
   },
   "wohlfahrt-p3:sec01": {
    "target_id": "wohlfahrt-p3:sec01",
+   "score": null,
+   "peak": null,
+   "peak_target_id": null,
+   "factors": [],
+   "assumptions": [],
+   "rubric_version": "2.0"
+  },
+  "wohlfahrt-p3:sec02": {
+   "target_id": "wohlfahrt-p3:sec02",
+   "score": 2.9,
+   "peak": 2.9,
+   "peak_target_id": "wohlfahrt-p3:m0035",
+   "factors": [],
+   "assumptions": [],
+   "rubric_version": "2.0"
+  },
+  "wohlfahrt-p3:sec03": {
+   "target_id": "wohlfahrt-p3:sec03",
+   "score": null,
+   "peak": null,
+   "peak_target_id": null,
+   "factors": [],
+   "assumptions": [],
+   "rubric_version": "2.0"
+  },
+  "wohlfahrt-p3:sec04": {
+   "target_id": "wohlfahrt-p3:sec04",
    "score": 3.2,
    "peak": 3.5,
    "peak_target_id": "wohlfahrt-p3:m0052",
@@ -8870,5 +9032,9 @@
   "input_tokens": 0,
   "output_tokens": 0,
   "cache_read_tokens": 0
+ },
+ "section_edits": {
+  "starts": [],
+  "joins": []
  }
 }

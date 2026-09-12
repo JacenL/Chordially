@@ -302,16 +302,27 @@ def test_a_score_of_pure_silence_is_left_as_one_phrase():
 
 
 # --------------------------------------------------------------------------
-# Structural sections: the level above a phrase
+# Practice sections: the level above a phrase
+#
+# C17 changed what this level means. It used to be a purely structural reading
+# of printed signature changes, and a page showing none got no sections at all.
+# It is now the unit the score is coloured by and a click selects, so it has to
+# cover the piece: adjacent phrases are grouped while they ask for the same kind
+# of work, and split where the demands or the difficulty actually change.
+#
+# The protection the old rule provided is kept and tested below: a section is
+# labelled by the measures it spans and by demands measured inside it, never by
+# an invented formal name.
 # --------------------------------------------------------------------------
 
 
-def _sectioned_score(meters: list[tuple[int, int, int]], per_state: int = 10):
+def _sectioned_score(meters, per_state: int = 10):
     """A score whose printed signature changes between the given states."""
-    from src.features.segmentation.phrases import find_sections
+    from src.features.segmentation.sections import find_sections
     from src.schemas.geometry import Region
     from src.schemas.music import NoteEvent
     from src.schemas.score import Measure, Note, Page, Score, System
+    from src.server.analysis.assemble import rate_score
 
     measures, notes = [], []
     ordinal = 0
@@ -363,17 +374,18 @@ def _sectioned_score(meters: list[tuple[int, int, int]], per_state: int = 10):
         notes=notes,
     )
     phrases = segment_score(score)
-    return score, phrases, find_sections(score, phrases)
+    return score, phrases, find_sections(score, phrases, rate_score(score))
 
 
-def test_a_page_with_no_signature_change_gets_no_sections():
-    """The failure this guards: wrapping a piece in an invented "Section 1".
+def test_a_uniform_page_is_one_section_not_one_per_measure():
+    """The failure this guards: a colour band per measure instead of per passage.
 
-    docs/product-spec.md forbids asserting formal labels the notation does not
-    support, and one unlabelled span over the whole page is exactly that.
+    Twelve identical measures make one thing to practise, and colouring them as
+    twelve regions would be a picture of rounding rather than of the music.
     """
-    _, _, sections = _sectioned_score([(4, 4, 0)], per_state=12)
-    assert sections == []
+    score, _, sections = _sectioned_score([(4, 4, 0)], per_state=12)
+    assert len(sections) == 1
+    assert len(sections[0].measure_ids) == len(score.measures)
 
 
 def test_a_meter_change_creates_a_section_boundary():
@@ -386,15 +398,16 @@ def test_a_key_change_creates_a_section_boundary():
     assert len(sections) == 2
 
 
-def test_sections_are_labelled_by_printed_evidence_only():
-    """"1 sharp", not "G major" -- a key signature does not establish a mode."""
+def test_sections_carry_no_invented_formal_label():
+    """Measure ranges and printed accidental counts only -- no formal names."""
     _, _, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)])
-    assert "no sharps or flats" in sections[0].end_boundary.reason
-    assert "2/4, 1 sharp" in sections[1].end_boundary.reason
+    assert "changes to 2/4, 1 sharp" in sections[1].start_boundary.reason
     for section in sections:
-        for invented in ("exposition", "chorus", "major", "minor", "theme"):
-            assert invented not in section.label.lower()
-            assert invented not in section.end_boundary.reason.lower()
+        text = " ".join(
+            (section.label, section.start_boundary.reason, section.end_boundary.reason)
+        ).lower()
+        for invented in ("exposition", "chorus", "major", "minor", "theme", "verse"):
+            assert invented not in text, (invented, text)
 
 
 def test_sections_tile_the_measures_without_gaps():
@@ -405,7 +418,7 @@ def test_sections_tile_the_measures_without_gaps():
 
 
 def test_sections_never_split_a_phrase():
-    """The three levels nest; a section boundary snaps to a phrase start."""
+    """The three levels nest; a section boundary lands on a phrase start."""
     score, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)], per_state=12)
     starts = {score.measure(s.measure_ids[0]).ordinal for s in sections}
     phrase_starts = {score.measure(p.measure_ids[0]).ordinal for p in phrases}
@@ -413,27 +426,107 @@ def test_sections_never_split_a_phrase():
 
 
 def test_every_phrase_points_at_the_section_containing_it():
-    score, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)])
+    _, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)])
     by_id = {s.id: s for s in sections}
     for phrase in phrases:
         assert phrase.parent_id in by_id
-        section = by_id[phrase.parent_id]
-        assert set(phrase.measure_ids) <= set(section.measure_ids)
+        assert set(phrase.measure_ids) <= set(by_id[phrase.parent_id].measure_ids)
 
 
-def test_phrases_have_no_parent_when_there_are_no_sections():
-    _, phrases, sections = _sectioned_score([(4, 4, 0)], per_state=12)
-    assert sections == []
-    assert all(p.parent_id is None for p in phrases)
+def test_a_single_phrase_page_is_a_single_section():
+    """A section cannot be finer than a phrase, so a one-phrase page is one section.
 
-
-def test_a_section_cannot_be_finer_than_a_phrase():
-    """Sections snap to phrase starts, so they cannot cut one in half.
-
-    The consequence, worth knowing: if the whole page is a single phrase, a
-    signature change inside it yields no sections at all rather than a boundary
-    that splits the phrase. The three levels nest or they are not levels.
+    A signature change inside that phrase does not cut it in half. The three
+    levels nest or they are not levels.
     """
     _, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)], per_state=4)
     assert len(phrases) == 1
-    assert sections == []
+    assert len(sections) == 1
+
+
+def test_a_step_in_difficulty_splits_a_section_without_any_signature_change():
+    """Same meter, same key: the music simply gets faster, and that is a boundary."""
+    from src.features.segmentation.sections import find_sections
+    from src.schemas.music import NoteEvent
+    from src.schemas.score import Note
+    from src.server.analysis.assemble import rate_score
+
+    score, phrases, _ = _sectioned_score([(4, 4, 0), (4, 4, 0)], per_state=8)
+    ordered = score.measures_in_order()
+    by_id = {n.id: n for n in score.notes}
+
+    # Rewrite the second half as sixteenth-note runs: sixteen notes a bar
+    # instead of two, which is a real step in what the passage asks for.
+    for measure in ordered[len(ordered) // 2:]:
+        for note_id in measure.note_ids:
+            del by_id[note_id]
+        score.notes = [n for n in score.notes if n.id not in measure.note_ids]
+        fresh = []
+        for index in range(16):
+            note_id = f"{measure.id}:f{index:02d}"
+            note = Note(
+                id=note_id,
+                measure_id=measure.id,
+                index_in_measure=index,
+                event=NoteEvent(is_rest=False, step="G", octave=4, value="16th"),
+            )
+            score.notes.append(note)
+            fresh.append(note_id)
+        measure.note_ids = fresh
+
+    ratings = rate_score(score)
+    easy = ratings[ordered[0].id].score
+    hard = ratings[ordered[-1].id].score
+    assert hard is not None and easy is not None and hard - easy > 1.0, (easy, hard)
+
+    sections = find_sections(score, phrases, ratings)
+    assert len(sections) >= 2, "a real step in difficulty must start a new section"
+    assert any("difficulty" in s.start_boundary.reason for s in sections[1:]), [
+        s.start_boundary.reason for s in sections
+    ]
+
+
+def test_a_user_split_overrides_the_heuristic():
+    from src.features.segmentation.sections import find_sections
+    from src.server.analysis.assemble import rate_score
+
+    score, phrases, sections = _sectioned_score([(4, 4, 0)], per_state=12)
+    assert len(sections) == 1
+
+    split_at = phrases[1].measure_ids[0]
+    edited = find_sections(score, phrases, rate_score(score), starts={split_at})
+    assert len(edited) == 2
+    assert edited[1].measure_ids[0] == split_at
+    assert edited[1].user_edited
+    assert "you split the section here" in edited[1].start_boundary.reason
+
+
+def test_a_user_merge_removes_a_derived_boundary():
+    from src.features.segmentation.sections import find_sections
+    from src.server.analysis.assemble import rate_score
+
+    score, phrases, sections = _sectioned_score([(4, 4, 0), (2, 4, 1)])
+    assert len(sections) == 2
+    joined = find_sections(
+        score, phrases, rate_score(score), joins={sections[1].measure_ids[0]}
+    )
+    assert len(joined) == 1
+
+
+def test_unreadable_material_is_never_grouped_with_rated_music():
+    """Unknown is not a difficulty, and must not inherit a section colour."""
+    from src.features.segmentation.sections import find_sections
+    from src.server.analysis.assemble import rate_score
+
+    score, phrases, _ = _sectioned_score([(4, 4, 0)], per_state=16)
+    for measure in score.measures_in_order()[8:]:
+        measure.quality = "unreadable"
+        measure.quality_note = "too faint to read"
+
+    ratings = rate_score(score)
+    for section in find_sections(score, phrases, ratings):
+        rated = {ratings[mid].score is not None for mid in section.measure_ids}
+        assert len(rated) == 1, (
+            "a section mixes readable and unreadable measures, so one colour "
+            "would present unknown material as easy or hard"
+        )

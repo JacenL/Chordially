@@ -1,6 +1,6 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: demo-ready. C1–C6 and C8–C16 delivered. All three segmentation
+Status: demo-ready. C1–C6 and C8–C17 delivered. All three segmentation
 levels the spec requires are now implemented. C7's persistence half and
 within-measure boundary editing remain, recorded below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
@@ -726,6 +726,77 @@ as no accidental at all in the provider wire format, so it reads as the
 key-signature pitch. Expressing the difference would mean changing the
 transcription contract and invalidating the cache; the limitation is documented
 in `build_score` instead.
+
+## C17 — Colour and select a practice passage, not a measure
+- [x] Complete
+- Dependencies: C15, C16.
+- Evidence: **315 tests pass**, 22 new; verified in Chromium at 1440px and 400px
+  with no JavaScript errors.
+
+The ribbon was a sixty-one-slice heat map whose boundaries fell wherever a
+rating happened to tick by a tenth — a picture of the rubric's rounding rather
+than of the music. The coloured and selectable unit is now a **practice
+section**: one or more adjacent phrases that ask for the same kind of work.
+
+`src/features/segmentation/sections.py` groups phrases while the work stays the
+same and splits where a printed key or meter change, a real step in difficulty
+(0.8 on the running mean, or 1.5 of spread), or a change in the dominant demand
+says it has changed. A user's own split or merge always wins. A small rating
+change is never a boundary, and matching scores are never a reason to merge
+unrelated ideas: the demand behind the number has to match too.
+
+On the fixture page: **5 passages, 22 ribbon bands, 61 measures.** Etude 2 is
+one passage of 28 measures at 1.6 across five staff systems, each fragment
+carrying the same identity, rating and colour.
+
+### What a click does now
+Clicking a measure, a passage outline or a ribbon band selects the whole
+passage, highlights every fragment of it on every system, and loads that
+passage's guidance. Two clicks inside one passage give the same answer — a
+trouble spot no longer intercepts a measure click, which was the behaviour that
+made "click a measure, get advice about this passage" untrue. Phrases and hard
+spots stay reachable from the sidebar and from their own outlines, under an
+"Inside this passage" panel, and selecting one keeps the passage in the
+breadcrumb and outlined on the page.
+
+### Three decisions worth recording
+
+**Sections cannot be stored, so edits store the decision instead.** They group
+phrases by difficulty and by demand, and both move with tempo, so a section
+saved at 90 BPM is the wrong grouping at 160. They are re-derived on every
+request. A split is therefore recorded as "this measure begins a passage",
+keyed by measure id, which survives re-derivation, retuning and phrase edits.
+A test pins that an edit survives a tempo change.
+
+**Splitting a passage can split a phrase.** A passage boundary lands on a phrase
+start or it does not land, so asking for one mid-phrase is asking for that idea
+to be two ideas — and `split_section` does exactly that first, rather than
+silently refusing or silently cutting across the level below.
+
+**The C15 rule is superseded, and its protection kept.** A page with no printed
+signature change used to get no sections at all, because wrapping it in "Section
+1" would be a formal claim the notation does not support. Passages are labelled
+by the measures they span and by demands measured inside them; a test asserts no
+label or reason contains "exposition", "chorus", "theme", "major", "minor" or
+"verse". The Wohlfahrt page went from 2 sections to 5.
+
+### Unknown stays distinct from easy and from hard
+A stretch nobody could read forms its own passage rather than inheriting a
+neighbour's colour, and a single unreadable measure inside a rated passage cuts
+its band and keeps neutral hatching. That is the only thing that interrupts a
+band. A test asserts no passage mixes readable and unreadable measures.
+
+Two visual corrections made while looking at the rendered page: the passage tint
+was washing over the notation (five tinted systems at once), so an unselected
+passage now has no fill at all and states itself with a coloured left edge; and
+unreadable passages were hatched a third time on top of the per-measure and
+ribbon hatching, which obscured the very notation a reader needs in order to
+judge whether recognition was right.
+
+### Colour
+The progression is now light green → green → yellow → orange → red → maroon, one
+anchor every two points, so each category spans exactly one interval between
+anchors. Ratings and accessible labels are shown alongside colour everywhere.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same

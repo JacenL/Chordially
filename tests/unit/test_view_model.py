@@ -3,8 +3,8 @@
 Three properties are load-bearing for the interface and are pinned here rather
 than checked by eye:
 
-* the ribbon is one unbroken run per system, with widths taken from the real
-  engraved measures;
+* the ribbon is one unbroken run per system, banded by practice section, with
+  widths taken from the real engraved measures;
 * every coordinate leaves Python as a percentage, which is what makes zoom and
   resize free;
 * an unrated measure is rendered as unknown, never as easy.
@@ -17,6 +17,7 @@ import re
 import pytest
 
 from src.features.difficulty.colors import UNRATED_COLOR, UNRATED_LABEL, color_for
+from src.features.difficulty.rubric import aggregate_phrase
 from src.features.score_viewer.view_model import (
     RIBBON_HEIGHT_FRAC,
     RIBBON_INSET_FRAC,
@@ -62,6 +63,7 @@ def make_bundle(
     scores: list[float | None],
     *,
     qualities: list[str] | None = None,
+    sections: list[list[int]] | None = None,
 ) -> AnalysisBundle:
     """One system of deliberately unequal measures, laid end to end."""
     qualities = qualities or ["confident"] * len(widths)
@@ -111,7 +113,42 @@ def make_bundle(
         m.id: Difficulty(target_id=m.id, score=s, rubric_version="1.0")
         for m, s in zip(measures, scores)
     }
-    return AnalysisBundle(score=score, measure_difficulty=ratings)
+
+    # Sections are what the ribbon is banded by, so a bundle without them is not
+    # a realistic input. One section over everything unless the test says
+    # otherwise, which is what a uniform page really produces.
+    groups = sections if sections is not None else [list(range(len(measures)))]
+    section_phrases: list[Phrase] = []
+    section_ratings: dict[str, Difficulty] = {}
+    for index, group in enumerate(groups):
+        members = [measures[i] for i in group]
+        combined, peak = aggregate_phrase([ratings[m.id].score for m in members])
+        section_id = f"t:sec{index}"
+        section_phrases.append(
+            Phrase(
+                id=section_id,
+                label=f"Measures {members[0].label}\u2013{members[-1].label}",
+                level="section",
+                structural_start=Anchor(measure_id=members[0].id, note_index=0),
+                structural_end=Anchor(measure_id=members[-1].id, note_index=0),
+                practice_start=Anchor(measure_id=members[0].id, note_index=0),
+                practice_end=Anchor(measure_id=members[-1].id, note_index=0),
+                regions=[members[0].region],
+                start_boundary=PhraseBoundary(reason="test", confidence=0.5),
+                end_boundary=PhraseBoundary(reason="test", confidence=0.5),
+                measure_ids=[m.id for m in members],
+            )
+        )
+        section_ratings[section_id] = Difficulty(
+            target_id=section_id, score=combined, peak=peak, rubric_version="1.0"
+        )
+
+    return AnalysisBundle(
+        score=score,
+        measure_difficulty=ratings,
+        phrases=section_phrases,
+        phrase_difficulty=section_ratings,
+    )
 
 
 def test_ribbon_segments_are_flush_within_a_system():
@@ -140,12 +177,50 @@ def test_ribbon_spans_the_whole_system_and_nothing_more():
     )
 
 
-def test_segment_widths_follow_real_measure_widths():
+def test_band_widths_follow_real_measure_widths():
     """Equal distribution is explicitly forbidden by the architecture notes."""
-    view = build_view(make_bundle([0.30, 0.12, 0.25, 0.18], [1.0, 5.0, 8.0, 3.0]))
+    view = build_view(
+        make_bundle(
+            [0.30, 0.12, 0.25, 0.18],
+            [1.0, 5.0, 8.0, 3.0],
+            sections=[[0], [1], [2], [3]],
+        )
+    )
     widths = [parse_style(s.style)["width"] for s in view.pages[0].systems[0].segments]
     assert len(set(round(w, 3) for w in widths)) > 1
     assert widths[0] > widths[1]
+
+
+def test_one_band_per_section_not_one_per_measure():
+    """The C17 change, stated as an assertion.
+
+    Four measures with four different ratings, grouped into one passage, draw
+    one band in one colour -- not a four-step heatmap of the rubric's rounding.
+    """
+    view = build_view(make_bundle([0.30, 0.12, 0.25, 0.18], [1.0, 1.4, 1.8, 1.2]))
+    segments = view.pages[0].systems[0].segments
+    assert len(segments) == 1
+    assert segments[0].measure_ids == ["t:m0", "t:m1", "t:m2", "t:m3"]
+    assert len({s.color for s in segments}) == 1
+
+
+def test_two_sections_draw_two_bands_with_their_own_colours():
+    view = build_view(
+        make_bundle([0.25, 0.25, 0.25, 0.25], [1.0, 1.0, 8.0, 8.0], sections=[[0, 1], [2, 3]])
+    )
+    segments = view.pages[0].systems[0].segments
+    assert len(segments) == 2
+    assert segments[0].section_id != segments[1].section_id
+    assert segments[0].color != segments[1].color
+    assert segments[0].score_text == "1.0" and segments[1].score_text == "8.0"
+
+
+def test_a_bands_rating_is_its_sections_rating_everywhere_it_appears():
+    """One section, one number: a measure's own rating never leaks into a band."""
+    view = build_view(make_bundle([0.25, 0.25, 0.25], [1.0, 5.0, 3.0]))
+    segment = view.pages[0].systems[0].segments[0]
+    combined, _ = aggregate_phrase([1.0, 5.0, 3.0])
+    assert segment.score_text == f"{combined:.1f}"
 
 
 def test_ribbon_sits_in_the_lower_band_of_its_system():
@@ -180,8 +255,12 @@ def test_unrated_measure_is_unknown_not_easy():
     assert easy.color == color_for(0.0)
     assert unrated.color != easy.color
 
+    # The band is cut at the unreadable measure even though both measures are in
+    # the same passage: unknown material must not be handed a difficulty colour.
     segments = view.pages[0].systems[0].segments
+    assert len(segments) == 2
     assert segments[0].is_rated is False and segments[1].is_rated is True
+    assert segments[0].color == UNRATED_COLOR
 
 
 def test_every_measure_style_is_a_percentage():
@@ -274,15 +353,56 @@ def test_example_ribbon_is_continuous_on_every_system(example_view):
             )
 
 
-def test_example_ribbon_covers_every_measure(example_view):
-    segment_ids = {
-        s.measure_id for system in example_view.pages[0].systems for s in system.segments
-    }
+def test_example_ribbon_accounts_for_every_measure(example_view):
+    """Bands are passages now, so coverage is what has to hold, not one-per-measure."""
+    covered = [
+        mid
+        for system in example_view.pages[0].systems
+        for segment in system.segments
+        for mid in segment.measure_ids
+    ]
     measure_ids = {
         m.id for system in example_view.pages[0].systems for m in system.measures
     }
-    assert segment_ids == measure_ids
-    assert len(segment_ids) == example_view.measure_total
+    assert set(covered) == measure_ids
+    assert len(covered) == len(set(covered)), "a measure is covered by two bands"
+    assert len(covered) == example_view.measure_total
+
+
+def test_example_ribbon_has_fewer_bands_than_measures(example_view):
+    """The heatmap is gone: bands are passages, and there are far fewer of them."""
+    bands = [s for system in example_view.pages[0].systems for s in system.segments]
+    assert len(bands) < example_view.measure_total / 2
+
+
+def test_example_section_fragments_share_one_identity_rating_and_colour(example_view):
+    """A passage crossing systems is one passage, not several that look alike."""
+    crossing = [s for s in example_view.sections if s.fragment_count > 1]
+    assert crossing, "the fixture is expected to contain a passage crossing systems"
+    for section in crossing:
+        bands = [
+            band
+            for system in example_view.pages[0].systems
+            for band in system.segments
+            if band.section_id == section.id and band.is_rated
+        ]
+        assert len({band.color for band in bands}) <= 1
+        assert len({band.score_text for band in bands}) <= 1
+        if bands:
+            assert bands[0].score_text == section.score_text
+            assert bands[0].color == section.color
+
+
+def test_every_measure_belongs_to_exactly_one_section(example_view):
+    """What makes "click anywhere and get a passage" true rather than aspirational."""
+    measures = [m for system in example_view.pages[0].systems for m in system.measures]
+    assert measures
+    for measure in measures:
+        assert measure.section_id, f"measure {measure.label} belongs to no passage"
+    owners = {m.id: m.section_id for m in measures}
+    for section in example_view.sections:
+        for mid in section.measure_ids:
+            assert owners[mid] == section.id
 
 
 def test_example_phrase_crossing_systems_has_one_fragment_per_system(example_view):
@@ -341,7 +461,10 @@ def test_example_client_payload_covers_the_rendered_score(example_view):
         payload["measureOrder"],
         key=lambda mid: [m.ordinal for s in example_view.pages[0].systems for m in s.measures if m.id == mid][0],
     )
-    assert payload["defaultPhraseId"] in payload["phrases"]
+    assert payload["defaultSelectionId"] in payload["phrases"]
+    # The default selection is a passage, because a passage is what the sidebar
+    # is written for and what a click resolves to.
+    assert payload["phrases"][payload["defaultSelectionId"]]["level"] == "section"
 
 
 def test_example_legend_shows_every_category_including_unrated(example_view):

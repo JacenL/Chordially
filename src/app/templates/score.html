@@ -47,8 +47,8 @@
 
         <div class="toolbar-group">
           <label class="switch">
-            <input type="checkbox" id="toggle-phrases" checked>
-            <span>Phrase outlines</span>
+            <input type="checkbox" id="toggle-phrases">
+            <span>Phrases inside each passage</span>
           </label>
         </div>
 
@@ -96,7 +96,32 @@
           <div class="page" id="{{ page.id }}" style="aspect-ratio:{{ page.aspect_ratio }}">
             <img class="page-image" src="{{ page.image_url }}" alt="Page {{ page.index + 1 }} of {{ view.title }}" loading="eager">
 
-            <div class="layer layer--phrases" data-layer="phrases">
+            {# Practice sections: the primary unit. One outline per staff system
+               the section touches, all carrying the same identity, rating and
+               colour, so a passage crossing a line break still reads as one
+               passage. #}
+            <div class="layer layer--sections" data-layer="sections">
+              {% for section in view.sections %}
+                {% for style in section.region_styles %}
+                  <div class="section-outline{% if not section.is_rated %} section-outline--unrated{% endif %}"
+                       style="{{ style }};--section-color:{{ section.color }}"
+                       data-section-id="{{ section.id }}"
+                       data-fragment-index="{{ loop.index0 }}"
+                       role="button" tabindex="-1"
+                       aria-label="{{ section.label }}, rated {{ section.score_text }}{% if section.is_rated %} out of 10, {{ section.category }}{% endif %}">
+                    <span class="section-chip">
+                      <span class="section-chip-dot" style="background:{{ section.color }}"></span>
+                      <span class="section-chip-label">{{ section.label }}{% if not loop.first %} (cont.){% endif %}</span>
+                      <b class="section-chip-score{% if not section.is_rated %} section-chip-score--unrated{% endif %}">{{ section.score_text }}</b>
+                    </span>
+                  </div>
+                {% endfor %}
+              {% endfor %}
+            </div>
+
+            {# Phrases and trouble spots: secondary detail inside a section,
+               off by default so the notation stays readable. #}
+            <div class="layer layer--phrases is-hidden" data-layer="phrases">
               {% for phrase in view.phrases %}
                 {% for style in phrase.region_styles %}
                   <div class="phrase-outline" style="{{ style }}"
@@ -113,14 +138,6 @@
                     {% endif %}
                   </div>
                 {% endfor %}
-              {% endfor %}
-
-              {% for section in view.sections %}
-                {% if not loop.first %}
-                  <div class="section-marker" style="{{ section.region_styles[0] }}"
-                       data-section-id="{{ section.id }}"
-                       title="{{ section.label }} — {{ section.end_reason }}"></div>
-                {% endif %}
               {% endfor %}
 
               {% for spot in view.trouble_spots %}
@@ -141,7 +158,10 @@
                 {% for segment in system.segments %}
                   <div class="ribbon-segment{% if not segment.is_rated %} ribbon-segment--unrated{% endif %}"
                        style="{{ segment.style }}{% if segment.is_rated %};background:{{ segment.color }}{% endif %}"
-                       data-measure-id="{{ segment.measure_id }}"></div>
+                       data-measure-id="{{ segment.measure_id }}"
+                       data-measure-ids="{{ segment.measure_ids | join(' ') }}"
+                       {% if segment.section_id %}data-section-id="{{ segment.section_id }}"{% endif %}
+                       title="{{ segment.aria_label }}"></div>
                 {% endfor %}
               {% endfor %}
             </div>
@@ -158,6 +178,7 @@
                           data-ordinal="{{ measure.ordinal }}"
                           data-system-index="{{ system.index }}"
                           {% if measure.phrase_id %}data-phrase-id="{{ measure.phrase_id }}"{% endif %}
+                          {% if measure.section_id %}data-section-id="{{ measure.section_id }}"{% endif %}
                           tabindex="-1"
                           aria-label="{{ measure.aria_label }}">
                     <span class="measure-number">{{ measure.label }}</span>
@@ -175,10 +196,10 @@
     <aside class="sidebar" id="sidebar" aria-label="Practice guidance">
       <div class="sidebar-inner">
         <section class="panel panel--selection" id="selection-panel" aria-live="polite">
-          <p class="panel-eyebrow">Selected passage</p>
+          <p class="panel-eyebrow" id="sel-eyebrow">Selected passage</p>
           <p class="breadcrumb" id="sel-breadcrumb" hidden></p>
           <h2 class="panel-title" id="sel-title">Nothing selected</h2>
-          <p class="panel-range" id="sel-range">Click a measure, or pick a phrase below.</p>
+          <p class="panel-range" id="sel-range">Click anywhere on the score to select a passage.</p>
 
           <div class="rating-row" id="sel-rating-row" hidden>
             <div class="rating">
@@ -191,11 +212,12 @@
             </div>
           </div>
 
+          <p class="panel-note panel-note--demand" id="sel-demand" hidden></p>
           <p class="panel-note" id="sel-unrated" hidden></p>
           <p class="panel-note panel-note--flag" id="sel-measure-note" hidden></p>
 
           <div class="edit-row" id="edit-row" hidden>
-            <label class="visually-hidden" for="split-at">Split this phrase before measure</label>
+            <label class="visually-hidden" for="split-at">Split this passage before measure</label>
             <select class="edit-select" id="split-at"></select>
             <button type="button" class="button button--quiet" id="split-btn">Split here</button>
             <button type="button" class="button button--quiet" id="merge-btn">Merge with next</button>
@@ -203,7 +225,7 @@
           </div>
           <p class="panel-note" id="edit-note" hidden></p>
           <p class="panel-note">
-            <a href="#" id="reset-edits">Undo all boundary edits</a> — edits last
+            <a href="#" id="reset-edits">Undo all passage edits</a> — edits last
             until the server restarts and are not saved.
           </p>
         </section>
@@ -218,20 +240,6 @@
           </details>
         </section>
 
-        <section class="panel" id="boundary-panel" hidden>
-          <h3 class="panel-heading">Where this idea starts and ends</h3>
-          <dl class="boundary-list">
-            <dt>Starts</dt><dd id="sel-start"></dd>
-            <dt>Ends</dt><dd id="sel-end"></dd>
-            <dt>Practice range</dt><dd id="sel-practice"></dd>
-          </dl>
-          <p class="panel-note">
-            Boundaries are inferred from the notation and can be wrong — the
-            confidence above says how thin the evidence was. Use Split or Merge
-            at the top of this panel to correct one.
-          </p>
-        </section>
-
         <section class="panel panel--practice" id="practice-panel">
           <h3 class="panel-heading">How to practise this</h3>
           <p class="panel-note" id="practice-loading">Select a passage.</p>
@@ -244,39 +252,69 @@
           <p class="panel-note" id="practice-nofit" hidden></p>
         </section>
 
+        <section class="panel" id="inside-panel" hidden>
+          <h3 class="panel-heading">Inside this passage</h3>
+          <p class="panel-note" id="inside-note">
+            The phrases this passage is made of, and any spot inside it that is
+            locally harder than its neighbours. These are detail, not a different
+            answer: the guidance above is for the whole passage.
+          </p>
+          <ul class="phrase-list" id="inside-list"></ul>
+        </section>
+
+        <section class="panel" id="boundary-panel" hidden>
+          <h3 class="panel-heading">Where this passage starts and ends</h3>
+          <dl class="boundary-list">
+            <dt>Starts</dt><dd id="sel-start"></dd>
+            <dt>Ends</dt><dd id="sel-end"></dd>
+            <dt>Practice range</dt><dd id="sel-practice"></dd>
+          </dl>
+          <p class="panel-note">
+            Boundaries are inferred from the notation and can be wrong — the
+            confidence above says how thin the evidence was. Use Split or Merge
+            at the top of this panel to correct one.
+          </p>
+        </section>
+
         <section class="panel">
-          <h3 class="panel-heading">Phrases <span class="count">{{ view.phrases | length }}</span></h3>
-          <p class="panel-note">A keyboard- and screen-reader-friendly route to every passage.</p>
+          <h3 class="panel-heading">Passages <span class="count">{{ view.sections | length }}</span></h3>
+          <p class="panel-note">A keyboard- and screen-reader-friendly route to every passage on the page.</p>
           <ul class="phrase-list" id="phrase-list">
-            {% for phrase in view.phrases %}
-              {% for section in view.sections if section.measure_ids and phrase.measure_ids and section.measure_ids[0] == phrase.measure_ids[0] %}
-                <li class="section-header">
-                  <span class="section-header-label">{{ section.label }}</span>
-                  <span class="section-header-meta">{{ section.end_reason }}</span>
-                </li>
-              {% endfor %}
+            {% for section in view.sections %}
               <li>
-                <button type="button" class="phrase-item" data-phrase-id="{{ phrase.id }}"
-                        aria-label="{{ phrase.label }}, {{ phrase.range_text }}, rated {{ phrase.score_text }}{% if phrase.is_rated %} out of 10, {{ phrase.category }}{% endif %}">
-                  <span class="phrase-item-bar" style="background:{{ phrase.color }}"></span>
+                <button type="button" class="phrase-item phrase-item--section" data-phrase-id="{{ section.id }}"
+                        aria-label="{{ section.label }}, rated {{ section.score_text }}{% if section.is_rated %} out of 10, {{ section.category }}{% endif %}">
+                  <span class="phrase-item-bar" style="background:{{ section.color }}"></span>
                   <span class="phrase-item-text">
-                    <span class="phrase-item-label">{{ phrase.label }}</span>
-                    <span class="phrase-item-range">{{ phrase.range_text }}{% if phrase.fragment_count > 1 %} · crosses {{ phrase.fragment_count }} systems{% endif %}</span>
+                    <span class="phrase-item-label">{{ section.label }}</span>
+                    <span class="phrase-item-range">{{ section.end_reason }}{% if section.fragment_count > 1 %} · crosses {{ section.fragment_count }} systems{% endif %}</span>
                   </span>
-                  <span class="phrase-item-score{% if not phrase.is_rated %} phrase-item-score--unrated{% endif %}">{{ phrase.score_text }}</span>
+                  <span class="phrase-item-score{% if not section.is_rated %} phrase-item-score--unrated{% endif %}">{{ section.score_text }}</span>
                 </button>
               </li>
-              {% for spot in view.trouble_spots if spot.parent_id == phrase.id %}
+              {% for phrase in view.phrases if phrase.parent_id == section.id %}
                 <li>
-                  <button type="button" class="phrase-item phrase-item--spot" data-phrase-id="{{ spot.id }}"
-                          aria-label="Hard spot inside {{ phrase.label }}, {{ spot.range_text }}, rated {{ spot.score_text }}">
+                  <button type="button" class="phrase-item phrase-item--nested" data-phrase-id="{{ phrase.id }}"
+                          aria-label="{{ phrase.label }}, {{ phrase.range_text }}, rated {{ phrase.score_text }}{% if phrase.is_rated %} out of 10, {{ phrase.category }}{% endif %}">
                     <span class="phrase-item-text">
-                      <span class="phrase-item-label">Hard spot</span>
-                      <span class="phrase-item-range">{{ spot.range_text }}</span>
+                      <span class="phrase-item-label">{{ phrase.label }}</span>
+                      <span class="phrase-item-range">{{ phrase.range_text }}</span>
                     </span>
-                    <span class="phrase-item-score">{{ spot.score_text }}</span>
+                    <span class="phrase-item-score{% if not phrase.is_rated %} phrase-item-score--unrated{% endif %}">{{ phrase.score_text }}</span>
                   </button>
                 </li>
+                {% for spot in view.trouble_spots if spot.parent_id == phrase.id %}
+                  <li>
+                    <button type="button" class="phrase-item phrase-item--spot" data-phrase-id="{{ spot.id }}"
+                            aria-label="Hard spot inside {{ phrase.label }}, {{ spot.range_text }}, rated {{ spot.score_text }}">
+                      <span class="phrase-item-text">
+                        <span class="phrase-item-label">Hard spot</span>
+                        <span class="phrase-item-range">{{ spot.range_text }}</span>
+                      </span>
+                      <span class="phrase-item-score">{{ spot.score_text }}</span>
+                    </button>
+                  </li>
+                {% endfor %}
               {% endfor %}
             {% endfor %}
           </ul>
@@ -291,8 +329,9 @@
             {% endfor %}
           </ul>
           <p class="panel-note">
-            Unread measures are hatched on the score and left unrated. They are not
-            easy passages and they are not hard ones — they are unknown.
+            Unread measures are hatched on the ribbon and left unrated, even where
+            they fall inside a rated passage. They are not easy passages and they
+            are not hard ones — they are unknown.
           </p>
         </section>
       </div>

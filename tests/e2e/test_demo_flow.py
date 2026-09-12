@@ -110,7 +110,16 @@ def test_upload_analyze_select_and_read_an_exercise(server, browser_page):
     # 4. The analysis is of the uploaded file, over the uploaded page image.
     assert page.locator(".page-image").get_attribute("src").startswith("/uploads/pages/")
     assert page.locator(".measure").count() > 40
-    assert page.locator(".ribbon-segment").count() == page.locator(".measure").count()
+    # Bands are practice passages, so there are fewer of them than measures,
+    # and between them they still account for every measure.
+    measures = page.locator(".measure").count()
+    bands = page.locator(".ribbon-segment").count()
+    assert 0 < bands < measures
+    covered = page.eval_on_selector_all(
+        ".ribbon-segment",
+        "els => els.flatMap(e => (e.dataset.measureIds || '').split(' ').filter(Boolean))",
+    )
+    assert len(set(covered)) == measures
 
     # 5. Provenance is always stated.
     provenance = page.locator(".notice--provenance").inner_text()
@@ -171,19 +180,20 @@ def test_a_rhythm_variation_is_offered_somewhere_and_its_pairs_balance(server, b
 
 
 @pytest.mark.skipif(not DEMO_PDF.exists(), reason="demo PDF not present")
-def test_correcting_a_phrase_boundary(server, browser_page):
+def test_correcting_a_passage_boundary(server, browser_page):
     """Split, merge, refuse and undo, through the real interface.
 
-    Console errors are not asserted here the way they are in the journey test:
-    a refused edit is a 409, and the browser logs every non-2xx fetch to the
-    console. The refusal is the behaviour under test, so its log line is
-    expected rather than a fault.
+    The controls act on the practice passage, which is what the score is
+    coloured by and what a click selects. Console errors are not asserted here
+    the way they are in the journey test: a refused edit is a 409, and the
+    browser logs every non-2xx fetch to the console. The refusal is the
+    behaviour under test, so its log line is expected rather than a fault.
     """
     page = browser_page
     page.goto(f"{server}/score/example", wait_until="networkidle")
 
-    def phrase_rows() -> int:
-        return page.locator(".phrase-item:not(.phrase-item--spot)").count()
+    def passage_rows() -> int:
+        return page.locator(".phrase-item--section").count()
 
     def click_and_reload(selector: str) -> None:
         """Click something that edits, and wait for the reload it triggers.
@@ -199,52 +209,76 @@ def test_correcting_a_phrase_boundary(server, browser_page):
         page.wait_for_function("() => window.__beforeReload === undefined", timeout=15_000)
         page.wait_for_load_state("networkidle")
 
-    before = phrase_rows()
-    assert before > 3
+    before = passage_rows()
+    assert before >= 2
 
-    # Split the second phrase at its first offered boundary.
-    page.locator(".phrase-item:not(.phrase-item--spot)").nth(1).click()
+    # Split the first passage at its first offered boundary.
+    page.locator(".phrase-item--section").first.click()
     page.wait_for_selector("#edit-row:not([hidden])")
     assert page.locator("#split-at option").count() > 0
     page.select_option("#split-at", index=0)
     click_and_reload("#split-btn")
-    assert phrase_rows() == before + 1
+    assert passage_rows() == before + 1
 
     # The corrected boundary is marked as the user's, not as inference.
-    page.locator(".phrase-item:not(.phrase-item--spot)").nth(1).click()
+    page.locator(".phrase-item--section").nth(1).click()
     page.wait_for_selector("#edit-row:not([hidden])")
     assert page.locator("#edited-pill").is_visible()
 
     # Merging puts it back.
+    page.locator(".phrase-item--section").first.click()
+    page.wait_for_selector("#edit-row:not([hidden])")
     click_and_reload("#merge-btn")
-    assert phrase_rows() == before
+    assert passage_rows() == before
 
-    # The last phrase has nothing to merge with, and says so.
-    page.locator(".phrase-item:not(.phrase-item--spot)").last.click()
+    # The last passage has nothing to merge with, and says so.
+    page.locator(".phrase-item--section").last.click()
     page.wait_for_selector("#edit-row:not([hidden])")
     page.click("#merge-btn")
     page.wait_for_selector("#edit-note:not([hidden])")
-    assert "last phrase" in page.locator("#edit-note").inner_text()
+    assert "last passage" in page.locator("#edit-note").inner_text()
 
-    # Undo returns to the inferred segmentation.
+    # Undo returns to the derived grouping.
     click_and_reload("#reset-edits")
-    assert phrase_rows() == before
+    assert passage_rows() == before
 
 
 @pytest.mark.skipif(not DEMO_PDF.exists(), reason="demo PDF not present")
-def test_a_trouble_spot_keeps_its_parent_phrase_in_view(server, browser_page):
-    """Journey step 6, made literal: going one level in loses nothing."""
+def test_a_trouble_spot_keeps_its_parent_passage_in_view(server, browser_page):
+    """Journey step 6, made literal: going one level in loses nothing.
+
+    A hard spot is secondary guidance inside a passage. It is reachable, and
+    reaching it keeps the passage and the phrase above it in the breadcrumb --
+    but it is never what a click on the score resolves to, which is what stopped
+    "click a measure, get advice about this passage" from being true.
+    """
     page = browser_page
     page.goto(f"{server}/score/example", wait_until="networkidle")
 
     spots = page.locator(".phrase-item--spot")
     assert spots.count() > 0, "the example should contain at least one hard spot"
+    spot_id = spots.first.get_attribute("data-phrase-id")
     spots.first.click()
     page.wait_for_timeout(500)
 
     assert page.locator("#sel-title").inner_text() == "Hard spot"
     assert page.locator("#sel-breadcrumb").is_visible()
-    assert "Phrase" in page.locator("#sel-breadcrumb").inner_text()
-    # The parent's own outline is still drawn while the spot is selected.
-    assert page.locator(".phrase-outline.is-context, .phrase-outline.is-selected").count() >= 1
+    trail = page.locator("#sel-breadcrumb").inner_text()
+    assert "Measures" in trail and "Phrase" in trail
+    # The passage around it is still outlined and still highlighted.
+    assert page.locator(".section-outline.is-selected").count() >= 1
     assert page.locator(".trouble-outline.is-selected").count() >= 1
+
+    # Clicking a measure the spot covers selects the passage, not the spot.
+    covered = page.evaluate(
+        """(spotId) => {
+            const data = JSON.parse(document.getElementById('score-data').textContent);
+            const spot = data.phrases[spotId];
+            return spot ? spot.measureIds[0] : null;
+        }""",
+        spot_id,
+    )
+    assert covered
+    page.locator(f'.measure[data-measure-id="{covered}"]').click()
+    page.wait_for_timeout(300)
+    assert page.locator("#sel-title").inner_text() != "Hard spot"

@@ -5,10 +5,16 @@
  * server, so zoom and resize are handled entirely by the browser's own layout
  * and an annotation cannot drift off its measure.
  *
- * Selection has one rule worth naming. Clicking a measure selects the phrase
- * that owns that measure's first note, which the server decided; the browser
- * only looks it up. A measure that recognition could not read owns no phrase,
- * and the sidebar says so instead of attaching it to a neighbour.
+ * Selection has one rule, and C17 made it simpler than it was. **Clicking
+ * anywhere on the score selects the practice section that contains it.**
+ * Sections tile the piece, so every measure belongs to exactly one, and two
+ * clicks inside the same passage give the same selection and the same guidance.
+ *
+ * Phrases and trouble spots are still selectable, from the sidebar list and
+ * from their own outlines when those are shown. They are detail inside the
+ * selected passage, and they no longer intercept a click on the score: a hard
+ * spot hijacking a measure click was the behaviour that made "click a measure,
+ * get advice about this passage" untrue.
  */
 
 import { createPractice } from "./practice.js";
@@ -31,6 +37,8 @@ function init(data) {
   const hoverCard = document.getElementById("hover-card");
   const measureEls = Array.from(document.querySelectorAll(".measure"));
   const phraseItems = Array.from(document.querySelectorAll(".phrase-item"));
+  const sectionEls = Array.from(document.querySelectorAll(".section-outline"));
+  const ribbonEls = Array.from(document.querySelectorAll(".ribbon-segment"));
   const outlines = Array.from(
     document.querySelectorAll(".phrase-outline, .trouble-outline")
   );
@@ -39,36 +47,38 @@ function init(data) {
   const order = data.measureOrder.filter((id) => measureById.has(id));
 
   let selectedMeasureId = null;
-  let selectedPhraseId = null;
+  let selectedId = null;
 
   // -------------------------------------------------------------- selection
 
-  // Most specific wins. A measure a hard spot is marked on selects that spot;
-  // every other measure selects its phrase. Either way the parent phrase stays
-  // in context, so nothing is lost by the more specific choice.
-  function phraseOf(measureId) {
+  // What a click on the score resolves to. The section, always: it is the unit
+  // the ribbon is coloured by and the unit the sidebar is written for, and
+  // resolving to anything finer would mean two clicks a few millimetres apart
+  // could load different advice about the same passage.
+  function sectionIdOf(measureId) {
     const m = data.measures[measureId];
     if (!m) return null;
-    return m.spotId || m.phraseId;
+    return m.sectionId || m.phraseId || null;
   }
 
   function selectMeasure(measureId, opts = {}) {
     if (!data.measures[measureId]) return;
     selectedMeasureId = measureId;
-    selectedPhraseId = phraseOf(measureId);
+    selectedId = sectionIdOf(measureId);
     paint();
     renderSidebar();
     if (opts.focus !== false) focusMeasure(measureId, opts.scroll !== false);
     else if (opts.scroll !== false) scrollIntoPane(measureById.get(measureId));
   }
 
-  function selectPhrase(phraseId, opts = {}) {
-    const phrase = data.phrases[phraseId];
-    if (!phrase) return;
-    selectedPhraseId = phraseId;
-    // Selecting a phrase from the list lands on its first measure, so the
-    // score and the sidebar always agree about where you are.
-    const first = phrase.measureIds.find((id) => measureById.has(id));
+  // Selecting a named passage: a section, a phrase inside one, or a hard spot.
+  function selectEntry(entryId, opts = {}) {
+    const entry = data.phrases[entryId];
+    if (!entry) return;
+    selectedId = entryId;
+    // Land on its first measure, so the score and the sidebar always agree
+    // about where you are.
+    const first = entry.measureIds.find((id) => measureById.has(id));
     selectedMeasureId = first || null;
     paint();
     renderSidebar();
@@ -96,63 +106,62 @@ function init(data) {
     if (scroll) scrollIntoPane(el);
   }
 
-  // A trouble spot lives inside a phrase, and selecting it must not throw the
-  // phrase away -- "explore a local trouble spot without losing the parent
-  // phrase context" is the requirement. So selection carries both: the thing
-  // selected, and the phrase it belongs to.
-  //
-  // The chain is three deep now (section <- phrase <- trouble spot), so this
-  // walks to the nearest ancestor-or-self that is a phrase rather than up
-  // exactly one level. Going up one from a phrase would land on its section and
-  // outline twenty-eight measures as "context".
-  function parentOf(id) {
+  // Walk to the nearest ancestor-or-self at the given level. The chain is
+  // section <- phrase <- trouble spot, so a spot's section is two steps up.
+  function ancestorAt(id, level) {
     let entry = id ? data.phrases[id] : null;
-    while (entry && entry.level !== "phrase") {
+    while (entry && entry.level !== level) {
       entry = entry.parentId ? data.phrases[entry.parentId] : null;
     }
-    return entry ? entry.id : null;
-  }
-
-  function sectionOf(id) {
-    let entry = id ? data.phrases[id] : null;
-    while (entry && entry.level !== "section") {
-      entry = entry.parentId ? data.phrases[entry.parentId] : null;
-    }
-    return entry;
+    return entry || null;
   }
 
   function paint() {
-    const contextPhraseId = parentOf(selectedPhraseId);
+    const section = ancestorAt(selectedId, "section");
+    const sectionId = section ? section.id : null;
+    const inSection = new Set(section ? section.measureIds : []);
 
     for (const el of measureEls) {
       const id = el.dataset.measureId;
       el.classList.toggle("is-selected", id === selectedMeasureId);
       el.classList.toggle(
-        "in-selected-phrase",
-        contextPhraseId != null && el.dataset.phraseId === contextPhraseId && id !== selectedMeasureId
+        "in-selected-section",
+        inSection.has(id) && id !== selectedMeasureId
       );
       if (id === selectedMeasureId) el.setAttribute("aria-current", "true");
       else el.removeAttribute("aria-current");
     }
+
+    // Every fragment of the selected section lights up, on every system it
+    // touches. That is what "clearly highlight its full extent" means when the
+    // extent is not a rectangle.
+    for (const el of sectionEls) {
+      const on = el.dataset.sectionId === sectionId;
+      el.classList.toggle("is-selected", on);
+      el.tabIndex = on ? 0 : -1;
+    }
+    for (const el of ribbonEls) {
+      el.classList.toggle("is-selected", el.dataset.sectionId === sectionId);
+    }
+
     for (const el of outlines) {
       const id = el.dataset.phraseId;
-      // The parent stays outlined while a spot inside it is selected.
-      el.classList.toggle("is-selected", id === selectedPhraseId || id === contextPhraseId);
+      el.classList.toggle("is-selected", id === selectedId);
       el.classList.toggle(
         "is-context",
-        id === contextPhraseId && id !== selectedPhraseId
+        id !== selectedId && inSection.has((data.phrases[id] || {}).measureIds?.[0])
       );
     }
     for (const el of phraseItems) {
       const id = el.dataset.phraseId;
-      const on = id === selectedPhraseId;
+      const on = id === selectedId;
       el.classList.toggle("is-selected", on);
-      el.classList.toggle("is-context", !on && id === contextPhraseId);
+      el.classList.toggle("is-context", !on && id === sectionId);
       el.setAttribute("aria-pressed", on ? "true" : "false");
     }
   }
 
-  // Selecting from the phrase list, which sits far down the sidebar, used to
+  // Selecting from the passage list, which sits far down the sidebar, used to
   // leave the rating and factors scrolled off the top. The selection is the
   // thing just asked for, so it is what should be on screen.
   function revealSelectionPanel() {
@@ -186,89 +195,172 @@ function init(data) {
     if (node) node.hidden = !on;
   }
 
+  const EYEBROW = {
+    section: "Selected passage",
+    phrase: "Phrase inside this passage",
+    trouble_spot: "Hard spot inside this passage",
+  };
+
   function renderSidebar() {
     const measure = selectedMeasureId ? data.measures[selectedMeasureId] : null;
-    const phrase = selectedPhraseId ? data.phrases[selectedPhraseId] : null;
+    const entry = selectedId ? data.phrases[selectedId] : null;
 
-    if (!measure && !phrase) return;
+    if (!measure && !entry) return;
 
-    if (phrase) {
-      const isSpot = phrase.level === "trouble_spot";
-      const parent = isSpot && phrase.parentId ? data.phrases[phrase.parentId] : null;
-      const section = sectionOf(selectedPhraseId);
+    if (entry) {
+      const isSpot = entry.level === "trouble_spot";
+      const isSection = entry.level === "section";
+      const section = ancestorAt(selectedId, "section");
+      const phrase = ancestorAt(selectedId, "phrase");
 
-      // "Measures 1-28 > Phrase 3 >" -- only the levels that actually exist.
+      el("sel-eyebrow").textContent = EYEBROW[entry.level] || "Selected passage";
+
+      // Only the levels above this one, and only if they exist.
       const trail = [];
-      if (section) trail.push(section.label);
-      if (parent) trail.push(parent.label);
+      if (!isSection && section) trail.push(section.label);
+      if (isSpot && phrase) trail.push(phrase.label);
       show(el("sel-breadcrumb"), trail.length > 0);
       if (trail.length) {
         el("sel-breadcrumb").textContent = trail.join(" › ") + " ›";
       }
 
-      el("sel-title").textContent = isSpot ? "Hard spot" : phrase.label;
+      el("sel-title").textContent = isSpot ? "Hard spot" : entry.label;
       // Only name the selected measure when it adds something. On a one-measure
-      // trouble spot "measure 2 · measure 2 selected" is just noise.
-      const alreadyNamed = phrase.rangeText === `measure ${measure ? measure.label : ""}`;
+      // hard spot "measure 2 · measure 2 selected" is just noise.
+      const alreadyNamed = entry.rangeText === `measure ${measure ? measure.label : ""}`;
       el("sel-range").textContent =
-        phrase.rangeText +
+        entry.rangeText +
         (measure && !alreadyNamed ? ` · measure ${measure.label} selected` : "");
-      show(el("sel-rating-row"), true);
-      el("sel-score").textContent = phrase.isRated ? phrase.scoreText : "—";
-      el("sel-category").textContent = phrase.isRated ? phrase.category : data.unratedLabel;
-      el("sel-peak").textContent =
-        phrase.isRated && phrase.peakMeasureLabel
-          ? `hardest measure ${phrase.peakMeasureLabel}: ${phrase.peakText}`
-          : "";
-      show(el("sel-unrated"), !phrase.isRated);
-      el("sel-unrated").textContent = phrase.unratedReason;
 
-      // A rated phrase can still contain a measure nobody could read. The
-      // ribbon hatches it, and so must the sidebar: otherwise the phrase's
+      show(el("sel-rating-row"), true);
+      el("sel-score").textContent = entry.isRated ? entry.scoreText : "—";
+      el("sel-category").textContent = entry.isRated ? entry.category : data.unratedLabel;
+      el("sel-peak").textContent =
+        entry.isRated && entry.peakMeasureLabel
+          ? `hardest measure ${entry.peakMeasureLabel}: ${entry.peakText}`
+          : "";
+
+      // A section says in one line what it is asking for. The number alone does
+      // not distinguish a fast passage from a high one.
+      show(el("sel-demand"), isSection && Boolean(entry.endReason));
+      if (isSection) el("sel-demand").textContent = capitalize(entry.endReason) + ".";
+
+      show(el("sel-unrated"), !entry.isRated);
+      el("sel-unrated").textContent = entry.unratedReason;
+
+      // A rated passage can still contain a measure nobody could read. The
+      // ribbon hatches it, and so must the sidebar: otherwise the passage's
       // number looks like it covers music it was never computed from.
       const flagged = measure && !measure.isRated;
       show(el("sel-measure-note"), Boolean(flagged));
       if (flagged) {
         el("sel-measure-note").textContent =
           `Measure ${measure.label} is unrated — ${measure.qualityNote}. ` +
-          "This phrase's rating comes from the measures around it.";
+          "This passage's rating comes from the measures around it.";
       }
 
-      const hasFactors = phrase.factors.length > 0;
+      const hasFactors = entry.factors.length > 0;
       show(el("why-panel"), hasFactors);
       if (hasFactors) {
-        renderFactors(phrase.factors);
-        el("sel-factors-note").textContent = phrase.peakMeasureLabel
-          ? `Measured on measure ${phrase.peakMeasureLabel}, the most demanding measure in this phrase.`
+        renderFactors(entry.factors);
+        el("sel-factors-note").textContent = entry.peakMeasureLabel
+          ? `Measured on measure ${entry.peakMeasureLabel}, the most demanding measure in this passage.`
           : "";
       }
 
-      show(el("boundary-panel"), true);
-      el("sel-start").textContent = `${phrase.startReason} — ${phrase.startConfidence}`;
-      el("sel-end").textContent = `${phrase.endReason} — ${phrase.endConfidence}`;
-      el("sel-practice").textContent = phrase.practiceText;
+      renderInside(isSection ? entry : section);
 
-      practice.load(selectedPhraseId);
-      // Editing acts on the phrase, even when a spot inside it is selected.
-      editor.show(data.phrases[parentOf(selectedPhraseId)], data.measureLabels || {});
+      show(el("boundary-panel"), true);
+      el("sel-start").textContent = `${entry.startReason} — ${entry.startConfidence}`;
+      el("sel-end").textContent = `${entry.endReason} — ${entry.endConfidence}`;
+      el("sel-practice").textContent = entry.practiceText;
+
+      practice.load(selectedId);
+      // Editing acts on the passage, even when something inside it is selected.
+      editor.show(section, data.measureLabels || {});
     } else if (measure) {
-      // An unreadable or never-attempted measure. It belongs to no phrase, and
-      // saying which of those it is matters: one is a judgement about the
-      // notation, the other is a judgement about us.
       show(el("sel-breadcrumb"), false);
+      el("sel-eyebrow").textContent = "Selected measure";
       el("sel-title").textContent = `Measure ${measure.label}`;
-      el("sel-range").textContent = "Not part of an analyzed phrase.";
+      el("sel-range").textContent = "Not part of an analyzed passage.";
       show(el("sel-rating-row"), false);
+      show(el("sel-demand"), false);
       show(el("sel-unrated"), true);
       el("sel-unrated").textContent = `${data.unratedLabel} — ${measure.qualityNote}`;
       show(el("sel-measure-note"), false);
       show(el("why-panel"), false);
+      show(el("inside-panel"), false);
       show(el("boundary-panel"), false);
       practice.clear(
-        "This measure is not part of an analyzed phrase, so there is no passage to build an exercise from."
+        "This measure is not part of an analyzed passage, so there is no music to build an exercise from."
       );
       editor.hide();
     }
+  }
+
+  function capitalize(text) {
+    return text ? text.charAt(0).toUpperCase() + text.slice(1) : text;
+  }
+
+  // The phrases and hard spots inside the selected passage. Secondary by
+  // construction: they sit below the passage's own guidance, and selecting one
+  // keeps the passage in the breadcrumb rather than replacing it.
+  function renderInside(section) {
+    const panel = el("inside-panel");
+    const list = el("inside-list");
+    if (!panel || !list) return;
+
+    const children = section ? section.childPhraseIds || [] : [];
+    const spots = section ? section.childSpotIds || [] : [];
+    if (!section || (!children.length && !spots.length)) {
+      panel.hidden = true;
+      return;
+    }
+
+    list.textContent = "";
+    const spotsByPhrase = new Map();
+    for (const spotId of spots) {
+      const spot = data.phrases[spotId];
+      if (spot) spotsByPhrase.set(spot.parentId, spotId);
+    }
+
+    for (const phraseId of children) {
+      list.append(insideRow(phraseId, "phrase-item--nested"));
+      const spotId = spotsByPhrase.get(phraseId);
+      if (spotId) list.append(insideRow(spotId, "phrase-item--spot"));
+    }
+    panel.hidden = false;
+  }
+
+  function insideRow(entryId, extraClass) {
+    const entry = data.phrases[entryId];
+    const li = document.createElement("li");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `phrase-item ${extraClass}`;
+    button.dataset.phraseId = entryId;
+    button.classList.toggle("is-selected", entryId === selectedId);
+    button.setAttribute("aria-pressed", entryId === selectedId ? "true" : "false");
+
+    const text = document.createElement("span");
+    text.className = "phrase-item-text";
+    const label = document.createElement("span");
+    label.className = "phrase-item-label";
+    label.textContent = entry.level === "trouble_spot" ? "Hard spot" : entry.label;
+    const range = document.createElement("span");
+    range.className = "phrase-item-range";
+    range.textContent = entry.rangeText;
+    text.append(label, range);
+
+    const score = document.createElement("span");
+    score.className =
+      "phrase-item-score" + (entry.isRated ? "" : " phrase-item-score--unrated");
+    score.textContent = entry.scoreText;
+
+    button.append(text, score);
+    button.addEventListener("click", () => selectEntry(entryId));
+    li.append(button);
+    return li;
   }
 
   function renderFactors(factors) {
@@ -358,6 +450,16 @@ function init(data) {
       : `${data.unratedLabel} · ${info.qualityNote}`;
     hoverCard.append(title, rating);
 
+    // The measure's own rating is local detail; the passage is what a click
+    // will select, so the card says which passage that is.
+    const section = info.sectionId ? data.phrases[info.sectionId] : null;
+    if (section) {
+      const context = document.createElement("div");
+      context.className = "hover-section";
+      context.textContent = `in ${section.label} · ${section.scoreText}`;
+      hoverCard.append(context);
+    }
+
     if (info.factors.length) {
       const factors = document.createElement("div");
       factors.textContent = info.factors.map((f) => `${f.label} ${f.contribution}`).join(" · ");
@@ -434,11 +536,31 @@ function init(data) {
   }
 
   for (const item of phraseItems) {
-    item.addEventListener("click", () => selectPhrase(item.dataset.phraseId));
+    item.addEventListener("click", () => selectEntry(item.dataset.phraseId));
+  }
+
+  // A section fragment is a click target in its own right, and so is the band
+  // of ribbon under it. Both select the same passage as the measures inside it.
+  for (const sectionEl of sectionEls) {
+    sectionEl.addEventListener("click", () => selectEntry(sectionEl.dataset.sectionId));
+    sectionEl.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        selectEntry(sectionEl.dataset.sectionId);
+      }
+    });
+  }
+  for (const segment of ribbonEls) {
+    if (!segment.dataset.sectionId) continue;
+    segment.style.pointerEvents = "auto";
+    segment.addEventListener("click", () => selectEntry(segment.dataset.sectionId));
   }
 
   for (const outline of outlines) {
-    outline.addEventListener("click", () => selectPhrase(outline.dataset.phraseId));
+    outline.addEventListener("click", (event) => {
+      event.stopPropagation();
+      selectEntry(outline.dataset.phraseId);
+    });
     outline.style.pointerEvents = "auto";
   }
 
@@ -495,6 +617,6 @@ function init(data) {
 
   renderRubric();
 
-  if (data.defaultPhraseId) selectPhrase(data.defaultPhraseId, { focus: false });
+  if (data.defaultSelectionId) selectEntry(data.defaultSelectionId, { focus: false });
   else if (order.length) setRovingTarget(order[0]);
 }

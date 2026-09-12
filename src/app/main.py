@@ -27,6 +27,11 @@ from src.server.analysis import jobs
 from src.server.analysis import upload as upload_mod
 from src.server.analysis.example import ExampleUnavailable, load_example
 from src.features.segmentation.edit import EditRefused, merge_phrase, split_phrase
+from src.features.segmentation.section_edit import (
+    merge_section,
+    reset_sections,
+    split_section,
+)
 from src.server.analysis import store
 from src.server.analysis.recompute import parse_tempo, retune
 
@@ -195,6 +200,50 @@ def merge(score_id: str, phrase_id: str) -> dict:
 def reset_edits(score_id: str) -> dict:
     """Discard edits and go back to the inferred segmentation."""
     return {"ok": True, "had_edits": store.clear(score_id)}
+
+
+def _apply_section_edit(score_id: str, operation) -> dict:
+    """Run one section edit and keep the result for later requests.
+
+    Section edits are recorded as measure-keyed decisions rather than as
+    sections, because sections are re-derived on every request -- see
+    `src/features/segmentation/section_edit.py`.
+    """
+    try:
+        source = _bundle_for(score_id)
+    except ExampleUnavailable as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+    working = store.seed(score_id, source)
+    try:
+        operation(working)
+    except EditRefused as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+    store.put(score_id, working)
+    return {
+        "ok": True,
+        "starts": list(working.section_edits.starts),
+        "joins": list(working.section_edits.joins),
+    }
+
+
+@app.post("/api/sections/{score_id}/split")
+def split_passage(score_id: str, at_measure_id: str) -> dict:
+    """Begin a new practice section at this measure."""
+    return _apply_section_edit(score_id, lambda b: split_section(b, at_measure_id))
+
+
+@app.post("/api/sections/{score_id}/merge")
+def merge_passage(score_id: str, section_id: str) -> dict:
+    """Join this practice section to the one after it."""
+    return _apply_section_edit(score_id, lambda b: merge_section(b, section_id))
+
+
+@app.post("/api/sections/{score_id}/reset")
+def reset_passages(score_id: str) -> dict:
+    """Discard section edits and go back to the derived grouping."""
+    return _apply_section_edit(score_id, reset_sections)
 
 
 @app.get("/api/practice/{score_id}/{phrase_id}")

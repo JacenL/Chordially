@@ -107,7 +107,18 @@ def relative_boxes(page) -> dict[str, tuple[float, float, float]]:
 def test_page_and_overlays_render(page):
     assert page.locator(".page-image").count() == 1
     assert page.locator(".measure").count() > 50
-    assert page.locator(".ribbon-segment").count() == page.locator(".measure").count()
+    # Bands are passages, so there are far fewer of them than measures, and
+    # every measure is still accounted for by exactly one.
+    measures = page.locator(".measure").count()
+    bands = page.locator(".ribbon-segment").count()
+    assert 0 < bands < measures / 2
+    covered = page.eval_on_selector_all(
+        ".ribbon-segment",
+        "els => els.flatMap(e => (e.dataset.measureIds || '').split(' ').filter(Boolean))",
+    )
+    assert len(covered) == measures
+    assert len(set(covered)) == measures
+    assert page.locator(".section-outline").count() > 0
 
 
 def test_overlays_hold_their_place_through_resize(page):
@@ -164,35 +175,89 @@ def test_ribbon_segments_touch_in_the_rendered_page(page):
             assert abs(left - right) < 1.0
 
 
-def test_clicking_a_measure_selects_its_phrase(page):
-    # A measure that no trouble spot covers, chosen from the page's own data
-    # rather than by index: a spot is the more specific owner and selecting it
-    # is correct behaviour, so hard-coding an index makes this test depend on
-    # where the ratings happen to put a spot today.
-    plain = page.evaluate(
-        """() => {
-            const data = JSON.parse(document.getElementById('score-data').textContent);
-            return Object.entries(data.measures)
-                .filter(([, m]) => m.phraseId && !m.spotId)
-                .map(([id]) => id)[0];
-        }"""
-    )
-    assert plain, "the example should contain a rated measure outside any trouble spot"
-    target = page.locator(f'.measure[data-measure-id="{plain}"]')
+def test_clicking_a_measure_selects_its_whole_passage(page):
+    """The C17 rule: a click on the score resolves to a practice section."""
+    target = page.locator(".measure").nth(7)
     measure_id = target.get_attribute("data-measure-id")
-    phrase_id = target.get_attribute("data-phrase-id")
+    section_id = target.get_attribute("data-section-id")
+    assert section_id
     target.click()
 
     assert "is-selected" in (target.get_attribute("class") or "")
-    assert page.locator(f'.phrase-item[data-phrase-id="{phrase_id}"].is-selected').count() == 1
-    label = page.locator(f'.phrase-item[data-phrase-id="{phrase_id}"] .phrase-item-label').inner_text()
+    assert page.locator(f'.phrase-item[data-phrase-id="{section_id}"].is-selected').count() == 1
+
+    label = page.locator(
+        f'.phrase-item[data-phrase-id="{section_id}"] .phrase-item-label'
+    ).inner_text()
     assert page.locator("#sel-title").inner_text() == label
+
+    # Every fragment of the passage lights up, on every system it touches.
+    fragments = page.locator(f'.section-outline[data-section-id="{section_id}"]').count()
+    selected = page.locator(
+        f'.section-outline[data-section-id="{section_id}"].is-selected'
+    ).count()
+    assert fragments >= 1 and selected == fragments
 
     measure_label = target.locator(".measure-number").inner_text()
     assert f"measure {measure_label} selected" in page.locator("#sel-range").inner_text()
     assert measure_id in page.eval_on_selector_all(
         ".measure.is-selected", "els => els.map(e => e.dataset.measureId)"
     )
+
+
+def test_two_measures_in_one_passage_select_the_same_passage(page):
+    """Clicking different measures inside a passage must not change the answer."""
+    pair = page.evaluate(
+        """() => {
+            const measures = Array.from(document.querySelectorAll('.measure'));
+            const bySection = new Map();
+            for (const el of measures) {
+                const id = el.dataset.sectionId;
+                if (!id) continue;
+                (bySection.get(id) || bySection.set(id, []).get(id)).push(el.dataset.measureId);
+            }
+            for (const [sectionId, ids] of bySection) {
+                if (ids.length >= 2) return [sectionId, ids[0], ids[ids.length - 1]];
+            }
+            return null;
+        }"""
+    )
+    assert pair, "the example should contain a passage spanning several measures"
+    section_id, first, last = pair
+
+    def select(measure_id):
+        page.locator(f'.measure[data-measure-id="{measure_id}"]').click()
+        return {
+            "title": page.locator("#sel-title").inner_text(),
+            "range": page.locator("#sel-range").inner_text(),
+            "selected": page.locator(".phrase-item.is-selected").get_attribute(
+                "data-phrase-id"
+            ),
+        }
+
+    a = select(first)
+    b = select(last)
+    assert a["selected"] == section_id
+    assert b["selected"] == section_id
+    assert a["title"] == b["title"]
+    # Only the "measure N selected" tail differs, which is the point of keeping
+    # it: the passage is the same, the measure you clicked is not.
+    assert a["range"].split(" · ")[0] == b["range"].split(" · ")[0]
+
+
+def test_different_passages_load_different_guidance(page):
+    items = page.locator(".phrase-item--section")
+    assert items.count() >= 2
+
+    items.nth(0).click()
+    page.wait_for_selector("#practice-body:not([hidden]), #practice-nofit:not([hidden])")
+    first = page.locator("#selection-panel").inner_text()
+
+    items.nth(1).click()
+    page.wait_for_selector("#practice-body:not([hidden]), #practice-nofit:not([hidden])")
+    second = page.locator("#selection-panel").inner_text()
+
+    assert first != second
 
 
 def test_keyboard_moves_and_selects_along_the_score(page):

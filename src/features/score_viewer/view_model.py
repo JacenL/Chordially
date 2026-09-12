@@ -10,18 +10,26 @@ none to get wrong.
 Two rules in here are worth stating out loud because they are product decisions,
 not implementation details.
 
-**Ribbon continuity.** Within a system the ribbon is one unbroken run. Segment
-boundaries are taken from where the next measure starts, not from where the
-current measure's box ends, so adjoining segments are flush by construction --
-there is no rounding gap to hairline through. Widths still follow the real
-engraved measure widths; nothing is distributed equally.
+**Ribbon continuity, and what a band of colour means.** Within a system the
+ribbon is one unbroken run. Segment boundaries are taken from where the next
+segment starts, not from where the current one's box ends, so adjoining segments
+are flush by construction -- there is no rounding gap to hairline through.
+Widths still follow the real engraved measure widths; nothing is distributed
+equally.
 
-**Measure ownership.** Structural phrase ranges tile the piece, and a boundary
-may fall inside a measure, so one measure can show two phrases. Clicking a
-measure selects the phrase that owns that measure's *first note*. The other
-phrase remains reachable from its outline and from the phrase list, and the
-measure is marked as carrying a boundary so the split is visible rather than
-silently resolved.
+What changed in C17 is what a band *is*. It used to be one measure, which made
+the ribbon a sixty-one-slice heatmap of the rubric's own rounding. A band is now
+one practice section, drawn once per staff system it touches, in that section's
+single colour. The only thing that interrupts a section's band is a measure
+recognition could not read: that keeps its neutral hatching, because unknown
+material must never be handed a difficulty colour.
+
+**Measure ownership.** A click selects a *section*. Sections tile the piece, so
+every measure belongs to exactly one and clicking anywhere inside one selects
+the same passage and loads the same guidance. The phrase that owns a measure's
+first note is still recorded and still reachable, and so is any trouble spot
+covering it -- both are secondary detail inside the selected section rather than
+things a click on the score resolves to.
 """
 
 from __future__ import annotations
@@ -39,6 +47,7 @@ from src.features.difficulty.colors import (
 from src.features.difficulty.rubric import (
     DEFAULT_TEMPO_BPM,
     WEIGHTS,
+    aggregate_phrase,
     rubric_explanation,
 )
 from src.schemas.analysis import AnalysisBundle
@@ -89,6 +98,8 @@ class MeasureView:
     ordinal: int
     system_id: str
     phrase_id: str | None
+    section_id: str | None
+    spot_id: str | None
     style: str
     score_text: str
     category: str
@@ -104,7 +115,18 @@ class MeasureView:
 
 @dataclasses.dataclass(frozen=True)
 class RibbonSegment:
+    """One band of colour: a practice section, or a hole recognition left in one.
+
+    `section_id` is what makes the fragments of a section that fall on different
+    staff systems the same object to the reader and to selection -- same
+    identity, same rating, same colour.
+    """
+
+    section_id: str | None
     measure_id: str
+    # Every measure this band covers, so "the ribbon accounts for all the music"
+    # stays checkable now that a band is a passage rather than a measure.
+    measure_ids: list[str]
     label: str
     style: str
     color: str
@@ -148,6 +170,10 @@ class PhraseView:
     measure_ids: list[str]
     factors: list[FactorView]
     unrated_reason: str
+    # Populated for sections only: what is inside this passage, in order. The
+    # sidebar shows them as secondary detail under the section's own guidance.
+    child_phrase_ids: list[str] = dataclasses.field(default_factory=list)
+    child_spot_ids: list[str] = dataclasses.field(default_factory=list)
 
 
 @dataclasses.dataclass(frozen=True)
@@ -178,7 +204,9 @@ class ScoreView:
     rated_total: int
     unrated_label: str
     unrated_color: str
-    default_phrase_id: str | None
+    # What is selected when the page opens. A section, because a section is what
+    # a click selects and what the sidebar is written for.
+    default_selection_id: str | None
     rubric: dict
 
 
@@ -201,6 +229,20 @@ def owning_phrase(score: Score, phrases: list[Phrase], measure: Measure) -> Phra
         end = _anchor_key(score, phrase.structural_end.measure_id, phrase.structural_end.note_index)
         if start <= target <= end:
             return phrase
+    return None
+
+
+def owning_section(score: Score, sections: list[Phrase], measure: Measure) -> Phrase | None:
+    """The practice section a measure belongs to.
+
+    Sections tile the piece with no gaps and no overlaps, so exactly one matches
+    -- including for a measure nobody could read, which is grouped with the
+    other unreadable measures around it rather than left homeless. That is the
+    property that lets a click anywhere on the score land on a passage.
+    """
+    for section in sections:
+        if measure.id in section.measure_ids:
+            return section
     return None
 
 
@@ -243,14 +285,28 @@ def _measure_aria(measure: Measure, difficulty: Difficulty | None) -> str:
 
 
 def _ribbon_segments(
-    system_region: Region, measures: list[Measure], ratings: dict[str, Difficulty]
+    system_region: Region,
+    measures: list[Measure],
+    ratings: dict[str, Difficulty],
+    section_by_measure: dict[str, str],
+    section_ratings: dict[str, Difficulty],
+    section_labels: dict[str, str],
 ) -> list[RibbonSegment]:
-    """One flush run of colour across a system.
+    """One flush run of colour across a system, banded by practice section.
 
-    A segment starts where its own measure starts and ends where the *next*
-    measure starts, so neighbouring segments share an edge exactly. The run is
-    stretched to the system's own extent at both ends, which absorbs the
-    half-barline difference between a system box and its outer measures.
+    Consecutive measures belonging to the same section become one band in that
+    section's single colour, so a section reads as one passage rather than as a
+    row of slightly different slices of the same idea. The band is cut in exactly
+    one situation: a measure recognition could not read keeps its own neutral
+    hatched band, because handing unknown material a difficulty colour would
+    present it as easy or hard when it is neither.
+
+    A band starts where its own first measure starts and ends where the *next*
+    band's first measure starts, so neighbouring bands share an edge exactly and
+    no rounding gap can open between them. The run is stretched to the system's
+    own extent at both ends, which absorbs the half-barline difference between a
+    system box and its outer measures. Widths still follow the real engraved
+    measure widths; nothing is distributed equally.
     """
     if not measures:
         return []
@@ -259,27 +315,77 @@ def _ribbon_segments(
     top = system_region.y + system_region.h * (1.0 - RIBBON_INSET_FRAC - RIBBON_HEIGHT_FRAC)
     height = system_region.h * RIBBON_HEIGHT_FRAC
 
-    segments: list[RibbonSegment] = []
-    for i, measure in enumerate(ordered):
-        left = system_region.x if i == 0 else measure.region.x
-        if i + 1 < len(ordered):
-            right = ordered[i + 1].region.x
+    # Group into runs. The key carries readability as well as identity so a hole
+    # inside a section splits the band without merging into the next section.
+    runs: list[list[Measure]] = []
+    previous_key = None
+    for measure in ordered:
+        difficulty = ratings.get(measure.id)
+        key = (
+            section_by_measure.get(measure.id),
+            (difficulty.score if difficulty else None) is not None,
+        )
+        if runs and key == previous_key:
+            runs[-1].append(measure)
         else:
-            right = max(system_region.right, measure.region.right)
+            runs.append([measure])
+        previous_key = key
+
+    segments: list[RibbonSegment] = []
+    for index, run in enumerate(runs):
+        first, last = run[0], run[-1]
+        left = system_region.x if index == 0 else first.region.x
+        if index + 1 < len(runs):
+            right = runs[index + 1][0].region.x
+        else:
+            right = max(system_region.right, last.region.right)
         width = max(0.0, right - left)
 
-        difficulty = ratings.get(measure.id)
-        score = difficulty.score if difficulty else None
+        section_id = section_by_measure.get(first.id)
+        measure_rating = ratings.get(first.id)
+        measure_rated = (measure_rating.score if measure_rating else None) is not None
+
+        if not measure_rated:
+            # A hole recognition left. It keeps the neutral hatching whatever
+            # the passage around it rates.
+            score = None
+        elif section_id and section_id in section_ratings:
+            # The band shows the section's rating, not the measure's. One
+            # section, one number, one colour, everywhere it appears.
+            score = section_ratings[section_id].score
+        else:
+            # No section rating to read -- a bundle that was never retuned, or
+            # music outside any section. Aggregate what this band actually
+            # covers rather than borrowing one measure's number for all of it.
+            score, _ = aggregate_phrase(
+                [(ratings[m.id].score if m.id in ratings else None) for m in run]
+            )
+
+        label = (
+            f"measures {first.label}\u2013{last.label}"
+            if first.id != last.id
+            else f"measure {first.label}"
+        )
+        if score is not None:
+            aria = (
+                f"{section_labels.get(section_id, label)}: {format_score(score)} out of 10, "
+                f"{category_for(score)}"
+            )
+        else:
+            aria = f"{label.capitalize()}: {UNRATED_LABEL} \u2014 {_QUALITY_TEXT.get(first.quality, first.quality)}"
+
         segments.append(
             RibbonSegment(
-                measure_id=measure.id,
-                label=measure.label,
+                section_id=section_id,
+                measure_id=first.id,
+                measure_ids=[m.id for m in run],
+                label=label,
                 style=f"left:{_pct(left)};top:{_pct(top)};width:{_pct(width)};height:{_pct(height)}",
                 color=color_for(score),
                 is_rated=score is not None,
                 score_text=format_score(score),
                 category=category_for(score),
-                aria_label=_measure_aria(measure, difficulty),
+                aria_label=aria,
             )
         )
     return segments
@@ -327,6 +433,20 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
         if owner is not None:
             owner_by_measure[measure.id] = owner.id
 
+    # A click resolves to a section, so this is the map that matters most.
+    section_by_measure: dict[str, str] = {
+        mid: section.id for section in sections for mid in section.measure_ids
+    }
+    section_labels = {section.id: section.label for section in sections}
+    section_ratings = {
+        section.id: bundle.phrase_rating(section.id)
+        for section in sections
+        if bundle.phrase_rating(section.id) is not None
+    }
+    spot_by_measure: dict[str, str] = {
+        mid: spot.id for spot in spots for mid in spot.measure_ids
+    }
+
     boundary_starts = {p.structural_start.measure_id for p in phrases}
     boundary_ends = {p.structural_end.measure_id for p in phrases}
 
@@ -350,6 +470,8 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
                         ordinal=measure.ordinal,
                         system_id=system.id,
                         phrase_id=owner_by_measure.get(measure.id),
+                        section_id=section_by_measure.get(measure.id),
+                        spot_id=spot_by_measure.get(measure.id),
                         style=_box_style(measure.region),
                         score_text=format_score(rating),
                         category=category_for(rating),
@@ -371,7 +493,14 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
                     index=system.index,
                     style=_box_style(system.region),
                     measures=measure_views,
-                    segments=_ribbon_segments(system.region, members, bundle.measure_difficulty),
+                    segments=_ribbon_segments(
+                        system.region,
+                        members,
+                        bundle.measure_difficulty,
+                        section_by_measure,
+                        section_ratings,  # type: ignore[arg-type]
+                        section_labels,
+                    ),
                     has_ribbon=bool(members),
                 )
             )
@@ -409,6 +538,7 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
 
         unrated_reason = ""
         if rating is None:
+            noun = {"section": "passage", "trouble_spot": "spot"}.get(phrase.level, "phrase")
             unreadable = [
                 m
                 for m in (measures_by_id.get(i) for i in phrase.measure_ids)
@@ -416,9 +546,10 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
             ]
             unrated_reason = (
                 f"{len(unreadable)} of {len(phrase.measure_ids)} measures here could not be "
-                "read, so this phrase is left unrated rather than given a number it has not earned."
+                f"read, so this {noun} is left unrated rather than given a number it has "
+                "not earned. Unknown is not the same as easy."
                 if unreadable
-                else "No measure in this phrase could be rated."
+                else f"No measure in this {noun} could be rated."
             )
 
         return PhraseView(
@@ -452,7 +583,25 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
     # the reader would have to interpret.
     known = {p.id for p in phrases}
     spot_views = [view_for(s) for s in spots if s.parent_id in known]
-    section_views = [view_for(s) for s in sections]
+
+    phrases_by_section: dict[str, list[str]] = {}
+    for phrase in phrases:
+        if phrase.parent_id:
+            phrases_by_section.setdefault(phrase.parent_id, []).append(phrase.id)
+    spots_by_section: dict[str, list[str]] = {}
+    for spot in spot_views:
+        parent = next((p for p in phrases if p.id == spot.parent_id), None)
+        if parent is not None and parent.parent_id:
+            spots_by_section.setdefault(parent.parent_id, []).append(spot.id)
+
+    section_views = [
+        dataclasses.replace(
+            view_for(section),
+            child_phrase_ids=phrases_by_section.get(section.id, []),
+            child_spot_ids=spots_by_section.get(section.id, []),
+        )
+        for section in sections
+    ]
 
     quality_counts: dict[str, int] = {}
     for measure in score.measures:
@@ -490,7 +639,11 @@ def build_view(bundle: AnalysisBundle, supplied_tempo: float | None = None) -> S
         unrated_label=UNRATED_LABEL,
         unrated_color=UNRATED_COLOR,
         rubric=rubric_explanation(rating_tempo, tempo_is_assumed),
-        default_phrase_id=phrase_views[0].id if phrase_views else None,
+        default_selection_id=(
+            section_views[0].id
+            if section_views
+            else (phrase_views[0].id if phrase_views else None)
+        ),
     )
 
 
@@ -529,11 +682,12 @@ def client_payload(view: ScoreView) -> dict:
     return {
         "scoreId": view.score_id,
         "rubric": view.rubric,
-        "defaultPhraseId": view.default_phrase_id,
+        "defaultSelectionId": view.default_selection_id,
         "unratedLabel": view.unrated_label,
         "measures": {
             m.id: {
                 "label": m.label,
+                "sectionId": m.section_id,
                 "phraseId": m.phrase_id,
                 "spotId": spot_by_measure.get(m.id),
                 "scoreText": m.score_text,
@@ -572,6 +726,8 @@ def client_payload(view: ScoreView) -> dict:
                 "unratedReason": p.unrated_reason,
                 "measureIds": p.measure_ids,
                 "fragmentCount": p.fragment_count,
+                "childPhraseIds": p.child_phrase_ids,
+                "childSpotIds": p.child_spot_ids,
             }
             for p in selectable
         },

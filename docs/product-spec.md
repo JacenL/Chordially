@@ -15,27 +15,35 @@ A violinist uploads sheet music and immediately understands where a piece become
 ## Required journey
 1. Upload a supported scan or choose a clearly labeled example.
 2. Show honest progress through recognition and analysis.
-3. Present the original score with phrase boundaries and a continuous difficulty ribbon aligned measure by measure.
-4. Show each phrase's 0.0–10.0 rating and a concise explanation.
-5. Click a measure or phrase to select the relevant musical idea and open its practice guidance in the sidebar.
-6. Explore a local trouble spot without losing the parent phrase context.
-7. Adjust a mistaken phrase boundary or mark a recognition issue.
+3. Present the original score divided into practice sections, with a continuous difficulty ribbon banded by section and aligned to the engraved measures.
+4. Show each section's 0.0–10.0 rating and a concise explanation.
+5. Click anywhere inside a section to select that whole passage and open its practice guidance in the sidebar.
+6. Explore a phrase or a local trouble spot inside the passage without losing the passage context, and without either of them intercepting a click on the score.
+7. Adjust a mistaken section or phrase boundary, or mark a recognition issue.
 8. Practice a recommended exercise and report progress; reconnect the passage into the surrounding phrase.
 
 ## Segmentation: one musical idea per group
 The user's priority is a coherent musical idea, not an arbitrary block of notation. The earlier 2–4-measure target is a soft starting heuristic. The later instruction that a group should not be two measures or ten lines long is interpreted as rejecting mechanically tiny or sprawling groups, not forbidding a genuine two-measure phrase. Make this interpretation explicit in the plan.
 
 Use three distinct levels:
-- Structural section: a larger formal region suggested by rehearsal marks, double bars, repeats, key/time changes, or defensible formal analysis.
+- Practice section: one or more adjacent phrases that ask for the same kind of
+  work. This is the primary unit — what the score is colored by and what a click
+  selects. Boundaries come from printed evidence (key/meter change, double bar,
+  repeat), from a real step in difficulty, from a change in the dominant
+  technical demand, or from the user's own split. A small rating change is not a
+  boundary, and matching scores are not a reason to merge unrelated ideas.
+  Sections tile the piece and never split a phrase. They are labeled by the
+  measures they span and the demands measured in them; a formal name the
+  notation does not establish is still forbidden.
 - Phrase: one musical thought, inferred from melodic contour, closure, rests, cadential evidence, articulation, and context. Neither a slur nor an ordinary measure number automatically establishes a phrase boundary.
-- Trouble spot: a short technical range inside a phrase, possibly one measure or two beats.
+- Trouble spot: a short technical range inside a phrase, possibly one measure or two beats. Secondary guidance inside its section, never the default target of a click on the score.
 
 Phrase boundaries can occur within measures and continue across systems/pages. Avoid forcing equal lengths. Give each inferred boundary a brief reason and an uncertainty indicator where appropriate. Provide split, merge, and boundary adjustment interactions.
 
 Keep each phrase's structural range separate from its practice range. Extend practice through the first playable note of the next phrase when available. At the final phrase there is no next note. Handle rests, ties, repeats, and endings explicitly; do not fabricate a continuation. Structural phrase coverage must not contain accidental gaps or duplicate ownership even when practice ranges overlap.
 
 ## Difficulty ratings
-Every analyzed phrase receives a number from 0.0 to 10.0 inclusive, displayed with exactly one decimal digit, for example 6.7. Each analyzed measure also receives a rating to drive the ribbon. Missing/unreadable data remains unrated; do not use 0.0 as a missing value.
+Every analyzed section and phrase receives a number from 0.0 to 10.0 inclusive, displayed with exactly one decimal digit, for example 6.7. Each analyzed measure also receives a rating; those feed the section and phrase numbers and are visible on hover, but they do not drive a measure-by-measure heat map. Missing/unreadable data remains unrated; do not use 0.0 as a missing value.
 
 Category mapping, an app heuristic rather than a validated grading system. Each
 category spans one interval of the color progression in design.md:
@@ -83,8 +91,8 @@ MVP excludes handwritten recognition, full orchestral part extraction, live audi
 - A multi-system example retains correct region alignment on resize and zoom.
 - Phrases represent musical ideas and can be edited, including a boundary inside a measure.
 - Every successfully analyzed phrase displays one decimal digit; unreadable regions display 'Needs review.'
-- The score has an uninterrupted ribbon within each system, with colors corresponding to local measure difficulty.
-- Clicking the ribbon selects the correct measure and opens guidance for its phrase; local trouble spots are distinguished.
+- The score has an uninterrupted ribbon within each system, banded by practice section, with one color and one rating per section wherever that section appears. Unreadable measures keep neutral hatching inside the band.
+- Clicking anywhere inside a section — a measure, the section outline, or its ribbon band — selects that whole section, highlights its full extent, and opens its guidance. Different sections load different advice. Local trouble spots are distinguished and remain secondary.
 - Suitable fast even-note passages receive complementary rhythm exercises with a return to the written music.
 - A contrasting passage receives a different applicable technique or an honest explanation of insufficient evidence.
 - Settings and progress persist, and example mode works without API credentials.
