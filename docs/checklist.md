@@ -906,7 +906,7 @@ old `.empty-state` block in `src/static/app.css`.
 ### Backend track
 
 #### B1 — Where the ribbon may be drawn (do first; the frontend track waits on it)
-- [ ] Not started. Dependencies: none. Small.
+- [x] Complete. Dependencies: none.
 - Problem, measured on `fixtures/pages/wohlfahrt-p3.png`: `view_model.py` places
   the ribbon in the bottom 13% of each system band and its comment claims that
   sliver is whitespace. It is not. All 11 systems carry ink inside that band —
@@ -919,12 +919,40 @@ old `.empty-state` block in `src/static/app.css`.
   region where that fits; where it does not — which is the case on this page —
   keep a documented minimum height and set the flag rather than silently
   overlapping.
-- Acceptance: for every system of both fixtures, the emitted band either
-  contains zero ink pixels or has the flag set, asserted by a test that counts
-  ink in the emitted rectangle rather than trusting the constant; bands stay
-  flush and gapless horizontally; no style string carries a unit other than `%`
-  (the existing test); the false comment in `view_model.py` is corrected.
-- Do **not** decide the visual treatment here. That is F1.
+- Delivered: `cv_geometry.ribbon_band` finds the gutter from the page's own row
+  ink profile, `System.ribbon_region` and `System.ribbon_placement` carry it, and
+  `view_model.ribbon_band_rows` uses it, falling back to the old constants only
+  where nothing was measured. The highest qualifying gutter wins rather than the
+  widest, because the widest blank run under the fixture's last system is the
+  footer margin 80px below the music, which would read as a bar belonging to
+  nothing. Blankness allows `RIBBON_QUIET_INK_FRAC` — about six pixels across a
+  3,000px staff — because demanding literally zero lets one speck of scanner dust
+  veto a gutter that is plainly empty, and this fixture is a real scan.
+- Evidence: **317 passed**, 20 skipped, 5 deselected; 14 new tests in
+  `tests/unit/test_ribbon_band.py`, which count ink in the emitted rectangle
+  against the committed page image rather than checking a constant.
+  - Ink inside the band, per system, before → after: **1,340–8,422 → 2–98
+    pixels**. The worst single row inside a band called clear carries 9 pixels
+    across a ~3,000px staff, which is dust rather than notation.
+  - 10 of 11 systems have a verified-blank gutter; system 6 has none and says so.
+  - Rendered in Chromium: the first band reports `top: 13.2432%`, matching the
+    measured 583 of 4,400 rows, and both placement values appear in the DOM.
+- The example fixture was migrated by `scripts/measure_example_ribbon_bands.py`,
+  which re-detects staves on the committed PNG, asserts the count matches the
+  fixture's systems, and touches nothing else. Geometry only, no API key.
+- **A defect found by its own test.** The first version of the crowded fallback
+  placed the band as low as the space allowed. On system 6 that pushed it into
+  the *following* staff's notation — 7,988 ink pixels against the old fixed
+  placement's 1,842, four times worse than the bug being fixed. It now picks the
+  window that obscures the least ink, earliest on a tie, and covers 20. A test
+  pins that a crowded system is never made worse than before.
+- Left for F1, deliberately: the visual treatment, including what `crowded`
+  should look like. The interface is `data-ribbon-placement` on each
+  `.ribbon-segment`, carrying `clear`, `crowded` or `unmeasured`.
+- Known limit: the MusicXML path reports `unmeasured` and keeps the constant
+  placement, because an engraved page is served as SVG and has no pixels to
+  profile. Verovio's spacing is generous, so this is a smaller problem than the
+  scan had, but it is unmeasured rather than known-good.
 
 #### B2 — Audiveris as a third recognition adapter
 - [ ] Not started. Dependencies: none.

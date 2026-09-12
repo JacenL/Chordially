@@ -47,7 +47,15 @@
      "wohlfahrt-p3:m0002",
      "wohlfahrt-p3:m0003",
      "wohlfahrt-p3:m0004"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.05941176470588235,
+     "y": 0.13243181818181818,
+     "w": 0.89,
+     "h": 0.007579545454545453
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s01",
@@ -66,7 +74,15 @@
      "wohlfahrt-p3:m0007",
      "wohlfahrt-p3:m0008",
      "wohlfahrt-p3:m0009"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.058823529411764705,
+     "y": 0.2158409090909091,
+     "w": 0.8905882352941177,
+     "h": 0.007579545454545453
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s02",
@@ -85,7 +101,15 @@
      "wohlfahrt-p3:m0012",
      "wohlfahrt-p3:m0013",
      "wohlfahrt-p3:m0014"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.054705882352941174,
+     "y": 0.2906221590909091,
+     "w": 0.8929411764705882,
+     "h": 0.007612215909090909
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s03",
@@ -105,7 +129,15 @@
      "wohlfahrt-p3:m0018",
      "wohlfahrt-p3:m0019",
      "wohlfahrt-p3:m0020"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.058823529411764705,
+     "y": 0.38313068181818183,
+     "w": 0.8894117647058823,
+     "h": 0.007644886363636362
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s04",
@@ -126,7 +158,15 @@
      "wohlfahrt-p3:m0025",
      "wohlfahrt-p3:m0026",
      "wohlfahrt-p3:m0027"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.05411764705882353,
+     "y": 0.45840909090909093,
+     "w": 0.89,
+     "h": 0.0036363636363636364
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s05",
@@ -146,7 +186,15 @@
      "wohlfahrt-p3:m0031",
      "wohlfahrt-p3:m0032",
      "wohlfahrt-p3:m0033"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.05352941176470588,
+     "y": 0.5570113636363636,
+     "w": 0.8941176470588236,
+     "h": 0.007710227272727272
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s06",
@@ -165,7 +213,15 @@
      "wohlfahrt-p3:m0036",
      "wohlfahrt-p3:m0037",
      "wohlfahrt-p3:m0038"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.05235294117647059,
+     "y": 0.6404545454545455,
+     "w": 0.8947058823529411,
+     "h": 0.0036363636363636364
+    },
+    "ribbon_placement": "crowded"
    },
    {
     "id": "wohlfahrt-p3:s07",
@@ -185,7 +241,15 @@
      "wohlfahrt-p3:m0042",
      "wohlfahrt-p3:m0043",
      "wohlfahrt-p3:m0044"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.052941176470588235,
+     "y": 0.7154545454545455,
+     "w": 0.8947058823529411,
+     "h": 0.005227272727272727
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s08",
@@ -205,7 +269,15 @@
      "wohlfahrt-p3:m0048",
      "wohlfahrt-p3:m0049",
      "wohlfahrt-p3:m0050"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.054705882352941174,
+     "y": 0.7992670454545455,
+     "w": 0.8929411764705882,
+     "h": 0.007644886363636362
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s09",
@@ -224,7 +296,15 @@
      "wohlfahrt-p3:m0053",
      "wohlfahrt-p3:m0054",
      "wohlfahrt-p3:m0055"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.05058823529411765,
+     "y": 0.8720454545454546,
+     "w": 0.8970588235294118,
+     "h": 0.006136363636363636
+    },
+    "ribbon_placement": "clear"
    },
    {
     "id": "wohlfahrt-p3:s10",
@@ -243,7 +323,15 @@
      "wohlfahrt-p3:m0058",
      "wohlfahrt-p3:m0059",
      "wohlfahrt-p3:m0060"
-    ]
+    ],
+    "ribbon_region": {
+     "page_index": 0,
+     "x": 0.05,
+     "y": 0.9589227272727273,
+     "w": 0.8976470588235295,
+     "h": 0.006325
+    },
+    "ribbon_placement": "clear"
    }
   ],
   "measures": [

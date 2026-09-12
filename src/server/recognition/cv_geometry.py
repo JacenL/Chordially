@@ -88,6 +88,26 @@ MEASURE_MIN_WIDTH_MEDIAN_FRAC = 0.45
 # are the binding case.
 BOX_MARGIN_STAVESPACE = 4.5
 
+# Where the difficulty ribbon may be drawn, in staff spaces below the staff.
+#
+# This cannot be a fraction of the measure box. The box reaches halfway to the
+# next staff, and on this repertoire stems, beams and fingering digits reach 3-4
+# staff spaces below the bottom line -- so the box's lowest sliver is notation,
+# not whitespace. The blank gutter is real but it straddles the boundary between
+# two boxes, which is why the band is found from the page's ink profile and is
+# allowed to sit outside the system's own box.
+RIBBON_TARGET_STAVESPACE = 1.15
+RIBBON_MIN_STAVESPACE = 0.55
+
+# Clearance kept between the band and the ink above or below it.
+RIBBON_CLEARANCE_STAVESPACE = 0.30
+
+# A row carrying no more ink than this fraction of the staff's width counts as
+# blank. Demanding literally zero would let one speck of scanner dust veto a
+# gutter that is plainly empty to the eye; at the fixture's resolution this is a
+# budget of about six pixels across a 3000px staff.
+RIBBON_QUIET_INK_FRAC = 0.002
+
 
 @dataclasses.dataclass(frozen=True)
 class Box:
@@ -120,6 +140,13 @@ class DetectedSystem:
     box: Box
     staff_space_px: float
     measures: list[DetectedMeasure]
+
+    # Where the difficulty ribbon may be drawn for this system, and whether that
+    # rectangle was actually found empty. `ribbon_is_clear=False` means the page
+    # left nowhere to put it, which is a fact the interface needs rather than one
+    # to paper over.
+    ribbon_box: Box | None = None
+    ribbon_is_clear: bool = False
 
 
 @dataclasses.dataclass(frozen=True)
@@ -441,6 +468,93 @@ def _drop_spurious_barlines(barlines: list[int]) -> list[int]:
     return bl
 
 
+def _row_ink(
+    mask: np.ndarray, first: int, last: int, left: int, right: int
+) -> np.ndarray:
+    """Ink pixels per row in [first, last), counted only across the staff's width.
+
+    Page margins, plate numbers and the binding shadow sit outside that width and
+    must not make a gutter look occupied.
+    """
+    if last <= first or right <= left:
+        return np.zeros(0, dtype=np.int64)
+    strip = mask[first:last, left : right + 1]
+    return (strip > 0).sum(axis=1)
+
+
+def _quiet_runs(
+    mask: np.ndarray, first: int, last: int, left: int, right: int
+) -> list[tuple[int, int]]:
+    """Runs of consecutive blank rows in [first, last), as (start, end_exclusive)."""
+    profile = _row_ink(mask, first, last, left, right)
+    if profile.size == 0:
+        return []
+    budget = max(1, int(round((right - left + 1) * RIBBON_QUIET_INK_FRAC)))
+    blank = profile <= budget
+
+    runs: list[tuple[int, int]] = []
+    start: int | None = None
+    for i, is_blank in enumerate(blank):
+        if is_blank and start is None:
+            start = i
+        elif not is_blank and start is not None:
+            runs.append((first + start, first + i))
+            start = None
+    if start is not None:
+        runs.append((first + start, last))
+    return runs
+
+
+def ribbon_band(
+    mask: np.ndarray,
+    *,
+    staff_bottom: int,
+    search_limit: int,
+    staff_left: int,
+    staff_right: int,
+    staff_space: float,
+) -> tuple[float, float, bool]:
+    """Rows for one system's ribbon: (top, height, is_clear), in pixels.
+
+    The highest qualifying gutter wins rather than the widest, because a band has
+    to stay visually attached to the system it describes. On the fixture page the
+    widest blank run under the last system is the footer margin, 80 pixels below
+    the music, which would read as a bar belonging to nothing.
+
+    When no gutter is tall enough -- densely engraved pages do exist, and one
+    system of the fixture page is one -- the band goes where it obscures the least
+    ink and is reported as not clear. The obvious alternative, placing it as low
+    as the space allows, is worse: on the fixture's crowded system that pushed the
+    band into the following staff's high notes, covering four times the notation
+    the old fixed placement did. A test pins that.
+    """
+    clearance = staff_space * RIBBON_CLEARANCE_STAVESPACE
+    target = staff_space * RIBBON_TARGET_STAVESPACE
+    minimum = staff_space * RIBBON_MIN_STAVESPACE
+
+    first = int(round(staff_bottom + clearance))
+    last = min(int(round(search_limit)), mask.shape[0])
+
+    for run_start, run_end in _quiet_runs(mask, first, last, staff_left, staff_right):
+        run = run_end - run_start
+        if run < minimum:
+            continue
+        height = min(target, float(run))
+        top = run_start + min(clearance, run - height)
+        return float(top), float(height), True
+
+    window = max(1, int(round(minimum)))
+    profile = _row_ink(mask, first, last, staff_left, staff_right)
+    if profile.size < window:
+        top = min(float(first), max(0.0, mask.shape[0] - window))
+        return top, float(window), False
+
+    # Least ink obscured, and the earliest such position on a tie, which keeps the
+    # band as close to its own staff as the page allows.
+    totals = np.convolve(profile, np.ones(window, dtype=np.int64), mode="valid")
+    return float(first + int(np.argmin(totals))), float(window), False
+
+
 def analyze_page(gray: np.ndarray, render_dpi: int = RENDER_DPI) -> PageGeometry:
     """Full geometry pipeline for one already-rendered page."""
     mask = binarize(gray)
@@ -463,6 +577,20 @@ def analyze_page(gray: np.ndarray, render_dpi: int = RENDER_DPI) -> PageGeometry
         staff_space = float(np.median(spaces)) if spaces else 8.0
 
         staff_left, staff_right = _staff_extent(mask, staff)
+
+        # The ribbon's own vertical placement, from the ink between this staff
+        # and the next one. Computed here, where the page pixels are, because no
+        # later stage sees them.
+        next_staff_top = staves[si + 1][0][0] if si + 1 < len(staves) else h
+        band_top, band_height, band_is_clear = ribbon_band(
+            mask,
+            staff_bottom=bottom,
+            search_limit=next_staff_top - staff_space * RIBBON_CLEARANCE_STAVESPACE,
+            staff_left=staff_left,
+            staff_right=staff_right,
+            staff_space=staff_space,
+        )
+
         barlines = _find_barlines(mask, top, bottom, staff_space, staff)
 
         # This engraving omits the barline at a system's start, and sometimes at
@@ -486,6 +614,8 @@ def analyze_page(gray: np.ndarray, render_dpi: int = RENDER_DPI) -> PageGeometry
                     box=Box(0.0, top / h, 1.0, (bottom - top) / h),
                     staff_space_px=staff_space,
                     measures=[],
+                    ribbon_box=Box(0.0, band_top / h, 1.0, band_height / h),
+                    ribbon_is_clear=band_is_clear,
                 )
             )
             continue
@@ -533,6 +663,13 @@ def analyze_page(gray: np.ndarray, render_dpi: int = RENDER_DPI) -> PageGeometry
                 ),
                 staff_space_px=staff_space,
                 measures=measures,
+                ribbon_box=Box(
+                    x=barlines[0] / w,
+                    y=band_top / h,
+                    w=(barlines[-1] - barlines[0]) / w,
+                    h=band_height / h,
+                ),
+                ribbon_is_clear=band_is_clear,
             )
         )
 
