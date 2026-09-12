@@ -62,7 +62,7 @@ near-black across the same 0–10 range:
 - 2.0 ≤ score < 4.0: Advanced Beginner.
 - 4.0 ≤ score < 6.0: Competent level.
 - 6.0 ≤ score < 8.0: Expert level.
-- 8.0 ≤ score ≤ 10.0: Extremely, extremely hard.
+- 8.0 ≤ score ≤ 10.0: Extremely hard.
 
 The scale is absolute and shared across pieces. Never normalize one upload to
 fill the range. An easy passage inside a difficult work keeps its own low

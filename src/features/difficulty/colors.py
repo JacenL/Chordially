@@ -39,7 +39,7 @@ CATEGORIES: list[tuple[float, float, str]] = [
     (2.0, 4.0, "Advanced Beginner"),
     (4.0, 6.0, "Competent level"),
     (6.0, 8.0, "Expert level"),
-    (8.0, 10.0, "Extremely, extremely hard"),
+    (8.0, 10.0, "Extremely hard"),
 ]
 
 UNRATED_LABEL = "Needs review"

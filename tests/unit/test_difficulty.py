@@ -52,8 +52,8 @@ def test_anchor_values_reproduce_exactly(score, expected_hex):
         (5.9, "Competent level"),
         (6.0, "Expert level"),
         (7.9, "Expert level"),
-        (8.0, "Extremely, extremely hard"),
-        (10.0, "Extremely, extremely hard"),
+        (8.0, "Extremely hard"),
+        (10.0, "Extremely hard"),
     ],
 )
 def test_category_boundaries_are_half_open(score, expected):
