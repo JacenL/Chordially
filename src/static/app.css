@@ -1152,6 +1152,9 @@ details.exercise-card {
 .difficulty-highlight {
   position: absolute;
   background: var(--difficulty-color);
+  /* Trim 8% from each vertical edge without moving the measure hit target. */
+  transform: scaleY(0.84);
+  transform-origin: center;
 }
 .difficulty-highlight--unrated {
   background: repeating-linear-gradient(

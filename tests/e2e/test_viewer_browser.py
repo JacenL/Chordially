@@ -167,7 +167,9 @@ def test_highlights_preserve_notation_and_match_measure_regions(page):
                 aligned: [...document.querySelectorAll('.difficulty-highlight')].every(el => {
                     const target = document.getElementById('hit-' + el.dataset.measureId);
                     const a = el.getBoundingClientRect(), b = target.getBoundingClientRect();
-                    return ['x', 'y', 'width', 'height'].every(k => Math.abs(a[k] - b[k]) < 1);
+                    return Math.abs(a.x - b.x) < 1 && Math.abs(a.width - b.width) < 1
+                        && Math.abs(a.height - b.height * 0.84) < 1
+                        && Math.abs((a.y + a.height / 2) - (b.y + b.height / 2)) < 1;
                 }),
             };
         }""")

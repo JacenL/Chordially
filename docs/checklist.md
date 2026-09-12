@@ -1094,3 +1094,9 @@ None. C1 and C2 are confirmed on origin/practice-map-build.
   64 integration/practice tests passed, one live-provider test deselected.
   `git diff --check` passed. No live recognition calls were made.
 - Delivery: ready to commit on the frontend branch; no shared-branch push or merge.
+
+### F01 follow-up — tighter highlight height
+- Reduced the decorative highlight to 84% of its previous height, centered on
+  the measure (8% inset per edge). Hit targets and analysis geometry stay intact.
+- Validation: all 11 viewer browser tests passed; diff whitespace check passed.
+- Delivery: local frontend branch; previous GitHub authentication blocker remains.
