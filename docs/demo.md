@@ -1,21 +1,156 @@
-# PracticeMap — planned demo
+# PracticeMap — demo script
 
-Status: target script; not yet an account of working software.
+Status: an account of working software. Every number below was measured on
+2026-09-12 against the build at commit `7a68e74` or later, not estimated.
 
-## Intended demonstration
-1. Open the app and identify it as a violin practice guide.
-2. Upload the prepared score through the real recognition path.
-3. Show one coherent phrase, its one-decimal rating, and the continuous local difficulty ribbon.
-4. Select a difficult even-note run and demonstrate long-short/short-long instructions, then the return to original rhythm.
-5. Select a contrasting trouble spot to show a different technique.
-6. Adjust a phrase boundary to demonstrate musical control.
-7. Mark progress and revisit the phrase.
+## Before you start
 
-## Preparation during T09
-Record the actual start command, browser address, example score path, required variables, expected recognition time, and exact passages to select. Link source/provenance information for the example.
+```bash
+pip install -r requirements-dev.txt
+python -m uvicorn src.app.main:app --reload
+```
 
-## Recovery
-If the external provider is unavailable, explicitly switch to labeled example mode. State that it uses prepared data. Do not describe this as successful live recognition.
+Open http://127.0.0.1:8000.
 
-## Known limitations
-Populate with observed limitations from implementation, including recognition conditions, page limits, phrase inference, and the heuristic difficulty scale. No performance measurements have been collected yet.
+A one-minute pre-flight that exercises the whole journey in a real browser:
+
+```bash
+python -m pytest tests/e2e/test_demo_flow.py -m live -q
+```
+
+It passes in about 7 seconds with a warm transcription cache. If it passes, the
+demo works.
+
+**Warm the cache before demoing.** The first analysis of a page calls the
+provider and takes about a minute; every later analysis of the same page is
+served from `work/transcription-cache/` in under two seconds. Run the pre-flight
+once on the machine you will demo from.
+
+## The script
+
+### 1. The start screen (15 seconds)
+Point out that there are two honest routes in: your own scan, and a clearly
+labelled example. Read the limits aloud — one page, 20 MB, printed notation, and
+the page image is sent to Anthropic for reading. Nothing is hidden in a tooltip.
+
+### 2. Upload the real score (30 seconds warm, ~65 seconds cold)
+Choose `fixtures/scores/wohlfahrt-op45-bk1-p3.pdf` and press **Analyze this
+page**. This is a real one-page scan of Wohlfahrt Op. 45 Book 1, page 4 of the
+book.
+
+While it runs, point at the stage text. It names the stage actually running and
+counts real sections — "read 12 of 34 sections". There is deliberately no
+progress bar, because the stages take very different amounts of time and a
+smoothly sweeping bar would be invented.
+
+### 3. The analyzed page (45 seconds)
+What lands is the uploaded scan with three layers over it:
+
+- **Phrase outlines** with each phrase's name and 0.0–10.0 rating.
+- **The difficulty ribbon**, one unbroken run under each system, measure-aligned,
+  green through maroon. Segment widths follow the real engraved barlines.
+- **Hatched regions** where recognition could not read the notation. Say this
+  out loud: hatching is not "easy" and not "hard", it is *unknown*, and the
+  legend has a sixth entry for it.
+
+Point at the **Source** line at the top. It states how many sections were read
+live and how many were reused from an earlier reading of that exact image. A
+cached run and a live run are different facts and the page says which happened.
+
+Measured on this page: 11 systems, 61 measures, 15 phrases, 43 of 61 measures
+rated, ratings spanning 1.0–7.0.
+
+### 4. Select a passage (30 seconds)
+Click the first phrase in the sidebar list, or click straight on the score.
+Selection syncs the outline, the phrase list and the sidebar.
+
+The sidebar shows the phrase's rating, its **local peak** — the hardest single
+measure inside it — and why: "Note rate +0.8, Fast subdivision +0.8, Off-beat
+placement +0.6", measured on the hardest measure rather than averaged across
+the phrase.
+
+Show the boundary panel. Each boundary carries a plain-language reason and an
+honest confidence: "The line settles downward onto the tonic — moderate evidence
+(0.37)". On continuous etude writing that confidence is often low, and it says
+so rather than rounding up.
+
+### 5. The exercise (60 seconds — the heart of the demo)
+Phrase 1 gets **Complementary rhythms**, chosen because *a run of 12 equal notes
+is printed here*. Read that line out: the technique was selected from the
+notation, not from the rating.
+
+The variants are built from the passage's own notes. Long–short shows
+`E4 dotted eighth, G4 16th, B4 dotted eighth, A4 16th…` — the printed pitches in
+their printed order, with the durations redistributed inside each pair. Then the
+complement, short–long, and the same pattern displaced by one note so a
+different pair is joined.
+
+The line underneath is the point: *each variant lasts exactly as long as the
+written run, so the beat does not move*. That is arithmetic on exact fractions,
+asserted in the tests, not a claim.
+
+Then steps, what to listen for, a pace rule, a success criterion, and the way
+back into the music — including playing through the first note of the next
+phrase, which is why phrases carry a practice range distinct from their
+structural range.
+
+Open **Sources**. Simon Fischer's article is cited with what it supports *and
+what it does not*: it is teacher pedagogy, not a controlled trial. Techniques
+PracticeMap chose on its own are badged "app heuristic" and say so.
+
+### 6. A contrasting passage (20 seconds)
+Select Phrase 8. It gets a different technique, because its measures could not
+all be read and there is no even run to pair. Nothing generic is substituted.
+
+Click any hatched measure. The sidebar names that specific measure as unrated
+and distinguishes *unreadable notation* from *a request that never completed* —
+one is a judgement about the page, the other about us.
+
+### 7. Close (10 seconds)
+Zoom to 300% and resize the window. The annotations stay on their measures,
+because every overlay is positioned in page-relative percentages and the browser
+does no coordinate arithmetic at all.
+
+## If something goes wrong
+
+- **The provider is down or out of credit.** Analysis still runs: geometry needs
+  no credentials, so you still get the real page map with every measure marked
+  as never read. Say that is what you are seeing. Do not describe it as
+  successful recognition.
+- **An upload is rejected.** That is the designed behaviour for anything outside
+  the disclosed scope. The message names a recovery action; read it out.
+- **Anything else.** Fall back to `/score/example`, which needs no credentials
+  and is labelled "Example score" in the header. Say explicitly that it is
+  prepared data.
+
+## Known limitations, honestly
+
+- **One page per upload.** A multi-page PDF is accepted; the first page carrying
+  staves is analyzed and the rest is not read. The page says which page it used.
+- **Printed notation only.** Handwriting is out of scope and untested.
+- **Recognition is imperfect and says so.** On the demo page, 43 of 61 measures
+  validated. The other 18 failed an arithmetic check — their durations did not
+  sum to the meter — and are left unrated rather than shown as a guess.
+- **Ratings are heuristic.** The 0.0–10.0 scale and its five categories are
+  PracticeMap's own, documented in the rubric. No source here validates them,
+  and no violinist has reviewed them; `fixtures/expected/review-phrases.md` is
+  waiting for exactly that review.
+- **Tempo is assumed at 90 BPM** when none is printed, which the page states.
+  Recalculating from a user-supplied tempo is not built.
+- **Phrase boundaries cannot be edited yet.** The spec calls for split/merge and
+  boundary adjustment; it is not in this build.
+- **Nothing persists.** Analyses live in memory for the life of the process, and
+  self-reported practice progress is not stored. Restarting the server loses
+  uploaded analyses; the example is always available.
+- **No audio.** PracticeMap does not listen to you and cannot tell you whether
+  you played it correctly. Success criteria are self-assessed by design.
+- **Fingerings, shifts and string choices are never asserted** from interval
+  size alone, because the notation does not establish them.
+
+## Provenance of the example
+
+`fixtures/scores/wohlfahrt-op45-bk1.pdf` — Franz Wohlfahrt, *Sixty Studies for
+the Violin*, Op. 45 Book 1. Public domain. `wohlfahrt-op45-bk1-p3.pdf` is page 4
+of that file extracted as a one-page document, verified to render
+pixel-identical to the page the prepared example was built from. See
+`fixtures/README.md`.

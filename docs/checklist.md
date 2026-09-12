@@ -1,12 +1,13 @@
 # PracticeMap — authoritative delivery checklist
 
-Status: in progress. C1–C4 and C6 delivered.
+Status: demo-ready. C1–C4 and C6 delivered; C5 and C7's persistence half
+deliberately deferred and recorded as such below.
 Working repository: https://github.com/arkyarky4546-ai/HackCMU-Happy-
 Remote: verified. `origin` fetch and push both point at
 arkyarky4546-ai/HackCMU-Happy-.git. Push access confirmed by a real push, not
 assumed.
 Working branch: practice-map-build, created from main at 95f7ceb.
-Current task: integration, demo script, handoff.
+Current task: none in flight. Next: C5 (phrase boundary editing).
 
 ## How this document is organized
 
@@ -259,8 +260,17 @@ C1's 87% on its smaller sample.
 - Blocker: none. The credit blocker above is cleared.
 
 ## C5 — Editable phrases and trouble spots
-- [ ] Complete
-- Dependencies: C4 (may start against the example score if C4 is gated).
+- [ ] **Not built. Deliberately deferred, not forgotten.**
+- Dependencies: C4.
+- Why deferred: none of the five required demo behaviours needs it, and the
+  time it would have taken went to C6, which two of them do need. It remains a
+  genuine gap against the product spec's journey step 7 ("adjust a mistaken
+  phrase boundary") and is the first thing to build next.
+- What exists already: the data model supports it. Structural and practice
+  ranges are separate, boundaries are `(measure, note index)` anchors so a
+  boundary can fall inside a measure, phrases carry a `user_edited` flag, and
+  every boundary already records its evidence and confidence. The work is the
+  editing interface and re-segmentation, not the contracts.
 - Discharges T05.
 - Acceptance: one-idea phrase groups with defensible reasons; structural,
   phrase and micro-range levels distinct; boundaries within a measure and across
@@ -304,10 +314,21 @@ C1's 87% on its smaller sample.
   - Advice is addressed as score id plus phrase id; an unknown phrase or a
     phrase from another score is a 404, not a best guess.
 
-## C7 — Persistence, interaction states, and the demo
-- [ ] Complete
+## C7 — Persistence and interaction states (partial), demo (done)
+- [ ] **Persistence not built. Demo and states delivered.**
 - Dependencies: C6.
-- Discharges T08 and T09.
+- Discharges T09 in full; T08 only in part.
+- Delivered: the required state set (empty, uploading, recognizing/analyzing,
+  ready, partial recognition, unsupported file, provider failure, missing
+  credentials, example mode) is rendered honestly; keyboard operation and the
+  legend work; `docs/demo.md` is a measured demo script with an honest
+  limitations list; the core journey passes end to end in a real browser.
+- Not delivered: self-reported practice progress, settings, and score-scoped
+  persistence. Analyses live in memory for the life of the process. The score
+  fingerprint that persistence would key on already exists and is already
+  content-based, so the foundation is there.
+- Why deferred: explicitly listed as deferrable for the deadline, and no demo
+  requirement depends on it.
 - Acceptance: self-reported progress, settings and edits persist against the
   correct score fingerprint and cannot leak between scores; re-analysis
   invalidates stale results; responsive sidebar; keyboard operation; the full
@@ -318,7 +339,9 @@ C1's 87% on its smaller sample.
   demonstrated with a configured provider or explicitly recorded as blocked;
   demo script and known limits updated; no unfinished core feature labelled
   complete.
-- Evidence: pending.
+- Evidence: **154 tests pass** — 151 offline plus 3 `live` browser/API tests.
+  The full demo journey (upload, analyze, select, read an exercise) passes in
+  Chromium in 7.3s with a warm cache and zero JavaScript errors.
 
 ## Known bugs
 None open. Two correctness bugs found during C2 were fixed in the same
@@ -329,9 +352,12 @@ application has been tested.
 None. C1 and C2 are confirmed on origin/practice-map-build.
 
 ## Handoff
-- Next action: integration and demo documentation.
-- Outstanding external setup: credit on the Anthropic account funding
-  `PRACTICEMAP_ANTHROPIC_API_KEY`. Nothing else is blocked on the user.
-- Last meaningful validation: 114 tests pass — `python -m pytest -q`,
-  including 9 Chromium tests. Browser tests skip themselves if Chromium is
-  absent; install it with `python -m playwright install chromium`.
+- Next action: C5, phrase boundary editing — the largest remaining gap
+  against the product spec.
+- Outstanding external setup: none. The Anthropic credit blocker is cleared and
+  live recognition is verified working.
+- Last meaningful validation: `python -m pytest -q` → 151 passed;
+  `python -m pytest -q -m live` → 3 passed. Browser tests skip themselves if
+  Chromium is absent; install it with `python -m playwright install chromium`.
+- Demo pre-flight: `python -m pytest tests/e2e/test_demo_flow.py -m live -q`.
+  Warm the transcription cache by running it once on the demo machine.

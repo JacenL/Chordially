@@ -1,6 +1,54 @@
-# PracticeMap — ready-to-use Claude prompt kit
+# PracticeMap
 
-This folder contains written project instructions, requirements, design guidance, a research foundation, a delivery checklist, and prompts for planning, implementation, and debugging. It is not an implemented application.
+Upload a page of printed violin sheet music. PracticeMap finds the phrases,
+rates every measure from 0.0 to 10.0, draws a measure-aligned difficulty ribbon
+under each system, and tells you how to practise the passage you select —
+including complementary rhythm variations built from that passage's own notes.
+
+## Quick start
+
+```bash
+pip install -r requirements-dev.txt
+python -m uvicorn src.app.main:app --reload
+```
+
+Open http://127.0.0.1:8000. The example score at `/score/example` works with no
+credentials at all. Analyzing your own upload needs
+`PRACTICEMAP_ANTHROPIC_API_KEY` in `.env` (copy `.env.example`).
+
+`docs/demo.md` is the demo script, with measured timings and an honest list of
+limitations. `docs/checklist.md` is the delivery status.
+
+## What works
+
+- Upload a PDF, PNG or JPEG of one printed page and analyze that actual file.
+  Measured on the demo page: 11 systems, 61 measures, 15 phrases, 43 of 61
+  measures rated.
+- OpenCV finds the staves, barlines and measures in the uploaded pixels; a
+  vision model reads only the notation content. All geometry is exact code, so
+  overlays sit on the real measures and survive zoom and resize.
+- A continuous per-system difficulty ribbon whose segment widths follow the real
+  engraved barlines, with the six colour anchors from `docs/design.md`.
+- Measures that could not be read stay unrated and hatched, visually distinct
+  from both easy and hard, and a request that never completed is kept distinct
+  from notation that was read and rejected.
+- Practice instruction selected from the notation, with sources that state what
+  they do and do not support.
+
+## What is not built
+
+Phrase boundary editing, persistence of progress or settings, MusicXML import,
+multi-page analysis, and tempo-driven recalculation. See the limitations section
+of `docs/demo.md`.
+
+---
+
+## About this repository's origins
+
+This started as a Claude prompt kit: written project instructions, requirements,
+design guidance, a research foundation, a delivery checklist, and prompts for
+planning, implementation, and debugging. Those documents are still here and are
+still authoritative.
 
 ## Use it
 1. Copy this folder's contents into the intended application repository. If that repository already has instructions, merge deliberately instead of overwriting them. Include the hidden .gitignore and .env.example files.
