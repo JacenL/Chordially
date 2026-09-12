@@ -180,11 +180,11 @@ _ARTICULATION = {
 def _note_event(element) -> NoteEvent | None:
     """One music21 note, rest or chord as a NoteEvent, or None if unusable.
 
-    A chord becomes its highest note. That is a deliberate simplification with a
-    reason: this is a solo-violin tool, the rubric counts double stops as a
-    feature of the measure rather than of a voice, and the top note is the one a
-    violinist reads the line from. The chord is still visible on the engraved
-    page, so nothing is hidden -- only the event list is flattened.
+    A chord is one event whose top note is the line -- the pitch a violinist
+    reads the melody from -- and whose other pitches ride along in
+    `chord_midis`, so the rubric can see a double stop and say which interval
+    it is. The event list stays one-event-per-attack, which is what every
+    downstream duration check assumes.
     """
     duration = element.duration
     if duration.type not in _VALUE_BY_TYPE or duration.quarterLength <= 0:
@@ -204,7 +204,13 @@ def _note_event(element) -> NoteEvent | None:
             tuplet_normal=tuplet_normal,
         )
 
-    pitch = max(element.pitches, key=lambda p: p.ps) if element.isChord else element.pitch
+    if element.isChord:
+        pitches = sorted(element.pitches, key=lambda p: p.ps)
+        pitch = pitches[-1]
+        others = sorted({int(round(p.ps)) for p in pitches[:-1]} - {int(round(pitch.ps))})
+    else:
+        pitch = element.pitch
+        others = []
     tie = "none"
     if element.tie is not None:
         tie = {"start": "start", "stop": "stop", "continue": "continue"}.get(
@@ -230,6 +236,7 @@ def _note_event(element) -> NoteEvent | None:
         tuplet_normal=tuplet_normal,
         tie=tie,
         articulation=articulation,
+        chord_midis=others,
     )
 
 

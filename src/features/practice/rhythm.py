@@ -92,6 +92,11 @@ def check_run(notes: list[NoteEvent]) -> None:
             "this run contains tuplets; lengthening one note of a triplet changes "
             "what the triplet means"
         )
+    if any(n.is_chord for n in notes):
+        raise NotTransformable(
+            "this run contains double stops, whose two voices a pairwise rhythm "
+            "would have to redistribute together"
+        )
     durations = {n.duration for n in notes}
     if len(durations) > 1:
         raise NotTransformable(
@@ -212,7 +217,12 @@ def longest_even_run(notes: list[NoteEvent]) -> tuple[int, int]:
     best_start, best_len = 0, 0
     start = 0
     while start < len(notes):
-        if notes[start].is_rest or notes[start].tuplet_actual or notes[start].dots:
+        if (
+            notes[start].is_rest
+            or notes[start].tuplet_actual
+            or notes[start].dots
+            or notes[start].is_chord
+        ):
             start += 1
             continue
         end = start + 1
@@ -221,6 +231,7 @@ def longest_even_run(notes: list[NoteEvent]) -> tuple[int, int]:
             and not notes[end].is_rest
             and not notes[end].tuplet_actual
             and not notes[end].dots
+            and not notes[end].is_chord
             and notes[end].duration == notes[start].duration
             and notes[end - 1].tie == "none"
             and notes[end].tie == "none"

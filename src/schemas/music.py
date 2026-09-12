@@ -90,11 +90,43 @@ class NoteEvent(BaseModel):
         le=4,
         description="Printed fingering digit above the note, if any. 0 means open string.",
     )
+    # A double stop or chord is one event with several sounding pitches. The
+    # event's own step/octave/alter describe the top note -- the one a violinist
+    # reads the line from -- and the others are carried here as sounding MIDI
+    # numbers. Empty for a single note. Until this field existed the rubric's
+    # double-stop feature had nothing to read and always reported zero, which
+    # left one of the largest demands in violin writing invisible.
+    chord_midis: list[int] = Field(
+        default_factory=list,
+        description=(
+            "Sounding MIDI numbers of the other notes struck together with this "
+            "one, lowest first. Empty for a single note."
+        ),
+    )
 
     @field_validator("octave")
     @classmethod
     def _octave_required_for_pitch(cls, v: int | None, info) -> int | None:
         return v
+
+    @property
+    def is_chord(self) -> bool:
+        return not self.is_rest and bool(self.chord_midis)
+
+    @property
+    def chord_size(self) -> int:
+        """How many pitches sound at once: 1 for a single note, 2 for a double stop."""
+        if self.is_rest:
+            return 0
+        return 1 + len(self.chord_midis)
+
+    @property
+    def all_midis(self) -> list[int]:
+        """Every sounding pitch of the event, lowest first."""
+        top = self.midi
+        if top is None:
+            return []
+        return sorted({*self.chord_midis, top})
 
     @property
     def duration(self) -> Fraction:
