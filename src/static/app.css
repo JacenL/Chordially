@@ -1149,12 +1149,26 @@ details.exercise-card {
   mix-blend-mode: multiply;
   opacity: 0.18;
 }
+/* The tint fades out at the top and bottom rather than stopping on a line.
+   `scaleY(0.84)` used to trim 8% off each vertical edge to keep the page from
+   reading as a solid wash. It achieved that, but the trim is blind to what it
+   cuts: measured on the fixture page it left 19,777 ink pixels outside the
+   tint, and because measure boxes are the staff plus a margin, the pixels it
+   dropped were exactly the extremes -- beam tops, high ledger notes, descending
+   stems, fingering digits. A hard edge through those reads as a note sliced in
+   half.
+
+   A mask keeps the same lighter look and cannot cut anything, because there is
+   no longer an edge to cut with: the colour dissolves through the region where
+   notation thins out. The boxes themselves are untouched and still tile
+   exactly, so no gap opens between systems. */
 .difficulty-highlight {
   position: absolute;
   background: var(--difficulty-color);
-  /* Trim 8% from each vertical edge without moving the measure hit target. */
-  transform: scaleY(0.84);
-  transform-origin: center;
+  -webkit-mask-image: linear-gradient(
+    to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(
+    to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
 }
 .difficulty-highlight--unrated {
   background: repeating-linear-gradient(
