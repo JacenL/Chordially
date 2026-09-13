@@ -22,7 +22,7 @@ from typing import Callable
 
 import numpy as np
 
-from src.config import PROJECT_ROOT
+from src.config import WORK_DIR
 from src.schemas.analysis import AnalysisBundle, RecognitionReport
 from src.server.analysis import orchestrate
 from src.server.analysis.assemble import (
@@ -60,10 +60,11 @@ PAGES_ANALYZED = 1
 # pathological upload can cause.
 MAX_PAGES_SCANNED = 12
 
-# Where rendered page images live so the browser can show them. Under work/,
-# which .gitignore excludes: an uploaded score is the user's, and it does not
-# belong in the repository.
-PAGE_DIR = PROJECT_ROOT / "work" / "pages"
+# Where rendered page images live so the browser can show them. Under the work
+# directory (work/ by default, which .gitignore excludes; see
+# src.config.resolve_work_dir): an uploaded score is the user's, and it does
+# not belong in the repository.
+PAGE_DIR = WORK_DIR / "pages"
 
 
 class UploadRejected(ValueError):

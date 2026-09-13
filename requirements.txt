@@ -4,6 +4,7 @@
 
 fastapi==0.141.1          # HTTP app and templating glue
 uvicorn==0.52.4           # ASGI server
+python-multipart==0.0.32  # multipart form parsing behind the /upload endpoint
 jinja2==3.1.6             # page templates
 markupsafe==3.0.3         # script-tag-safe JSON embedding
 pydantic==2.13.4          # validated domain contracts

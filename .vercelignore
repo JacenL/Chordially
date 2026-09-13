@@ -1,0 +1,23 @@
+# Files never uploaded to Vercel. The function bundle needs src/, fixtures/
+# (example page image and reviewed analysis), main.py and requirements.txt.
+.git
+.venv*
+__pycache__
+*.pyc
+.env
+.env.*
+!.env.example
+work/
+uploads/
+tmp/
+tests/
+docs/
+prompts/
+agent-tools/
+scripts/
+requirements-dev.txt
+playwright-report/
+test-results/
+.pytest_cache/
+.DS_Store
+*.log

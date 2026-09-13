@@ -17,7 +17,7 @@ from typing import Callable
 
 import anthropic
 
-from src.config import PROJECT_ROOT
+from src.config import WORK_DIR
 from src.schemas.music import MeasureTranscription, WireSystem
 from src.server.recognition import claude_adapter as ca
 from src.server.recognition import cv_geometry as cg
@@ -25,9 +25,10 @@ from src.server.recognition import cv_geometry as cg
 # Transcription cache. Keyed by the exact image bytes plus the model and prompt
 # that read them, so re-analyzing an unchanged page costs nothing and changing
 # either the prompt or the model correctly invalidates every entry. Lives under
-# work/, which .gitignore already excludes -- cached provider output is derived
-# data and does not belong in the repository.
-CACHE_DIR = PROJECT_ROOT / "work" / "transcription-cache"
+# the work directory (work/ by default, which .gitignore already excludes; see
+# src.config.resolve_work_dir) -- cached provider output is derived data and
+# does not belong in the repository.
+CACHE_DIR = WORK_DIR / "transcription-cache"
 
 
 def _cache_key(png: bytes, model: str, effort: str) -> str:

@@ -26,3 +26,6 @@ work/
 
 # Test and tooling caches
 .pytest_cache/
+
+# Vercel project link (per-machine)
+.vercel/
