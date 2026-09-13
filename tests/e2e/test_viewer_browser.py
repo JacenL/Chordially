@@ -293,7 +293,10 @@ def test_keyboard_moves_and_selects_along_the_score(page):
 
 
 def test_selecting_a_phrase_from_the_list_brings_it_into_view(page):
-    item = page.locator(".phrase-item").last
+    # Scoped to the passages list rather than ".phrase-item" anywhere. The same
+    # class is used inside "Inside this passage", which is collapsed, so the
+    # bare selector picked whichever list happened to come last in the DOM.
+    item = page.locator("#phrase-list .phrase-item").last
     phrase_id = item.get_attribute("data-phrase-id")
     item.click()
 

@@ -1355,3 +1355,32 @@ details.exercise-card {
    the grid they belong to instead of the wrapper becoming a grid item. */
 #sel-end-row { display: contents; }
 #sel-end-row[hidden] { display: none; }
+
+
+/* ------------------------------------------- emphasis on category labels */
+
+/* The words that say what a block *is* should look like labels.
+   `.panel-heading` never set a weight, which was fine while every heading was
+   an <h3> and inherited the browser's bold. Converting them to <summary> for
+   the collapsing panels silently dropped that: measured at font-weight 400, so
+   "What makes this tricky" was rendering lighter than the prose underneath it. */
+.panel-heading { font-weight: 600; }
+.panel-heading--summary { font-weight: 600; }
+
+/* "STEPS" and "LISTEN FOR" were bold but 11px in the faintest ink on the page,
+   which made them recede exactly where they should divide. */
+.exercise-subheading {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* "Pace", "Ready to move on", "Back to the music" are the category half of a
+   definition list and were neither bold nor dark - indistinguishable from the
+   answer beside them. */
+.boundary-list dt {
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.panel-eyebrow { color: var(--ink-soft); }
+.exercise-alt-heading { color: var(--ink-soft); }

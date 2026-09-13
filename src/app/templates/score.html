@@ -252,6 +252,60 @@
           </details>
         </section>
 
+        {# Open by default, unlike the explanatory panels. This list is the
+           keyboard and screen-reader route to every passage -- collapsing it
+           would take navigation away from exactly the people who depend on it
+           most, in the name of tidiness. The disclosure is still there for
+           anyone who wants the space back. #}
+        <section class="panel panel--collapsible">
+          <details open>
+            <summary class="panel-heading panel-heading--summary">
+              All passages
+              <span class="summary-hint">{{ view.sections | length }}</span>
+            </summary>
+          <p class="panel-note">A keyboard- and screen-reader-friendly route to every passage on the page.</p>
+          <ul class="phrase-list" id="phrase-list">
+            {% for section in view.sections %}
+              <li>
+                <button type="button" class="phrase-item phrase-item--section" data-phrase-id="{{ section.id }}"
+                        aria-label="{{ section.label }}, rated {{ section.score_text }}{% if section.is_rated %} out of 10, {{ section.category }}{% endif %}">
+                  <span class="phrase-item-bar" style="background:{{ section.color }}"></span>
+                  <span class="phrase-item-text">
+                    <span class="phrase-item-label">{{ section.label }}</span>
+                    <span class="phrase-item-range">{{ section.end_reason }}{% if section.fragment_count > 1 %} · crosses {{ section.fragment_count }} systems{% endif %}</span>
+                  </span>
+                  <span class="phrase-item-score{% if not section.is_rated %} phrase-item-score--unrated{% endif %}">{{ section.score_text }}</span>
+                </button>
+              </li>
+              {% for phrase in view.phrases if phrase.parent_id == section.id %}
+                <li>
+                  <button type="button" class="phrase-item phrase-item--nested" data-phrase-id="{{ phrase.id }}"
+                          aria-label="{{ phrase.label }}, {{ phrase.range_text }}, rated {{ phrase.score_text }}{% if phrase.is_rated %} out of 10, {{ phrase.category }}{% endif %}">
+                    <span class="phrase-item-text">
+                      <span class="phrase-item-label">{{ phrase.label }}</span>
+                      <span class="phrase-item-range">{{ phrase.range_text }}</span>
+                    </span>
+                    <span class="phrase-item-score{% if not phrase.is_rated %} phrase-item-score--unrated{% endif %}">{{ phrase.score_text }}</span>
+                  </button>
+                </li>
+                {% for spot in view.trouble_spots if spot.parent_id == phrase.id %}
+                  <li>
+                    <button type="button" class="phrase-item phrase-item--spot" data-phrase-id="{{ spot.id }}"
+                            aria-label="Hard spot inside {{ phrase.label }}, {{ spot.range_text }}, rated {{ spot.score_text }}">
+                      <span class="phrase-item-text">
+                        <span class="phrase-item-label">Hard spot</span>
+                        <span class="phrase-item-range">{{ spot.range_text }}</span>
+                      </span>
+                      <span class="phrase-item-score">{{ spot.score_text }}</span>
+                    </button>
+                  </li>
+                {% endfor %}
+              {% endfor %}
+            {% endfor %}
+          </ul>
+          </details>
+        </section>
+
         <section class="panel panel--collapsible" id="why-panel" hidden>
           <details>
             <summary class="panel-heading panel-heading--summary">
@@ -336,60 +390,6 @@
               <a class="text-action" href="#" id="reset-edits">Undo all passage edits</a>
               — edits last until the server restarts and are not saved.
             </p>
-          </details>
-        </section>
-
-        {# Open by default, unlike the explanatory panels. This list is the
-           keyboard and screen-reader route to every passage -- collapsing it
-           would take navigation away from exactly the people who depend on it
-           most, in the name of tidiness. The disclosure is still there for
-           anyone who wants the space back. #}
-        <section class="panel panel--collapsible">
-          <details open>
-            <summary class="panel-heading panel-heading--summary">
-              All passages
-              <span class="summary-hint">{{ view.sections | length }}</span>
-            </summary>
-          <p class="panel-note">A keyboard- and screen-reader-friendly route to every passage on the page.</p>
-          <ul class="phrase-list" id="phrase-list">
-            {% for section in view.sections %}
-              <li>
-                <button type="button" class="phrase-item phrase-item--section" data-phrase-id="{{ section.id }}"
-                        aria-label="{{ section.label }}, rated {{ section.score_text }}{% if section.is_rated %} out of 10, {{ section.category }}{% endif %}">
-                  <span class="phrase-item-bar" style="background:{{ section.color }}"></span>
-                  <span class="phrase-item-text">
-                    <span class="phrase-item-label">{{ section.label }}</span>
-                    <span class="phrase-item-range">{{ section.end_reason }}{% if section.fragment_count > 1 %} · crosses {{ section.fragment_count }} systems{% endif %}</span>
-                  </span>
-                  <span class="phrase-item-score{% if not section.is_rated %} phrase-item-score--unrated{% endif %}">{{ section.score_text }}</span>
-                </button>
-              </li>
-              {% for phrase in view.phrases if phrase.parent_id == section.id %}
-                <li>
-                  <button type="button" class="phrase-item phrase-item--nested" data-phrase-id="{{ phrase.id }}"
-                          aria-label="{{ phrase.label }}, {{ phrase.range_text }}, rated {{ phrase.score_text }}{% if phrase.is_rated %} out of 10, {{ phrase.category }}{% endif %}">
-                    <span class="phrase-item-text">
-                      <span class="phrase-item-label">{{ phrase.label }}</span>
-                      <span class="phrase-item-range">{{ phrase.range_text }}</span>
-                    </span>
-                    <span class="phrase-item-score{% if not phrase.is_rated %} phrase-item-score--unrated{% endif %}">{{ phrase.score_text }}</span>
-                  </button>
-                </li>
-                {% for spot in view.trouble_spots if spot.parent_id == phrase.id %}
-                  <li>
-                    <button type="button" class="phrase-item phrase-item--spot" data-phrase-id="{{ spot.id }}"
-                            aria-label="Hard spot inside {{ phrase.label }}, {{ spot.range_text }}, rated {{ spot.score_text }}">
-                      <span class="phrase-item-text">
-                        <span class="phrase-item-label">Hard spot</span>
-                        <span class="phrase-item-range">{{ spot.range_text }}</span>
-                      </span>
-                      <span class="phrase-item-score">{{ spot.score_text }}</span>
-                    </button>
-                  </li>
-                {% endfor %}
-              {% endfor %}
-            {% endfor %}
-          </ul>
           </details>
         </section>
 
