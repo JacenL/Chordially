@@ -16,6 +16,7 @@ users' scores to disk without a retention story.
 from __future__ import annotations
 
 import dataclasses
+import os
 import threading
 import uuid
 from typing import Literal
@@ -48,6 +49,25 @@ class Job:
         }
 
 
+def run_inline() -> bool:
+    """Whether analysis runs inside the upload request instead of a thread.
+
+    Serverless hosts freeze the process between requests, so a background
+    thread only gets CPU while some request is in flight and a job started on
+    a cold instance can stall at its first stage forever. Holding the upload
+    request open until analysis finishes avoids that; the browser's poll then
+    sees a finished job on its first call. PRACTICEMAP_SYNC_JOBS=1/0 decides
+    explicitly; otherwise inline mode is on exactly when Vercel's VERCEL
+    variable is present.
+    """
+    explicit = os.environ.get("PRACTICEMAP_SYNC_JOBS", "").strip().lower()
+    if explicit in ("1", "true", "yes", "on"):
+        return True
+    if explicit in ("0", "false", "no", "off"):
+        return False
+    return bool(os.environ.get("VERCEL"))
+
+
 _lock = threading.Lock()
 _jobs: dict[str, Job] = {}
 _bundles: dict[str, AnalysisBundle] = {}
@@ -70,7 +90,11 @@ def get_provenance(score_id: str) -> Provenance | None:
 
 
 def start(data: bytes, filename: str, content_type: str | None) -> Job:
-    """Queue an analysis and return immediately with its job."""
+    """Queue an analysis and return immediately with its job.
+
+    When `run_inline()` is true the analysis has already finished (or failed)
+    by the time the job is returned.
+    """
     job = Job(id=uuid.uuid4().hex[:12], filename=filename or "upload")
     with _lock:
         _jobs[job.id] = job
@@ -115,5 +139,8 @@ def start(data: bytes, filename: str, content_type: str | None) -> Job:
             job.state = "done"
             job.stage = "Ready"
 
-    threading.Thread(target=run, name=f"analyze-{job.id}", daemon=True).start()
+    if run_inline():
+        run()
+    else:
+        threading.Thread(target=run, name=f"analyze-{job.id}", daemon=True).start()
     return job
